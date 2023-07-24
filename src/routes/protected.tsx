@@ -8,8 +8,8 @@ import { makeRoute } from '@/lib';
 const AccountRoutes = lazy(() => import('@/features/account'));
 
 const paths = {
+  // admin: '/admin/*',
   my: '/my/*',
-  admin: '/admin/*',
 };
 
 const routes = (role: string) => {
@@ -27,9 +27,13 @@ const routes = (role: string) => {
   return children;
 };
 
-export const protectedRoutes = (user: User) => [
+interface Roleable {
+  role: string;
+}
+
+export const protectedRoutes = (user: Roleable) => [
   makeRoute({
     frame: <Appframe />,
-    children: routes(user.userRole ?? 'USER'),
+    children: routes(user.role ?? 'USER'),
   }),
 ];

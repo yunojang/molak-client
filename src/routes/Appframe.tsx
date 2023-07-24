@@ -1,18 +1,16 @@
-import { ReactElement } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import AppTopbar from '../components/AppTopbar';
+import AppTopbar from '../components/AppTopbar/AppTopbar';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 
-export default function Appframe({ sidebar }: { sidebar?: ReactElement }) {
-  // const { cls } = useContentWidth();
-
+export default function Appframe() {
   return (
     <>
       <AppTopbar />
 
-      <div className="flex">
+      <ErrorBoundary fallback={<div>다시 시도해 주십시오</div>}>
         <Outlet />
-      </div>
+      </ErrorBoundary>
     </>
   );
 }
