@@ -1,0 +1,14 @@
+build
+
+!/test
+/test/*
+!/test/model
+
+# modules
+node_modules
+
+# build
+dist
+
+# log
+yarn-error.log

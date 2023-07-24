@@ -1,0 +1,23 @@
+// query template
+
+import client from '@/lib/client';
+import { useQuery } from '@/lib/react-query';
+
+import { {{action}}{{pascalCase name}}DTO } from '../types';
+
+export const {{action}}{{pascalCase name}} = (): Promise<{{action}}{{pascalCase name}}DTO> => {
+  return client.get(`/api/{{pascalCase name}}`);
+};
+
+export const use{{pascalCase name}} = () => {
+  const { data: {{pascalCase name}}, ...rest } = useQuery({
+    queryKey: ['{{pascalCase name}}'],
+    queryFn: () => {{action}}{{pascalCase name}}(),
+  });
+
+  if (!{{pascalCase name}}) {
+    throw () => {{action}}{{pascalCase name}}();
+  }
+
+  return { {{pascalCase name}}, ...rest };
+};

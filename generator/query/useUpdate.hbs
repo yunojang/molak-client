@@ -1,0 +1,26 @@
+// useMutation template
+
+import client from '@/lib/client';
+import { queryClient } from '@/lib/react-query';
+import { useMutation } from 'react-query';
+
+export const {{action}}{{pascalCase name}} = (id: string) => {
+  return client.{{method}}(`/api/{{pascalCase name}}/${id}`);
+};
+
+export const use{{pascalCase action}}{{pascalCase name}} = (id: string) => {
+  const key = ['{{pascalCase name}}', id];
+
+  return useMutation({
+    mutationFn: () => {{action}}{{pascalCase name}}(id),
+    onSuccess() {
+      queryClient.invalidateQueries(key);
+    },
+    onError() {
+      console.error('error');
+    },
+    // error handle on onError
+    useErrorBoundary: false,
+  });
+};
+

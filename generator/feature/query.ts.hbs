@@ -1,0 +1,21 @@
+import { useQuery } from 'react-query';
+
+import client from '@/lib/client';
+import { {{pascalCase name}} } from '../types';
+
+export const get{{pascalCase name}} = (): Promise<{{pascalCase name}}> => {
+  return client.get('/{{camelCase name}}');
+};
+
+export const use{{pascalCase name}} = () => {
+  const { data, ...result } = useQuery({
+    queryKey: ['{{camelCase name}}'],
+    queryFn: get{{pascalCase name}},
+  });
+
+  if (!data) {
+    throw get{{pascalCase name}};
+  }
+
+  return { data, ...result };
+};

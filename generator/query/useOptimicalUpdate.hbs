@@ -1,0 +1,48 @@
+import { useMutation } from 'react-query';
+
+import client from '@/lib/client';
+import { queryClient } from '@/lib/react-query';
+import { {{pascalCase name}} } from '../types';
+
+const {{action}}{{pascalCase name}} = ({{name}}: {{pascalCase name}}) => {
+  return client.{{method}}(`/api/{{name}}`, {{name}});
+};
+
+export const use{{pascalCase action}}{{pascalCase name}} = ({
+  id,
+}: // onSuccess = () => {},
+{
+  id: number;
+  // onSuccess?: () => void;
+}) => {
+  const queryKey = ['user', id];
+
+  return useMutation({
+    mutationFn: {{action}}{{pascalCase name}},
+    onMutate(new{{pascalCase name}}) {
+      queryClient.cancelQueries(queryKey);
+
+      const prev = queryClient.getQueryData(queryKey);
+      queryClient.setQueriesData(queryKey, old => ({
+        ...(old ?? {}),
+        ...new{{pascalCase name}},
+      }));
+
+      return { prev };
+    },
+    onSuccess: () => {
+      console.log('success');
+    },
+    onError: (_, __, context: any) => {
+      console.error('failed');
+
+      if (context?.prev) {
+        queryClient.setQueryData(queryKey, context.prev);
+      }
+    },
+    onSettled() {
+      queryClient.invalidateQueries(queryKey);
+    },
+    useErrorBoundary: false,
+  });
+};
