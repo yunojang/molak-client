@@ -15,3 +15,7 @@ export interface Nameable {
 export interface ListClientProps {
   params?: any;
 }
+
+export interface Domain {
+  id: string;
+}

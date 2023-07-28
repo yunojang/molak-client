@@ -10,11 +10,11 @@ interface AppTopbarProps {
 
 const AppTopbar: FC<AppTopbarProps> = () => {
   return (
-    <div className="px-7 py-4 pb-3 bg-white flex justify-between items-center">
+    <div className="flex items-center justify-between py-4 pb-3 bg-white px-7">
       {/* left */}
       <div className="flex items-center gap-7">
-        <a href="/" className="cursor-pointer inline-block pb-1">
-          <img src="asset/MOLAK_sm.png" className="h-[35px]" />
+        <a href="/" className="inline-block pb-1 cursor-pointer">
+          <img src="/asset/MOLAK_sm.png" className="h-[35px]" />
         </a>
 
         <Navigator nav={NAV} />
@@ -22,7 +22,7 @@ const AppTopbar: FC<AppTopbarProps> = () => {
 
       {/* right */}
       <div>
-        <Button className="border border-gray-300 bg-white font-normal">
+        <Button className="font-normal bg-white border border-gray-300">
           로그인
         </Button>
       </div>

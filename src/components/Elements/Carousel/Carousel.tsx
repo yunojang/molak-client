@@ -14,6 +14,8 @@ import { circularRange } from '@/utils/range';
 import OrderStep from './OrderStep';
 
 interface CarouselProps {
+  width?: string | number;
+  height?: string | number;
   autoPlay?: boolean;
   delay?: number;
   sliders?: React.ReactNode[];
@@ -21,6 +23,8 @@ interface CarouselProps {
 }
 
 const Carousel: FC<CarouselProps> = ({
+  width = '100%',
+  height = '44em',
   autoPlay,
   delay = 3500,
   sliders = [],
@@ -37,9 +41,11 @@ const Carousel: FC<CarouselProps> = ({
   const onManual = useCallback(() => {
     clearInterval(intervalId);
     // reset interval
-    const id = setInterval(_increase, delay);
-    setIntervalId(id);
-  }, [intervalId, delay, _increase]);
+    if (autoPlay) {
+      const id = setInterval(_increase, delay);
+      setIntervalId(id);
+    }
+  }, [intervalId, delay, _increase, autoPlay]);
 
   const increase = useCallback(() => {
     _increase();
@@ -67,8 +73,8 @@ const Carousel: FC<CarouselProps> = ({
 
       <CarouselViewer
         order={order}
-        width="100%"
-        height="44em"
+        width={width}
+        height={height}
         items={sliders}
       />
 
