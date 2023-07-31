@@ -10,7 +10,7 @@ interface ContentCardProps {
 
 const ContentCard: FC<ContentCardProps> = ({ content }) => {
   return (
-    <a className="inline-block cursor-pointer w-80">
+    <a className="inline-block cursor-pointer w-[20rem] min-w-[20rem]">
       <div className="overflow-hidden rounded-md" role="img">
         <img src={content.thumbnail} />
       </div>

@@ -13,7 +13,7 @@ import { BsDashLg } from 'react-icons/bs';
 import { circularRange } from '@/utils/range';
 import OrderStep from './OrderStep';
 
-interface CarouselProps extends CarouselViewerProps {
+interface CarouselProps extends Partial<CarouselViewerProps> {
   autoPlay?: boolean;
   delay?: number;
   sliders?: React.ReactNode[];

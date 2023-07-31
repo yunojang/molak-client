@@ -14,12 +14,12 @@ const FeedList: FC<FeedListProps> = () => {
   return (
     <>
       {feeds?.map((feed, i) => (
-        <div className="mb-20" key={i}>
-          <div className="pl-5 my-3">
+        <div className="mb-14" key={i}>
+          <div className="my-3 pl-7">
             <FeedTitle title={feed.name} />
           </div>
 
-          <div className="flex items-start gap-1 pl-5">
+          <div className="flex items-start gap-3 pl-7">
             {/* card carousel */}
             {feed.items_list.map((content, i) => (
               <ContentCard key={i} content={content} />
