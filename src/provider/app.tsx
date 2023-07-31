@@ -10,6 +10,8 @@ import { RecoilRoot } from 'recoil';
 import { ChakraProvider } from '@chakra-ui/react';
 import { theme } from '@/lib/chakra';
 
+import { Spinner } from '@/components/Elements/Spinner';
+
 interface AppProviderProps {
   children?: React.ReactNode;
 }
@@ -20,7 +22,7 @@ const AppProvider = ({ children }: AppProviderProps) => (
       <RecoilRoot>
         <ChakraProvider theme={theme}>
           <QueryClientProvider client={queryClient}>
-            <Suspense fallback={<div>대기</div>}>{children}</Suspense>
+            <Suspense fallback={<Spinner />}>{children}</Suspense>
           </QueryClientProvider>
         </ChakraProvider>
       </RecoilRoot>

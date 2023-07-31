@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { useCarouselViewer } from './hooks/useCarouselViewer';
 import { css, cx, keyframes } from '@emotion/css';
 
-interface CarouselProps {
+export interface CarouselViewerProps {
   items: React.ReactNode[];
   order: number;
   width?: string | number;
@@ -11,7 +11,7 @@ interface CarouselProps {
 
 const delay = 200;
 
-const CarouselViewer: FC<CarouselProps> = ({
+const CarouselViewer: FC<CarouselViewerProps> = ({
   items,
   order: pv,
   height,

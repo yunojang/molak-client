@@ -6,16 +6,14 @@ import {
   useCallback,
 } from 'react';
 
-import CarouselViewer from './CarouselViewer';
+import CarouselViewer, { CarouselViewerProps } from './CarouselViewer';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 import { BsDashLg } from 'react-icons/bs';
 
 import { circularRange } from '@/utils/range';
 import OrderStep from './OrderStep';
 
-interface CarouselProps {
-  width?: string | number;
-  height?: string | number;
+interface CarouselProps extends CarouselViewerProps {
   autoPlay?: boolean;
   delay?: number;
   sliders?: React.ReactNode[];
@@ -72,10 +70,10 @@ const Carousel: FC<CarouselProps> = ({
       </MoveButton>
 
       <CarouselViewer
+        items={sliders}
         order={order}
         width={width}
         height={height}
-        items={sliders}
       />
 
       <div className="absolute z-20 bottom-[2.2em] right-1/2 translate-x-1/2">
