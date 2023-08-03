@@ -1,6 +1,7 @@
+import { useBreakpoint as useOrigin } from '@chakra-ui/react';
+
 import { getBreakPoint } from '@/hooks/useBreakPointSize';
 import { useEffect, useState } from 'react';
-import { once } from '../func';
 
 export type SizeDegree = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 export const SIZE = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
@@ -80,3 +81,11 @@ export const useBreakPoint = (fn: (point: ComparablePoint) => any) => {
 
   return fn(ComparablePoint.of(size));
 };
+
+// export const useBreakPoint = <T extends string | any>(
+//   fn: (p: ComparablePoint) => T,
+// ) => {
+//   const current = useOrigin(getBreakPoint()) as SizeDegree;
+
+//   return fn(new ComparablePoint(current));
+// };

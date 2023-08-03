@@ -38,7 +38,7 @@ export const content: Content = {
   thumbnail: '/asset/images/thumb_temp.png',
 };
 
-export const contents: Content[] = range(6, () => content);
+export const contents: Content[] = range(15, () => content);
 
 export const feeds: Feed[] = [
   { name: 'NEW! 신작 소식', id: '1', items_list: contents },

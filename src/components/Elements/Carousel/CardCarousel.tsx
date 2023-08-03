@@ -1,0 +1,123 @@
+import React, { FC, useState, HtmlHTMLAttributes, useMemo } from 'react';
+import { css, cx } from '@emotion/css';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { A11y, Navigation } from 'swiper/modules';
+
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
+
+import './swiper.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { useBreakPoint } from '@/utils/breakpoint';
+
+interface SliderCarouselProps {
+  items: React.ReactElement[];
+  count?: number;
+}
+
+// const delay = 400;
+const pad = 32;
+
+const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardWidth, setCardWidth] = useState(220);
+  const [showControl, setShowControl] = useState(false);
+
+  const isMobile = useBreakPoint(p => p.smaller('xl'));
+
+  // const lastIndex = useMemo(() => currentIndex + count, [currentIndex, count]);
+  // const remain = useMemo(
+  //   () => items.length - lastIndex,
+  //   [items.length, lastIndex],
+  // );
+
+  return (
+    <div
+      className="relative w-full px-8 overflow-clip"
+      onMouseOver={() => setShowControl(true)}
+      onMouseLeave={() => setShowControl(false)}
+    >
+      <Swiper
+        className={container}
+        modules={[Navigation, A11y]}
+        loop
+        // slidesOffsetBefore={pad}
+        // slidesOffsetAfter={pad}
+        // slidesPerView={count + (pad / cardWidth) * 2}
+        simulateTouch={true}
+        breakpoints={{ 1200: { simulateTouch: false } }}
+        slidesPerView={count}
+        slidesPerGroup={count}
+        spaceBetween={10}
+        onResize={swiper => {
+          const slideWidth = swiper.slides[0].offsetWidth;
+          setCardWidth(slideWidth);
+        }}
+        onSlideChange={swiper => setCurrentIndex(swiper.realIndex)}
+        navigation={{
+          prevEl: '.prev-button-molak',
+          nextEl: '.next-button-molak',
+        }}
+        speed={400}
+      >
+        <MoveButton
+          hidden={isMobile || !showControl}
+          dir="left"
+          slot="container-start"
+          className="prev-button-molak"
+        >
+          <HiOutlineChevronLeft />
+        </MoveButton>
+
+        <MoveButton
+          hidden={isMobile || !showControl}
+          dir="right"
+          slot="container-start"
+          className="next-button-molak"
+        >
+          <HiOutlineChevronRight />
+        </MoveButton>
+
+        {items.map((item, i) => (
+          <SwiperSlide key={i}>{React.cloneElement(item)}</SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
+};
+
+export default CardCarousel;
+
+const MoveButton = ({
+  dir,
+  className,
+  children,
+  ...rest
+}: HtmlHTMLAttributes<HTMLButtonElement> & { dir: 'left' | 'right' }) => {
+  return (
+    <button
+      {...rest}
+      style={{
+        [dir]: 0,
+        width: `${pad}px`,
+      }}
+      className={`${className} ${cx(
+        `absolute top-0 z-10 bg-black
+      flex items-center justify-center h-full w-8
+      text-xl text-white transition-all cursor-pointer 
+      hover:text-7xl font-bold opacity-10 hover:opacity-30`,
+      )}`}
+    >
+      {children}
+    </button>
+  );
+};
+
+const container = css`
+  position: static !important;
+  overflow: visible !important;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+`;

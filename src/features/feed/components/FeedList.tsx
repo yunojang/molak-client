@@ -3,6 +3,7 @@ import { useFeeds } from '../api/getFeeds';
 
 import FeedTitle from './FeedTitle';
 import ContentCard from '@/components/Elements/Card/ContentCard';
+import CardCarousel from '@/components/Elements/Carousel/CardCarousel';
 
 interface FeedListProps {
   _?: any;
@@ -15,16 +16,15 @@ const FeedList: FC<FeedListProps> = () => {
     <>
       {feeds?.map((feed, i) => (
         <div className="mb-14" key={i}>
-          <div className="my-3 pl-7">
+          <div className="pl-8 my-3">
             <FeedTitle title={feed.name} />
           </div>
 
-          <div className="flex items-start gap-3 pl-7">
-            {/* card carousel */}
-            {feed.items_list.map((content, i) => (
+          <CardCarousel
+            items={feed.items_list.map((content, i) => (
               <ContentCard key={i} content={content} />
             ))}
-          </div>
+          />
         </div>
       ))}
     </>

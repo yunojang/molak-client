@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { once } from '@/utils/func';
 import { SizeDegree } from '@/utils/breakpoint/useBreakPoint';
 
 const MAX_VALUES = {
@@ -32,11 +31,11 @@ export const getBreakPoint = (): SizeDegree => {
 // window.addEventListener('resize', () => console.log(getBreakPoint()));
 
 // 훅을 여러번 호출해도, 핸들러 하나 설정
-const addEventListenerOnce = once(
-  (event: string, handler: EventListenerOrEventListenerObject) => {
-    window.addEventListener(event, handler);
-  },
-);
+// const addEventListenerOnce = once(
+//   (event: string, handler: EventListenerOrEventListenerObject) => {
+//     window.addEventListener(event, handler);
+//   },
+// );
 
 // export const useBreakPointSize = () => {
 //   const [size, setSize] = useState<SizeDegree>(getBreakPoint());

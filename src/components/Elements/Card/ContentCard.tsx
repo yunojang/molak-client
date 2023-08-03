@@ -10,9 +10,9 @@ interface ContentCardProps {
 
 const ContentCard: FC<ContentCardProps> = ({ content }) => {
   return (
-    <a className="inline-block cursor-pointer w-[20rem] min-w-[20rem]">
+    <a className="flex-1 inline-block w-full cursor-pointer">
       <div className="overflow-hidden rounded-md" role="img">
-        <img src={content.thumbnail} />
+        <img src={content.thumbnail} width="100%" height="auto" />
       </div>
       <div className="mt-2">
         <div className={cx('text-lg', lineBreak(2))}>{content.title}</div>
