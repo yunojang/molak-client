@@ -17,7 +17,7 @@ interface SliderCarouselProps {
 }
 
 // const delay = 400;
-const pad = 32;
+// const pad = 32;
 
 const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -34,7 +34,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
 
   return (
     <div
-      className="relative w-full px-8 overflow-clip"
+      className="relative w-full overflow-clip px-space"
       onMouseOver={() => setShowControl(true)}
       onMouseLeave={() => setShowControl(false)}
     >
@@ -90,6 +90,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
 export default CardCarousel;
 
 const MoveButton = ({
+  hidden,
   dir,
   className,
   children,
@@ -100,13 +101,14 @@ const MoveButton = ({
       {...rest}
       style={{
         [dir]: 0,
-        width: `${pad}px`,
+        background: 'radial-gradient(circle,  rgba(0,0,0,0.4), rgba(0,0,0,0)',
       }}
       className={`${className} ${cx(
-        `absolute top-0 z-10 bg-black
-      flex items-center justify-center h-full w-8
-      text-xl text-white transition-all cursor-pointer 
-      hover:text-7xl font-bold opacity-10 hover:opacity-30`,
+        `absolute top-0 z-10 w-space
+      flex items-center justify-center h-full 
+      text-2xl text-white transition-all cursor-pointer 
+      hover:text-9xl font-bold`,
+        hidden ? 'opacity-0' : 'opacity-100',
       )}`}
     >
       {children}

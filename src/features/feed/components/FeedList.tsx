@@ -4,6 +4,7 @@ import { useFeeds } from '../api/getFeeds';
 import FeedTitle from './FeedTitle';
 import ContentCard from '@/components/Elements/Card/ContentCard';
 import CardCarousel from '@/components/Elements/Carousel/CardCarousel';
+import { useNavigate } from 'react-router-dom';
 
 interface FeedListProps {
   _?: any;
@@ -11,18 +12,23 @@ interface FeedListProps {
 
 const FeedList: FC<FeedListProps> = () => {
   const { feeds } = useFeeds();
+  const navigate = useNavigate();
 
   return (
     <>
       {feeds?.map((feed, i) => (
         <div className="mb-14" key={i}>
-          <div className="pl-8 my-3">
+          <div className="my-3 pl-space">
             <FeedTitle title={feed.name} />
           </div>
 
           <CardCarousel
             items={feed.items_list.map((content, i) => (
-              <ContentCard key={i} content={content} />
+              <ContentCard
+                key={i}
+                content={content}
+                onClick={() => navigate(`/content/${content.id}`)}
+              />
             ))}
           />
         </div>

@@ -11,7 +11,7 @@ const paths = {
 
 const children = [
   { path: paths.auth, element: <AuthRoutes /> },
-  { path: '*', element: <Navigate to="/auth/login" /> },
+  { path: '*', element: <Navigate to="/" /> },
 ];
 
 export const publicRoutes = [makeRoute({ children })];
