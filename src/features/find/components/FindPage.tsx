@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { cx } from '@emotion/css';
 
 import PageLayout from '@/components/Elements/Layout/PageLayout';
@@ -21,6 +21,12 @@ const TITLE = {
 };
 
 const FindPage: FC<FindPageProps> = () => {
+  const [filter, setFilter] = useState({});
+
+  const updateFilter = (key: string, value: string) => {
+    setFilter(prev => ({ ...prev, [key]: value }));
+  };
+
   return (
     <PageLayout>
       <PageIntroTitle {...TITLE} marginBottom={5} />

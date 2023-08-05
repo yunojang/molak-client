@@ -60,7 +60,7 @@ export const discover: Discover = {
     '액션',
     '판타지',
     '스릴러',
-    '시대극',
+    '시대물',
   ],
   tags: [
     '학원',

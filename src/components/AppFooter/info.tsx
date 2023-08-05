@@ -26,7 +26,7 @@ export const footer_menu: FooterInfoObject[] = [
   },
   {
     name: '서비스',
-    children: [{ name: '장르 검색', path: '/customer' }],
+    children: [{ name: '장르 검색', path: '/find' }],
   },
   {
     auth: 'USER',
