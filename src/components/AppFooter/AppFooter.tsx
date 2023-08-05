@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import { withRoute } from '../Wrapper/withRouter';
+
 import FooterMenu from './FooterMenu';
 import Socials from './Socials';
 import FooterInfo from './FooterInfo';

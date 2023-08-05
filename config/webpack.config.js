@@ -92,6 +92,26 @@ module.exports = webpackEnv => {
           },
         },
         {
+          test: /\.svg$/,
+          use: {
+            loader: '@svgr/webpack',
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: 'preset-default',
+                    params: {
+                      overrides: {
+                        removeViewBox: false,
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        },
+        {
           test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
           type: 'asset',
           parser: {

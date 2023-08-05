@@ -13,7 +13,7 @@ export default function Appframe() {
       <AppTopbar />
 
       <div className="min-h-screen">
-        <Suspense fallback={<Spinner pad={48} />}>
+        <Suspense fallback={<Spinner pad={60} />}>
           <ErrorBoundary fallback={<div>다시 시도해 주십시오</div>}>
             <Outlet />
           </ErrorBoundary>

@@ -16,13 +16,9 @@ module.exports = {
       },
       colors: {
         primary: env.app.PRIMARY_COLOR,
+        dark: '#272E38',
         secondary: '#f7b21b',
         delete: '#ff5555',
-        smooth: '#6b7c99',
-        middle: '#e3e9f3',
-        opacity: '#dae2e6',
-        warning: '#dde9f0',
-        highlight: '#007dfe',
         pencel: '#333333',
       },
       screens: {

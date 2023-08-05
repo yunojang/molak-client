@@ -1,10 +1,13 @@
 import React from 'react';
+
+import { ROLE } from '@/lib/auth/Authorization';
 import { GrInstagram, GrTwitter } from 'react-icons/gr';
 
 export interface FooterInfoObject {
   name: string;
   path?: string;
   children?: FooterInfoObject[];
+  auth?: ROLE;
 }
 
 export interface SocialItem {
@@ -26,6 +29,7 @@ export const footer_menu: FooterInfoObject[] = [
     children: [{ name: '장르 검색', path: '/customer' }],
   },
   {
+    auth: 'USER',
     name: '프로필',
     children: [
       { name: '내 정보', path: '/profile' },

@@ -10,11 +10,14 @@ interface Args {
 export const useContentWidth = ({ widths = [] }: Args = {}) => {
   const width = useBreakPoint(p => {
     if (p.same('2xl')) {
+      // full
       return widths[0] ?? '1400px';
-    } else if (p.smaller('md')) {
-      return widths[1] ?? '92.7%';
+    } else if (p.smaller('lg')) {
+      // mobile
+      return widths[2] ?? '94%';
     } else {
-      return widths[2] ?? '84%';
+      // default
+      return widths[1] ?? '80%';
     }
   });
   const [viewWidth, setViewWidth] = useState(

@@ -8,7 +8,7 @@ import { queryClient } from '@/lib/react-query';
 import { ChakraProvider } from '@chakra-ui/react';
 import { theme } from '@/lib/chakra';
 
-import { Spinner } from '@/components/Elements/Spinner';
+import SpinnerPage from '@/components/Elements/Spinner/SpinnerPage';
 
 interface AppProviderProps {
   children?: React.ReactNode;
@@ -19,7 +19,7 @@ const AppProvider = ({ children }: AppProviderProps) => (
     <ErrorBoundary fallback={({ code, key, message }) => <div>{message}</div>}>
       <ChakraProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
-          <Suspense fallback={<Spinner />}>{children}</Suspense>
+          <Suspense fallback={<SpinnerPage />}>{children}</Suspense>
         </QueryClientProvider>
       </ChakraProvider>
     </ErrorBoundary>
