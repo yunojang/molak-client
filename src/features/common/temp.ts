@@ -1,5 +1,6 @@
 import { Content } from '../content/types/dto';
 import { Feed } from '../feed/types/dto';
+import { Discover } from '../find/types';
 import { Intro } from './types/dto';
 
 import { range } from '@/utils/range';
@@ -49,3 +50,30 @@ export const feeds: Feed[] = [
     items_list: contents,
   },
 ];
+
+export const discover: Discover = {
+  genres: [
+    '코미디',
+    '로맨스',
+    '드라마',
+    '일상',
+    '액션',
+    '판타지',
+    '스릴러',
+    '시대극',
+  ],
+  tags: [
+    '학원',
+    '대학',
+    '수위',
+    '일진',
+    '찐따',
+    '연애',
+    '공감',
+    '복수',
+    '친구',
+    '감동',
+    '직업',
+  ],
+  types: ['시리즈', '단편'],
+};

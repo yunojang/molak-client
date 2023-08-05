@@ -1,10 +1,10 @@
 import { Meta, Story } from '@storybook/react';
 
-import { Title, TitleProps } from './Title';
+import { PageIntroTitle, TitleProps } from './PageIntroTitle';
 
 const meta: Meta = {
   title: 'GlobalElement/Title',
-  component: Title,
+  component: PageIntroTitle,
   parameters: {
     controls: { expanded: true },
   },
@@ -13,7 +13,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story<TitleProps> = props => (
-  <Title {...props}>Title</Title>
+  <PageIntroTitle {...props}>Title</PageIntroTitle>
 );
 export const Default = Template.bind({});
 Default.args = {};

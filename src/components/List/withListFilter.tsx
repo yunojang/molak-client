@@ -4,8 +4,7 @@ import { useFilter } from '@/hooks/useFilter';
 import { useLocation } from '@/hooks/useLocation';
 import { useBreakPoint } from '@/utils/breakpoint';
 import { ListCompProps, withListDecorator } from './withListDecorator';
-
-import { SpinnerFallback } from '../Elements/SpinnerFallback';
+import SpinnerPage from '../Elements/Spinner/SpinnerPage';
 
 export interface FilterableListProps extends ListCompProps {
   parmas?: any;
@@ -44,7 +43,7 @@ export const withListFilter = (
           />
         )}
 
-        <Suspense fallback={<SpinnerFallback className="h-80" />}>
+        <Suspense fallback={<SpinnerPage />}>
           <DecoratedList {...props} />
         </Suspense>
       </div>

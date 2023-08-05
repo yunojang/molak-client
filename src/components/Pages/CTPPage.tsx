@@ -3,7 +3,7 @@ import { cx } from '@emotion/css';
 
 import { useContentWidth } from '@/hooks/useContentWidth';
 
-import { Title } from '../Elements/Title';
+import { PageIntroTitle } from '../Elements/Title';
 import { TitleObject } from './titles';
 
 interface CTPPageProps {
@@ -29,7 +29,9 @@ const CTPPage: FC<CTPPageProps> = ({
   return (
     <div className={cx(cls, 'p-5 py-10')}>
       <div className="flex items-end justify-between mb-10">
-        {title && <Title text={title.text} description={title.description} />}
+        {title && (
+          <PageIntroTitle text={title.text} description={title.description} />
+        )}
         {titleExtra}
       </div>
       {children}

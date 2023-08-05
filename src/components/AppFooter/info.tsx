@@ -63,7 +63,7 @@ export const social_info: SocialItem[] = [
   {
     name: 'instagram',
     icon: <GrInstagram size={30} />,
-    path: 'https://www.instagram.com/molakcorp/',
+    path: 'https://www.instagram.com/molak.official/',
   },
 ];
 
