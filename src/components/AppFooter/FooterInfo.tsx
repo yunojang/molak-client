@@ -1,21 +1,38 @@
 import { FC } from 'react';
 import { FooterInfoObject } from './info';
+import styled from '@emotion/styled';
 
 interface FooterInfoProps {
   route?: (path?: string) => void;
   contents: FooterInfoObject[];
 }
 
-const FooterInfo: FC<FooterInfoProps> = ({ contents }) => {
+const Divider = () => <div className="h-[60%] border-l-[1px] border-white  " />;
+
+const FooterInfo: FC<FooterInfoProps> = ({ contents, route = () => {} }) => {
   return (
-    <div className="flex items-center gap-3">
+    <InfoContainer>
       <img src="/asset/icon_white.png" />
-      <div className="h-full w-[1px] bg-white" />
+
+      <Divider />
+
       {contents.map((content, i) => (
-        <div key={i}></div>
+        <InfoContainer key={i}>
+          <div onClick={() => route(content.path)} className="cursor-pointer">
+            {content.name}
+          </div>
+          {i !== contents.length - 1 && <Divider />}
+        </InfoContainer>
       ))}
-    </div>
+    </InfoContainer>
   );
 };
 
 export default FooterInfo;
+
+const InfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 23px;
+`;

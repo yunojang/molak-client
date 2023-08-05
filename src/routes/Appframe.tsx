@@ -20,7 +20,9 @@ export default function Appframe() {
         </Suspense>
       </div>
 
-      <AppFooter />
+      <div className="mt-40">
+        <AppFooter />
+      </div>
     </>
   );
 }

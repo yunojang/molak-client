@@ -23,14 +23,10 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardWidth, setCardWidth] = useState(220);
   const [showControl, setShowControl] = useState(false);
+  const [isSlide, setSlide] = useState(false);
 
   const isMobile = useBreakPoint(p => p.smaller('xl'));
-
   // const lastIndex = useMemo(() => currentIndex + count, [currentIndex, count]);
-  // const remain = useMemo(
-  //   () => items.length - lastIndex,
-  //   [items.length, lastIndex],
-  // );
 
   return (
     <div
@@ -42,8 +38,6 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
         className={container}
         modules={[Navigation, A11y]}
         loop
-        // slidesOffsetBefore={pad}
-        // slidesOffsetAfter={pad}
         // slidesPerView={count + (pad / cardWidth) * 2}
         simulateTouch={true}
         breakpoints={{ 1200: { simulateTouch: false } }}
@@ -54,7 +48,10 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
           const slideWidth = swiper.slides[0].offsetWidth;
           setCardWidth(slideWidth);
         }}
-        onSlideChange={swiper => setCurrentIndex(swiper.realIndex)}
+        onSlideChange={swiper => {
+          if (!isSlide) setSlide(true);
+          setCurrentIndex(swiper.realIndex);
+        }}
         navigation={{
           prevEl: '.prev-button-molak',
           nextEl: '.next-button-molak',
@@ -62,7 +59,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
         speed={400}
       >
         <MoveButton
-          hidden={isMobile || !showControl}
+          hidden={isMobile || !showControl || !isSlide}
           dir="left"
           slot="container-start"
           className="prev-button-molak"
@@ -101,13 +98,12 @@ const MoveButton = ({
       {...rest}
       style={{
         [dir]: 0,
-        background: 'radial-gradient(circle,  rgba(0,0,0,0.4), rgba(0,0,0,0)',
+        background: 'radial-gradient(circle,  rgba(0,0,0,0.2), rgba(0,0,0,0)',
       }}
       className={`${className} ${cx(
         `absolute top-0 z-10 w-space
       flex items-center justify-center h-full 
-      text-2xl text-white transition-all cursor-pointer 
-      hover:text-9xl font-bold`,
+      text-4xl text-white transition-all cursor-pointer  font-bold`,
         hidden ? 'opacity-0' : 'opacity-100',
       )}`}
     >

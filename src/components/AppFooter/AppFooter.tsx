@@ -14,19 +14,19 @@ interface AppFooterProps {
 
 const AppFooter: FC<AppFooterProps> = () => {
   const FooterMenuWithRoute = withRoute(FooterMenu);
-  const SocialsWithRoute = withRoute(Socials);
   const FooterInfoWithRoute = withRoute(FooterInfo);
-  const FooterGreetingWithRoute = withRoute(FooterGreeting);
 
   return (
-    <div className="py-12 px-space bg-[#303740] text-white">
-      <div className="flex items-start justify-between mb-10">
+    <div className="py-14 px-space bg-[#303740] text-white">
+      <div className="flex items-start justify-between mb-24">
         <FooterMenuWithRoute contents={footer_menu} />
-        <SocialsWithRoute contents={social_info} />
+        <Socials contents={social_info} />
       </div>
 
-      <FooterInfoWithRoute contents={footer_info} />
-      <FooterGreetingWithRoute contents={info_text} />
+      <div className="flex items-baseline justify-between ">
+        <FooterInfoWithRoute contents={footer_info} />
+        <FooterGreeting contents={info_text} />
+      </div>
     </div>
   );
 };
