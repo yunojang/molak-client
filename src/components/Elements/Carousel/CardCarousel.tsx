@@ -79,7 +79,8 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 5 }) => {
         {items.map((item, i) => (
           <SwiperSlide
             key={i}
-            className="hover:scale-105 hover:z-10  transition-all"
+            style={{ transition: 'transform 0.4s' }}
+            className="hover:scale-105 hover:z-10"
           >
             {React.cloneElement(item)}
           </SwiperSlide>

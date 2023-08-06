@@ -22,7 +22,7 @@ const ContentCard: FC<ContentCardProps> = ({ content, onClick }) => {
         <img src={content.thumbnail} width="100%" height="auto" />
       </div>
       <div
-        className="mt-auto absolute inset-0 h-[60%] transition-all duration-300 description p-2 flex flex-col justify-end rounded-md"
+        className="mt-auto absolute inset-0 h-[60%] transition-all  description p-2 flex flex-col justify-end rounded-md"
         style={{
           background: 'linear-gradient(0deg,  rgba(0,0,0,0.8), rgba(0,0,0,0)',
         }}
