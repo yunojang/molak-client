@@ -30,7 +30,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 5 }) => {
 
   return (
     <div
-      className="relative w-full overflow-clip px-space"
+      className="relative w-full overflow-clip px-space py-3"
       onMouseOver={() => setShowControl(true)}
       onMouseLeave={() => setShowControl(false)}
     >
@@ -43,7 +43,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 5 }) => {
         breakpoints={{ 1200: { simulateTouch: false } }}
         slidesPerView={count}
         slidesPerGroup={count}
-        spaceBetween={10}
+        spaceBetween={15}
         onResize={swiper => {
           const slideWidth = swiper.slides[0].offsetWidth;
           setCardWidth(slideWidth);
@@ -77,7 +77,12 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 5 }) => {
         </MoveButton>
 
         {items.map((item, i) => (
-          <SwiperSlide key={i}>{React.cloneElement(item)}</SwiperSlide>
+          <SwiperSlide
+            key={i}
+            className="hover:scale-105 hover:z-10  transition-all"
+          >
+            {React.cloneElement(item)}
+          </SwiperSlide>
         ))}
       </Swiper>
     </div>
