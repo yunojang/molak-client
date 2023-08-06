@@ -1,14 +1,19 @@
-import React, { FC, useState } from 'react';
+import { FC, useState, Suspense } from 'react';
 import { cx } from '@emotion/css';
+import styled from '@emotion/styled';
 
+import { withListScrollLoad } from '@/components/List/withListScrollLoad';
 import PageLayout from '@/components/Elements/Layout/PageLayout';
+
+import ContentList from '@/features/content/components/ContentList';
 import { PageIntroTitle } from '@/components/Elements/Title';
 import GenreFilter from './GenreFilter';
-import { scrollStyle } from '@/utils/style/content';
 import TagFilter from './TagFilter';
 import { Divider } from '@/components/Elements/Divider';
-import styled from '@emotion/styled';
 import TypeFilter from './TypeFilter';
+import { Spinner } from '@/components/Elements/Spinner';
+
+import { scrollStyle } from '@/utils/style/content';
 
 interface FindPageProps {
   _?: never;
@@ -20,8 +25,18 @@ const TITLE = {
     '모락에서 자체 분류한 장르로 간편하게 원하는 웹드라마를 찾아보세요.',
 };
 
+const CONTENT_HEIGHT = 683;
+
+// find 페이지 footer 없앰 - 태그, 리스트 각각 스크롤
 const FindPage: FC<FindPageProps> = () => {
+  // defaultFilter - 컨텐츠 페이지 갔다가 올 때?
+
   const [filter, setFilter] = useState({});
+  const List = withListScrollLoad({
+    ListComp: ContentList,
+    filter,
+    height: CONTENT_HEIGHT,
+  }); // -> 리스트 pager, header, filter, sort 처리
 
   const updateFilter = (key: string, value: string) => {
     setFilter(prev => ({ ...prev, [key]: value }));
@@ -29,25 +44,33 @@ const FindPage: FC<FindPageProps> = () => {
 
   return (
     <PageLayout>
-      <PageIntroTitle {...TITLE} marginBottom={5} />
+      <PageIntroTitle {...TITLE} marginBottom={3} />
 
       <div className="mb-5">
-        <GenreFilter />
+        <GenreFilter onSubmit={updateFilter.bind(null, 'genre')} />
       </div>
 
-      <div className="flex gap-3">
-        <div className={cx(scrollStyle, 'h-full flex flex-col gap-5 w-52')}>
+      <div className="flex gap-10">
+        <div
+          className={cx(scrollStyle, 'flex flex-col gap-3 w-52')}
+          style={{ height: CONTENT_HEIGHT }}
+        >
           <Divider />
           <div>
             <FilterTitle>태그</FilterTitle>
-            <TagFilter />
+            <TagFilter onSubmit={updateFilter.bind(null, 'tags')} />
           </div>
           <Divider />
           <div>
             <FilterTitle>타입</FilterTitle>
-            <TypeFilter />
+            <TypeFilter onSubmit={updateFilter.bind(null, 'type')} />
           </div>
         </div>
+
+        {/* 스피너 대신 스켈레톤 카드 리스트로 폴백 */}
+        <Suspense fallback={<Spinner pad={44} />}>
+          <List />
+        </Suspense>
       </div>
     </PageLayout>
   );

@@ -28,6 +28,7 @@ export const footer_menu: FooterInfoObject[] = [
     name: '서비스',
     children: [{ name: '장르 검색', path: '/find' }],
   },
+
   {
     auth: 'USER',
     name: '프로필',
@@ -35,6 +36,13 @@ export const footer_menu: FooterInfoObject[] = [
       { name: '내 정보', path: '/profile' },
       { name: '최근 본 컨텐츠', path: '/profile/recent' },
       { name: '좋아요', path: '/profile/like' },
+    ],
+  },
+  {
+    name: '고객센터',
+    children: [
+      { name: '자주 묻는 질문', path: '/faq' },
+      { name: '문의하기', path: '/' },
     ],
   },
 ];

@@ -18,7 +18,10 @@ export const Spinner = ({
   const color = _color === 'primary' ? env.colors.primary : _color;
 
   return (
-    <div className={cx(container(size, color))} style={{ padding: pad * 4 }}>
+    <div
+      className={cx(container(size, color), 'box-content w-full')}
+      style={{ padding: pad * 4 }}
+    >
       {range(length).map((_, index) => (
         <div
           className="tornado"

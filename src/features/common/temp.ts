@@ -41,6 +41,8 @@ export const content: Content = {
 
 export const contents: Content[] = range(15, () => content);
 
+export const search_contents: Content[] = range(50, () => content);
+
 export const feeds: Feed[] = [
   { name: 'NEW! 신작 소식', id: '1', items_list: contents },
   { name: '핫한 로맨스 웹 드라마 모음.zip', id: '2', items_list: contents },

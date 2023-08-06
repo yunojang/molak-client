@@ -19,7 +19,7 @@ interface SliderCarouselProps {
 // const delay = 400;
 // const pad = 32;
 
-const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
+const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 5 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardWidth, setCardWidth] = useState(220);
   const [showControl, setShowControl] = useState(false);

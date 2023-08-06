@@ -12,12 +12,17 @@ const paths = {
   content: '/content/*',
 };
 
-export const commonRoute = makeRoute({
-  frame: <Appframe />,
-  children: [
-    { path: '/', element: <Landing /> },
-    { path: '/about', element: <AboutRoute /> },
-    { path: paths.find, element: <FindRoute /> },
-    { path: paths.content, element: <Landing /> },
-  ],
-});
+export const commonRoutes = [
+  makeRoute({
+    frame: <Appframe />,
+    children: [
+      { path: '/', element: <Landing /> },
+      { path: '/about', element: <AboutRoute /> },
+      { path: paths.content, element: <></> },
+    ],
+  }),
+  makeRoute({
+    frame: <Appframe hasFooter={false} />,
+    children: [{ path: paths.find, element: <FindRoute /> }],
+  }),
+];

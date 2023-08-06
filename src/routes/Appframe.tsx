@@ -7,7 +7,11 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import AppFooter from '@/components/AppFooter';
 import SpinnerPage from '@/components/Elements/Spinner/SpinnerPage';
 
-export default function Appframe() {
+interface AppframeProps {
+  hasFooter?: boolean;
+}
+
+export default function Appframe({ hasFooter = true }: AppframeProps) {
   return (
     <>
       <AppTopbar />
@@ -20,9 +24,11 @@ export default function Appframe() {
         </Suspense>
       </div>
 
-      <div className="mt-40">
-        <AppFooter />
-      </div>
+      {hasFooter && (
+        <div className="mt-40">
+          <AppFooter />
+        </div>
+      )}
     </>
   );
 }

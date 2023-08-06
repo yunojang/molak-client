@@ -3,7 +3,7 @@ import { FC, Suspense } from 'react';
 import { useFilter } from '@/hooks/useFilter';
 import { useLocation } from '@/hooks/useLocation';
 import { useBreakPoint } from '@/utils/breakpoint';
-import { ListCompProps, withListDecorator } from './withListDecorator';
+import { ListCompProps, withListScrollLoad } from './withListScrollLoad';
 import SpinnerPage from '../Elements/Spinner/SpinnerPage';
 
 export interface FilterableListProps extends ListCompProps {
@@ -29,7 +29,7 @@ export const withListFilter = (
     const { params: url_params } = useLocation();
     const [filter, setFilter] = useFilter({ ...url_params });
 
-    const DecoratedList = withListDecorator(ListComp, filter);
+    const DecoratedList = withListScrollLoad(ListComp, filter);
 
     const col = useBreakPoint(p => (p.bigger('lg') ? 3 : 1));
 
