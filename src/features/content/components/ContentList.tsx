@@ -22,10 +22,10 @@ const ContentList: FC<ContentListProps> = ({
         style={{
           gridTemplateColumns: `repeat(${columnCount}, minmax(0px, 1fr))`,
         }}
-        className="gap-5 grid"
+        className="grid gap-5"
       >
         {contents.map((content, i) => (
-          <ContentCard content={content} key={i} />
+          <ContentCard content={content} key={i} isCard />
         ))}
       </div>
     </div>

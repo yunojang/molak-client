@@ -1,11 +1,16 @@
-import { FC, ReactNode } from 'react';
+import { cx } from '@emotion/css';
+import { FC, HtmlHTMLAttributes, ReactNode } from 'react';
 
-interface PageLayoutProps {
+interface PageLayoutProps extends HtmlHTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
 }
 
-const PageLayout: FC<PageLayoutProps> = ({ children }) => {
-  return <div className="pl-space pt-10">{children}</div>;
+const PageLayout: FC<PageLayoutProps> = ({ children, className, ...rest }) => {
+  return (
+    <div {...rest} className={cx(className, 'pt-10 pl-space')}>
+      {children}
+    </div>
+  );
 };
 
 export default PageLayout;

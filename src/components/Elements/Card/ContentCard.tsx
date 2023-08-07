@@ -7,9 +7,10 @@ import { lineBreak } from '@/utils/style/content';
 interface ContentCardProps {
   content: Content;
   onClick?(): void;
+  isCard?: boolean;
 }
 
-const ContentCard: FC<ContentCardProps> = ({ content, onClick }) => {
+const ContentCard: FC<ContentCardProps> = ({ content, onClick, isCard }) => {
   return (
     <a
       className={cx(
@@ -21,16 +22,27 @@ const ContentCard: FC<ContentCardProps> = ({ content, onClick }) => {
       <div className="overflow-hidden rounded-md" role="img">
         <img src={content.thumbnail} width="100%" height="auto" />
       </div>
-      <div
-        className="mt-auto absolute inset-0 h-[45%] description px-3 pb-3 flex flex-col justify-end rounded-md"
-        style={{
-          transition: 'opacity 0.4s',
-          background: 'linear-gradient(0deg,  rgba(0,0,0,0.9), rgba(0,0,0,0)',
-        }}
-      >
-        <div className={cx('text-white', lineBreak(2))}>{content.title}</div>
-        <div className="text-sm text-gray-200">{content.provider}</div>
-      </div>
+      {!isCard && (
+        <div
+          className="mt-auto absolute inset-0 h-[45%] description px-3 pb-3 flex flex-col justify-end rounded-md"
+          style={{
+            transition: 'opacity 0.4s',
+            background: 'linear-gradient(0deg,  rgba(0,0,0,0.9), rgba(0,0,0,0)',
+          }}
+        >
+          <div className={cx('text-white', lineBreak(2))}>{content.title}</div>
+          <div className="text-sm text-gray-200">{content.provider}</div>
+        </div>
+      )}
+
+      {isCard && (
+        <>
+          <div className="mt-2">
+            <div className={cx('text-lg', lineBreak(2))}>{content.title}</div>
+          </div>
+          <div className="text-sm text-gray-500">{content.provider}</div>
+        </>
+      )}
     </a>
   );
 };

@@ -14,6 +14,7 @@ export const scrollStyle = css`
 
   &::-webkit-scrollbar {
     width: 8px;
+    padding: 4px 0;
   }
 
   &::-webkit-scrollbar-thumb {

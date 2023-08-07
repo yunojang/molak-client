@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        header: '68px',
-        ch: 'calc(100vh - 68px)',
+        header: '69px',
+        ch: 'calc(100vh - 69px)',
         space: '2rem',
       },
       boxShadow: {

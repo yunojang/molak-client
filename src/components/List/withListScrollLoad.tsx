@@ -14,13 +14,13 @@ interface ListWrpperProps {
   ListComp: FC<ListCompProps>;
   filter?: any;
   name?: string;
-  height?: number;
+  className?: string;
 }
 
 export const withListScrollLoad = <T extends FilterableListProps>({
   ListComp,
   filter,
-  height,
+  className,
   name, // 리스트에 따른 구분이 필요할 때 -> order종류 by name
 }: ListWrpperProps) => {
   return function Inner(props: T) {
@@ -30,7 +30,7 @@ export const withListScrollLoad = <T extends FilterableListProps>({
     const queryParams = { ...rest, size, offset };
 
     return (
-      <div className={cx(scrollStyle, 'flex-1')} style={{ height }}>
+      <div className={cx(className, scrollStyle, 'flex-1')}>
         <ListComp
           {...props}
           params={queryParams}
@@ -49,7 +49,7 @@ interface ListTitleProps {
 const ListResultTitle: FC<ListTitleProps> = ({ cnt, extra }) => {
   return (
     <div className="flex justify-between">
-      <div className="flex items-center gap-2 font-bold text-2xl">
+      <div className="flex items-center gap-2 text-2xl font-bold">
         <span>검색결과</span>
         <span className="text-primary">{cnt}건</span>
       </div>

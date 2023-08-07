@@ -35,7 +35,7 @@ const FindPage: FC<FindPageProps> = () => {
   const List = withListScrollLoad({
     ListComp: ContentList,
     filter,
-    height: CONTENT_HEIGHT,
+    className: 'h-full pb-44',
   }); // -> 리스트 pager, header, filter, sort 처리
 
   const updateFilter = (key: string, value: string) => {
@@ -43,17 +43,16 @@ const FindPage: FC<FindPageProps> = () => {
   };
 
   return (
-    <PageLayout>
+    <PageLayout className="overflow-hidden h-ch">
       <PageIntroTitle {...TITLE} marginBottom={3} />
 
       <div className="mb-5">
         <GenreFilter onSubmit={updateFilter.bind(null, 'genre')} />
       </div>
 
-      <div className="flex gap-10">
+      <div className="flex h-full gap-10">
         <div
-          className={cx(scrollStyle, 'flex flex-col gap-3 w-52')}
-          style={{ height: CONTENT_HEIGHT }}
+          className={cx(scrollStyle, 'flex flex-col gap-3 w-52 h-full pb-44')}
         >
           <Divider />
           <div>
