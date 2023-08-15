@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { ListCompProps } from '@/components/List/withListScrollLoad';
+import { ListCompProps } from '@/components/List/withScrollLoadOrder';
 import { useContents } from '../api/getContents';
 import ContentCard from '@/components/Elements/Card/ContentCard';
 

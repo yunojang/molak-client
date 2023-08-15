@@ -13,7 +13,7 @@ interface NavigatorProps {
 const Navigator: FC<NavigatorProps> = ({ nav }) => {
   const navigate = useNavigate();
   return (
-    <div className="flex items-center">
+    <div className="flex items-center select-none">
       {nav.map(({ name, path }, i) => (
         <div
           key={i}

@@ -4,6 +4,7 @@ import { cx } from '@emotion/css';
 import { FilterableListProps } from './withListFilter';
 
 import { scrollStyle } from '@/utils/style/content';
+import { Selector } from '../Elements/Selector';
 
 export interface ListCompProps {
   title?(cnt: number): ReactNode;
@@ -17,24 +18,34 @@ interface ListWrpperProps {
   className?: string;
 }
 
-export const withListScrollLoad = <T extends FilterableListProps>({
+const order = [
+  { name: '모락인기순', id: 'popular' },
+  { name: '최신순', id: 'recent' },
+];
+
+export const withScrollLoadOrder = <T extends FilterableListProps>({
   ListComp,
   filter,
   className,
-  name, // 리스트에 따른 구분이 필요할 때 -> order종류 by name
+  name, // 리스트에 따른 구분이 필요할 때 -> order 종류 by name
 }: ListWrpperProps) => {
   return function Inner(props: T) {
-    const { size = 50, ...rest } = filter;
+    const { size = 50, ...filter_rest } = filter;
     const [offset, setOffset] = useState(0);
 
-    const queryParams = { ...rest, size, offset };
+    const queryParams = { ...filter_rest, size, offset };
 
     return (
-      <div className={cx(className, scrollStyle, 'flex-1')}>
+      <div className={cx(className, scrollStyle)}>
         <ListComp
           {...props}
           params={queryParams}
-          title={cnt => <ListResultTitle cnt={cnt} />}
+          title={cnt => (
+            <ListResultTitle
+              cnt={cnt}
+              extra={<Selector options={order} deafultValue="popular" />}
+            />
+          )}
         />
       </div>
     );

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ListCompProps } from '@/components/List/withListScrollLoad';
+import { ListCompProps } from '@/components/List/withScrollLoadOrder';
 import { FilterProps, withListFilter } from '@/components/List/withListFilter';
 
 import CTPPage from '../CTPPage';
