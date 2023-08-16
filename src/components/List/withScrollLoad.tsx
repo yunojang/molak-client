@@ -4,6 +4,8 @@ import { cx } from '@emotion/css';
 import { FilterableListProps } from './withListFilter';
 
 import { scrollStyle } from '@/utils/style/content';
+import Intersection from '../Elements/Intersection/Intersection';
+import { Spinner } from '../Elements/Spinner';
 
 export interface ListCompProps {
   title?(cnt: number, isLoading?: boolean): ReactNode;
@@ -37,9 +39,20 @@ ListWrpperProps<T>) => {
         <ListComp
           {...props}
           params={params}
-          title={cnt => <ListResultTitle cnt={cnt} extra={titleExtra} />}
+          title={cnt => <ListResultTitle cnt={cnt} extra={titleExtra} mb={5} />}
           // bottom loader // props: onIntersection, show, fallback
-          pager={(_, isEnd, isLoading) => <div></div>}
+          pager={(_, isEnd, isLoading) => (
+            <Intersection
+              isShow={!isEnd && !isLoading}
+              isActive={!isEnd}
+              fallback={<Spinner pad={25} />}
+              onIntersection={() => {
+                if (!isLoading) setOffset(prev => prev + size);
+              }}
+            >
+              <div className="h-30" />
+            </Intersection>
+          )}
         />
       </div>
     );
@@ -49,11 +62,12 @@ ListWrpperProps<T>) => {
 interface ListTitleProps {
   cnt?: number;
   extra?: ReactNode;
+  mb?: number;
 }
 
-const ListResultTitle: FC<ListTitleProps> = ({ cnt, extra }) => {
+const ListResultTitle: FC<ListTitleProps> = ({ cnt, extra, mb = 0 }) => {
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between" style={{ marginBottom: mb * 4 }}>
       <div className="flex items-center gap-2 text-2xl font-bold">
         <span>검색결과</span>
         <span className="text-primary">{cnt}건</span>

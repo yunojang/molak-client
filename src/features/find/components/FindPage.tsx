@@ -46,7 +46,7 @@ const FindPage: FC<FindPageProps> = () => {
     titleExtra: (
       <Selector
         options={genre_order}
-        deafultValue="popular"
+        deafultValue={genre_order[0].id}
         onChange={opt => updateFilter('order', opt.id)}
       />
     ),

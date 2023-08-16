@@ -3,7 +3,7 @@ import { AiFillCaretDown } from 'react-icons/ai';
 
 import PopOver from './PopOver';
 
-interface OptionObject {
+export interface OptionObject {
   name: string;
   id: string;
 }
@@ -63,7 +63,7 @@ const Selector: FC<SelectorProps> = ({
       }
     >
       {close => (
-        <div className="flex flex-col border">
+        <div className="flex flex-col text-gray-500">
           {options.map(opt => (
             <div
               onClick={() => {

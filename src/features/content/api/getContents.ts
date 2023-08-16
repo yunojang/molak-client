@@ -13,21 +13,24 @@ interface TempResponse {
 
 export const getContents = (params: any): Promise<TempResponse> => {
   return Promise.resolve({
-    content: search_contents,
+    content: [...search_contents],
     totalElements: 102,
     totalPages: 10,
   });
   // return client.get(`/api/contents`, {params});
 };
 
-export const useContents = (params: any, onSuccess?: () => void) => {
+export const useContents = (
+  params: any,
+  onSuccess?: (response: TempResponse) => void,
+) => {
   const { data, ...rest } = useQuery({
     queryKey: ['contents', params],
     queryFn: () => getContents(params),
     onSuccess,
   });
 
-  if (!data) throw data;
+  if (!data) throw () => getContents(params);
 
   return {
     contents: data.content,

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { useContents } from '../api/getContents';
 import { Content } from '../types/dto';
@@ -17,10 +17,10 @@ const AccumulateContentList: FC<ContentListProps> = ({
   columnCount = 4,
 }) => {
   const [accContents, setAccContents] = useState<Content[]>([]);
-  const { contents, totalElements, totalPages, isEnd, isLoading } = useContents(
-    params,
-    () => setAccContents(accContents.concat(contents)),
-  );
+  const { contents, totalElements, totalPages, isEnd, isLoading } =
+    useContents(params);
+
+  useEffect(() => setAccContents(prev => prev.concat(contents)), [contents]);
 
   return (
     <div>
