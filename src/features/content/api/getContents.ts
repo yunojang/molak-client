@@ -8,19 +8,32 @@ import { search_contents } from '@/features/common/temp';
 interface TempResponse {
   content: Content[];
   totalElements: number;
+  totalPages: number;
 }
+
 export const getContents = (params: any): Promise<TempResponse> => {
-  return Promise.resolve({ content: search_contents, totalElements: 102 });
+  return Promise.resolve({
+    content: search_contents,
+    totalElements: 102,
+    totalPages: 10,
+  });
   // return client.get(`/api/contents`, {params});
 };
 
-export const useContents = (params: any) => {
+export const useContents = (params: any, onSuccess?: () => void) => {
   const { data, ...rest } = useQuery({
     queryKey: ['contents', params],
     queryFn: () => getContents(params),
+    onSuccess,
   });
 
   if (!data) throw data;
 
-  return { contents: data.content, totalElements: data.totalElements, ...rest };
+  return {
+    contents: data.content,
+    totalElements: data.totalElements,
+    totalPages: data.totalPages,
+    isEnd: data.totalElements <= params.offset + params.size, // 다음 요청에 크거나 같아지면, end
+    ...rest,
+  };
 };

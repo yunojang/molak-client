@@ -2,18 +2,20 @@ import { FC, useState, Suspense } from 'react';
 import { cx } from '@emotion/css';
 import styled from '@emotion/styled';
 
-import { withScrollLoadOrder } from '@/components/List/withScrollLoadOrder';
+import { withScrollLoad } from '@/components/List/withScrollLoad';
 import PageLayout from '@/components/Elements/Layout/PageLayout';
 
-import ContentList from '@/features/content/components/ContentList';
+import AccumulateContentList from '@/features/content/components/AccumulateContentList';
 import { PageIntroTitle } from '@/components/Elements/Title';
 import GenreFilter from './GenreFilter';
 import TagFilter from './TagFilter';
 import { Divider } from '@/components/Elements/Divider';
 import TypeFilter from './TypeFilter';
 import { Spinner } from '@/components/Elements/Spinner';
+import { Selector } from '@/components/Elements/Selector';
 
 import { scrollStyle } from '@/utils/style/content';
+import { genre_order } from '../constant/order';
 
 interface FindPageProps {
   _?: never;
@@ -32,21 +34,29 @@ const FindPage: FC<FindPageProps> = () => {
   // defaultFilter - 컨텐츠 페이지 갔다가 올 때?
 
   const [filter, setFilter] = useState({});
-  const List = withScrollLoadOrder({
-    ListComp: ContentList,
-    filter,
-    className: 'h-full flex-1 pb-10',
-  }); // -> 리스트 pager, header, filter, sort 처리
 
   const updateFilter = (key: string, value: string) => {
     setFilter(prev => ({ ...prev, [key]: value }));
   };
 
+  const List = withScrollLoad({
+    ListComp: AccumulateContentList,
+    filter,
+    className: 'h-full flex-1 pb-10',
+    titleExtra: (
+      <Selector
+        options={genre_order}
+        deafultValue="popular"
+        onChange={opt => updateFilter('order', opt.id)}
+      />
+    ),
+  });
+
   return (
-    <PageLayout className="flex flex-col overflow-hidden h-ch box-border ">
+    <PageLayout className="box-border flex flex-col overflow-hidden h-ch ">
       <PageIntroTitle {...TITLE} marginBottom={3} />
 
-      <div className="flex flex-col gap-5 flex-1 overflow-hidden">
+      <div className="flex flex-col flex-1 gap-5 overflow-hidden">
         <GenreFilter onSubmit={updateFilter.bind(null, 'genre')} />
 
         <div className="flex flex-1 gap-10 overflow-hidden">
@@ -67,7 +77,7 @@ const FindPage: FC<FindPageProps> = () => {
 
           {/* 스피너 대신 스켈레톤 카드로 폴백 수정하기 */}
           <Suspense fallback={<Spinner pad={44} />}>
-            <List />
+            <List columnCount={4} />
           </Suspense>
         </div>
       </div>

@@ -4,48 +4,42 @@ import { cx } from '@emotion/css';
 import { FilterableListProps } from './withListFilter';
 
 import { scrollStyle } from '@/utils/style/content';
-import { Selector } from '../Elements/Selector';
 
 export interface ListCompProps {
-  title?(cnt: number): ReactNode;
+  title?(cnt: number, isLoading?: boolean): ReactNode;
+  pager?(pageCnt: number, isEnd?: boolean, isLoading?: boolean): ReactNode;
   params?: any;
 }
 
-interface ListWrpperProps {
-  ListComp: FC<ListCompProps>;
+interface ListWrpperProps<T> {
+  ListComp: FC<T>;
   filter?: any;
-  name?: string;
   className?: string;
+  titleExtra?: ReactNode;
+  // name?: string;
 }
 
-const order = [
-  { name: '모락인기순', id: 'popular' },
-  { name: '최신순', id: 'recent' },
-];
-
-export const withScrollLoadOrder = <T extends FilterableListProps>({
+export const withScrollLoad = <T extends FilterableListProps>({
   ListComp,
   filter,
   className,
-  name, // 리스트에 따른 구분이 필요할 때 -> order 종류 by name
-}: ListWrpperProps) => {
+  titleExtra,
+}: // name, // 리스트에 따른 구분이 필요할 때 -> order 종류 by name
+ListWrpperProps<T>) => {
   return function Inner(props: T) {
     const { size = 50, ...filter_rest } = filter;
     const [offset, setOffset] = useState(0);
 
-    const queryParams = { ...filter_rest, size, offset };
+    const params = { ...filter_rest, size, offset };
 
     return (
       <div className={cx(className, scrollStyle)}>
         <ListComp
           {...props}
-          params={queryParams}
-          title={cnt => (
-            <ListResultTitle
-              cnt={cnt}
-              extra={<Selector options={order} deafultValue="popular" />}
-            />
-          )}
+          params={params}
+          title={cnt => <ListResultTitle cnt={cnt} extra={titleExtra} />}
+          // bottom loader // props: onIntersection, show, fallback
+          pager={(_, isEnd, isLoading) => <div></div>}
         />
       </div>
     );
