@@ -41,7 +41,7 @@ const GenreFilter: FC<Props> = ({ defaultValue, onSubmit, disabled }) => {
           }}
           className={cx(
             selectedGenre === genre ? `text-white` : '',
-            'py-2 px-5  border rounded-full cursor-pointer font-bold select-none transition-all',
+            'py-2 px-6 border rounded-full cursor-pointer font-bold select-none transition-all',
           )}
           onClick={() => handleClick(genre)}
         >
