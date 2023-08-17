@@ -16,6 +16,7 @@ import { Selector } from '@/components/Elements/Selector';
 
 import { scrollStyle } from '@/utils/style/content';
 import { genre_order } from '../constant/order';
+import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentCardList';
 
 interface FindPageProps {
   _?: never;
@@ -76,10 +77,7 @@ const FindPage: FC<FindPageProps> = () => {
             </div>
           </div>
 
-          {/* 스피너 대신 스켈레톤 카드로 폴백 수정하기 */}
-          <Suspense fallback={<Spinner pad={20} />}>
-            <List columnCount={4} />
-          </Suspense>
+          <List columnCount={4} />
         </div>
       </div>
     </PageLayout>

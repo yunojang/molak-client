@@ -48,10 +48,10 @@ ListWrpperProps<T>) => {
             <Intersection
               isShow={!isLoading}
               isActive={!isEnd && initRender}
-              fallback={<Spinner pad={5} size={64} />}
+              fallback={<Spinner pad={10} size={50} color="#aaa" />}
               onIntersection={() => setOffset(prev => prev + size)}
             >
-              <div className="h-[104px]" />
+              <div className="h-[130px]" />
             </Intersection>
           )}
         />

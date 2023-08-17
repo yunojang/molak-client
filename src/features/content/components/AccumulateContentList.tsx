@@ -5,6 +5,7 @@ import { Content } from '../types/dto';
 import { ListCompProps } from '@/components/List/withScrollLoad';
 
 import ContentCard from '@/components/Elements/Card/ContentCard';
+import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentCardList';
 
 interface ContentListProps extends ListCompProps {
   columnCount?: number;
@@ -17,24 +18,29 @@ const AccumulateContentList: FC<ContentListProps> = ({
   columnCount = 4,
 }) => {
   const [accContents, setAccContents] = useState<Content[]>([]);
-  const { contents, totalElements, totalPages, isEnd, isLoading } =
-    useContents(params);
-
-  useEffect(() => setAccContents(prev => prev.concat(contents)), [contents]);
+  const { totalElements, totalPages, isEnd, isLoading } = useContents(
+    params,
+    ({ content }) => setAccContents(prev => prev.concat(content)),
+  );
 
   return (
     <div>
       {title(totalElements, isLoading)}
-      <div
-        style={{
-          gridTemplateColumns: `repeat(${columnCount}, minmax(0px, 1fr))`,
-        }}
-        className="grid gap-5"
-      >
-        {accContents.map((content, i) => (
-          <ContentCard content={content} key={i} isCard />
-        ))}
-      </div>
+
+      {!accContents.length ? (
+        <SkeletonContentCardList isCard count={40} columnCount={4} />
+      ) : (
+        <div
+          style={{
+            gridTemplateColumns: `repeat(${columnCount}, minmax(0px, 1fr))`,
+          }}
+          className="grid gap-5"
+        >
+          {accContents.map((content, i) => (
+            <ContentCard content={content} key={i} isCard />
+          ))}
+        </div>
+      )}
       {pager(totalPages, isEnd, isLoading)}
     </div>
   );

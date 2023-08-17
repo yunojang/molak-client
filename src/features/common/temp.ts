@@ -36,7 +36,7 @@ export const content: Content = {
   description:
     '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다고? 그런데,,',
   provider: '하이틴 에이저 Hi-teenager', // 혹은 ProviderObject
-  thumbnail: '/asset/images/thumb_temp.png',
+  thumbnail: '/asset/images/thumb_temp2.jpg',
 };
 
 export const contents: Content[] = range(15, () => content);

@@ -3,6 +3,8 @@ import { css, cx } from '@emotion/css';
 
 import { Content } from '@/features/content/types/dto';
 import { lineBreak } from '@/utils/style/content';
+import { Image } from '../Image';
+import { Skeleton } from '@chakra-ui/react';
 
 interface ContentCardProps {
   content: Content;
@@ -20,8 +22,17 @@ const ContentCard: FC<ContentCardProps> = ({ content, onClick, isCard }) => {
       onClick={onClick}
     >
       <div className="overflow-hidden rounded-md" role="img">
-        <img src={content.thumbnail} width="100%" height="auto" />
+        <Image
+          useSuspense
+          src={content.thumbnail}
+          width="100%"
+          height="auto"
+          className="object-cover"
+          style={{ maxHeight: '210px' }}
+          fallback={<Skeleton width="100%" height="210px" />}
+        />
       </div>
+
       {!isCard && (
         <div
           className="mt-auto absolute inset-0 h-[45%] description px-3 pb-3 flex flex-col justify-end rounded-md"

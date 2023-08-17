@@ -46,6 +46,9 @@ const Intersection: FC<IntersectionProps> = ({
     };
   }, [targetRef, onIntersection]);
 
+  console.log('isShow', isShow);
+  console.log('isActive', isActive);
+
   if (!isActive) return null;
   if (isShow) return <div ref={targetRef}>{children}</div>;
   return <>{fallback}</>;

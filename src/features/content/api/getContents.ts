@@ -12,11 +12,17 @@ interface TempResponse {
 }
 
 export const getContents = (params: any): Promise<TempResponse> => {
-  return Promise.resolve({
-    content: [...search_contents],
-    totalElements: 102,
-    totalPages: 10,
-  });
+  return new Promise(resolve =>
+    setTimeout(
+      () =>
+        resolve({
+          content: [...search_contents],
+          totalElements: 102,
+          totalPages: 10,
+        }),
+      1000,
+    ),
+  );
   // return client.get(`/api/contents`, {params});
 };
 
@@ -28,15 +34,18 @@ export const useContents = (
     queryKey: ['contents', params],
     queryFn: () => getContents(params),
     onSuccess,
+    suspense: false,
   });
 
-  if (!data) throw () => getContents(params);
+  // if (!data) throw () => getContents(params);
 
   return {
-    contents: data.content,
-    totalElements: data.totalElements,
-    totalPages: data.totalPages,
-    isEnd: data.totalElements <= params.offset + params.size, // 다음 요청에 크거나 같아지면, end
+    contents: data?.content ?? [],
+    totalElements: data?.totalElements ?? 0,
+    totalPages: data?.totalPages ?? 0,
+    isEnd: data
+      ? data.totalElements <= params.offset + params.size // 다음 요청에 크거나 같아지면, end
+      : false,
     ...rest,
   };
 };

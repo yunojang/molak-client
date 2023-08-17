@@ -1,25 +1,32 @@
 import { FC } from 'react';
-import { cx } from '@emotion/css';
 
-import { lineBreak } from '@/utils/style/content';
 import { Skeleton } from '@chakra-ui/react';
 
 interface ContentCardProps {
-  _?: any;
+  isCard?: boolean;
 }
 
-const SkeletonContentCard: FC<ContentCardProps> = () => {
+const SkeletonContentCard: FC<ContentCardProps> = ({ isCard }) => {
   return (
-    <a className="inline-block cursor-pointer w-80">
+    <a className="flex-1 inline-block cursor-pointer">
       <div className="overflow-hidden rounded-md">
-        <Skeleton height="180px" width="100%" />
+        <Skeleton height="210px" width="100%" />
       </div>
-      <div className="mt-2">
-        <Skeleton height="1.2rem" width="100%" rounded="md" className="mb-1" />
-      </div>
-      <div className="mt-1">
-        <Skeleton height="1.2rem" width="80%" rounded="md" />
-      </div>
+      {isCard && (
+        <>
+          <div className="mt-2">
+            <Skeleton
+              height="1.2rem"
+              width="100%"
+              rounded="md"
+              className="mb-1"
+            />
+          </div>
+          <div className="mt-1">
+            <Skeleton height="1.2rem" width="80%" rounded="md" />
+          </div>
+        </>
+      )}
     </a>
   );
 };
