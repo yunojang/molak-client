@@ -15,7 +15,7 @@ const AppTopbar: FC<AppTopbarProps> = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="py-4 pb-3 bg-white px-7 sticky top-0 z-30 border-b h-header overflow-hidden">
+    <div className="sticky top-0 z-30 py-4 pb-3 overflow-hidden bg-white border-b px-7 h-header">
       <div className={cx('content-box flex items-center justify-between pl-3')}>
         {/* left */}
         <div className="flex items-center gap-5">
