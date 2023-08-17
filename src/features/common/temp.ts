@@ -15,8 +15,8 @@ export const intro1: Intro = {
 };
 
 export const intro2: Intro = {
-  image: '/asset/images/intro_1.png',
-  text: '내가 드라마 속 주인공이 된다면? \n B현실 유튜버',
+  image: '/asset/images/thumb_temp2.jpg',
+  text: '베일리 감독의 웅장한 액션\n THE REVENANT',
   item_id: '1',
   button_text: '보러가기',
 };
