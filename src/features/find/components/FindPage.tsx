@@ -1,4 +1,4 @@
-import { FC, useState, Suspense } from 'react';
+import { FC, useState, Suspense, useMemo } from 'react';
 import { cx } from '@emotion/css';
 import styled from '@emotion/styled';
 
@@ -43,13 +43,6 @@ const FindPage: FC<FindPageProps> = () => {
     ListComp: AccumulateContentList,
     filter,
     className: 'h-full flex-1 pb-10',
-    titleExtra: (
-      <Selector
-        options={genre_order}
-        deafultValue={genre_order[0].id}
-        onChange={opt => updateFilter('order', opt.id)}
-      />
-    ),
   });
 
   return (
@@ -57,7 +50,15 @@ const FindPage: FC<FindPageProps> = () => {
       <PageIntroTitle {...TITLE} marginBottom={3} />
 
       <div className="flex flex-col flex-1 gap-5 overflow-hidden">
-        <GenreFilter onSubmit={updateFilter.bind(null, 'genre')} />
+        <div className="flex items-end justify-between">
+          <GenreFilter onSubmit={updateFilter.bind(null, 'genre')} />
+
+          <Selector
+            options={genre_order}
+            deafultValue={genre_order[0].id}
+            onChange={opt => updateFilter('order', opt.id)}
+          />
+        </div>
 
         <div className="flex flex-1 gap-10 overflow-hidden">
           <div
@@ -76,7 +77,7 @@ const FindPage: FC<FindPageProps> = () => {
           </div>
 
           {/* 스피너 대신 스켈레톤 카드로 폴백 수정하기 */}
-          <Suspense fallback={<Spinner pad={44} />}>
+          <Suspense fallback={<Spinner pad={20} />}>
             <List columnCount={4} />
           </Suspense>
         </div>

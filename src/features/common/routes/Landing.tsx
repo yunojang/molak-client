@@ -1,5 +1,4 @@
 import IntroCarousel from '@/components/Elements/Carousel/IntroCarousel';
-import { Spinner } from '@/components/Elements/Spinner';
 import FeedList from '@/features/feed/components/FeedList';
 
 function Landing() {

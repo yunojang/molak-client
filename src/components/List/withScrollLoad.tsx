@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useState, useEffect } from 'react';
 import { cx } from '@emotion/css';
 
 import { FilterableListProps } from './withListFilter';
@@ -34,6 +34,9 @@ ListWrpperProps<T>) => {
 
     const params = { ...filter_rest, size, offset };
 
+    const [initRender, setInitRender] = useState(false);
+    useEffect(() => setInitRender(true), []);
+
     return (
       <div className={cx(className, scrollStyle)}>
         <ListComp
@@ -43,14 +46,12 @@ ListWrpperProps<T>) => {
           // bottom loader // props: onIntersection, show, fallback
           pager={(_, isEnd, isLoading) => (
             <Intersection
-              isShow={!isEnd && !isLoading}
-              isActive={!isEnd}
-              fallback={<Spinner pad={25} />}
-              onIntersection={() => {
-                if (!isLoading) setOffset(prev => prev + size);
-              }}
+              isShow={!isLoading}
+              isActive={!isEnd && initRender}
+              fallback={<Spinner pad={5} size={64} />}
+              onIntersection={() => setOffset(prev => prev + size)}
             >
-              <div className="h-30" />
+              <div className="h-[104px]" />
             </Intersection>
           )}
         />

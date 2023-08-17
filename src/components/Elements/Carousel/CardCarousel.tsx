@@ -30,7 +30,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 5 }) => {
 
   return (
     <div
-      className="relative w-full overflow-clip px-space py-3"
+      className="relative w-full py-3 overflow-clip px-space"
       onMouseOver={() => setShowControl(true)}
       onMouseLeave={() => setShowControl(false)}
     >

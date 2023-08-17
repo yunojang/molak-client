@@ -37,8 +37,9 @@ const Intersection: FC<IntersectionProps> = ({
       150,
     );
 
-    const observer = new IntersectionObserver(handler);
-
+    const observer = new IntersectionObserver(handler, {
+      rootMargin: '0px 0px 40px 0px',
+    });
     if (el) observer.observe(targetRef.current);
     return () => {
       if (el) observer.disconnect();
