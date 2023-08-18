@@ -14,17 +14,11 @@ const MAX_VALUES = {
 export const getBreakPoint = (): SizeDegree => {
   const windowWidth = document.documentElement.getBoundingClientRect().width;
 
-  if (windowWidth < MAX_VALUES.xs) {
-    return 'xs';
-  } else if (windowWidth < MAX_VALUES.sm) {
-    return 'sm';
-  } else if (windowWidth < MAX_VALUES.md) {
-    return 'md';
-  } else if (windowWidth < MAX_VALUES.lg) {
-    return 'lg';
-  } else if (windowWidth < MAX_VALUES.xl) {
-    return 'xl';
-  }
+  if (windowWidth < MAX_VALUES.xs) return 'xs';
+  else if (windowWidth < MAX_VALUES.sm) return 'sm';
+  else if (windowWidth < MAX_VALUES.md) return 'md';
+  else if (windowWidth < MAX_VALUES.lg) return 'lg';
+  else if (windowWidth < MAX_VALUES.xl) return 'xl';
   return '2xl';
 };
 
