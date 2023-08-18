@@ -23,7 +23,7 @@ interface ListWrpperProps<T> {
 
 export const withScrollLoad = <T extends FilterableListProps>({
   ListComp,
-  filter,
+  filter = {},
   className,
   titleExtra,
 }: // name, // 리스트에 따른 구분이 필요할 때 -> order 종류 by name

@@ -1,32 +1,57 @@
 import React, { FC, useContext, useEffect } from 'react';
 import { Portal } from '../Portal';
 import { ModalContext } from '@/lib/modal/ModalContext';
+
 import { useBodyScrollLock } from '@/hooks/useBodySrollLock';
+import { css, cx, keyframes } from '@emotion/css';
+
+const position_class = {
+  top: 'top-0',
+  bottom: 'bottom-0',
+  left: 'left-0',
+  right: 'right-0',
+  tl: 'top-0 left-0',
+  tr: 'top-0 right-0',
+  bl: 'bottom-0 left-0',
+  br: 'bottom-0 right-0',
+};
 
 interface ModalProps {
   isOpen?: boolean;
   open?(): void;
   close?(): void;
   children?: React.ReactNode;
+  extra?: React.ReactNode;
+  extraPosition?: keyof typeof position_class;
 }
 
-const Modal: FC<ModalProps> = ({ children, close, isOpen, open }) => {
+const Modal: FC<ModalProps> = ({
+  children,
+  close,
+  isOpen,
+  open,
+  extraPosition = 'tr',
+  extra,
+}) => {
   const targetId = useContext(ModalContext);
   const { lockScroll, releaseScroll } = useBodyScrollLock();
 
   useEffect(() => {
     if (isOpen) lockScroll();
-    return () => releaseScroll();
+    return releaseScroll;
   }, [isOpen, lockScroll, releaseScroll]);
 
   return (
     <Portal targetId={targetId}>
       {isOpen && (
         <div
-          className="w-screen h-screen bg-black bg-opacity-[0.35]"
+          className="w-screen h-screen bg-black bg-opacity-[0.35] relative flex justify-center items-center"
           onClick={close}
         >
-          {children}
+          <div className={cx(animate, ' transition-all')}>{children}</div>
+          <div className={cx(position_class[extraPosition], 'absolute')}>
+            {extra}
+          </div>
         </div>
       )}
     </Portal>
@@ -34,3 +59,20 @@ const Modal: FC<ModalProps> = ({ children, close, isOpen, open }) => {
 };
 
 export default Modal;
+
+const popup = keyframes`
+  from {
+    transform: translateY(50%);
+    /* transform: scale(0.5); */
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    /* transform: scale(1); */
+    opacity: 1;
+  }
+`;
+
+const animate = css`
+  animation: ${popup} 0.25s cubic-bezier(0, 0, 0, 1);
+`;

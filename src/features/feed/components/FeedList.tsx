@@ -4,15 +4,13 @@ import { useFeeds } from '../api/getFeeds';
 import FeedTitle from './FeedTitle';
 import ContentCard from '@/components/Elements/Card/ContentCard';
 import CardCarousel from '@/components/Elements/Carousel/CardCarousel';
-import { useNavigate } from 'react-router-dom';
 
 interface FeedListProps {
-  _?: any;
+  onSelect?(id: string): void;
 }
 
-const FeedList: FC<FeedListProps> = () => {
+const FeedList: FC<FeedListProps> = ({ onSelect }) => {
   const { feeds } = useFeeds();
-  const navigate = useNavigate();
 
   return (
     <>
@@ -27,7 +25,7 @@ const FeedList: FC<FeedListProps> = () => {
               <ContentCard
                 key={i}
                 content={content}
-                onClick={() => navigate(`/content/${content.id}`)}
+                onClick={() => onSelect?.(content.id)}
               />
             ))}
           />

@@ -1,10 +1,15 @@
 import { useContext } from 'react';
 import { ModalContext } from './ModalContext';
+import { Portal } from '@/components/Portal';
 
 const ModalRootContainer = () => {
   const id = useContext(ModalContext);
 
-  return <div id={id} className="absolute left-0 top-0 z-[999]" />;
+  return (
+    <Portal>
+      <div id={id} className="fixed top-0 left-0 z-[999]" />
+    </Portal>
+  );
 };
 
 export default ModalRootContainer;

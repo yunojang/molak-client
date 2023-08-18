@@ -11,12 +11,11 @@ import GenreFilter from './GenreFilter';
 import TagFilter from './TagFilter';
 import { Divider } from '@/components/Elements/Divider';
 import TypeFilter from './TypeFilter';
-import { Spinner } from '@/components/Elements/Spinner';
 import { Selector } from '@/components/Elements/Selector';
 
 import { scrollStyle } from '@/utils/style/content';
 import { genre_order } from '../constant/order';
-import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentCardList';
+import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 
 interface FindPageProps {
   _?: never;
@@ -32,19 +31,23 @@ const TITLE = {
 
 // find 페이지 footer 없앰 - 태그, 리스트 각각 스크롤
 const FindPage: FC<FindPageProps> = () => {
-  // defaultFilter - 컨텐츠 페이지 갔다가 올 때?
+  const naviage = useNavigateWithBg();
 
   const [filter, setFilter] = useState({});
-
   const updateFilter = (key: string, value: string) => {
     setFilter(prev => ({ ...prev, [key]: value }));
   };
 
-  const List = withScrollLoad({
-    ListComp: AccumulateContentList,
-    filter,
-    className: 'h-full flex-1 pb-10',
-  });
+  // wrapper 방식의 허점 - warpper를 생성하는 컴포넌트가 다시 렌더링 될 때 아예 새로운 컴포넌트를 생성한다.
+  const List = useMemo(
+    () =>
+      withScrollLoad({
+        ListComp: AccumulateContentList,
+        filter,
+        className: 'h-full flex-1 pb-10',
+      }),
+    [filter],
+  );
 
   return (
     <PageLayout className="box-border flex flex-col overflow-hidden h-ch ">
@@ -77,7 +80,7 @@ const FindPage: FC<FindPageProps> = () => {
             </div>
           </div>
 
-          <List columnCount={4} />
+          <List columnCount={4} onSelect={id => naviage(`/content/${id}`)} />
         </div>
       </div>
     </PageLayout>

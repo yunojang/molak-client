@@ -1,22 +1,22 @@
 import { Suspense } from 'react';
 
+import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
+
 import IntroCarousel from '@/components/Elements/Carousel/IntroCarousel';
 import FeedList from '@/features/feed/components/FeedList';
 import SkeletonFeedList from '@/features/feed/components/SkeletonFeedList';
 
-import { Modal } from '@/components/Modal';
-
 function Landing() {
+  const navigate = useNavigateWithBg();
+
   return (
     <div>
       <IntroCarousel />
 
-      <Modal />
-
       <div className="pt-10">
         {/* <SkeletonFeedList /> */}
         <Suspense fallback={<SkeletonFeedList />}>
-          <FeedList />
+          <FeedList onSelect={id => navigate(`/content/${id}`)} />
         </Suspense>
       </div>
     </div>

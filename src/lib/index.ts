@@ -1,32 +1,8 @@
-import { ReactElement } from 'react';
 import {
   NavigateOptions,
-  RouteObject,
   URLSearchParamsInit,
   useSearchParams as useSearchParamsOrigin,
 } from 'react-router-dom';
-
-interface MakeRouterProps {
-  path?: string;
-  frame?: ReactElement;
-  children?: RouteObject[];
-  notfoundFallback?: ReactElement;
-}
-
-export const makeRoute = ({
-  path = '/',
-  frame,
-  children = [],
-  notfoundFallback,
-}: MakeRouterProps = {}) => {
-  const route: RouteObject = { path, element: frame };
-
-  route.children = notfoundFallback
-    ? [...children, { path: '*', element: notfoundFallback }]
-    : children;
-
-  return route;
-};
 
 type SetURLSearchParams = (
   nextInit?: URLSearchParamsInit | ((prev: object) => any),

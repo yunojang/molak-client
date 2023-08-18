@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 
 import { useContents } from '../api/getContents';
 import { Content } from '../types/dto';
@@ -9,19 +9,21 @@ import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentC
 
 interface ContentListProps extends ListCompProps {
   columnCount?: number;
+  onSelect?(id: string): void;
 }
 
 const AccumulateContentList: FC<ContentListProps> = ({
   params,
+  columnCount = 4,
   title = () => null,
   pager = () => null,
-  columnCount = 4,
+  onSelect,
 }) => {
   const [accContents, setAccContents] = useState<Content[]>([]);
-  const { totalElements, totalPages, isEnd, isLoading } = useContents(
-    params,
-    ({ content }) => setAccContents(prev => prev.concat(content)),
-  );
+  const { totalElements, totalPages, isEnd, isLoading } = useContents(params, {
+    suspense: false,
+    onSuccess: ({ content }) => setAccContents(prev => prev.concat(content)),
+  });
 
   return (
     <div>
@@ -37,7 +39,12 @@ const AccumulateContentList: FC<ContentListProps> = ({
           className="grid gap-5"
         >
           {accContents.map((content, i) => (
-            <ContentCard content={content} key={i} isCard />
+            <ContentCard
+              content={content}
+              key={i}
+              isCard
+              onClick={() => onSelect?.(content.id)}
+            />
           ))}
         </div>
       )}

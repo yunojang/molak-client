@@ -10,7 +10,6 @@ import { theme } from '@/lib/chakra';
 import { ModalContext, globalModalRootId } from '@/lib/modal/ModalContext';
 
 import SpinnerPage from '@/components/Elements/Spinner/SpinnerPage';
-import ModalRootContainer from '@/lib/modal/ModalRootContainer';
 
 interface AppProviderProps {
   children?: React.ReactNode;

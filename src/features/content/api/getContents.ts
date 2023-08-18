@@ -16,7 +16,7 @@ export const getContents = (params: any): Promise<TempResponse> => {
     setTimeout(
       () =>
         resolve({
-          content: [...search_contents],
+          content: search_contents,
           totalElements: 102,
           totalPages: 10,
         }),
@@ -26,18 +26,23 @@ export const getContents = (params: any): Promise<TempResponse> => {
   // return client.get(`/api/contents`, {params});
 };
 
+interface Options {
+  suspense?: boolean;
+  onSuccess?: (response: TempResponse) => void;
+}
+
 export const useContents = (
-  params: any,
-  onSuccess?: (response: TempResponse) => void,
+  params: any = {},
+  { onSuccess, suspense = true }: Options = {},
 ) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['contents', params],
+    queryKey: ['contents', JSON.stringify(params)],
     queryFn: () => getContents(params),
     onSuccess,
-    suspense: false,
+    suspense,
   });
 
-  // if (!data) throw () => getContents(params);
+  if (!data && suspense) throw () => getContents(params);
 
   return {
     contents: data?.content ?? [],

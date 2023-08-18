@@ -11,7 +11,7 @@ const ContentModal: FC<ContentModalProps> = () => {
 
   return (
     <Modal close={() => navigate(-1)} isOpen>
-      <div className="bg-white p-10"></div>
+      <div className="p-20 bg-white rounded-md"></div>
     </Modal>
   );
 };
