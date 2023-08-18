@@ -6,6 +6,7 @@ import { _lazy } from '@/utils/lazy';
 
 const AboutRoute = _lazy(() => import('@/features/about'));
 const FindRoute = _lazy(() => import('@/features/find'));
+const ContentRoute = _lazy(() => import('@/features/content'));
 
 const paths = {
   find: '/find/*',
@@ -18,7 +19,7 @@ export const commonRoutes = [
     children: [
       { path: '/', element: <Landing /> },
       { path: '/about', element: <AboutRoute /> },
-      { path: paths.content, element: <></> },
+      { path: paths.content, element: <ContentRoute /> },
     ],
   }),
   makeRoute({
