@@ -4,7 +4,6 @@ import { Portal } from '@/components/Portal';
 
 const ModalRootContainer = () => {
   const id = useContext(ModalContext);
-
   return (
     <Portal>
       <div id={id} className="fixed top-0 left-0 z-[999]" />

@@ -30,13 +30,13 @@ const AccumulateContentList: FC<ContentListProps> = ({
       {title(totalElements, isLoading)}
 
       {!accContents.length ? (
-        <SkeletonContentCardList isCard count={40} columnCount={4} />
+        <SkeletonContentCardList isCard count={40} columnCount={columnCount} />
       ) : (
         <div
           style={{
             gridTemplateColumns: `repeat(${columnCount}, minmax(0px, 1fr))`,
           }}
-          className="grid gap-5"
+          className="grid gap-5 gap-y-10"
         >
           {accContents.map((content, i) => (
             <ContentCard

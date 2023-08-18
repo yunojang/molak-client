@@ -46,9 +46,13 @@ const Modal: FC<ModalProps> = ({
       {isOpen && (
         <div
           className="w-screen h-screen bg-black bg-opacity-[0.35] relative flex justify-center items-center"
-          onClick={close}
+          onClick={e => {
+            if (e.target === e.currentTarget) close?.();
+          }}
         >
-          <div className={cx(animate, ' transition-all')}>{children}</div>
+          <div className={cx(animate, 'transition-all', 'modal-contents')}>
+            {children}
+          </div>
           <div className={cx(position_class[extraPosition], 'absolute')}>
             {extra}
           </div>

@@ -5,8 +5,8 @@ import ModalRootContainer from './lib/modal/ModalRootContainer';
 
 const App = () => (
   <AppProvider>
-    <AppRoute />
     <ModalRootContainer />
+    <AppRoute />
   </AppProvider>
 );
 

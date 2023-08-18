@@ -7,7 +7,7 @@ interface PageLayoutProps extends HtmlHTMLAttributes<HTMLDivElement> {
 
 const PageLayout: FC<PageLayoutProps> = ({ children, className, ...rest }) => {
   return (
-    <div {...rest} className={cx(className, 'pt-10 pl-space')}>
+    <div {...rest} className={cx(className, 'pt-5 pl-space')}>
       {children}
     </div>
   );

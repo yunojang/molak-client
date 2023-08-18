@@ -39,7 +39,7 @@ const FindPage: FC<FindPageProps> = () => {
   };
 
   // wrapper 방식의 허점 - warpper를 생성하는 컴포넌트가 다시 렌더링 될 때 아예 새로운 컴포넌트를 생성한다.
-  const List = useMemo(
+  const ContentList = useMemo(
     () =>
       withScrollLoad({
         ListComp: AccumulateContentList,
@@ -80,7 +80,10 @@ const FindPage: FC<FindPageProps> = () => {
             </div>
           </div>
 
-          <List columnCount={4} onSelect={id => naviage(`/content/${id}`)} />
+          <ContentList
+            columnCount={4}
+            onSelect={id => naviage(`/content/${id}`)}
+          />
         </div>
       </div>
     </PageLayout>

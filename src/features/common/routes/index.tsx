@@ -20,7 +20,7 @@ export const commonRoutes = [
     children: [
       { path: '/', element: <Landing /> },
       { path: '/about', element: <AboutRoute /> },
-      { path: paths.content, element: <ContentRoute /> },
+      // { path: paths.content, element: <ContentRoute /> },
     ],
   }),
   makeRoute({
