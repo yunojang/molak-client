@@ -32,12 +32,12 @@ export const introes: Intro[] = [intro1, intro2, intro3];
 
 export const content: Content = {
   id: '1',
-  title: '[일찐과 찐따 외전] 1000만원을 주는 5억년 버튼 ',
+  title: '[일찐과 찐따 외전] 1000만원을 주는 5억년 버튼',
   description:
     '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다고? 그런데,,',
   provider: '하이틴 에이저 Hi-teenager', // 혹은 ProviderObject
   thumbnail: '/asset/images/thumb_temp2.jpg',
-  url: 'https://www.youtube.com/watch?v=6wN_Cewq7_U',
+  url: 'https://www.youtube.com/embed/6wN_Cewq7_U',
 };
 
 export const contents: Content[] = range(15, () => content);

@@ -11,7 +11,7 @@ interface EpisodeCardProps {
 
 const EpisodeCard: FC<EpisodeCardProps> = ({ content }) => {
   return (
-    <div className="flex gap-3 cursor-pointer">
+    <div className="flex gap-3 cursor-pointer w-full overflow-hidden">
       <div className="overflow-hidden rounded-lg">
         <Image
           useSuspense
@@ -19,13 +19,16 @@ const EpisodeCard: FC<EpisodeCardProps> = ({ content }) => {
           width="100%"
           height="auto"
           className="object-cover"
-          style={{ maxHeight: '88px', maxWidth: '140px' }}
-          fallback={<Skeleton width="140px" height="88px" />}
+          style={{ maxHeight: '86px', width: '144px' }}
+          fallback={<Skeleton width="144px" height="86px" />}
         />
       </div>
-      <div className="flex flex-col flex-1 gap-1">
-        <div className="font-bold">{content.title}</div>
-        <div className="text-sm text-gray-500">{content.provider}</div>
+
+      <div className="flex flex-col flex-1 gap-1 overflow-hidden">
+        <div className="font-bold text-ellipsis overflow-hidden whitespace-nowrap text-[0.95rem]">
+          {content.title}
+        </div>
+        <div className="text-xs text-gray-500">{content.provider}</div>
       </div>
     </div>
   );

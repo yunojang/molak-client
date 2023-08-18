@@ -15,7 +15,11 @@ export function withLoad<T extends Loadable>(
 
     return (
       <>
-        <Loadable {...props} onLoad={() => setIsLoaded(true)} />
+        <Loadable
+          {...props}
+          onLoad={() => setIsLoaded(true)}
+          hidden={!isLoaded}
+        />
         {!isLoaded && fallback}
       </>
     );

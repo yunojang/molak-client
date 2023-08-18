@@ -20,7 +20,7 @@ export const getContents = (params: any): Promise<TempResponse> => {
           totalElements: 102,
           totalPages: 10,
         }),
-      1000,
+      500,
     ),
   );
   // return client.get(`/api/contents`, {params});

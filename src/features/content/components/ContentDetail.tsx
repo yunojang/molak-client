@@ -1,26 +1,33 @@
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 import { cx } from '@emotion/css';
 
-import Relations from './Relations';
+import Relation from './Relation';
+import Player, { PlayerFallback } from './Player';
+
 import { scrollStyle } from '@/utils/style/content';
 
 interface ContentDetailProps {
   id: string;
 }
 
+const width = 1120;
+const height = 630;
+const relateWidth = 460;
+
 const ContentDetail: FC<ContentDetailProps> = ({ id }) => {
   return (
-    <div className="flex gap-2 h-[720px]">
-      <iframe
-        width="1280"
-        height="720"
-        src="https://www.youtube.com/embed/6wN_Cewq7_U"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-      />
-      <div className={cx('items-stretch h-full', scrollStyle)}>
-        <Relations id={id} />
+    <div className={`flex gap-2 h-[${height}px]`}>
+      <div className="rounded-md overflow-hidden">
+        <Suspense fallback={<PlayerFallback width={width} height={height} />}>
+          <Player id={id} width={width} height={height} />
+        </Suspense>
+      </div>
+
+      <div
+        className={cx(`h-full rounded-md bg-white`, scrollStyle)}
+        style={{ width: relateWidth }}
+      >
+        <Relation id={id} />
       </div>
     </div>
   );

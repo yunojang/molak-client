@@ -20,7 +20,7 @@ export const getEpisodes = (id: string, params: any): Promise<TempResponse> => {
           totalElements: 20,
           totalPages: 2,
         }),
-      1000,
+      500,
     ),
   );
   // return client.get(`/api/episodes/${id}`, {params});
