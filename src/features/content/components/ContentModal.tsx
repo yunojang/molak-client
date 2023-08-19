@@ -8,7 +8,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Relation from './Relation';
 import { Modal } from '@/components/Modal';
 import { scrollStyle } from '@/utils/style/content';
-import ContentVideoDetail from './ContentVideoDetail';
+import ContentVideoDetail from './ContentDetail';
+import Player from './Player';
 
 interface ContentModalProps {
   _?: never;
@@ -19,7 +20,7 @@ const height = 630;
 const relateWidth = 460;
 
 const ContentModal: FC<ContentModalProps> = () => {
-  const { id } = useParams();
+  const { id, episodeId } = useParams();
   const navigate = useNavigate(); // has background location
   const bgLocation = useBackgroundLocation();
 
@@ -35,7 +36,12 @@ const ContentModal: FC<ContentModalProps> = () => {
           className="rounded-md overflow-hidden bg-dark"
           style={{ width, height }}
         >
-          <ContentVideoDetail id={id} onClose={handleClose} />
+          <Suspense>
+            {!episodeId && <ContentVideoDetail id={id} onClose={handleClose} />}
+            {episodeId && (
+              <Player width={width} height={height} id={episodeId} />
+            )}
+          </Suspense>
         </div>
         <div
           className={cx(`h-full rounded-md bg-white`, scrollStyle)}

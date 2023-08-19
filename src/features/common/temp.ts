@@ -40,6 +40,7 @@ export const content: Content = {
   url: 'https://www.youtube.com/embed/6wN_Cewq7_U',
   tags: ['일진', '찐따'],
   type: '시리즈',
+  episode_id: 323,
 };
 
 const episode: Content = { ...content, title: '5억년 버튼' };

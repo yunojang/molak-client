@@ -8,6 +8,7 @@ export interface Content extends Domain {
   url: string;
   type: string;
   tags: string[];
+  episode_id: number;
 }
 
 // yt iframe

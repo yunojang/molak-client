@@ -7,11 +7,15 @@ import { Skeleton } from '@chakra-ui/react';
 
 interface EpisodeCardProps {
   content: Content;
+  onClick?(): void;
 }
 
-const EpisodeCard: FC<EpisodeCardProps> = ({ content }) => {
+const EpisodeCard: FC<EpisodeCardProps> = ({ content, onClick }) => {
   return (
-    <div className="flex gap-3 cursor-pointer w-full overflow-hidden">
+    <div
+      className="flex gap-3 cursor-pointer w-full overflow-hidden"
+      onClick={onClick}
+    >
       <div className="overflow-hidden rounded-lg">
         <Image
           useSuspense

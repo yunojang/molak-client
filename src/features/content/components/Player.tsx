@@ -17,8 +17,9 @@ const Player: FC<PlayerProps> = ({ id, width, height }) => {
       fallback={<PlayerFallback width={width} height={height} />}
       width={width}
       height={height}
-      src={content.url}
+      src={content?.url}
       title="YouTube video player"
+      autoplay
     />
   );
 };

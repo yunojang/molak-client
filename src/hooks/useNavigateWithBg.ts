@@ -1,12 +1,15 @@
 import { NavigateOptions, useLocation, useNavigate } from 'react-router-dom';
 
-export const useNavigateWithBg = () => {
+export const useNavigateWithBg = (inputBg?: string) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const background = location.pathname;
+  const current = location.pathname;
 
   const navigateWithBg = (path: string, options?: NavigateOptions) => {
-    navigate(path, { ...options, state: { background, ...options?.state } });
+    navigate(path, {
+      ...options,
+      state: { background: inputBg ?? current, ...options?.state },
+    });
   };
 
   return navigateWithBg;

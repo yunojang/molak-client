@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface LocationState {
   background?: string;
@@ -7,7 +7,7 @@ interface LocationState {
 export const useBackgroundLocation = () => {
   const location = useLocation();
   const state = location.state as LocationState;
-  const bg = state?.background;
+  const background = state?.background;
 
-  return bg;
+  return background;
 };

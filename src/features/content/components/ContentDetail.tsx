@@ -1,12 +1,15 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useContent } from '../api/getContent';
+import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 
 import { IoClose } from 'react-icons/io5';
 import { IconButton } from '@/components/Elements/IconButton';
 import { BsFillPlayFill } from 'react-icons/bs';
 import ContentTag from './Elements/ContentTag';
-import { Skeleton } from '@chakra-ui/react';
 import SkeletonContentDetail from './Elements/SkeletonContentDetail';
+import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
 
 interface ContentVideoDetailProps {
   id: string;
@@ -14,6 +17,8 @@ interface ContentVideoDetailProps {
 }
 
 const ContentVideoDetail: FC<ContentVideoDetailProps> = ({ id, onClose }) => {
+  const bg = useBackgroundLocation();
+  const keepNavigate = useNavigateWithBg(bg);
   const { content, isLoading: _isLoading } = useContent(id, {
     suspense: false,
   });
@@ -62,7 +67,12 @@ const ContentVideoDetail: FC<ContentVideoDetailProps> = ({ id, onClose }) => {
         )}
 
         <div className="flex justify-between">
-          <div className="flex gap-5 items-center">
+          <div
+            className="flex gap-5 items-center cursor-pointer"
+            onClick={() =>
+              keepNavigate(`/content/${id}/${content?.episode_id}`)
+            }
+          >
             <IconButton size={22} background="#00000058">
               <BsFillPlayFill size={50} className="relative left-[2px]" />
             </IconButton>
