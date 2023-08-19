@@ -1,6 +1,6 @@
 import { FC, Suspense } from 'react';
 
-import Episodes from './Episodes';
+import Episodes from './Episode/Episodes';
 import SkeletonEpisodeList from '@/components/Elements/Card/SkeletonEpisodeList';
 
 interface RelationsProps {

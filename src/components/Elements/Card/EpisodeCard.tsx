@@ -24,11 +24,11 @@ const EpisodeCard: FC<EpisodeCardProps> = ({ content }) => {
         />
       </div>
 
-      <div className="flex flex-col flex-1 gap-1 overflow-hidden">
-        <div className="font-bold text-ellipsis overflow-hidden whitespace-nowrap text-[0.95rem]">
+      <div className="flex flex-col flex-1 overflow-hidden">
+        <div className="font-bold text-ellipsis overflow-hidden whitespace-nowrap ">
           {content.title}
         </div>
-        <div className="text-xs text-gray-500">{content.provider}</div>
+        <div className="text-sm text-gray-500">{content.description}</div>
       </div>
     </div>
   );

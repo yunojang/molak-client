@@ -3,7 +3,7 @@ import client from '@/lib/client';
 import { useQuery } from '@/lib/react-query';
 
 import { Content } from '../types/dto';
-import { search_contents } from '@/features/common/temp';
+import { episodes } from '@/features/common/temp';
 
 interface TempResponse {
   content: Content[];
@@ -16,7 +16,7 @@ export const getEpisodes = (id: string, params: any): Promise<TempResponse> => {
     setTimeout(
       () =>
         resolve({
-          content: search_contents,
+          content: episodes,
           totalElements: 20,
           totalPages: 2,
         }),

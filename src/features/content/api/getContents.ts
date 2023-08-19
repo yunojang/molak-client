@@ -1,6 +1,6 @@
 // query template
 import client from '@/lib/client';
-import { useQuery } from '@/lib/react-query';
+import { QueryOptions, useQuery } from '@/lib/react-query';
 
 import { Content } from '../types/dto';
 import { search_contents } from '@/features/common/temp';
@@ -26,14 +26,9 @@ export const getContents = (params: any): Promise<TempResponse> => {
   // return client.get(`/api/contents`, {params});
 };
 
-interface Options {
-  suspense?: boolean;
-  onSuccess?: (response: TempResponse) => void;
-}
-
 export const useContents = (
   params: any = {},
-  { onSuccess, suspense = true }: Options = {},
+  { onSuccess, suspense = true }: QueryOptions = {},
 ) => {
   const { data, ...rest } = useQuery({
     queryKey: ['contents', JSON.stringify(params)],

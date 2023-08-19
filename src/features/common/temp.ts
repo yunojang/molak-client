@@ -16,7 +16,7 @@ export const intro1: Intro = {
 
 export const intro2: Intro = {
   image: '/asset/images/thumb_temp2.jpg',
-  text: '베일리 감독의 액션\n THE REVENANT',
+  text: '버튼만 누르면 1000만원?\n5억년 버튼',
   item_id: '1',
   button_text: '보러가기',
 };
@@ -34,13 +34,18 @@ export const content: Content = {
   id: '1',
   title: '[일찐과 찐따 외전] 1000만원을 주는 5억년 버튼',
   description:
-    '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다고? 그런데,,',
+    '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다고? 그런데..',
   provider: '하이틴 에이저 Hi-teenager', // 혹은 ProviderObject
   thumbnail: '/asset/images/thumb_temp2.jpg',
   url: 'https://www.youtube.com/embed/6wN_Cewq7_U',
+  tags: ['일진', '찐따'],
+  type: '시리즈',
 };
 
+const episode: Content = { ...content, title: '5억년 버튼' };
+
 export const contents: Content[] = range(15, () => content);
+export const episodes: Content[] = range(10, () => episode);
 
 export const search_contents: Content[] = range(50, () => content);
 

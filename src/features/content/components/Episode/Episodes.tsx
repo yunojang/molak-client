@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { useEpisodes } from '../api/getEpisodes';
+import { useEpisodes } from '../../api/getEpisodes';
 import EpisodeCard from '@/components/Elements/Card/EpisodeCard';
 
 interface EpisodesProps {
