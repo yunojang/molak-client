@@ -4,9 +4,10 @@ import { createPortal } from 'react-dom';
 interface PortalProps {
   targetId?: string;
   children?: React.ReactNode;
+  isContainer?: boolean;
 }
 
-const Portal: FC<PortalProps> = ({ children, targetId }) => {
+const Portal: FC<PortalProps> = ({ children, targetId, isContainer }) => {
   const [render, setRender] = React.useState(false);
   const target = targetId
     ? document.getElementById(targetId) ?? document.body
@@ -18,7 +19,7 @@ const Portal: FC<PortalProps> = ({ children, targetId }) => {
   }, []);
 
   // root에 컨테이너 렌더후 타겟 찾을 수 있도록 미룸
-  if (!render && targetId) return null;
+  if (!render && !isContainer) return null;
   return <>{createPortal(children, target)}</>;
 };
 
