@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import AboutPage from '../components/AboutPAge';
+import AboutPage from '../components/AboutPage';
 
 export const AboutRoute = () => {
   return (

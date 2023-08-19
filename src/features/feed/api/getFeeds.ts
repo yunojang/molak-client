@@ -6,7 +6,7 @@ import { Feed } from '../types/dto';
 import { feeds } from '@/features/common/temp';
 
 export const getFeeds = (): Promise<Feed[]> => {
-  return Promise.resolve(feeds);
+  return new Promise(resolve => setTimeout(() => resolve(feeds), 1000));
   // return client.get(`/api/feeds`);
 };
 

@@ -7,6 +7,7 @@ interface SpinnerProps {
   length?: number;
   color?: string;
   pad?: number;
+  align?: 'center' | 'left' | 'right';
 }
 // Spinner 컴포넌트는 로딩 상태를 나타내는 스피너를 보여줍니다.
 export const Spinner = ({
@@ -14,11 +15,15 @@ export const Spinner = ({
   length = 16,
   color: _color = 'primary',
   pad = 1,
+  align = 'center',
 }: SpinnerProps) => {
   const color = _color === 'primary' ? env.colors.primary : _color;
 
   return (
-    <div className={cx(container(size, color))} style={{ padding: pad * 4 }}>
+    <div
+      className={cx(container(size, color, align), 'box-border')}
+      style={{ padding: pad * 4 }}
+    >
       {range(length).map((_, index) => (
         <div
           className="tornado"
@@ -39,13 +44,19 @@ export const Spinner = ({
   );
 };
 
-const container = (size: number, color: string) => css`
+const container = (
+  size: number,
+  color: string,
+  align: SpinnerProps['align'],
+) => css`
   box-sizing: content-box;
   display: flex;
-  justify-content: center;
+  justify-content: ${align};
   align-items: center;
+  text-align: ${align};
   position: relative;
-  margin: 1px;
+  margin: 1px auto;
+  width: 100%; /* 스피너의 너비 */
   height: ${size}px; /* 스피너의 높이 */
 
   .tornado {

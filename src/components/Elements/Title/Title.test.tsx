@@ -1,10 +1,10 @@
 import { render, screen } from '@/lib/test-lib';
-import { Title } from './Title';
+import { PageIntroTitle } from './PageIntroTitle';
 
 describe('Title Component test suite', () => {
   test('render inital text', async () => {
     // render
-    render(<Title />);
+    render(<PageIntroTitle />);
 
     // query
     const head = screen.getByRole('heading');

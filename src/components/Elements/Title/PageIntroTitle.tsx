@@ -4,25 +4,23 @@ export interface TitleProps {
   text: string;
   description?: string;
   extra?: ReactNode;
-  marginBottom?: string | number;
+  marginBottom?: number;
 }
 
-export const Title: FC<TitleProps> = ({
+export const PageIntroTitle: FC<TitleProps> = ({
   text,
   description,
   extra,
-  marginBottom,
+  marginBottom = 0,
 }) => {
   return (
     <header
       className="flex items-center justify-between"
-      style={{ marginBottom }}
+      style={{ marginBottom: marginBottom * 4 }}
     >
       <div>
-        <div className="inline-block mb-2 text-2xl font-bold">{text}</div>
-        {description && (
-          <div className="text-sm font-bold text-gray-400">{description}</div>
-        )}
+        <div className="inline-block mb-3 text-3xl font-bold">{text}</div>
+        {description && <div>{description}</div>}
       </div>
 
       {extra}

@@ -1,0 +1,1 @@
+export const useIntersection = ({ ref }) => {};

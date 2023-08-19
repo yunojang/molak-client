@@ -1,5 +1,6 @@
 import { Content } from '../content/types/dto';
 import { Feed } from '../feed/types/dto';
+import { Discover } from '../find/types';
 import { Intro } from './types/dto';
 
 import { range } from '@/utils/range';
@@ -14,8 +15,8 @@ export const intro1: Intro = {
 };
 
 export const intro2: Intro = {
-  image: '/asset/images/intro_1.png',
-  text: '내가 드라마 속 주인공이 된다면? \n B현실 유튜버',
+  image: '/asset/images/thumb_temp2.jpg',
+  text: '버튼만 누르면 1000만원?\n5억년 버튼',
   item_id: '1',
   button_text: '보러가기',
 };
@@ -31,14 +32,23 @@ export const introes: Intro[] = [intro1, intro2, intro3];
 
 export const content: Content = {
   id: '1',
-  title: '[일찐과 찐따 외전] 1000만원을 주는 5억년 버튼 ',
+  title: '[일찐과 찐따 외전] 1000만원을 주는 5억년 버튼',
   description:
-    '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다고? 그런데,,',
+    '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다고? 그런데..',
   provider: '하이틴 에이저 Hi-teenager', // 혹은 ProviderObject
-  thumbnail: '/asset/images/thumb_temp.png',
+  thumbnail: '/asset/images/thumb_temp2.jpg',
+  url: 'https://www.youtube.com/embed/6wN_Cewq7_U',
+  tags: ['일진', '찐따'],
+  type: '시리즈',
+  episode_id: 323,
 };
 
+const episode: Content = { ...content, title: '5억년 버튼' };
+
 export const contents: Content[] = range(15, () => content);
+export const episodes: Content[] = range(10, () => episode);
+
+export const search_contents: Content[] = range(50, () => content);
 
 export const feeds: Feed[] = [
   { name: 'NEW! 신작 소식', id: '1', items_list: contents },
@@ -49,3 +59,30 @@ export const feeds: Feed[] = [
     items_list: contents,
   },
 ];
+
+export const discover: Discover = {
+  genres: [
+    '코미디',
+    '로맨스',
+    '드라마',
+    '일상',
+    '액션',
+    '판타지',
+    '스릴러',
+    '시대물',
+  ],
+  tags: [
+    '학원',
+    '대학',
+    '수위',
+    '일진',
+    '찐따',
+    '연애',
+    '공감',
+    '복수',
+    '친구',
+    '감동',
+    '직업',
+  ],
+  types: ['시리즈', '단편'],
+};

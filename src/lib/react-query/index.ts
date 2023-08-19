@@ -35,3 +35,9 @@ export const useQuery = <
     ...options,
   });
 };
+
+export interface QueryOptions {
+  suspense?: boolean;
+  useErrorBoundary?: boolean;
+  onSuccess?(): void;
+}

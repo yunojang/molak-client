@@ -1,0 +1,8 @@
+import { Route, Routes } from 'react-router-dom';
+import FindPage from '../components/FindPage';
+
+export const FindRoute = () => (
+  <Routes>
+    <Route path="/" element={<FindPage />} />
+  </Routes>
+);

@@ -2,7 +2,7 @@ import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 
 import Appframe from './Appframe';
-import { makeRoute } from '@/lib';
+import { makeRoute } from '@/lib/route/makeRoute';
 
 // const AdminRoute = lazy(() => import('@/features/admin'));
 const AccountRoutes = lazy(() => import('@/features/account'));

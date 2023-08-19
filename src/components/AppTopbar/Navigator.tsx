@@ -1,3 +1,6 @@
+import { env } from '@/config';
+import { adjust } from '@/utils/style/color';
+import { cx } from '@emotion/css';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,16 +16,27 @@ interface NavigatorProps {
 const Navigator: FC<NavigatorProps> = ({ nav }) => {
   const navigate = useNavigate();
   return (
-    <div className="flex items-center">
-      {nav.map(({ name, path }, i) => (
-        <div
-          key={i}
-          className=" py-2 px-7 cursor-pointer"
-          onClick={() => navigate(path)}
-        >
-          {name}
-        </div>
-      ))}
+    <div className="flex items-center select-none">
+      {nav.map(({ name, path }, i) => {
+        const isCurrent = window.location.pathname === path;
+        const highlighColor = adjust(env.colors.primary, -15);
+
+        return (
+          <div
+            key={i}
+            style={{
+              color: isCurrent ? highlighColor : 'inherit',
+            }}
+            className={cx(
+              isCurrent ? ' font-bold' : '',
+              `py-2 transition-all cursor-pointer px-7 hover:text-primary`,
+            )}
+            onClick={() => navigate(path)}
+          >
+            {name}
+          </div>
+        );
+      })}
     </div>
   );
 };

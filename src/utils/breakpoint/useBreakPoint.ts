@@ -72,9 +72,7 @@ export const useBreakPoint = (fn: (point: ComparablePoint) => any) => {
   const [size, setSize] = useState<SizeDegree>(getBreakPoint());
 
   useEffect(() => {
-    const handler = () => {
-      setSize(getBreakPoint());
-    };
+    const handler = () => setSize(getBreakPoint());
     window.addEventListener('resize', handler);
     return () => window.removeEventListener('resize', handler);
   }, []);

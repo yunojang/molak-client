@@ -7,22 +7,18 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        addbtn: '128px',
         header: '69px',
         ch: 'calc(100vh - 69px)',
+        space: '2rem',
       },
       boxShadow: {
         frame: '1px 1px 8px 0px rgba(0, 0, 0, 0.1)',
       },
       colors: {
         primary: env.app.PRIMARY_COLOR,
+        dark: '#272E38',
         secondary: '#f7b21b',
         delete: '#ff5555',
-        smooth: '#6b7c99',
-        middle: '#e3e9f3',
-        opacity: '#dae2e6',
-        warning: '#dde9f0',
-        highlight: '#007dfe',
         pencel: '#333333',
       },
       screens: {

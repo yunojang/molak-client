@@ -2,7 +2,8 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Intro } from '@/features/common/types/dto';
-import { Button } from '@chakra-ui/react';
+import { Button, Skeleton } from '@chakra-ui/react';
+import { Image } from '../Image';
 
 interface IntroCardProps {
   intro: Intro;
@@ -24,10 +25,16 @@ const IntroCard: FC<IntroCardProps> = ({ intro }) => {
       {/* image wrap */}
       <div className="relative w-full h-full">
         <div className="absolute inset-0 bg-black bg-opacity-20" />
-        <img
+        <Image
           src={intro.image}
           style={{ height: '100%', width: '100%' }}
           className="object-cover"
+          fallback={
+            <div
+              style={{ height: '100%', width: '100%' }}
+              className="bg-gray-400"
+            />
+          }
         />
       </div>
 

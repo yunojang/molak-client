@@ -17,24 +17,20 @@ interface SliderCarouselProps {
 }
 
 // const delay = 400;
-const pad = 32;
+// const pad = 32;
 
-const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
+const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 5 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardWidth, setCardWidth] = useState(220);
   const [showControl, setShowControl] = useState(false);
+  const [isSlide, setSlide] = useState(false);
 
   const isMobile = useBreakPoint(p => p.smaller('xl'));
-
   // const lastIndex = useMemo(() => currentIndex + count, [currentIndex, count]);
-  // const remain = useMemo(
-  //   () => items.length - lastIndex,
-  //   [items.length, lastIndex],
-  // );
 
   return (
     <div
-      className="relative w-full px-8 overflow-clip"
+      className="relative w-full py-3 overflow-clip px-space"
       onMouseOver={() => setShowControl(true)}
       onMouseLeave={() => setShowControl(false)}
     >
@@ -42,19 +38,20 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
         className={container}
         modules={[Navigation, A11y]}
         loop
-        // slidesOffsetBefore={pad}
-        // slidesOffsetAfter={pad}
         // slidesPerView={count + (pad / cardWidth) * 2}
         simulateTouch={true}
         breakpoints={{ 1200: { simulateTouch: false } }}
         slidesPerView={count}
         slidesPerGroup={count}
-        spaceBetween={10}
+        spaceBetween={15}
         onResize={swiper => {
           const slideWidth = swiper.slides[0].offsetWidth;
           setCardWidth(slideWidth);
         }}
-        onSlideChange={swiper => setCurrentIndex(swiper.realIndex)}
+        onSlideChange={swiper => {
+          if (!isSlide) setSlide(true);
+          setCurrentIndex(swiper.realIndex);
+        }}
         navigation={{
           prevEl: '.prev-button-molak',
           nextEl: '.next-button-molak',
@@ -62,7 +59,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
         speed={400}
       >
         <MoveButton
-          hidden={isMobile || !showControl}
+          hidden={isMobile || !showControl || !isSlide}
           dir="left"
           slot="container-start"
           className="prev-button-molak"
@@ -80,7 +77,13 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
         </MoveButton>
 
         {items.map((item, i) => (
-          <SwiperSlide key={i}>{React.cloneElement(item)}</SwiperSlide>
+          <SwiperSlide
+            key={i}
+            style={{ transition: 'transform 0.4s' }}
+            className="hover:scale-105 hover:z-10"
+          >
+            {React.cloneElement(item)}
+          </SwiperSlide>
         ))}
       </Swiper>
     </div>
@@ -90,6 +93,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 6 }) => {
 export default CardCarousel;
 
 const MoveButton = ({
+  hidden,
   dir,
   className,
   children,
@@ -100,13 +104,13 @@ const MoveButton = ({
       {...rest}
       style={{
         [dir]: 0,
-        width: `${pad}px`,
+        background: 'radial-gradient(circle,  rgba(0,0,0,0.2), rgba(0,0,0,0)',
       }}
       className={`${className} ${cx(
-        `absolute top-0 z-10 bg-black
-      flex items-center justify-center h-full w-8
-      text-xl text-white transition-all cursor-pointer 
-      hover:text-7xl font-bold opacity-10 hover:opacity-30`,
+        `absolute top-0 z-10 w-space
+      flex items-center justify-center h-full 
+      text-4xl text-white transition-all cursor-pointer  font-bold`,
+        hidden ? 'opacity-0' : 'opacity-100',
       )}`}
     >
       {children}
