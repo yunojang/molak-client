@@ -10,7 +10,7 @@ interface RelationsProps {
   id: string;
 }
 
-const Relation: FC<RelationsProps> = ({ id }) => {
+const Relations: FC<RelationsProps> = ({ id }) => {
   const bg = useBackgroundLocation();
   const keepNavigate = useNavigateWithBg(bg);
 
@@ -29,4 +29,4 @@ const Relation: FC<RelationsProps> = ({ id }) => {
   );
 };
 
-export default Relation;
+export default Relations;

@@ -5,7 +5,7 @@ import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
 import { useBreakPoint } from '@/utils/breakpoint';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import Relation from './Relation';
+import Relations from './Relations';
 import { Modal } from '@/components/Modal';
 import { scrollStyle } from '@/utils/style/content';
 import ContentVideoDetail from './ContentDetail';
@@ -47,7 +47,7 @@ const ContentModal: FC<ContentModalProps> = () => {
           className={cx(`h-full rounded-md bg-white`, scrollStyle)}
           style={{ width: relateWidth }}
         >
-          <Relation id={id} />
+          <Relations id={id} />
         </div>
       </div>
     </Modal>

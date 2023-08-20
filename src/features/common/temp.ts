@@ -37,10 +37,23 @@ export const content: Content = {
     '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다고? 그런데..',
   provider: '하이틴 에이저 Hi-teenager', // 혹은 ProviderObject
   thumbnail: '/asset/images/thumb_temp2.jpg',
-  url: 'https://www.youtube.com/embed/6wN_Cewq7_U',
+  url: 'https://www.youtube.com/embed/ILDjioKRJw4',
   tags: ['일진', '찐따'],
   type: '시리즈',
-  episode_id: 323,
+  episode_id: 1,
+};
+
+export const content2: Content = {
+  id: '1',
+  title: '[일찐과 찐따 외전] 1000만원을 주는 5억년 버튼',
+  description:
+    '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다고? 그런데..',
+  provider: '하이틴 에이저 Hi-teenager', // 혹은 ProviderObject
+  thumbnail: '/asset/images/thumb_temp2.jpg',
+  url: 'https://www.youtube.com/embed/rDFUl2mHIW4',
+  tags: ['일진', '찐따'],
+  type: '시리즈',
+  episode_id: 1,
 };
 
 const episode: Content = { ...content, title: '5억년 버튼' };

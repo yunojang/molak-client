@@ -3,10 +3,12 @@ import client from '@/lib/client';
 import { QueryOptions, useQuery } from '@/lib/react-query';
 
 import { Content } from '../types/dto';
-import { content } from '@/features/common/temp';
+import { content, content2 } from '@/features/common/temp';
 
 export const getContent = (id: string): Promise<Content> => {
-  return new Promise(resolve => setTimeout(() => resolve(content), 500));
+  return new Promise(resolve =>
+    setTimeout(() => resolve(+id > 1 ? content : content2), 500),
+  );
   // return client.get(`/api/content/${id}`);
 };
 

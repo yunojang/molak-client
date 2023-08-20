@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 
 import { Intro } from '@/features/common/types/dto';
-import { Button, Skeleton } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { Image } from '../Image';
 
 interface IntroCardProps {
@@ -11,10 +12,12 @@ interface IntroCardProps {
 
 const IntroCard: FC<IntroCardProps> = ({ intro }) => {
   const navigate = useNavigate();
+  const navigateWithBg = useNavigateWithBg();
 
   const handleClick = () => {
     if (intro.link) navigate(intro.link);
-    if (intro.item_id) navigate(`/content/${intro.item_id}`);
+    //  go to content page
+    if (intro.item_id) navigateWithBg(`/content/${intro.item_id}`);
     if (intro.external_link) window.open(intro.external_link);
   };
   return (
