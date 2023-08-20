@@ -1,5 +1,4 @@
 // query template
-import client from '@/lib/client';
 import { QueryOptions, useQuery } from '@/lib/react-query';
 
 import { Content } from '../types/dto';
@@ -7,7 +6,7 @@ import { content, content2 } from '@/features/common/temp';
 
 export const getContent = (id: string): Promise<Content> => {
   return new Promise(resolve =>
-    setTimeout(() => resolve(+id > 1 ? content : content2), 500),
+    setTimeout(() => resolve(+id < 2 ? content : content2), 500),
   );
   // return client.get(`/api/content/${id}`);
 };

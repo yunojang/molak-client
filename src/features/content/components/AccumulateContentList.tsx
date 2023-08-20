@@ -1,13 +1,14 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { queryClient } from '@/lib/react-query';
 
 import { useContents } from '../api/getContents';
 import { Content } from '../types/dto';
-import { ListCompProps } from '@/components/List/withScrollLoad';
 
 import ContentCard from '@/components/Elements/Card/ContentCard';
 import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentCardList';
+import { PagableListProps } from '@/components/List/types';
 
-interface ContentListProps extends ListCompProps {
+interface ContentListProps extends PagableListProps {
   columnCount?: number;
   onSelect?(id: string): void;
 }
@@ -19,11 +20,22 @@ const AccumulateContentList: FC<ContentListProps> = ({
   pager = () => null,
   onSelect,
 }) => {
+  // const cached = queryClient.getQueryData([
+  //   'contents',
+  //   JSON.stringify(params),
+  // ]) as { content: Content[] } | undefined;
+
   const [accContents, setAccContents] = useState<Content[]>([]);
   const { totalElements, totalPages, isEnd, isLoading } = useContents(params, {
     suspense: false,
-    onSuccess: ({ content }) => setAccContents(prev => prev.concat(content)),
+    onSuccess:
+      // cached ? undefined :
+      ({ content }) => setAccContents(prev => prev.concat(content)),
   });
+
+  // useEffect(() => {
+  //   if (cached) setAccContents(prev => prev.concat(cached.content));
+  // }, [cached]);
 
   return (
     <div>

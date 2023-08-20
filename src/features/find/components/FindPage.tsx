@@ -45,6 +45,7 @@ const FindPage: FC<FindPageProps> = () => {
         ListComp: AccumulateContentList,
         filter,
         className: 'h-full flex-1 pb-10',
+        hasTitle: true,
       }),
     [filter],
   );

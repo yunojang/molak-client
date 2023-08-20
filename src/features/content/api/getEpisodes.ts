@@ -1,9 +1,9 @@
 // query template
 import client from '@/lib/client';
-import { useQuery } from '@/lib/react-query';
+import { QueryOptions, useQuery } from '@/lib/react-query';
 
 import { Content } from '../types/dto';
-import { episodes } from '@/features/common/temp';
+import { episodes, episodes2 } from '@/features/common/temp';
 
 interface TempResponse {
   content: Content[];
@@ -16,8 +16,8 @@ export const getEpisodes = (id: string, params: any): Promise<TempResponse> => {
     setTimeout(
       () =>
         resolve({
-          content: episodes,
-          totalElements: 20,
+          content: params.offset < 10 ? episodes : episodes2,
+          totalElements: 25,
           totalPages: 2,
         }),
       500,
@@ -26,15 +26,10 @@ export const getEpisodes = (id: string, params: any): Promise<TempResponse> => {
   // return client.get(`/api/episodes/${id}`, {params});
 };
 
-interface Options {
-  suspense?: boolean;
-  onSuccess?: (response: TempResponse) => void;
-}
-
 export const useEpisodes = (
   id: string,
   params: any = {},
-  { onSuccess, suspense = true }: Options = {},
+  { onSuccess, suspense = true }: QueryOptions<TempResponse> = {},
 ) => {
   const { data, ...rest } = useQuery({
     queryKey: ['episodes', id, JSON.stringify(params)],

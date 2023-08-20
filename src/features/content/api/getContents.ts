@@ -1,5 +1,4 @@
 // query template
-import client from '@/lib/client';
 import { QueryOptions, useQuery } from '@/lib/react-query';
 
 import { Content } from '../types/dto';
@@ -28,7 +27,7 @@ export const getContents = (params: any): Promise<TempResponse> => {
 
 export const useContents = (
   params: any = {},
-  { onSuccess, suspense = true }: QueryOptions = {},
+  { onSuccess, suspense = true }: QueryOptions<TempResponse> = {},
 ) => {
   const { data, ...rest } = useQuery({
     queryKey: ['contents', JSON.stringify(params)],
@@ -44,7 +43,7 @@ export const useContents = (
     totalElements: data?.totalElements ?? 0,
     totalPages: data?.totalPages ?? 0,
     isEnd: data
-      ? data.totalElements <= params.offset + params.size // 다음 요청에 크거나 같아지면, end
+      ? data.totalElements <= params.offset + params.size // 다음 요청에 크거나 같아지면, isEnd // ? data.totalElements <= params.page + 1
       : false,
     ...rest,
   };

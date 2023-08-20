@@ -2,13 +2,14 @@ import { FC } from 'react';
 
 import { useEpisodes } from '../../api/getEpisodes';
 import EpisodeCard from '@/components/Elements/Card/EpisodeCard';
+import { PagableListProps } from '@/components/List/types';
 
-interface EpisodesProps {
+interface EpisodesProps extends PagableListProps {
   id: string;
   onSelect?(id: number): void;
 }
 
-const Episodes: FC<EpisodesProps> = ({ id, onSelect }) => {
+const EpisodeList: FC<EpisodesProps> = ({ id, onSelect }) => {
   const { episodes } = useEpisodes(id, {});
 
   return (
@@ -24,4 +25,4 @@ const Episodes: FC<EpisodesProps> = ({ id, onSelect }) => {
   );
 };
 
-export default Episodes;
+export default EpisodeList;

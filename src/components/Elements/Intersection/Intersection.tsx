@@ -1,4 +1,3 @@
-import { throttle } from '@/utils/timing/throttle';
 import React, { FC, useEffect, useRef } from 'react';
 
 interface IntersectionProps {
@@ -22,23 +21,20 @@ const Intersection: FC<IntersectionProps> = ({
     const el = targetRef.current;
     if (!el) return;
 
-    const handler = throttle(
-      (
-        entries: IntersectionObserverEntry[],
-        observer: IntersectionObserver,
-      ) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            onIntersection?.();
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      150,
-    );
+    const handler = (
+      entries: IntersectionObserverEntry[],
+      observer: IntersectionObserver,
+    ) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          onIntersection?.();
+          observer.unobserve(entry.target);
+        }
+      });
+    };
 
     const observer = new IntersectionObserver(handler, {
-      rootMargin: '0px 0px 40px 0px',
+      rootMargin: '0px 0px 50px 0px',
     });
     if (el) observer.observe(targetRef.current);
     return () => {
@@ -52,3 +48,22 @@ const Intersection: FC<IntersectionProps> = ({
 };
 
 export default Intersection;
+
+// const throttleHandler = useMemo(
+//   () =>
+//     throttle(
+//       (
+//         entries: IntersectionObserverEntry[],
+//         observer: IntersectionObserver,
+//       ) => {
+//         entries.forEach(entry => {
+//           if (entry.isIntersecting) {
+//             onIntersection?.();
+//             observer.unobserve(entry.target);
+//           }
+//         });
+//       },
+//       100,
+//     ),
+//   [onIntersection],
+// );

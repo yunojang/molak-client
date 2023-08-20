@@ -36,8 +36,8 @@ export const useQuery = <
   });
 };
 
-export interface QueryOptions {
+export interface QueryOptions<T = any> {
   suspense?: boolean;
   useErrorBoundary?: boolean;
-  onSuccess?(): void;
+  onSuccess?(result: T): void;
 }

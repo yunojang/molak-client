@@ -1,80 +1,74 @@
-import { FC, ReactNode, useState, useEffect } from 'react';
+import {
+  FC,
+  ReactNode,
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+} from 'react';
 import { cx } from '@emotion/css';
-
-import { FilterableListProps } from './withListFilter';
 
 import { scrollStyle } from '@/utils/style/content';
 import Intersection from '../Elements/Intersection/Intersection';
 import { Spinner } from '../Elements/Spinner';
+import { ListResultTitle } from './ListTitle';
 
-export interface ListCompProps {
-  title?(cnt: number, isLoading?: boolean): ReactNode;
-  pager?(pageCnt: number, isEnd?: boolean, isLoading?: boolean): ReactNode;
-  params?: any;
-}
+import { PagableListProps } from './types';
+import { throttle } from '@/utils/timing/throttle';
 
 interface ListWrpperProps<T> {
   ListComp: FC<T>;
   filter?: any;
   className?: string;
   titleExtra?: ReactNode;
-  // name?: string;
+  fallback?: ReactNode;
+  hasTitle?: boolean;
 }
 
-export const withScrollLoad = <T extends FilterableListProps>({
-  ListComp,
+export const withScrollLoad = <T extends PagableListProps>({
+  ListComp, // only accmulate list... -> 리팩토링 필요
   filter = {},
-  className,
+  className, // container className
   titleExtra,
-}: // name, // 리스트에 따른 구분이 필요할 때 -> order 종류 by name
-ListWrpperProps<T>) => {
+  hasTitle,
+  fallback = <Spinner pad={12} size={44} color="#888" />,
+}: ListWrpperProps<T>) => {
   return function Inner(props: T) {
+    const [initRender, setInitRender] = useState(false);
+    useEffect(() => setInitRender(true), []);
+
     const { size = 50, ...filter_rest } = filter;
     const [offset, setOffset] = useState(0);
 
-    const params = { ...filter_rest, size, offset };
+    const onIntersection = useMemo(
+      () => throttle(() => setOffset(prev => prev + size), 100),
+      [size],
+    );
 
-    const [initRender, setInitRender] = useState(false);
-    useEffect(() => setInitRender(true), []);
+    const params = { ...filter_rest, size, offset };
 
     return (
       <div className={cx(className, scrollStyle)}>
         <ListComp
           {...props}
           params={params}
-          title={cnt => <ListResultTitle cnt={cnt} extra={titleExtra} mb={5} />}
-          // bottom loader // props: onIntersection, show, fallback
+          title={
+            hasTitle
+              ? cnt => <ListResultTitle cnt={cnt} extra={titleExtra} mb={5} />
+              : undefined
+          }
           pager={(_, isEnd, isLoading) => (
             <Intersection
               isShow={!isLoading}
               isActive={!isEnd && initRender}
-              fallback={<Spinner pad={15} size={50} color="#aaa" />}
-              onIntersection={() => setOffset(prev => prev + size)}
+              fallback={fallback}
+              onIntersection={() => onIntersection()}
             >
-              <div className="h-[130px]" />
+              <div className="h-[64px]" />
             </Intersection>
           )}
         />
       </div>
     );
   };
-};
-
-interface ListTitleProps {
-  cnt?: number;
-  extra?: ReactNode;
-  mb?: number;
-}
-
-const ListResultTitle: FC<ListTitleProps> = ({ cnt, extra, mb = 0 }) => {
-  return (
-    <div className="flex justify-between" style={{ marginBottom: mb * 4 }}>
-      <div className="flex items-center gap-2 text-2xl font-bold">
-        <span>검색결과</span>
-        <span className="text-primary">{cnt}건</span>
-      </div>
-
-      {extra}
-    </div>
-  );
 };
