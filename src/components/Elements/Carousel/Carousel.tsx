@@ -12,21 +12,24 @@ import { BsDashLg } from 'react-icons/bs';
 
 import { circularRange } from '@/utils/range';
 import OrderStep from './OrderStep';
+import { GoDot, GoDotFill } from 'react-icons/go';
 
 interface CarouselProps extends Partial<CarouselViewerProps> {
   autoPlay?: boolean;
   delay?: number;
   sliders?: React.ReactNode[];
   defaultOrder?: number;
+  hideMove?: boolean;
 }
 
 const Carousel: FC<CarouselProps> = ({
   width = '100%',
-  height = '44em',
+  height = '20em',
   autoPlay,
   delay = 3500,
   sliders = [],
   defaultOrder = 0,
+  hideMove,
 }) => {
   const [order, setOrder] = useState(defaultOrder);
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout>();
@@ -65,9 +68,11 @@ const Carousel: FC<CarouselProps> = ({
 
   return (
     <div className="relative">
-      <MoveButton style={{ left: 0 }} onClick={decrease}>
-        <HiOutlineChevronLeft />
-      </MoveButton>
+      {!hideMove && (
+        <MoveButton style={{ left: 0 }} onClick={decrease}>
+          <HiOutlineChevronLeft />
+        </MoveButton>
+      )}
 
       <CarouselViewer
         items={sliders}
@@ -76,9 +81,11 @@ const Carousel: FC<CarouselProps> = ({
         height={height}
       />
 
-      <div className="absolute z-20 bottom-[2.2em] right-1/2 translate-x-1/2">
+      {/* <div className="absolute z-20 bottom-[2.2em] right-1/2 translate-x-1/2"> */}
+      <div className="absolute z-20 bottom-[1em] right-[1em]">
         <OrderStep
-          icon={<BsDashLg />}
+          // icon={<BsDashLg />}
+          icon={<GoDotFill size={24} />}
           length={sliders.length}
           value={order}
           onChange={order => {
@@ -88,9 +95,11 @@ const Carousel: FC<CarouselProps> = ({
         />
       </div>
 
-      <MoveButton style={{ right: 0 }} onClick={increase}>
-        <HiOutlineChevronRight />
-      </MoveButton>
+      {!hideMove && (
+        <MoveButton style={{ right: 0 }} onClick={increase}>
+          <HiOutlineChevronRight />
+        </MoveButton>
+      )}
     </div>
   );
 };

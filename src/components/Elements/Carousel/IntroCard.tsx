@@ -42,11 +42,11 @@ const IntroCard: FC<IntroCardProps> = ({ intro }) => {
       </div>
 
       {/* controler */}
-      <div className="absolute left-24 bottom-24">
+      <div className="absolute flex flex-col gap-3 left-8 bottom-8">
         <div className="text-4xl font-bold text-white whitespace-pre-line">
           {intro.text}
         </div>
-        <Button className="mt-7" size="lg">
+        <Button className="self-start text-black bg-gray-200" size="lg">
           {intro.button_text}
         </Button>
       </div>

@@ -35,7 +35,7 @@ const OrderStep: FC<OrderStepProps> = ({
           key={n}
           className={cx(
             n === v ? 'opacity-80' : 'opacity-40 hover:opacity-60',
-            'text-white text-[52px] cursor-pointer  transition-opacity duration-300',
+            'text-white cursor-pointer  transition-opacity duration-300',
           )}
         >
           {icon}

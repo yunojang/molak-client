@@ -5,18 +5,20 @@ import Carousel from './Carousel';
 import IntroCard from './IntroCard';
 
 interface IntroCarouselProps {
-  _?: any;
+  height?: number | string;
 }
 
 // const temp_color = ['green', 'pink', 'purple', 'gray'];
 
-const IntroCarousel: FC<IntroCarouselProps> = () => {
+const IntroCarousel: FC<IntroCarouselProps> = ({ height = '34em' }) => {
   // get landing data on hooks
   const { intro } = useIntro();
 
   return (
     <Carousel
+      height={height}
       autoPlay
+      hideMove
       sliders={intro?.map((v, i) => (
         <IntroCard key={i} intro={v} />
       ))}

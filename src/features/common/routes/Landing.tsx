@@ -11,7 +11,9 @@ function Landing() {
 
   return (
     <div>
-      <IntroCarousel />
+      <div className="px-space">
+        <IntroCarousel />
+      </div>
 
       <div className="pt-10">
         {/* <SkeletonFeedList /> */}
