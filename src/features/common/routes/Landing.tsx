@@ -11,7 +11,7 @@ function Landing() {
 
   return (
     <div>
-      <div className="px-space">
+      <div className="pt-1 px-space">
         <IntroCarousel />
       </div>
 

@@ -26,7 +26,7 @@ const Carousel: FC<CarouselProps> = ({
   width = '100%',
   height = '20em',
   autoPlay,
-  delay = 3500,
+  delay = 4000,
   sliders = [],
   defaultOrder = 0,
   hideMove,
