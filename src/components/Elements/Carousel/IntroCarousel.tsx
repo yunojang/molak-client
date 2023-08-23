@@ -10,7 +10,7 @@ interface IntroCarouselProps {
 
 // const temp_color = ['green', 'pink', 'purple', 'gray'];
 
-const IntroCarousel: FC<IntroCarouselProps> = ({ height = '38em' }) => {
+const IntroCarousel: FC<IntroCarouselProps> = ({ height = '40em' }) => {
   // get landing data on hooks
   const { intro } = useIntro();
 
