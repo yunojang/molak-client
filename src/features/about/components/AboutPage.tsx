@@ -1,5 +1,6 @@
 import PageLayout from '@/components/Elements/Layout/PageLayout';
 import { PageIntroTitle } from '@/components/Elements/Title';
+import ToScroll from '@/utils/scroll/ToScroll';
 import { FC } from 'react';
 
 interface AboutProps {
@@ -9,6 +10,7 @@ interface AboutProps {
 const AboutPage: FC<AboutProps> = () => {
   return (
     <PageLayout>
+      <ToScroll />
       <PageIntroTitle text="모락 소개" description="" />
       <div>
         <div>모락은 크리에이터의 권리를 가장 중요시합니다. </div>

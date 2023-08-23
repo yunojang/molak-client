@@ -11,11 +11,11 @@ function Landing() {
 
   return (
     <div>
-      <div className="pt-1 px-space">
+      <div className="px-space">
         <IntroCarousel />
       </div>
 
-      <div className="pt-10">
+      <div className="pt-7">
         {/* <SkeletonFeedList /> */}
         <Suspense fallback={<SkeletonFeedList />}>
           <FeedList onSelect={id => navigate(`/content/${id}`)} />
