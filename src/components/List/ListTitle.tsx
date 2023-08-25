@@ -11,7 +11,7 @@ export const ListResultTitle: FC<ListTitleProps> = ({ cnt, extra, mb = 0 }) => {
     <div className="flex justify-between" style={{ marginBottom: mb * 4 }}>
       <div className="flex items-center gap-2 text-2xl font-bold">
         <span>검색결과</span>
-        <span className="text-primary">{cnt}건</span>
+        <span className="text-primary-500">{cnt}건</span>
       </div>
 
       {extra}

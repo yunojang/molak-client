@@ -19,7 +19,7 @@ const Navigator: FC<NavigatorProps> = ({ nav }) => {
     <div className="flex items-center select-none">
       {nav.map(({ name, path }, i) => {
         const isCurrent = window.location.pathname === path;
-        const highlighColor = adjust(env.colors.primary, -15);
+        const highlighColor = adjust(env.colors.primary, -10);
 
         return (
           <div
@@ -29,7 +29,7 @@ const Navigator: FC<NavigatorProps> = ({ nav }) => {
             }}
             className={cx(
               isCurrent ? ' font-bold' : '',
-              `py-2 transition-all cursor-pointer px-7 hover:text-primary`,
+              `py-2 transition-all cursor-pointer px-7 hover:text-primary-500`,
             )}
             onClick={() => navigate(path)}
           >
