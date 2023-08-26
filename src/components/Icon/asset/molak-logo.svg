@@ -1,8 +1,8 @@
-<svg width="202" height="131" viewBox="0 0 202 131" fill="#29FFA5" xmlns="http://www.w3.org/2000/svg">
-<circle cx="65.5" cy="65.5" r="65.5" fill="current"/>
-<path d="M64.9204 64.9204H131V131H64.9204V64.9204Z" fill="current"/>
-<circle cx="33.0398" cy="33.0398" r="33.0398" transform="matrix(-1 0 0 1 201.717 64.9204)" fill="current"/>
-<path d="M168.969 97.6677H135.637V131H168.969V97.6677Z" fill="current"/>
-<circle cx="21.6499" cy="21.6499" r="21.6499" transform="matrix(-0.95388 0.300189 0.300189 0.95388 167.659 12.5188)" fill="current"/>
-<path d="M153.632 39.429L132.798 45.9855L139.354 66.8197L160.188 60.2631L153.632 39.429Z" fill="current"/>
+<svg width="202" height="131" viewBox="0 0 202 131" fill="current" xmlns="http://www.w3.org/2000/svg">
+<circle cx="65.5" cy="65.5" r="65.5"/>
+<path d="M64.9204 64.9204H131V131H64.9204V64.9204Z"/>
+<circle cx="33.0398" cy="33.0398" r="33.0398" transform="matrix(-1 0 0 1 201.717 64.9204)"/>
+<path d="M168.969 97.6677H135.637V131H168.969V97.6677Z"/>
+<circle cx="21.6499" cy="21.6499" r="21.6499" transform="matrix(-0.95388 0.300189 0.300189 0.95388 167.659 12.5188)"/>
+<path d="M153.632 39.429L132.798 45.9855L139.354 66.8197L160.188 60.2631L153.632 39.429Z"/>
 </svg>
