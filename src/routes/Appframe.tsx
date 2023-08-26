@@ -6,6 +6,7 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 import AppFooter from '@/components/AppFooter';
 import SpinnerPage from '@/components/Elements/Spinner/SpinnerPage';
+import ErrorPage from '@/components/ErrorBoundary/ErrorPage';
 
 interface AppframeProps {
   hasFooter?: boolean;
@@ -18,7 +19,7 @@ export default function Appframe({ hasFooter = true }: AppframeProps) {
 
       <div className="min-h-[70vh]">
         <Suspense fallback={<SpinnerPage />}>
-          <ErrorBoundary fallback={<div>다시 시도해 주십시오</div>}>
+          <ErrorBoundary fallback={err => <ErrorPage error={err} />}>
             <Outlet />
           </ErrorBoundary>
         </Suspense>

@@ -1,8 +1,8 @@
 import { env } from '@/config';
 import { FC } from 'react';
 
-import MolakLogo from '@/components/Icon/asset/molak-logo.svg';
-import MolakText from '@/components/Icon/asset/molak-text.svg';
+import MolakLogo from './asset/molak-logo.svg';
+import MolakText from './asset/molak-text.svg';
 
 interface SvgProps {
   size?: number;
@@ -20,8 +20,8 @@ const MolakIcon: FC<MolakIconProps> = ({ icon = {}, text = {} }) => {
 
   return (
     <div className="flex items-end">
-      <MolakLogo width={size} height={size / 2} color={color} />
-      <MolakText width={textSize} color={textColor} />
+      <MolakLogo width={size} height={size / 2} fill={color} />
+      <MolakText width={textSize} fill={textColor} />
     </div>
   );
 };
