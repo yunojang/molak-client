@@ -19,3 +19,7 @@ export interface ListClientProps {
 export interface Domain {
   id: string;
 }
+
+export interface LayoutProps {
+  children?: React.ReactNode | React.ReactNode[];
+}

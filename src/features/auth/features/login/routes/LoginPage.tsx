@@ -26,7 +26,7 @@ const LoginPage: FC<LoginPageProps> = () => {
         )}
       >
         <div className="flex flex-col gap-5 items-center">
-          <MolakIcon />
+          <MolakIcon text={{ color: '#fff' }} />
           <div className="text-2xl">
             <span className="font-bold">웹드라마</span>를 쉽고 간편하게
             시청하세요

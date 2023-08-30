@@ -1,46 +1,41 @@
 // import { useBreakPointSize } from '@/hooks/useBreakPointSize';
-import { FC, ReactElement, useState } from 'react';
+import { FC, ReactElement, ReactNode, useState } from 'react';
 import {
   bigger,
   eqBigger,
   eqSmaller,
   SizeDegree,
   smaller,
+  useBreakPoint,
 } from './useBreakPoint';
+import { LayoutProps } from '@/types';
 
-interface BreakPointProps {
+interface BreakPointProps extends LayoutProps {
   size: SizeDegree;
-  children?: ReactElement;
   better?: 'smaller' | 'bigger' | 'eqBigger' | 'eqSmaller' | 'same';
   fallback?: ReactElement;
 }
 
-// export const BreakPoint: FC<BreakPointProps> = ({
-//   size,
-//   children = null,
-//   better = 'same',
-//   fallback = null,
-// }) => {
-//   const [correct, setCorrect] = useState(true);
-//   const current = useBreakPointSize();
-
-//   switch (better) {
-//     case 'same':
-//       setCorrect(current === size);
-//       break;
-//     case 'bigger':
-//       setCorrect(bigger(current, size));
-//       break;
-//     case 'smaller':
-//       setCorrect(smaller(current, size));
-//       break;
-//     case 'eqBigger':
-//       setCorrect(eqBigger(current, size));
-//       break;
-//     case 'eqSmaller':
-//       setCorrect(eqSmaller(current, size));
-//       break;
-//   }
-
-//   return correct ? children : fallback;
-// };
+export const BreakPoint: FC<BreakPointProps> = ({
+  size,
+  children = null,
+  better = 'same',
+  fallback = null,
+}) => {
+  const isCorrect = useBreakPoint(p => {
+    switch (better) {
+      case 'smaller':
+        return p.smaller(size);
+      case 'bigger':
+        return p.bigger(size);
+      case 'eqBigger':
+        return p.eqBigger(size);
+      case 'eqSmaller':
+        return p.eqSmaller(size);
+      case 'same':
+      default:
+        return p.same(size);
+    }
+  });
+  return isCorrect ? <>{children}</> : fallback;
+};

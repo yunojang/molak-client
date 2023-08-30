@@ -11,9 +11,9 @@ function Landing() {
 
   return (
     <div>
-      <div className="px-space">
-        <IntroCarousel />
-      </div>
+      {/* <div className="px-space"> */}
+      <IntroCarousel />
+      {/* </div> */}
 
       <div className="pt-7">
         {/* <SkeletonFeedList /> */}

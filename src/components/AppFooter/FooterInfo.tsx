@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 
 import { FooterInfoObject } from './info';
 import { Divider } from '../Elements/Divider';
+import MolakIcon from '../Icon/MolakIcon';
+import { BreakPoint } from '@/utils/breakpoint';
 
 interface FooterInfoProps {
   route?: (path?: string) => void;
@@ -12,18 +14,23 @@ interface FooterInfoProps {
 const FooterInfo: FC<FooterInfoProps> = ({ contents, route = () => {} }) => {
   return (
     <InfoContainer>
-      <img src="/asset/icon_white.png" />
+      <MolakIcon
+        icon={{ size: 55, color: 'white' }}
+        text={{ size: 90, color: 'white' }}
+      />
 
-      <Divider color="white" vertical />
+      <BreakPoint size="md" better="bigger">
+        <Divider color="white" vertical />
 
-      {contents.map((content, i) => (
-        <InfoContainer key={i}>
-          <div onClick={() => route(content.path)} className="cursor-pointer">
-            {content.name}
-          </div>
-          {i !== contents.length - 1 && <Divider color="white" vertical />}
-        </InfoContainer>
-      ))}
+        {contents.map((content, i) => (
+          <InfoContainer key={i}>
+            <div onClick={() => route(content.path)} className="cursor-pointer">
+              {content.name}
+            </div>
+            {i !== contents.length - 1 && <Divider color="white" vertical />}
+          </InfoContainer>
+        ))}
+      </BreakPoint>
     </InfoContainer>
   );
 };

@@ -19,7 +19,7 @@ const MolakIcon: FC<MolakIconProps> = ({ icon = {}, text = {} }) => {
   const { size: textSize = 180, color: textColor = 'text-white' } = text;
 
   return (
-    <div className="flex items-end">
+    <div className="flex items-center">
       <MolakLogo width={size} height={size / 2} fill={color} />
       <MolakText width={textSize} fill={textColor} />
     </div>
