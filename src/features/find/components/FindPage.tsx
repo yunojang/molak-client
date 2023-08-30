@@ -16,6 +16,7 @@ import { Selector } from '@/components/Elements/Selector';
 import { scrollStyle } from '@/utils/style/content';
 import { genre_order } from '../constant/order';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
+import { useCardCount } from '@/features/content/hooks/useCardCount';
 
 interface FindPageProps {
   _?: never;
@@ -32,6 +33,7 @@ const TITLE = {
 // find 페이지 footer 없앰 - 태그, 리스트 각각 스크롤
 const FindPage: FC<FindPageProps> = () => {
   const naviage = useNavigateWithBg();
+  const count = useCardCount().count - 1;
 
   const [filter, setFilter] = useState({});
   const updateFilter = (key: string, value: string) => {
@@ -82,7 +84,7 @@ const FindPage: FC<FindPageProps> = () => {
           </div>
 
           <ContentList
-            columnCount={4}
+            columnCount={count}
             onSelect={id => naviage(`/content/${id}`)}
           />
         </div>

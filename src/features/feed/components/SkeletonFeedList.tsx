@@ -1,4 +1,5 @@
 import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentCardList';
+import { useCardCount } from '@/features/content/hooks/useCardCount';
 import { range } from '@/utils/range';
 import { Skeleton } from '@chakra-ui/react';
 import { FC } from 'react';
@@ -7,6 +8,8 @@ interface SkeletonFeedListProps {
 }
 
 const SkeletonFeedList: FC<SkeletonFeedListProps> = () => {
+  const { count } = useCardCount();
+
   return (
     <div className="flex flex-col gap-14">
       {range(5).map(n => (
@@ -16,7 +19,7 @@ const SkeletonFeedList: FC<SkeletonFeedListProps> = () => {
           </div>
 
           <div className="py-3">
-            <SkeletonContentCardList />
+            <SkeletonContentCardList count={count} />
           </div>
         </div>
       ))}

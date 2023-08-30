@@ -10,11 +10,13 @@ interface SkeletonContentCardListProps {
 }
 
 const SkeletonContentCardList: FC<SkeletonContentCardListProps> = ({
-  columnCount = 5,
   count = 5,
+  columnCount,
   isCard,
   gap = 5,
 }) => {
+  columnCount = columnCount ?? count ?? 5;
+
   return (
     <div
       className="grid"

@@ -4,6 +4,7 @@ import { useFeeds } from '../api/getFeeds';
 import FeedTitle from './FeedTitle';
 import ContentCard from '@/components/Elements/Card/ContentCard';
 import CardCarousel from '@/components/Elements/Carousel/CardCarousel';
+import { useCardCount } from '@/features/content/hooks/useCardCount';
 
 interface FeedListProps {
   onSelect?(id: string): void;
@@ -11,6 +12,7 @@ interface FeedListProps {
 
 const FeedList: FC<FeedListProps> = ({ onSelect }) => {
   const { feeds } = useFeeds();
+  const { count } = useCardCount();
 
   return (
     <>
@@ -21,6 +23,7 @@ const FeedList: FC<FeedListProps> = ({ onSelect }) => {
           </div>
 
           <CardCarousel
+            count={count}
             items={feed.items_list.map((content, i) => (
               <ContentCard
                 key={i}
