@@ -4,6 +4,8 @@ import { Content } from '@/features/content/types/dto';
 
 import { Image } from '../Image';
 import { Skeleton } from '@chakra-ui/react';
+import { cx } from '@emotion/css';
+import { lineBreak } from '@/utils/style/content';
 
 interface EpisodeCardProps {
   content: Content;
@@ -20,19 +22,19 @@ const EpisodeCard: FC<EpisodeCardProps> = ({ content, onClick }) => {
         <Image
           useSuspense
           src={content.thumbnail}
-          width="100%"
-          height="auto"
           className="object-cover"
-          style={{ maxHeight: '86px', width: '144px' }}
-          fallback={<Skeleton width="144px" height="86px" />}
+          style={{ height: '110px', width: '180px' }}
+          fallback={<Skeleton width="180px" height="110px" />}
         />
       </div>
 
       <div className="flex flex-col flex-1 overflow-hidden">
-        <div className="font-bold text-ellipsis overflow-hidden whitespace-nowrap ">
+        <div className="font-bold text-ellipsis text-lg overflow-hidden whitespace-nowrap ">
           {content.title}
         </div>
-        <div className="text-sm text-gray-500">{content.description}</div>
+        <div className={cx('text-gray-500', lineBreak(2))}>
+          {content.description}
+        </div>
       </div>
     </div>
   );

@@ -34,7 +34,7 @@ export const content: Content = {
   id: '1',
   title: '[일찐과 찐따 외전] 1000만원을 주는 5억년 버튼',
   description:
-    '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다고? 그런데..',
+    '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다! 그런데 조건이 있다고?',
   provider: '하이틴 에이저 Hi-teenager', // 혹은 ProviderObject
   thumbnail: '/asset/images/thumb_temp2.jpg',
   url: 'https://www.youtube.com/embed/rDFUl2mHIW4',

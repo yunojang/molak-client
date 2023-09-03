@@ -15,7 +15,7 @@ export const useContent = (
   id: string,
   opt: QueryOptions = { suspense: true },
 ) => {
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQuery<Content>({
     queryKey: ['content', id],
     queryFn: () => getContent(id),
     ...opt,

@@ -10,11 +10,10 @@ import { adjust } from '@/utils/style/color';
 import { env } from '@/config';
 
 interface TabsProps extends ChakraTabsProps {
-  _?: any;
   width?: string;
 }
 
-const Tabs: FC<TabsProps> = ({ children, width = '5em', ...rest }) => {
+const Tabs: FC<TabsProps> = ({ children, width = '112px', ...rest }) => {
   const [tabIndex, setTabIndex] = React.useState(0);
 
   return (
@@ -25,39 +24,39 @@ const Tabs: FC<TabsProps> = ({ children, width = '5em', ...rest }) => {
       onChange={setTabIndex}
     >
       <TabList>
-        {React.Children.map(children, (child, idx) => (
-          <div>
-            {cloneElement<TabProps>(child as ReactElement, {
-              _selected: { color: 'white' },
-              width: '24',
-              className:
-                'font-bold text-lg z-10 transition-all relative easy-in-out',
-              style: {
-                transition: '500ms cubic-bezier(.77,.15,.39,1.43) 200ms',
-              },
-            })}
-            <div
-              className="absolute h-[80%] rounded-full top-1/2"
-              style={{
-                background: adjust(env.colors.primary, -15),
-                width: `calc(${width} - ${constractPx(width) * 0.2}px)`,
-                transform: `translate(10%, -50%) scale(${
-                  tabIndex === idx ? 1 : 0
-                })`,
-                transition:
-                  tabIndex === idx
+        {React.Children.map(children, (child, idx) => {
+          const isSelected = idx === tabIndex;
+
+          return (
+            <div>
+              {cloneElement<TabProps>(child as ReactElement, {
+                _selected: { color: 'white' },
+                className:
+                  'font-bold text-[1.2rem] z-10 transition-all relative easy-in-out',
+                style: {
+                  width,
+                  transition: '500ms cubic-bezier(.77,.15,.39,1.43) 200ms',
+                },
+              })}
+              <div
+                className="absolute h-[84%] rounded-full top-1/2"
+                style={{
+                  background: adjust(env.colors.primary, -20),
+                  width: `calc(${width} - ${subPx(width) * 0.1}px)`,
+                  transform: `translate(5%, -50%) scale(${isSelected ? 1 : 0})`,
+                  transition: isSelected
                     ? '500ms cubic-bezier(.77,.15,.39,1.43)'
                     : '500ms ease-in-out',
-                transformOrigin:
-                  tabIndex === idx
+                  transformOrigin: isSelected
                     ? 'center'
                     : tabIndex > idx
                     ? 'right'
                     : 'left',
-              }}
-            />
-          </div>
-        ))}
+                }}
+              />
+            </div>
+          );
+        })}
       </TabList>
 
       {/* <div
@@ -73,7 +72,7 @@ const Tabs: FC<TabsProps> = ({ children, width = '5em', ...rest }) => {
 
 export default Tabs;
 
-const constractPx = (size: string | number) => {
+const subPx = (size: string | number) => {
   if (typeof size === 'number') return size;
   return parseInt(size.replace('px', ''));
 };

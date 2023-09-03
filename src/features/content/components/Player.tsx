@@ -5,8 +5,8 @@ import { useContent } from '../api/getContent';
 
 interface PlayerProps {
   id: string;
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
 }
 
 const Player: FC<PlayerProps> = ({ id, width, height }) => {
@@ -30,6 +30,6 @@ export const PlayerFallback = ({
   width,
   height,
 }: {
-  width?: number;
-  height?: number;
-}) => <div style={{ width, height }} className="bg-black" />;
+  width?: number | string;
+  height?: number | string;
+}) => <div style={{ width, height }} className="bg-dark" />;

@@ -53,7 +53,7 @@ const Modal: FC<ModalProps> = ({
           <div
             className={cx(
               animate,
-              'transition-all max-h-full',
+              'transition-all max-h-full max-w-full',
               'modal-contents',
             )}
           >
