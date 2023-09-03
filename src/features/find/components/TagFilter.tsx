@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 import { useDiscover } from '../api/getDiscover';
 import { FilterProps } from '@/components/Wrapper/withFilter';

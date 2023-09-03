@@ -31,7 +31,7 @@ const SkeletonContentCardList: FC<SkeletonContentCardListProps> = ({
       }}
     >
       {range(count ?? 10).map(n => (
-        <SkeletonContentCard height={height} key={n} isCard={isCard} />
+        <SkeletonContentCard height={height} key={n} isSeperateType={isCard} />
       ))}
     </div>
   );

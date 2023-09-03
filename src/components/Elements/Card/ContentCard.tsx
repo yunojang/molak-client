@@ -55,9 +55,9 @@ const ContentCard: FC<ContentCardProps> = ({
       {isSeperateType && (
         <>
           <div className="mt-2">
-            <div className={cx('text-lg', lineBreak(2))}>{content.title}</div>
+            <div className={cx('text-xl', lineBreak(2))}>{content.title}</div>
           </div>
-          <div className="text-sm text-gray-500">{content.provider}</div>
+          <div className=" text-gray-500">{content.provider}</div>
         </>
       )}
     </a>

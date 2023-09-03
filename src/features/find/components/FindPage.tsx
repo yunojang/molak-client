@@ -19,7 +19,7 @@ import FitlerTitle from './Elements/FilterTitle';
 // find 페이지 footer 없앰 - 태그, 리스트 각각 스크롤
 const FindPage: FC = () => {
   const naviage = useNavigateWithBg();
-  const count = useCardCount().count;
+  const count = Math.max(useCardCount().count - 1, 1);
 
   const [filter, setFilter] = useState({});
 
@@ -61,7 +61,7 @@ const FindPage: FC = () => {
 
           <ContentList
             columnCount={count}
-            itemHeight={300}
+            itemHeight={320}
             onSelect={id => naviage(`/content/${id}`)}
           />
         </div>
