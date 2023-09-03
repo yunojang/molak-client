@@ -6,25 +6,13 @@ import { Intro } from '@/features/common/types/dto';
 import { Button } from '@chakra-ui/react';
 import { Image } from '../Image';
 
-interface IntroCardProps {
+interface IntroCardProps extends React.HTMLAttributes<HTMLDivElement> {
   intro: Intro;
 }
 
-const IntroCard: FC<IntroCardProps> = ({ intro }) => {
-  const navigate = useNavigate();
-  const navigateWithBg = useNavigateWithBg();
-
-  const handleClick = () => {
-    if (intro.link) navigate(intro.link);
-    //  go to content page
-    if (intro.item_id) navigateWithBg(`/content/${intro.item_id}`);
-    if (intro.external_link) window.open(intro.external_link);
-  };
+const IntroCard: FC<IntroCardProps> = ({ intro, ...props }) => {
   return (
-    <div
-      className="w-full h-full overflow-hidden cursor-pointer "
-      onClick={handleClick}
-    >
+    <div {...props} className="w-full h-full overflow-hidden cursor-pointer ">
       {/* image wrap */}
       <div className="relative w-full h-full">
         <div className="absolute inset-0 bg-black bg-opacity-20" />
@@ -41,9 +29,9 @@ const IntroCard: FC<IntroCardProps> = ({ intro }) => {
         />
       </div>
 
-      {/* controler */}
-      <div className="absolute flex flex-col gap-3 left-8 bottom-8">
-        <div className="text-3xl font-bold text-white whitespace-pre-line">
+      {/* intro description */}
+      <div className="absolute flex flex-col gap-3 left-10 bottom-12">
+        <div className="text-4xl font-bold text-white whitespace-pre-line">
           {intro.text}
         </div>
         <Button className="self-start text-black bg-gray-200" size="lg">

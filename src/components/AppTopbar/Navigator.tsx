@@ -29,7 +29,7 @@ const Navigator: FC<NavigatorProps> = ({ nav }) => {
             }}
             className={cx(
               isCurrent ? ' font-bold' : '',
-              `py-2 transition-all cursor-pointer px-7 hover:text-primary-500`,
+              `py-2 transition-all text-lg cursor-pointer px-7 hover:text-primary-500`,
             )}
             onClick={() => navigate(path)}
           >

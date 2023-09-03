@@ -31,7 +31,10 @@ const ContentModal: FC<ContentModalProps> = () => {
 
   return (
     <Modal close={handleClose} isOpen>
-      <div className={`flex gap-2`} style={{ height }}>
+      <div
+        className={cx(isMobile ? 'flex-col' : 'flex', `gap-2`)}
+        style={{ height }}
+      >
         <div
           className="rounded-md overflow-hidden bg-dark"
           style={{ width, height }}

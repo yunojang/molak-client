@@ -17,7 +17,7 @@ import { GoDot, GoDotFill } from 'react-icons/go';
 interface CarouselProps extends Partial<CarouselViewerProps> {
   autoPlay?: boolean;
   delay?: number;
-  sliders?: React.ReactNode[];
+  items?: React.ReactNode[];
   defaultOrder?: number;
   hideMove?: boolean;
 }
@@ -27,7 +27,7 @@ const Carousel: FC<CarouselProps> = ({
   height = '20em',
   autoPlay,
   delay = 4000,
-  sliders = [],
+  items = [],
   defaultOrder = 0,
   hideMove,
 }) => {
@@ -35,8 +35,8 @@ const Carousel: FC<CarouselProps> = ({
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout>();
 
   const _increase = useCallback(
-    () => setOrder(p => circularRange(p + 1, sliders.length)),
-    [sliders.length],
+    () => setOrder(p => circularRange(p + 1, items.length)),
+    [items.length],
   );
 
   const onManual = useCallback(() => {
@@ -54,9 +54,9 @@ const Carousel: FC<CarouselProps> = ({
   }, [_increase, onManual]);
 
   const decrease = useCallback(() => {
-    setOrder(p => circularRange(p - 1, sliders.length));
+    setOrder(p => circularRange(p - 1, items.length));
     onManual();
-  }, [sliders.length, onManual]);
+  }, [items.length, onManual]);
 
   useEffect(() => {
     if (autoPlay && !intervalId) {
@@ -75,18 +75,18 @@ const Carousel: FC<CarouselProps> = ({
       )}
 
       <CarouselViewer
-        items={sliders}
+        items={items}
         order={order}
         width={width}
         height={height}
       />
 
       {/* <div className="absolute z-20 bottom-[2.2em] right-1/2 translate-x-1/2"> */}
-      <div className="absolute z-20 bottom-[1em] right-[1em]">
+      <div className="absolute z-20 bottom-[2em] right-[2em]">
         <OrderStep
           // icon={<BsDashLg />}
           icon={<GoDotFill size={24} />}
-          length={sliders.length}
+          length={items.length}
           value={order}
           onChange={order => {
             setOrder(order);

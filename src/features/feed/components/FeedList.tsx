@@ -5,30 +5,38 @@ import FeedTitle from './FeedTitle';
 import ContentCard from '@/components/Elements/Card/ContentCard';
 import CardCarousel from '@/components/Elements/Carousel/CardCarousel';
 import { useCardCount } from '@/features/content/hooks/useCardCount';
+import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 
 interface FeedListProps {
-  onSelect?(id: string): void;
+  contentHeight?: string | number;
+  gap?: number;
 }
 
-const FeedList: FC<FeedListProps> = ({ onSelect }) => {
+const FeedList: FC<FeedListProps> = ({ contentHeight, gap = 20 }) => {
+  const navigate = useNavigateWithBg();
+
   const { feeds } = useFeeds();
   const { count } = useCardCount();
+
+  const handleClickContent = (id: string) => navigate(`/content/${id}`);
 
   return (
     <>
       {feeds?.map((feed, i) => (
-        <div className="mb-14" key={i}>
-          <div className="my-3 pl-space">
+        <div style={{ marginBottom: gap * 4 }} key={i}>
+          <div className="mb-5 pl-space">
             <FeedTitle title={feed.name} />
           </div>
 
           <CardCarousel
+            height={contentHeight}
             count={count}
+            gap={20}
             items={feed.items_list.map((content, i) => (
               <ContentCard
                 key={i}
                 content={content}
-                onClick={() => onSelect?.(content.id)}
+                onClick={() => handleClickContent(content.id)}
               />
             ))}
           />

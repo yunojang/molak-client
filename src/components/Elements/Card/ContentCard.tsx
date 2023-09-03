@@ -9,44 +9,50 @@ import { Skeleton } from '@chakra-ui/react';
 interface ContentCardProps {
   content: Content;
   onClick?(): void;
-  isCard?: boolean;
+  isSeperateType?: boolean;
+  height?: string | number;
 }
 
-const ContentCard: FC<ContentCardProps> = ({ content, onClick, isCard }) => {
+const ContentCard: FC<ContentCardProps> = ({
+  content,
+  onClick,
+  isSeperateType,
+  height = '100%',
+}) => {
   return (
     <a
+      style={{ height }}
       className={cx(
         hovering,
-        'flex-1 inline-block w-full cursor-pointer transition-all relative',
+        'inline-flex flex-col w-full cursor-pointer transition-all relative',
       )}
       onClick={onClick}
     >
-      <div className="overflow-hidden rounded-md" role="img">
+      <div className="overflow-hidden rounded-md flex-1" role="img">
         <Image
           useSuspense
           src={content.thumbnail}
-          width="100%"
-          height="auto"
-          className="object-cover"
-          style={{ maxHeight: '210px' }}
-          fallback={<Skeleton width="100%" height="210px" />}
+          className="object-cover w-full h-full"
+          fallback={<Skeleton width="100%" height="100%" />}
         />
       </div>
 
-      {!isCard && (
+      {!isSeperateType && (
         <div
-          className="mt-auto absolute inset-0 h-[45%] description px-3 pb-3 flex flex-col justify-end rounded-md"
+          className="mt-auto absolute inset-0 h-[85%] description px-3 pb-3 flex flex-col justify-end rounded-md"
           style={{
             transition: 'opacity 0.4s',
             background: 'linear-gradient(0deg,  rgba(0,0,0,0.9), rgba(0,0,0,0)',
           }}
         >
-          <div className={cx('text-white', lineBreak(2))}>{content.title}</div>
-          <div className="text-sm text-gray-200">{content.provider}</div>
+          <div className={cx('text-white text-xl font-bold', lineBreak(2))}>
+            {content.title}
+          </div>
+          <div className="text-gray-200">{content.provider}</div>
         </div>
       )}
 
-      {isCard && (
+      {isSeperateType && (
         <>
           <div className="mt-2">
             <div className={cx('text-lg', lineBreak(2))}>{content.title}</div>

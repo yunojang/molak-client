@@ -1,5 +1,4 @@
-import { FC, useEffect, useState } from 'react';
-import { queryClient } from '@/lib/react-query';
+import { FC, useState } from 'react';
 
 import { useContents } from '../api/getContents';
 import { Content } from '../types/dto';
@@ -11,6 +10,7 @@ import { PagableListProps } from '@/components/List/types';
 interface ContentListProps extends PagableListProps {
   columnCount?: number;
   onSelect?(id: string): void;
+  itemHeight?: string | number;
 }
 
 const AccumulateContentList: FC<ContentListProps> = ({
@@ -19,6 +19,7 @@ const AccumulateContentList: FC<ContentListProps> = ({
   title = () => null,
   pager = () => null,
   onSelect,
+  itemHeight = 300,
 }) => {
   // const cached = queryClient.getQueryData([
   //   'contents',
@@ -42,19 +43,29 @@ const AccumulateContentList: FC<ContentListProps> = ({
       {title(totalElements, isLoading)}
 
       {!accContents.length ? (
-        <SkeletonContentCardList isCard count={40} columnCount={columnCount} />
+        <SkeletonContentCardList
+          gap={7}
+          rowGap={17}
+          isCard
+          count={40}
+          height={itemHeight}
+          columnCount={columnCount}
+        />
       ) : (
         <div
           style={{
             gridTemplateColumns: `repeat(${columnCount}, minmax(0px, 1fr))`,
+            rowGap: `${17 * 4}px`,
+            columnGap: `${7 * 4}px`,
           }}
-          className="grid gap-5 gap-y-10"
+          className="grid"
         >
           {accContents.map((content, i) => (
             <ContentCard
+              height={itemHeight}
               content={content}
               key={i}
-              isCard
+              isSeperateType
               onClick={() => onSelect?.(content.id)}
             />
           ))}

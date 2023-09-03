@@ -13,6 +13,7 @@ module.exports = {
         header: '69px',
         ch: 'calc(100vh - 69px)',
         space: '2rem',
+        space2: '4rem',
       },
       boxShadow: {
         frame: '1px 1px 8px 0px rgba(0, 0, 0, 0.1)',

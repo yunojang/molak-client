@@ -14,14 +14,21 @@ import { useBreakPoint } from '@/utils/breakpoint';
 interface SliderCarouselProps {
   items: React.ReactElement[];
   count?: number;
+  gap?: number;
+  height?: string | number;
 }
 
 // const delay = 400;
 // const pad = 32;
 
-const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 5 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [cardWidth, setCardWidth] = useState(220);
+const CardCarousel: FC<SliderCarouselProps> = ({
+  items,
+  count = 5,
+  gap = 24,
+  height = 300,
+}) => {
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const [cardWidth, setCardWidth] = useState(220);
   const [showControl, setShowControl] = useState(false);
   const [isSlide, setSlide] = useState(false);
 
@@ -30,7 +37,8 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 5 }) => {
 
   return (
     <div
-      className="relative w-full py-3 overflow-clip px-space"
+      className="relative w-full py-3 overflow-clip pl-space "
+      style={{ paddingRight: `calc(2rem + ${gap}px)` }}
       onMouseOver={() => setShowControl(true)}
       onMouseLeave={() => setShowControl(false)}
     >
@@ -40,17 +48,17 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 5 }) => {
         loop
         // slidesPerView={count + (pad / cardWidth) * 2}
         simulateTouch={true}
-        breakpoints={{ 1200: { simulateTouch: false } }}
+        // breakpoints={{ 1200: { simulateTouch: false } }}
         slidesPerView={count}
         slidesPerGroup={count}
-        spaceBetween={15}
+        spaceBetween={gap}
         onResize={swiper => {
           const slideWidth = swiper.slides[0].offsetWidth;
-          setCardWidth(slideWidth);
+          // setCardWidth(slideWidth);
         }}
         onSlideChange={swiper => {
           if (!isSlide) setSlide(true);
-          setCurrentIndex(swiper.realIndex);
+          // setCurrentIndex(swiper.realIndex);
         }}
         navigation={{
           prevEl: '.prev-button-molak',
@@ -63,8 +71,9 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 5 }) => {
           dir="left"
           slot="container-start"
           className="prev-button-molak"
+          width={`calc(2em + ${gap}px)`}
         >
-          <HiOutlineChevronLeft />
+          <HiOutlineChevronLeft size={32} />
         </MoveButton>
 
         <MoveButton
@@ -72,14 +81,15 @@ const CardCarousel: FC<SliderCarouselProps> = ({ items, count = 5 }) => {
           dir="right"
           slot="container-start"
           className="next-button-molak"
+          width={`calc(2em + ${gap}px)`}
         >
-          <HiOutlineChevronRight />
+          <HiOutlineChevronRight size={32} />
         </MoveButton>
 
         {items.map((item, i) => (
           <SwiperSlide
             key={i}
-            style={{ transition: 'transform 0.4s' }}
+            style={{ transition: 'transform 0.4s', height }}
             className="hover:scale-105 hover:z-10"
           >
             {React.cloneElement(item)}
@@ -97,19 +107,25 @@ const MoveButton = ({
   dir,
   className,
   children,
+  width,
   ...rest
-}: HtmlHTMLAttributes<HTMLButtonElement> & { dir: 'left' | 'right' }) => {
+}: HtmlHTMLAttributes<HTMLButtonElement> & {
+  dir: 'left' | 'right';
+  width?: string | number;
+}) => {
   return (
     <button
       {...rest}
       style={{
         [dir]: 0,
-        background: 'radial-gradient(circle,  rgba(0,0,0,0.2), rgba(0,0,0,0)',
+        background:
+          'radial-gradient(circle,  rgba(0,0,0,0.6) 0, rgba(0,0,0,0) 35%',
+        width,
       }}
       className={`${className} ${cx(
-        `absolute top-0 z-10 w-space
-      flex items-center justify-center h-full 
-      text-4xl text-white transition-all cursor-pointer  font-bold`,
+        `absolute top-0 z-10 h-full 
+      flex items-center justify-center 
+       text-white transition-all cursor-pointer  font-bold`,
         hidden ? 'opacity-0' : 'opacity-100',
       )}`}
     >

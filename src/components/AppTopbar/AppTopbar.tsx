@@ -16,7 +16,7 @@ const AppTopbar: FC<AppTopbarProps> = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="sticky top-0 z-30 py-4 pb-3 overflow-hidden bg-white border-b px-7 h-header">
+    <div className="sticky top-0 z-30 py-3 overflow-hidden bg-white border-b px-7 h-header">
       <div className={cx('content-box flex items-center justify-between pl-3')}>
         {/* left */}
         <BreakPoint size="md" better="eqBigger">
@@ -32,6 +32,7 @@ const AppTopbar: FC<AppTopbarProps> = () => {
         {/* right */}
         <div className="ml-auto">
           <Button
+            width={92}
             className="font-normal bg-white border border-gray-300"
             onClick={() => navigate('/auth/login')}
           >

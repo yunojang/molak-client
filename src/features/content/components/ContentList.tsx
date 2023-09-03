@@ -14,7 +14,7 @@ const ContentList: FC<ContentListProps> = ({ params }) => {
   return (
     <>
       {contents.map((content, i) => (
-        <ContentCard content={content} key={i} isCard />
+        <ContentCard content={content} key={i} isSeperateType />
       ))}
     </>
   );

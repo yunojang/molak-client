@@ -1,27 +1,20 @@
 import { Suspense } from 'react';
 
-import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
-
 import IntroCarousel from '@/components/Elements/Carousel/IntroCarousel';
 import FeedList from '@/features/feed/components/FeedList';
 import SkeletonFeedList from '@/features/feed/components/SkeletonFeedList';
 
 function Landing() {
-  const navigate = useNavigateWithBg();
-
   return (
-    <div>
-      {/* <div className="px-space"> */}
-      <IntroCarousel />
-      {/* </div> */}
+    <>
+      <IntroCarousel height="42em" />
 
-      <div className="pt-7">
-        {/* <SkeletonFeedList /> */}
-        <Suspense fallback={<SkeletonFeedList />}>
-          <FeedList onSelect={id => navigate(`/content/${id}`)} />
+      <div className="pt-12">
+        <Suspense fallback={<SkeletonFeedList contentHeight={260} />}>
+          <FeedList contentHeight={260} gap={24} />
         </Suspense>
       </div>
-    </div>
+    </>
   );
 }
 
