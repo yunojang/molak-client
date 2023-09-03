@@ -1,7 +1,6 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import { useContent } from '../api/getContent';
+import { useContent } from '../../content/api/getContent';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 
 import { IoClose } from 'react-icons/io5';

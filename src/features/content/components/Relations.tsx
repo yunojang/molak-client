@@ -5,7 +5,7 @@ import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
 import { withScrollLoad } from '@/components/List/withScrollLoad';
 
-import AccumulateEpisodeList from './Episode/AccumulateEpisodeList';
+import AccumulateEpisodeList from '../../contentModal/components/Episode/AccumulateEpisodeList';
 import SkeletonEpisodeList from '@/components/Elements/Card/SkeletonEpisodeList';
 import { Tabs } from '@/components/Elements/Tab';
 import { Tab } from '@chakra-ui/react';

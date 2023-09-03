@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import ContentModal from '../components/ContentModal';
+import ContentModal from '../../contentModal/components/ContentModal';
 
 export const ContentRoute = () => {
   return (

@@ -1,14 +1,13 @@
 import { FC, Suspense } from 'react';
-import { cx } from '@emotion/css';
 
 import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import ContentModalLayout from './Elements/ContentModalLayout';
-import Relations from './Relations';
+import Relations from '../../content/components/Relations';
 import { Modal } from '@/components/Modal';
 import ContentVideoDetail from './ContentDetail';
-import Player from './Player';
+import Player from '../../content/components/Player';
 
 const ContentModal: FC = () => {
   const { id, episodeId } = useParams();

@@ -2,7 +2,7 @@
 import client from '@/lib/client';
 import { QueryOptions, useQuery } from '@/lib/react-query';
 
-import { Content } from '../types/dto';
+import { Content } from '../../content/types/dto';
 import { episodes, episodes2 } from '@/features/common/temp';
 
 interface TempResponse {

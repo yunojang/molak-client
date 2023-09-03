@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 
-import { Content } from '../../types/dto';
+import { Content } from '../../../content/types/dto';
 import { useEpisodes } from '../../api/getEpisodes';
 
 import { PagableListProps } from '@/components/List/types';
