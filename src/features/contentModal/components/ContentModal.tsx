@@ -8,6 +8,7 @@ import Relations from '../../content/components/Relations';
 import { Modal } from '@/components/Modal';
 import ContentVideoDetail from './ContentDetail';
 import Player from '../../content/components/Player';
+import { useBreakPoint } from '@/utils/breakpoint';
 
 const ContentModal: FC = () => {
   const { id, episodeId } = useParams();
@@ -19,27 +20,26 @@ const ContentModal: FC = () => {
 
   const handleClose = () => navigate(bgLocation ?? '/');
 
-  const videoWidth = 1120;
-  const height = 630;
-  const relateWidth = 480;
+  const videoWidth = useBreakPoint(p => (p.eqBigger('xl') ? 1120 : '100vw'));
+  const videoHeight = 630;
 
   return (
-    <Modal close={handleClose} isOpen>
-      <ContentModalLayout height={height}>
+    <Modal close={handleClose} isOpen overflowY="scroll">
+      <ContentModalLayout>
         <div
           className="rounded-md overflow-hidden bg-dark"
-          style={{ width: videoWidth, height }}
+          style={{ width: videoWidth, height: videoHeight }}
         >
           <Suspense>
             {!isEpisode && <ContentVideoDetail id={id} onClose={handleClose} />}
 
             {isEpisode && (
-              <Player width={videoWidth} height={height} id={episodeId} />
+              <Player width={videoWidth} height={videoHeight} id={episodeId} />
             )}
           </Suspense>
         </div>
 
-        <Relations id={id} width={relateWidth} />
+        <Relations id={id} videoHeight={videoHeight} />
       </ContentModalLayout>
     </Modal>
   );

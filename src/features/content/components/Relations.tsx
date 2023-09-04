@@ -11,15 +11,19 @@ import { Tabs } from '@/components/Elements/Tab';
 import { Tab } from '@chakra-ui/react';
 
 import { scrollStyle } from '@/utils/style/content';
+import { useBreakPoint } from '@/utils/breakpoint';
 
 interface RelationsProps {
   id: string;
-  width?: string | number;
+  videoHeight: number;
 }
 
-const Relations: FC<RelationsProps> = ({ id, width }) => {
+const Relations: FC<RelationsProps> = ({ id, videoHeight }) => {
   const bg = useBackgroundLocation();
   const keepNavigate = useNavigateWithBg(bg);
+
+  const width = useBreakPoint(p => (p.eqBigger('2xl') ? 480 : '100%'));
+  const height = useBreakPoint(p => (p.eqBigger('2xl') ? videoHeight : ''));
 
   const EpisodeList = useMemo(
     () =>
@@ -33,8 +37,8 @@ const Relations: FC<RelationsProps> = ({ id, width }) => {
 
   return (
     <div
-      className={cx(`px-3 pb-5 h-full rounded-md bg-white`, scrollStyle)}
-      style={{ width }}
+      className={cx(`px-3 pb-5 rounded-md bg-white flex-1`, scrollStyle)}
+      style={{ width, height }}
     >
       <div className="sticky top-0 left-0 z-10 py-2 bg-white">
         <Tabs defaultIndex={0} width="100px">

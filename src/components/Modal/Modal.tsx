@@ -23,6 +23,9 @@ interface ModalProps {
   children?: React.ReactNode;
   extra?: React.ReactNode;
   extraPosition?: keyof typeof position_class;
+  overflow?: 'scroll' | 'hidden';
+  overflowY?: 'scroll' | 'hidden';
+  overflowX?: 'scroll' | 'hidden';
 }
 
 const Modal: FC<ModalProps> = ({
@@ -32,6 +35,9 @@ const Modal: FC<ModalProps> = ({
   open,
   extraPosition = 'tr',
   extra,
+  overflow,
+  overflowY,
+  overflowX = 'hidden',
 }) => {
   const targetId = useContext(ModalContext);
   const { lockScroll, releaseScroll } = useBodyScrollLock();
@@ -45,7 +51,8 @@ const Modal: FC<ModalProps> = ({
     <Portal targetId={targetId}>
       {isOpen && (
         <div
-          className="w-screen h-screen bg-black bg-opacity-[0.35] relative flex justify-center items-center overflow-hidden"
+          className="w-screen h-screen bg-black bg-opacity-[0.35] relative flex justify-center items-center"
+          style={{ overflow, overflowY, overflowX }}
           onClick={e => {
             if (e.target === e.currentTarget) close?.();
           }}

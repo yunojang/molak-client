@@ -5,7 +5,8 @@ import { useBreakPoint } from '@/utils/breakpoint';
 import { LayoutProps } from '@/types';
 
 interface ContentModalLayoutProps extends LayoutProps {
-  height?: string | number;
+  _?: any;
+  height?: string;
 }
 
 const ContentModalLayout: FC<ContentModalLayoutProps> = ({
@@ -13,13 +14,18 @@ const ContentModalLayout: FC<ContentModalLayoutProps> = ({
   height,
 }) => {
   const layout = useBreakPoint(p => {
-    if (p.eqBigger('2xl')) return 'flex';
-    if (p.eqBigger('xl')) return 'flex-col';
+    if (p.eqBigger('2xl')) return 'flex gap-2';
+    // if (p.eqBigger('xl')) return 'flex-col';
     else return 'flex-col';
   });
 
+  const gap = useBreakPoint(p => {
+    if (p.eqBigger('xl')) return 'gap-2';
+    else return 'gap-0';
+  });
+
   return (
-    <div className={cx(layout, `flex gap-2`)} style={{ height }}>
+    <div style={{ height }} className={cx(layout, gap, `flex `)}>
       {children}
     </div>
   );

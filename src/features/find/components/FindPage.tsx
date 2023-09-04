@@ -19,7 +19,7 @@ import FitlerTitle from './Elements/FilterTitle';
 // find 페이지 footer 없앰 - 태그, 리스트 각각 스크롤
 const FindPage: FC = () => {
   const naviage = useNavigateWithBg();
-  const count = Math.max(useCardCount().count - 1, 1);
+  const count = Math.max(useCardCount().count, 1);
 
   const [filter, setFilter] = useState({});
 
@@ -51,7 +51,7 @@ const FindPage: FC = () => {
         </div>
 
         <div className="flex flex-1 gap-10 overflow-hidden">
-          <div className={cx(scrollStyle, 'w-52 h-full pb-10')}>
+          <div className={cx(scrollStyle, 'w-60 h-full pb-10')}>
             <FitlerTitle title="태그" />
             <TagFilter onSubmit={tags => overwriteFilter({ tags })} />
 

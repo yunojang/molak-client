@@ -14,9 +14,8 @@ const Player: FC<PlayerProps> = ({ id, width, height }) => {
 
   return (
     <Iframe
+      style={{ width, height }}
       fallback={<PlayerFallback width={width} height={height} />}
-      width={width}
-      height={height}
       src={content?.url}
       title="YouTube video player"
       autoplay
