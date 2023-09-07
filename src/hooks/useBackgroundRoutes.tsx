@@ -11,16 +11,16 @@ export const useBackgroundRoutes = (
 ) => {
   const location = useLocation();
   const bgLocation = useBackgroundLocation();
-  const isCoverLocation = location.pathname.startsWith(coverPath);
+
+  const isCoverLocation = bgLocation || location.pathname.startsWith(coverPath);
+  const bgl = bgLocation ?? '/';
 
   return (
     <>
-      <Routes location={bgLocation ?? (isCoverLocation ? '/' : location)}>
+      <Routes location={isCoverLocation ? bgl : location}>
         {buildRoutes(routes)}
       </Routes>
-      {(isCoverLocation || bgLocation) && (
-        <Routes>{buildRoutes(coverRoutes)}</Routes>
-      )}
+      {isCoverLocation && <Routes>{buildRoutes(coverRoutes)}</Routes>}
     </>
   );
 };
