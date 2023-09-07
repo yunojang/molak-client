@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentCardList';
 import { useCardCount } from '@/features/content/hooks/useCardCount';
@@ -25,7 +25,11 @@ const SkeletonFeedList: FC<SkeletonFeedListProps> = ({
           </div>
 
           <div className="py-3">
-            <SkeletonContentCardList height={contentHeight} count={count} />
+            <SkeletonContentCardList
+              height={contentHeight}
+              count={count}
+              gap={6}
+            />
           </div>
         </div>
       ))}

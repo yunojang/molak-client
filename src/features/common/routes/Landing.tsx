@@ -7,11 +7,11 @@ import SkeletonFeedList from '@/features/feed/components/SkeletonFeedList';
 function Landing() {
   return (
     <>
-      <IntroCarousel height="42em" />
+      <IntroCarousel height="36em" />
 
-      <div className="pt-12">
-        <Suspense fallback={<SkeletonFeedList contentHeight={260} />}>
-          <FeedList contentHeight={260} gap={24} />
+      <div className="pt-16">
+        <Suspense fallback={<SkeletonFeedList contentHeight={254} />}>
+          <FeedList contentHeight={254} gap={26} />
         </Suspense>
       </div>
     </>

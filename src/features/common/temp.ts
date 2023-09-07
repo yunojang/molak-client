@@ -16,7 +16,7 @@ export const intro1: Intro = {
 
 export const intro2: Intro = {
   image: '/asset/images/thumb_temp2.jpg',
-  text: '버튼만 누르면 1000만원?\n5억년 버튼',
+  text: '5억년버튼 \n 버튼만 누르면 1000만원을 준다!',
   item_id: '1',
   button_text: '보러가기',
 };

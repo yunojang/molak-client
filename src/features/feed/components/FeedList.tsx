@@ -31,7 +31,7 @@ const FeedList: FC<FeedListProps> = ({ contentHeight, gap = 20 }) => {
           <CardCarousel
             height={contentHeight}
             count={count}
-            gap={20}
+            gap={24}
             items={feed.items_list.map((content, i) => (
               <ContentCard
                 key={i}

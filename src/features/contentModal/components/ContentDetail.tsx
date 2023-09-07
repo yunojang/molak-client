@@ -3,7 +3,6 @@ import { FC } from 'react';
 import { useContent } from '../../content/api/getContent';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 
-import { IoClose } from 'react-icons/io5';
 import { IconButton } from '@/components/Elements/IconButton';
 import { BsFillPlayFill } from 'react-icons/bs';
 import ContentTag from './Elements/ContentTag';
@@ -12,10 +11,9 @@ import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
 
 interface ContentVideoDetailProps {
   id: string;
-  onClose?(): void;
 }
 
-const ContentVideoDetail: FC<ContentVideoDetailProps> = ({ id, onClose }) => {
+const ContentVideoDetail: FC<ContentVideoDetailProps> = ({ id }) => {
   const bg = useBackgroundLocation();
   const keepNavigate = useNavigateWithBg(bg);
   const { content, isLoading: _isLoading } = useContent(id, {
@@ -32,15 +30,15 @@ const ContentVideoDetail: FC<ContentVideoDetailProps> = ({ id, onClose }) => {
             className="blur-sm object-cover h-full w-full"
             src={content?.thumbnail}
           />
-          <div className="absolute bg-gradient-to-t from-dark h-[85%] w-full -bottom-2 z-10" />
+          <div className="absolute bg-gradient-to-t from-dark h-[90%] w-full -bottom-2 z-10" />
         </div>
       )}
 
-      <div className="flex justify-end p-4 z-10">
+      {/* <div className="flex justify-end p-4 z-10">
         <IconButton size={12} onClick={onClose}>
           <IoClose size={34} color="#fff" />
         </IconButton>
-      </div>
+      </div> */}
 
       <div className="flex-1 z-10 flex flex-col gap-8 justify-end p-10">
         {isLoading ? (

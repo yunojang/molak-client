@@ -5,8 +5,8 @@ const path = {
   content: '/content/*',
 };
 
-import ContentModalRoute from '@/features/content/routes/modal';
+import ContentModalRoutes from '@/features/content/routes/modal';
 
-const children = [{ path: path.content, element: <ContentModalRoute /> }];
+const children = [{ path: path.content, element: <ContentModalRoutes /> }];
 
 export const coverRoutes = [makeRoute({ children })];

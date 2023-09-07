@@ -6,12 +6,11 @@ import { _lazy } from '@/utils/lazy';
 
 const AboutRoute = _lazy(() => import('@/features/about'));
 const FindRoute = _lazy(() => import('@/features/find'));
-const ContentRoute = _lazy(() => import('@/features/content'));
 
 const paths = {
   find: '/find/*',
-  content: '/content/*',
-  // all: '/*',
+  search: '/search/*',
+  about: '/about/*',
 };
 
 export const commonRoutes = [
@@ -19,10 +18,10 @@ export const commonRoutes = [
     frame: <Appframe />,
     children: [
       { path: '/', element: <Landing /> },
-      { path: '/about', element: <AboutRoute /> },
-      // { path: paths.content, element: <ContentRoute /> },
+      { path: paths.about, element: <AboutRoute /> },
     ],
   }),
+  // no footer
   makeRoute({
     frame: <Appframe hasFooter={false} />,
     children: [{ path: paths.find, element: <FindRoute /> }],

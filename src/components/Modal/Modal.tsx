@@ -4,6 +4,7 @@ import { ModalContext } from '@/lib/modal/ModalContext';
 
 import { useBodyScrollLock } from '@/hooks/useBodySrollLock';
 import { css, cx, keyframes } from '@emotion/css';
+import { useOnKeyDown } from '@/hooks/useOnKeyDown';
 
 const position_class = {
   top: 'top-0',
@@ -21,18 +22,22 @@ interface ModalProps {
   open?(): void;
   close?(): void;
   children?: React.ReactNode;
+  fixedChildren?: React.ReactNode;
   extra?: React.ReactNode;
   extraPosition?: keyof typeof position_class;
   overflow?: 'scroll' | 'hidden';
   overflowY?: 'scroll' | 'hidden';
   overflowX?: 'scroll' | 'hidden';
+  escapeKeyClose?: boolean;
 }
 
 const Modal: FC<ModalProps> = ({
   children,
+  fixedChildren,
   close,
   isOpen,
   open,
+  escapeKeyClose = true,
   extraPosition = 'tr',
   extra,
   overflow,
@@ -47,16 +52,20 @@ const Modal: FC<ModalProps> = ({
     return releaseScroll;
   }, [isOpen, lockScroll, releaseScroll]);
 
+  useOnKeyDown('Escape', () => escapeKeyClose && close?.());
+
   return (
     <Portal targetId={targetId}>
       {isOpen && (
         <div
-          className="w-screen h-screen bg-black bg-opacity-[0.35] relative flex justify-center items-center"
+          className="w-screen h-screen bg-black bg-opacity-[0.35] relative flex justify-center items-center transition-all"
           style={{ overflow, overflowY, overflowX }}
           onClick={e => {
             if (e.target === e.currentTarget) close?.();
           }}
         >
+          <div className="modal-fixed-contents">{fixedChildren}</div>
+
           <div
             className={cx(
               animate,
