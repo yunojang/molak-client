@@ -18,6 +18,7 @@ export const commonRoutes = [
     frame: <Appframe />,
     children: [
       { path: '/', element: <Landing /> },
+      { path: paths.search, element: <FindRoute /> },
       { path: paths.about, element: <AboutRoute /> },
     ],
   }),
