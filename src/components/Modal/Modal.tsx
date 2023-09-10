@@ -64,17 +64,20 @@ const Modal: FC<ModalProps> = ({
             if (e.target === e.currentTarget) close?.();
           }}
         >
-          <div className="modal-fixed-contents">{fixedChildren}</div>
+          <div className="modal-fixed-contents z-20 fixed left-0">
+            {fixedChildren}
+          </div>
 
           <div
             className={cx(
               animate,
-              'transition-all max-h-full max-w-full',
+              'transition-all max-h-full max-w-full z-10',
               'modal-contents',
             )}
           >
             {children}
           </div>
+
           <div className={cx(position_class[extraPosition], 'absolute')}>
             {extra}
           </div>

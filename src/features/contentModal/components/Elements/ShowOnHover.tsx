@@ -1,5 +1,6 @@
 import { useDisclosure } from '@/hooks/useClosure';
 import { LayoutProps } from '@/types';
+import { css, keyframes } from '@emotion/css';
 import { FC, useRef } from 'react';
 
 interface ShowOnHoverProps extends LayoutProps {
@@ -9,7 +10,7 @@ interface ShowOnHoverProps extends LayoutProps {
 
 const ShowOnHover: FC<ShowOnHoverProps> = ({
   children,
-  closeDelay = 2000,
+  closeDelay = 1500,
   initShow,
 }) => {
   const {
@@ -18,21 +19,23 @@ const ShowOnHover: FC<ShowOnHoverProps> = ({
     onClose: hide,
   } = useDisclosure(initShow);
 
-  const timer = useRef<NodeJS.Timer>(null);
+  const timerRef = useRef<NodeJS.Timeout>();
 
   const showWithDelayReset = () => {
     show();
+    if (timerRef.current) clearTimeout(timerRef.current);
   };
+
   const hideWithDelay = () => {
-    // timer.current = setTimeout(() => hide(), closeDelay || 0);
+    timerRef.current = setTimeout(hide, closeDelay || 0);
   };
 
   return (
     <div
       style={{ opacity: isShow ? 1 : 0 }}
-      onMouseEnter={show}
+      onMouseEnter={showWithDelayReset}
       onMouseLeave={hideWithDelay}
-      className="transition-opacity duration-75"
+      className="transition-opacity duration-100"
     >
       {children}
     </div>

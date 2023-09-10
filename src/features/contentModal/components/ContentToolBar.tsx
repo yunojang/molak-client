@@ -1,6 +1,6 @@
 import { FC, HtmlHTMLAttributes, ReactNode } from 'react';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
-import { IoClose } from 'react-icons/io5';
+import { FiChevronLeft } from 'react-icons/fi';
 import { useCoverNavigate } from '../hooks/useCoverNavigate';
 import ShowOnHover from './Elements/ShowOnHover';
 
@@ -9,17 +9,13 @@ interface ContentToolBarProps {
 }
 
 const ContentToolBar: FC<ContentToolBarProps> = ({ isEpisodePage }) => {
-  const { coverClose, toContentList } = useCoverNavigate();
+  const { coverClose, toBack } = useCoverNavigate();
 
   return (
-    <ShowOnHover initShow={false}>
-      <div className="flex justify-between backdrop-blur-sm bg-white py-2.5 px-5 fixed top-0 left-0 w-full z-50 items-center">
+    <ShowOnHover initShow={false} closeDelay={2000}>
+      <div className="flex justify-between bg-white py-2.5 px-4 fixed top-0 left-0 w-full  items-center shadow-md">
         <div className="flex gap-2">
-          {isEpisodePage ? (
-            <GoListButton onClick={toContentList} />
-          ) : (
-            <GoCloseButton onClick={coverClose} />
-          )}
+          <GoBackButton onClick={isEpisodePage ? toBack : coverClose} />
         </div>
 
         <div className="flex gap-1 items-center">
@@ -46,11 +42,17 @@ const ActionButton: BtnComp = ({ icon, ...props }) => (
   </button>
 );
 const GoListButton: BtnComp = props => (
+  // <IconButton color="#000" background="#fff" size={12}>
+  //   <AiOutlineUnorderedList size={30} />
+  // </IconButton>
   <ActionButton
     {...props}
     icon={<AiOutlineUnorderedList size={30} color="#000" />}
   />
 );
-const GoCloseButton: BtnComp = props => (
-  <ActionButton {...props} icon={<IoClose size={30} color="#000" />} />
+const GoBackButton: BtnComp = props => (
+  // <IconButton color="#000" background="#fff" size={12}>
+  //   <FiChevronLeft size={30} color="#000" />
+  // </IconButton>
+  <ActionButton {...props} icon={<FiChevronLeft size={30} color="#000" />} />
 );

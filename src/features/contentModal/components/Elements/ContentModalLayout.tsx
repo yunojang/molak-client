@@ -3,6 +3,7 @@ import { cx } from '@emotion/css';
 import { useBreakPoint } from '@/utils/breakpoint';
 
 import { LayoutProps } from '@/types';
+import { useParams } from 'react-router-dom';
 
 interface ContentModalLayoutProps extends LayoutProps {
   _?: any;
