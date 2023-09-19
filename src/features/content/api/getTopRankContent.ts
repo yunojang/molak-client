@@ -1,28 +1,13 @@
-// query template
 import { QueryOptions, useQuery } from '@/lib/react-query';
-
-import { search_contents } from '@/features/common/temp';
 import { ContentResponse } from '@/types';
+import { getContents } from './getContents';
 
-export const getContents = (params: any): Promise<ContentResponse> => {
-  return new Promise(resolve =>
-    setTimeout(
-      () =>
-        resolve({
-          content: search_contents,
-          totalElements: 102,
-          totalPages: 10,
-        }),
-      500,
-    ),
-  );
-  // return client.get(`/api/contents`, {params});
-};
+export const useTopRankContent = ({
+  onSuccess,
+  suspense = true,
+}: QueryOptions<ContentResponse> = {}) => {
+  const params = { order: 'popular', size: 8, offset: 0 };
 
-export const useContents = (
-  params: any = {},
-  { onSuccess, suspense = true }: QueryOptions<ContentResponse> = {},
-) => {
   const { data, ...rest } = useQuery({
     queryKey: ['contents', JSON.stringify(params)],
     queryFn: () => getContents(params),

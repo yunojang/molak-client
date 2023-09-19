@@ -3,6 +3,7 @@ import { QueryOptions, useQuery } from '@/lib/react-query';
 
 import { Content } from '../types/dto';
 import { content, content2 } from '@/features/common/temp';
+import client from '@/lib/client';
 
 export const getContent = (id: string): Promise<Content> => {
   return new Promise(resolve =>

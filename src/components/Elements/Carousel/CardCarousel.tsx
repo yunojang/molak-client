@@ -16,6 +16,7 @@ interface SliderCarouselProps {
   count?: number;
   gap?: number;
   height?: string | number;
+  loop?: boolean;
 }
 
 // const delay = 400;
@@ -26,6 +27,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({
   count = 5,
   gap = 24,
   height = 300,
+  loop,
 }) => {
   // const [currentIndex, setCurrentIndex] = useState(0);
   // const [cardWidth, setCardWidth] = useState(220);
@@ -37,7 +39,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({
 
   return (
     <div
-      className="relative w-full py-3 overflow-clip pl-space "
+      className="relative w-full py-3 overflow-hidden pl-space "
       style={{ paddingRight: `calc(2rem + ${gap}px)` }}
       onMouseOver={() => setShowControl(true)}
       onMouseLeave={() => setShowControl(false)}
@@ -45,7 +47,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({
       <Swiper
         className={container}
         modules={[Navigation, A11y]}
-        loop
+        loop={loop}
         // slidesPerView={count + (pad / cardWidth) * 2}
         simulateTouch={true}
         // breakpoints={{ 1200: { simulateTouch: false } }}

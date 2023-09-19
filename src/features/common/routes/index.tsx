@@ -6,6 +6,7 @@ import { _lazy } from '@/utils/lazy';
 
 const AboutRoute = _lazy(() => import('@/features/about'));
 const FindRoute = _lazy(() => import('@/features/find'));
+const SearchRoute = _lazy(() => import('@/features/search'));
 
 const paths = {
   find: '/find/*',
@@ -18,7 +19,7 @@ export const commonRoutes = [
     frame: <Appframe />,
     children: [
       { path: '/', element: <Landing /> },
-      { path: paths.search, element: <FindRoute /> },
+      { path: paths.search, element: <SearchRoute /> },
       { path: paths.about, element: <AboutRoute /> },
     ],
   }),

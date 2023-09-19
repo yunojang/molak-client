@@ -1,3 +1,5 @@
+import { Content } from './features/content/types/dto';
+
 export interface PagableContent<DTO extends object> {
   content: DTO[];
   totalElements: number;
@@ -22,4 +24,10 @@ export interface Domain {
 
 export interface LayoutProps {
   children?: React.ReactNode | React.ReactNode[];
+}
+
+export interface ContentResponse {
+  content: Content[];
+  totalElements: number;
+  totalPages: number;
 }

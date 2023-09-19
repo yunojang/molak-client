@@ -60,8 +60,12 @@ const episode: Content = { ...content, title: '5억년 버튼' };
 const episode2: Content = { ...content2, title: '5억년 버튼' };
 
 export const contents: Content[] = range(15, () => content);
+
 export const episodes: Content[] = range(10, () => episode);
 export const episodes2: Content[] = range(10, () => episode2);
+
+export const topRank_contents: Content[] = range(8, () => content);
+export const recommend_contents: Content[] = range(8, () => content);
 
 export const search_contents: Content[] = range(50, () => content);
 

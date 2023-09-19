@@ -29,6 +29,7 @@ const FeedList: FC<FeedListProps> = ({ contentHeight, gap = 20 }) => {
           </div>
 
           <CardCarousel
+            loop
             height={contentHeight}
             count={count}
             gap={24}
