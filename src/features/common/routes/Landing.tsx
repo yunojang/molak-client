@@ -7,7 +7,7 @@ import SkeletonFeedList from '@/features/feed/components/SkeletonFeedList';
 function Landing() {
   return (
     <>
-      <IntroCarousel height="36em" />
+      <IntroCarousel height="40em" />
 
       <div className="pt-16">
         <Suspense fallback={<SkeletonFeedList contentHeight={254} />}>

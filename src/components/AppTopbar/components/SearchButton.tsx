@@ -10,10 +10,8 @@ interface SearchButtonProps {
 const SearchButton: FC<SearchButtonProps> = ({ path }) => {
   return (
     <NavigatePath path={path}>
-      <button className="cursor-pointer select-none px-3 py-2">
-        <div className="flex gap-2 items-center text-dark hover:text-primary-600 transition-all">
-          <BiSearch size={28} />
-        </div>
+      <button className="cursor-pointer select-none w-11 h-11 flex items-center justify-center rounded-full hover:bg-gray-200 bg-white transition-all active:scale-90">
+        <BiSearch size={24} color="black" />
       </button>
     </NavigatePath>
   );

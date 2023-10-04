@@ -45,7 +45,7 @@ const ContentCard: FC<ContentCardProps> = ({
             background: 'linear-gradient(0deg,  rgba(0,0,0,0.9), rgba(0,0,0,0)',
           }}
         >
-          <div className={cx('text-white text-xl font-bold', lineBreak(2))}>
+          <div className={cx('text-white text-lg font-bold', lineBreak(2))}>
             {content.title}
           </div>
           <div className="text-gray-200">{content.provider}</div>
@@ -55,7 +55,7 @@ const ContentCard: FC<ContentCardProps> = ({
       {isSeperateType && (
         <>
           <div className="mt-2">
-            <div className={cx('text-xl', lineBreak(2))}>{content.title}</div>
+            <div className={cx('text-lg', lineBreak(2))}>{content.title}</div>
           </div>
           <div className=" text-gray-500">{content.provider}</div>
         </>

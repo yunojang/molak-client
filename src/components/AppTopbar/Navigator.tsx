@@ -8,18 +8,19 @@ export interface NavObject {
   name: string;
   path: string;
 }
-
 interface NavigatorProps {
   nav: NavObject[];
 }
 
+const highlighColor = adjust(env.colors.primary, -20);
+
 const Navigator: FC<NavigatorProps> = ({ nav }) => {
   const navigate = useNavigate();
+
   return (
     <div className="flex items-center select-none">
       {nav.map(({ name, path }, i) => {
         const isCurrent = window.location.pathname === path;
-        const highlighColor = adjust(env.colors.primary, -10);
 
         return (
           <div
@@ -28,8 +29,7 @@ const Navigator: FC<NavigatorProps> = ({ nav }) => {
               color: isCurrent ? highlighColor : 'inherit',
             }}
             className={cx(
-              isCurrent ? ' font-bold' : '',
-              `py-2 transition-all text-lg cursor-pointer px-7 hover:text-primary-500`,
+              `py-2 transition-all text-lg cursor-pointer px-7 hover:text-primary-500 active:scale-90`,
             )}
             onClick={() => navigate(path)}
           >

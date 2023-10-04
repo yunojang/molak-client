@@ -34,7 +34,11 @@ const IntroCard: FC<IntroCardProps> = ({ intro, ...props }) => {
         <div className="text-3xl font-bold text-white whitespace-pre-line">
           {intro.text}
         </div>
-        <Button className="self-start text-black bg-gray-200" size="md">
+        <Button
+          className="self-start font-bold  transition-all  duration-300  bg-white py-6  hover:bg-gray-100 active:bg-gray-200 hover:shadow-md"
+          size="md"
+          width={140}
+        >
           {intro.button_text}
         </Button>
       </div>

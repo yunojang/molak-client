@@ -38,14 +38,17 @@ const AccumulateContentList: FC<ContentListProps> = ({
   //   if (cached) setAccContents(prev => prev.concat(cached.content));
   // }, [cached]);
 
+  const colGap = 5;
+  const rowGap = 20;
+
   return (
     <div>
       {title(totalElements, isLoading)}
 
       {!accContents.length ? (
         <SkeletonContentCardList
-          gap={7}
-          rowGap={17}
+          gap={colGap}
+          rowGap={rowGap}
           isCard
           count={40}
           height={itemHeight}
@@ -55,8 +58,8 @@ const AccumulateContentList: FC<ContentListProps> = ({
         <div
           style={{
             gridTemplateColumns: `repeat(${columnCount}, minmax(0px, 1fr))`,
-            rowGap: `${17 * 4}px`,
-            columnGap: `${7 * 4}px`,
+            rowGap: `${rowGap * 4}px`,
+            columnGap: `${colGap * 4}px`,
           }}
           className="grid"
         >

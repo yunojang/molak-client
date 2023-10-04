@@ -75,7 +75,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({
           className="prev-button-molak"
           width={`calc(2em + ${gap}px)`}
         >
-          <HiOutlineChevronLeft size={32} />
+          <HiOutlineChevronLeft size={42} />
         </MoveButton>
 
         <MoveButton
@@ -85,7 +85,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({
           className="next-button-molak"
           width={`calc(2em + ${gap}px)`}
         >
-          <HiOutlineChevronRight size={32} />
+          <HiOutlineChevronRight size={42} />
         </MoveButton>
 
         {items.map((item, i) => (
@@ -121,11 +121,12 @@ const MoveButton = ({
       style={{
         [dir]: 0,
         background:
-          'radial-gradient(circle,  rgba(0,0,0,0.6) 0, rgba(0,0,0,0) 35%',
+          'radial-gradient(circle,  rgba(0,0,0,0.3) 0, rgba(0,0,0,0) 15%',
         width,
       }}
       className={`${className} ${cx(
         `absolute top-0 z-10 h-full 
+        active:scale-90
       flex items-center justify-center 
        text-white transition-all cursor-pointer  font-bold`,
         hidden ? 'opacity-0' : 'opacity-100',

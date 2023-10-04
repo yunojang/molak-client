@@ -61,7 +61,7 @@ const FindPage: FC = () => {
 
           <ContentList
             columnCount={count}
-            itemHeight={320}
+            itemHeight={280}
             onSelect={id => naviage(`/content/${id}`)}
           />
         </div>
