@@ -13,7 +13,7 @@ const TopRankingCardCarousel: FC<TopRankingCardCarouselProps> = ({
 }) => {
   const { contents } = useTopRankContent();
 
-  return <ContentCarousel contents={contents} onSelect={onSelect} />;
+  return <ContentCarousel count={4} contents={contents} onSelect={onSelect} />;
 };
 
 export default TopRankingCardCarousel;

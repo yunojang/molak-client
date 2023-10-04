@@ -6,16 +6,23 @@ import ContentCard from '@/components/Elements/Card/ContentCard';
 import { Spinner } from '@/components/Elements/Spinner';
 
 interface ContentCarouselProps {
+  count?: number;
   contents: Content[];
   onSelect?(id: string, content: Content): void;
 }
 
-const ContentCarousel: FC<ContentCarouselProps> = ({ contents, onSelect }) => {
+const ContentCarousel: FC<ContentCarouselProps> = ({
+  count = 4,
+  contents,
+  onSelect,
+}) => {
   return (
     <div className="">
       <Suspense fallback={<Spinner />}>
         <CardCarousel
-          count={4}
+          gap={18}
+          height={200}
+          count={count}
           items={contents.map((content, i) => (
             <ContentCard
               key={i}

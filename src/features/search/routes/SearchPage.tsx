@@ -2,10 +2,10 @@ import { FC } from 'react';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 
 import SearchPageLayout from '../components/layout/SearchPageLayout';
-import { Input } from '@chakra-ui/react';
 import ContentShowLayout from '../components/layout/ContentShowLayout';
 import TopRankingCardCarousel from '../components/TopRankingCardCarousel';
 import RecommendCardCarousel from '../components/RecommendCardCarousel';
+import SearchInput from '../components/SearchInput';
 
 const SearchPage: FC = () => {
   const navigate = useNavigateWithBg();
@@ -13,19 +13,15 @@ const SearchPage: FC = () => {
   const handleCardSelect = (contentId: string) =>
     navigate(`/content/${contentId}`);
 
+  const handleSearch = (query: string) => navigate(`/search?q=${query}`);
+
   return (
     <SearchPageLayout>
       {/* search input */}
-      <Input
-        variant={'outline'}
-        height="50px"
-        bgColor="#fff"
-        placeholder="작품명, 장르, 태그로 검색하세요"
-        className="mb-5 w-full"
-      />
+      <SearchInput onSearch={handleSearch} />
 
       {/* search page recommend */}
-      <div className="flex flex-col gap-3 w-full">
+      <div className="flex flex-col gap-10 w-full">
         <ContentShowLayout title="지금 인기있는 웹드라마">
           <TopRankingCardCarousel onSelect={id => handleCardSelect(id)} />
         </ContentShowLayout>

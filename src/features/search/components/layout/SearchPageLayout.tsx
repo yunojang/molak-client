@@ -14,7 +14,7 @@ const SearchPageLayout: FC<SearchPageLayoutProps> = ({ children }) => {
   return (
     <div
       className={cx(
-        'flex flex-col items-center justify-center overflow-hidden',
+        'flex flex-col items-center justify-center overflow-hidden py-10',
         contentWidthCls,
       )}
     >
