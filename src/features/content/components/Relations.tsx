@@ -10,8 +10,8 @@ import SkeletonEpisodeList from '@/components/Elements/Card/SkeletonEpisodeList'
 import { Tabs } from '@/components/Elements/Tab';
 import { Tab } from '@chakra-ui/react';
 
-import { scrollStyle } from '@/utils/style/content';
 import { useBreakPoint } from '@/utils/breakpoint';
+import { scrollYStyle } from '@/utils/style/scroll';
 
 interface RelationsProps {
   id: string;
@@ -37,10 +37,10 @@ const Relations: FC<RelationsProps> = ({ id, videoHeight }) => {
 
   return (
     <div
-      className={cx(`px-3 pb-5 rounded-md bg-white flex-1`, scrollStyle)}
+      className={cx(`px-3 pb-5 rounded-md bg-white flex-1`, scrollYStyle)}
       style={{ width, height }}
     >
-      <div className="sticky top-0 left-0 z-10 py-2 bg-white">
+      <div className="sticky top-0 left-0 z-10 py-2.5 mb-2 w-full bg-white">
         <Tabs defaultIndex={0} width="100px">
           <Tab>시리즈</Tab>
           <Tab>추천</Tab>

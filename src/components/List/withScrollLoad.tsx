@@ -1,20 +1,13 @@
-import {
-  FC,
-  ReactNode,
-  useState,
-  useEffect,
-  useMemo,
-  useCallback,
-} from 'react';
+import { FC, ReactNode, useState, useEffect, useMemo } from 'react';
 import { cx } from '@emotion/css';
 
-import { scrollStyle } from '@/utils/style/content';
 import Intersection from '../Elements/Intersection/Intersection';
 import { Spinner } from '../Elements/Spinner';
 import { ListResultTitle } from './ListTitle';
 
 import { PagableListProps } from './types';
 import { throttle } from '@/utils/timing/throttle';
+import { scrollYStyle } from '@/utils/style/scroll';
 
 interface ListWrpperProps<T> {
   ListComp: FC<T>;
@@ -48,7 +41,7 @@ export const withScrollLoad = <T extends PagableListProps>({
     const params = { ...filter_rest, size, offset };
 
     return (
-      <div className={cx(className, scrollStyle)}>
+      <div className={cx(className, scrollYStyle)}>
         <ListComp
           {...props}
           params={params}

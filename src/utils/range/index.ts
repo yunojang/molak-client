@@ -5,6 +5,6 @@ export function circularRange(value: number, length: number) {
   return index;
 }
 
-export function range(length: number, fn?: (index: number) => any) {
+export function range(length: number, fn?: (item: any, index: number) => any) {
   return Array.from({ length }, fn || ((_, index) => index));
 }

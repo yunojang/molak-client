@@ -1,20 +1,15 @@
-import { Suspense } from 'react';
-
 import IntroCarousel from '@/components/Elements/Carousel/IntroCarousel';
-import FeedList from '@/features/feed/components/FeedList';
-import SkeletonFeedList from '@/features/feed/components/SkeletonFeedList';
+import Feeds from '@/features/feed/components/Feeds';
 
 function Landing() {
   return (
-    <>
+    <main>
       <IntroCarousel height="40em" />
 
       <div className="pt-16">
-        <Suspense fallback={<SkeletonFeedList contentHeight={254} />}>
-          <FeedList contentHeight={254} gap={26} />
-        </Suspense>
+        <Feeds />
       </div>
-    </>
+    </main>
   );
 }
 

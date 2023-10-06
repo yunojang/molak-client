@@ -9,12 +9,12 @@ import GenreFilter from './GenreFilter';
 import TagFilter from './TagFilter';
 import TypeFilter from './TypeFilter';
 
-import { scrollStyle } from '@/utils/style/content';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 import { useCardCount } from '@/features/content/hooks/useCardCount';
 import { FIND_TITLE } from '../constant/title';
 import OrderSelector from './Elements/OrderSelector';
 import FitlerTitle from './Elements/FilterTitle';
+import { scrollYStyle } from '@/utils/style/scroll';
 
 // find 페이지 footer 없앰 - 태그, 리스트 각각 스크롤
 const FindPage: FC = () => {
@@ -51,7 +51,7 @@ const FindPage: FC = () => {
         </div>
 
         <div className="flex flex-1 gap-10 overflow-hidden">
-          <div className={cx(scrollStyle, 'w-60 h-full pb-10')}>
+          <div className={cx(scrollYStyle, 'w-60 h-full pb-10')}>
             <FitlerTitle title="태그" />
             <TagFilter onSubmit={tags => overwriteFilter({ tags })} />
 

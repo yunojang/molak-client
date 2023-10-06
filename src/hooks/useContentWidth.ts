@@ -14,10 +14,10 @@ export const useContentWidth = ({ widths = [] }: Args = {}) => {
       return widths[0] ?? '1400px';
     } else if (p.smaller('lg')) {
       // mobile
-      return widths[2] ?? '94%';
+      return widths[2] ?? '96%';
     } else {
       // default
-      return widths[1] ?? '80%';
+      return widths[1] ?? '84%';
     }
   });
   const [viewWidth, setViewWidth] = useState(

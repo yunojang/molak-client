@@ -11,6 +11,15 @@ export interface Content extends Domain {
   episode_id: number;
 }
 
+export interface RecommendContent extends Domain {
+  content: Content;
+  background: string;
+  textColor: string;
+  recommend_text: string;
+  recommend_image: string;
+  teaser_url: string;
+}
+
 // yt iframe
 // <iframe
 // width="560"
