@@ -8,6 +8,7 @@ import { BsFillPlayFill } from 'react-icons/bs';
 import ContentTag from './Elements/ContentTag';
 import SkeletonContentDetail from './Elements/SkeletonContentDetail';
 import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
+import { Image } from '@/components/Elements/Image';
 
 interface ContentVideoDetailProps {
   id: string;
@@ -25,22 +26,19 @@ const ContentVideoDetail: FC<ContentVideoDetailProps> = ({ id }) => {
   return (
     <div className="w-full h-full flex flex-col relative text-gray-100">
       {!isLoading && (
-        <div className="h-[85%] absolute top-0 left-0 w-full">
-          <img
-            className="blur-sm object-cover h-full w-full"
-            src={content?.thumbnail}
+        <div className="absolute top-0 left-0 w-full">
+          <Image src={content?.thumbnail} width="100%" className="" />
+          <div
+            className="absolute top-0 left-0 h-full w-full z-10"
+            style={{
+              background:
+                'linear-gradient(0deg,  rgba(0,0,0,1) 35%, rgba(0,0,0,0.3)',
+            }}
           />
-          <div className="absolute bg-gradient-to-t from-dark h-[90%] w-full -bottom-2 z-10" />
         </div>
       )}
 
-      {/* <div className="flex justify-end p-4 z-10">
-        <IconButton size={12} onClick={onClose}>
-          <IoClose size={34} color="#fff" />
-        </IconButton>
-      </div> */}
-
-      <div className="flex-1 z-10 flex flex-col gap-8 justify-end p-10">
+      <div className="flex-1 z-20 flex flex-col gap-8 justify-end p-10">
         {isLoading ? (
           <SkeletonContentDetail />
         ) : (
@@ -58,7 +56,7 @@ const ContentVideoDetail: FC<ContentVideoDetailProps> = ({ id }) => {
             <div className="text-4xl font-bold mb-2">{content?.title}</div>
             <div className="flex gap-1 items-center">
               {content?.tags.map((tag, i) => (
-                <ContentTag background="#00000058" key={i} className="text-lg">
+                <ContentTag background="#89898957" key={i} className="text-lg">
                   #{tag}
                 </ContentTag>
               ))}
@@ -73,9 +71,10 @@ const ContentVideoDetail: FC<ContentVideoDetailProps> = ({ id }) => {
               keepNavigate(`/content/${id}/${content?.episode_id}`)
             }
           >
-            <IconButton size={24} background="#00000058">
+            <IconButton size={24} background="#89898957">
               <BsFillPlayFill size={60} className="relative left-[2px]" />
             </IconButton>
+
             <div className="font-bold text-2xl select-none">
               1화부터 감상하기
             </div>

@@ -32,13 +32,12 @@ export const introes: Intro[] = [intro1, intro2, intro3];
 
 export const content: Content = {
   id: '1',
-  title: '[일찐과 찐따 외전] 5억년 버튼',
-  description:
-    '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다! 그런데 조건이 있다고?',
-  provider: '하이틴 에이저 Hi-teenager', // 혹은 ProviderObject
-  thumbnail: '/asset/images/thumb_temp2.jpg',
-  url: 'https://www.youtube.com/embed/rDFUl2mHIW4',
-  tags: ['일진', '찐따'],
+  title: '브브여행사',
+  description: '부산 취향 맞춤 여행, 고객만족 100% 전여친과 여행사를??',
+  provider: '부산시', // 혹은 ProviderObject
+  thumbnail: '/asset/images/thumb_temp2.png',
+  url: 'https://www.youtube.com/embed/_rEde994IqY',
+  tags: ['여행', '로맨스'],
   type: '시리즈',
   episode_id: 1,
 };
@@ -80,7 +79,7 @@ export const content4: Content = {
   type: '영화',
 };
 
-const episode: Content = { ...content, title: '이세돌 - 키딩' };
+const episode: Content = { ...content, title: '브브여행사 n화' };
 const episode2: Content = { ...content2, title: '5억년 버튼' };
 
 const 추천작: RecommendContent = {
