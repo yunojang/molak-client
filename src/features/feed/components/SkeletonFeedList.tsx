@@ -30,7 +30,7 @@ const SkeletonFeedList: FC<SkeletonFeedListProps> = ({
             <SkeletonContentCardList
               height={contentHeight}
               count={cardCount}
-              gap={6}
+              gap={5}
             />
           </div>
         </div>

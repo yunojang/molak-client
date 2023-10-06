@@ -50,7 +50,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({
         loop={loop}
         // slidesPerView={count + (pad / cardWidth) * 2}
         simulateTouch={true}
-        // breakpoints={{ 1200: { simulateTouch: false } }}
+        breakpoints={{ 1200: { simulateTouch: false } }}
         slidesPerView={count}
         slidesPerGroup={count}
         spaceBetween={gap}
@@ -92,7 +92,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({
           <SwiperSlide
             key={i}
             style={{ transition: 'transform 0.4s', height }}
-            className="hover:scale-105 hover:z-10"
+            className="hover:z-10"
           >
             {React.cloneElement(item)}
           </SwiperSlide>

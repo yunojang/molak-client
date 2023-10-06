@@ -24,6 +24,7 @@ const ContentCard: FC<ContentCardProps> = ({
       style={{ height }}
       className={cx(
         hovering,
+        !isSeperateType ? 'hover:scale-[1.025]' : '',
         'inline-flex flex-col w-full cursor-pointer transition-all relative',
       )}
       onClick={onClick}
@@ -39,16 +40,18 @@ const ContentCard: FC<ContentCardProps> = ({
 
       {!isSeperateType && (
         <div
-          className="mt-auto absolute inset-0 h-[85%] description px-5 pb-5 flex flex-col justify-end rounded-md"
+          className="mt-auto absolute inset-0 h-full description px-4 pb-5 flex flex-col gap-1 justify-end rounded-md
+          "
           style={{
-            transition: 'opacity 0.4s',
-            background: 'linear-gradient(0deg,  rgba(0,0,0,0.9), rgba(0,0,0,0)',
+            transition: 'opacity 0.2s',
+            background:
+              'linear-gradient(0deg,  rgba(0,0,0,1) 25%, rgba(0,0,0,0.3)',
           }}
         >
-          <div className={cx('text-white text-lg font-bold', lineBreak(2))}>
+          <div className={cx('text-white text-lg font-bold', lineBreak(1))}>
             {content.title}
           </div>
-          <div className="text-gray-200">{content.provider}</div>
+          <div className="text-gray-200 text-sm">{content.provider}</div>
         </div>
       )}
 
