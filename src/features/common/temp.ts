@@ -64,7 +64,7 @@ export const content3: Content = {
   thumbnail: '/asset/images/thumb.jpeg',
   url: 'https://www.youtube.com/embed/2Rm-cpUNAJU',
   tags: ['스타워즈', 'SF'],
-  type: '영화',
+  type: '단편',
 };
 
 export const content4: Content = {
@@ -76,7 +76,7 @@ export const content4: Content = {
   thumbnail: '/asset/images/thumb.jpeg',
   url: 'https://www.youtube.com/embed/2Rm-cpUNAJU',
   tags: ['로맨스'],
-  type: '영화',
+  type: '단편',
 };
 
 const episode: Content = { ...content, title: '브브여행사 n화' };
