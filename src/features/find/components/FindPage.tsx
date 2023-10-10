@@ -15,7 +15,7 @@ import { FIND_TITLE } from '../constant/title';
 import OrderSelector from './Elements/OrderSelector';
 import FitlerTitle from './Elements/FilterTitle';
 import { scrollYStyle } from '@/utils/style/scroll';
-import SkeletonContentCard from '@/components/Elements/Card/SkeletonContentCard';
+import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentCardList';
 
 // find 페이지 footer 없앰 - 태그, 리스트 각각 스크롤
 const FindPage: FC = () => {
@@ -36,6 +36,11 @@ const FindPage: FC = () => {
         filter,
         className: 'h-full flex-1 pb-10',
         hasTitle: true,
+        fallback: (
+          <div className="mt-20">
+            <SkeletonContentCardList count={4} gap={5} isCard />
+          </div>
+        ),
       }),
     [filter],
   );

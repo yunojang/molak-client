@@ -21,8 +21,7 @@ const SkeletonContentCardList: FC<SkeletonContentCardListProps> = ({
   height = 300,
 }) => {
   columnCount = columnCount ?? count ?? 5;
-
-  const ch = useContentHeight();
+  const cardHeight = useContentHeight();
 
   return (
     <div
@@ -35,7 +34,7 @@ const SkeletonContentCardList: FC<SkeletonContentCardListProps> = ({
     >
       {range(count ?? 10).map(n => (
         <SkeletonContentCard
-          height={height ?? ch}
+          height={height ?? cardHeight}
           key={n}
           isSeperateType={isCard}
         />
