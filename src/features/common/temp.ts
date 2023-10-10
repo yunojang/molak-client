@@ -89,7 +89,7 @@ const 추천작: RecommendContent = {
   recommend_text: '마지막 희망의 저항군',
   background: '#000',
   textColor: '#fff',
-  teaser_url: '',
+  teaser_url: '/asset/videos/t1.mp4',
 };
 
 const 추천작2: RecommendContent = {
@@ -99,7 +99,7 @@ const 추천작2: RecommendContent = {
   recommend_text: '짙어지는 의심 깊어지는 관심',
   background: '#fff',
   textColor: '#000',
-  teaser_url: '',
+  teaser_url: '/asset/videos/t22.mp4',
 };
 
 export const contents: Content[] = range(15, () => content);
@@ -119,8 +119,6 @@ export const recommend_feeds: RecommendFeed[] = [
     items_list: range(7, (_, i) => (i % 2 == 0 ? 추천작 : 추천작2)),
   },
 ];
-
-console.log(recommend_feeds);
 
 export const feeds: Feed[] = [
   { name: 'NEW! 신작 소식', id: '1', items_list: contents },
