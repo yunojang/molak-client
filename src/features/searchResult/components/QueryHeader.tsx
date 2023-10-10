@@ -15,7 +15,7 @@ const QueryHeader: FC<QueryHeaderProps> = ({ query }) => {
     <header
       className={cx(
         isTop ? '' : 'shadow-sm',
-        'flex items-center gap-3 sticky top-header left-0 px-space py-3',
+        'flex items-center gap-3 sticky top-header left-0 px-space py-3 z-10 bg-white',
       )}
     >
       <div className="font-bold text-3xl">

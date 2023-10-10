@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 import { useQueryString } from '@/hooks/useQueryString';
 import QueryHeader from '../components/QueryHeader';
+import QueriedContentList from '../components/QueriedContentList';
 
 interface QueryPageProps {
   _?: any;
@@ -9,12 +10,12 @@ interface QueryPageProps {
 
 const QueryPage: FC<QueryPageProps> = () => {
   const [query] = useQueryString('q');
+  const [filter, setFilter] = useState<any>({});
 
   return (
-    <div className="">
+    <div>
       <QueryHeader query={query} />
-
-      <main className="h-[200vh]"></main>
+      <QueriedContentList filter={{ ...filter, query }} />
     </div>
   );
 };

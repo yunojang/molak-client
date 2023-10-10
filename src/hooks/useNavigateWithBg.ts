@@ -8,7 +8,7 @@ import {
 export const useNavigateWithBg = (inputBg?: string) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const current = location.pathname;
+  const current = location.pathname + location.search;
 
   const navigateWithBg = (path: To, options?: NavigateOptions) => {
     navigate(path, {

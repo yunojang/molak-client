@@ -26,36 +26,39 @@ const ContentCard: FC<ContentCardProps> = ({
       style={{ height, width }}
       className={cx(
         hovering,
-        !isSeperateType ? 'hover:scale-[1.025]' : '',
-        'inline-flex flex-col w-full cursor-pointer transition-all relative select-none',
+        !isSeperateType ? 'hover:scale-[1.025] hover:border-secondary' : '',
+        'inline-flex flex-col w-full cursor-pointer transition-transform select-none border-4 border-transparent rounded-xl p-[1.5px]',
       )}
       onClick={onClick}
     >
-      <div className="overflow-hidden rounded-md flex-1" role="img">
+      <div
+        className={cx('overflow-hidden rounded-md flex-1 relative')}
+        role="img"
+      >
         <Image
           useSuspense
           src={content.thumbnail}
           className="object-cover w-full h-full"
           fallback={<Skeleton width="100%" height="100%" />}
         />
-      </div>
 
-      {!isSeperateType && (
-        <div
-          className="mt-auto absolute inset-0 h-full description px-4 pb-5 flex flex-col  justify-end rounded-md
+        {!isSeperateType && (
+          <div
+            className="mt-auto absolute inset-0 h-full description px-4 pb-5 flex flex-col  justify-end rounded-md
           "
-          style={{
-            transition: 'opacity 0.2s',
-            background:
-              'linear-gradient(0deg,  rgba(0,0,0,1) 25%, rgba(0,0,0,0.3)',
-          }}
-        >
-          <div className={cx('text-white text-lg font-bold', lineBreak(1))}>
-            {content.title}
+            style={{
+              transition: 'opacity 0.2s',
+              background:
+                'linear-gradient(0deg,  rgba(0,0,0,1) 25%, rgba(0,0,0,0.3)',
+            }}
+          >
+            <div className={cx('text-white text-lg font-bold', lineBreak(1))}>
+              {content.title}
+            </div>
+            <div className="text-gray-200 text-sm">{content.provider}</div>
           </div>
-          <div className="text-gray-200 text-sm">{content.provider}</div>
-        </div>
-      )}
+        )}
+      </div>
 
       {isSeperateType && (
         <>
