@@ -10,7 +10,6 @@ import { PagableListProps } from '@/components/List/types';
 interface ContentListProps extends PagableListProps {
   columnCount?: number;
   onSelect?(id: string): void;
-  itemHeight?: string | number;
 }
 
 const AccumulateContentList: FC<ContentListProps> = ({
@@ -19,24 +18,12 @@ const AccumulateContentList: FC<ContentListProps> = ({
   title = () => null,
   pager = () => null,
   onSelect,
-  itemHeight = 300,
 }) => {
-  // const cached = queryClient.getQueryData([
-  //   'contents',
-  //   JSON.stringify(params),
-  // ]) as { content: Content[] } | undefined;
-
   const [accContents, setAccContents] = useState<Content[]>([]);
   const { totalElements, totalPages, isEnd, isLoading } = useContents(params, {
     suspense: false,
-    onSuccess:
-      // cached ? undefined :
-      ({ content }) => setAccContents(prev => prev.concat(content)),
+    onSuccess: ({ content }) => setAccContents(prev => prev.concat(content)),
   });
-
-  // useEffect(() => {
-  //   if (cached) setAccContents(prev => prev.concat(cached.content));
-  // }, [cached]);
 
   const colGap = 5;
   const rowGap = 20;
@@ -51,7 +38,6 @@ const AccumulateContentList: FC<ContentListProps> = ({
           rowGap={rowGap}
           isCard
           count={40}
-          height={itemHeight}
           columnCount={columnCount}
         />
       ) : (
@@ -65,7 +51,7 @@ const AccumulateContentList: FC<ContentListProps> = ({
         >
           {accContents.map((content, i) => (
             <ContentCard
-              height={itemHeight}
+              // height={itemHeight}
               content={content}
               key={i}
               isSeperateType

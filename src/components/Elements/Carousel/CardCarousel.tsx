@@ -15,7 +15,7 @@ interface SliderCarouselProps {
   items: React.ReactElement[];
   count?: number;
   gap?: number;
-  height?: string | number;
+  // height?: string | number;
   loop?: boolean;
 }
 
@@ -26,7 +26,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({
   items,
   count = 5,
   gap = 24,
-  height = 300,
+  // height = 300,
   loop,
 }) => {
   // const [currentIndex, setCurrentIndex] = useState(0);
@@ -91,8 +91,11 @@ const CardCarousel: FC<SliderCarouselProps> = ({
         {items.map((item, i) => (
           <SwiperSlide
             key={i}
-            style={{ transition: 'transform 0.4s', height }}
-            className="hover:z-10"
+            style={{
+              transition: 'transform 0.4s',
+              // height
+            }}
+            className="hover:z-10 self-center"
           >
             {React.cloneElement(item)}
           </SwiperSlide>

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import Navigator from './Navigator';
-import { NAV } from './nav';
+import { NAVIGATION } from './nav';
 import { cx } from '@emotion/css';
 import { BreakPoint } from '@/utils/breakpoint';
 import AppLogo from './components/AppLogo';
@@ -21,7 +21,7 @@ const AppTopbar: FC<AppTopbarProps> = () => {
         <BreakPoint size="md" better="eqBigger">
           <NavLayuout>
             <AppLogo />
-            <Navigator nav={NAV} />
+            <Navigator nav={NAVIGATION} />
           </NavLayuout>
         </BreakPoint>
 

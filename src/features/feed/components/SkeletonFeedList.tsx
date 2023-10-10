@@ -12,7 +12,7 @@ interface SkeletonFeedListProps {
 }
 
 const SkeletonFeedList: FC<SkeletonFeedListProps> = ({
-  contentHeight = 300,
+  // contentHeight = 'inherit',
   gap = 26,
   count = 5,
 }) => {
@@ -27,11 +27,7 @@ const SkeletonFeedList: FC<SkeletonFeedListProps> = ({
           </div>
 
           <div className="py-3">
-            <SkeletonContentCardList
-              height={contentHeight}
-              count={cardCount}
-              gap={5}
-            />
+            <SkeletonContentCardList count={cardCount} gap={5} />
           </div>
         </div>
       ))}

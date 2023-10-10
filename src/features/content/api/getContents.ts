@@ -10,8 +10,8 @@ export const getContents = (params: any): Promise<ContentResponse> => {
       () =>
         resolve({
           content: search_contents,
-          totalElements: 102,
-          totalPages: 10,
+          totalElements: 250,
+          totalPages: 5,
         }),
       500,
     ),

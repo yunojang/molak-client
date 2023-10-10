@@ -1,3 +1,5 @@
+import { clickableButtonStyle } from '@/utils/style/button';
+import { cx } from '@emotion/css';
 import { FC, ReactElement, cloneElement } from 'react';
 
 interface IconButtonProps {
@@ -17,7 +19,10 @@ const IconButton: FC<IconButtonProps> = ({
 }) => {
   return (
     <div
-      className="rounded-full flex items-center justify-center cursor-pointer"
+      className={cx(
+        onClick ? clickableButtonStyle : '',
+        'rounded-full flex items-center justify-center cursor-pointer',
+      )}
       style={{ width: size * 4, height: size * 4, background, color }}
       onClick={onClick}
     >

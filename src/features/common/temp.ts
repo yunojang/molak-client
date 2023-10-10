@@ -103,14 +103,12 @@ const 추천작2: RecommendContent = {
 };
 
 export const contents: Content[] = range(15, () => content);
+export const topRank_contents: Content[] = range(8, () => content);
+export const recommend_contents: Content[] = range(8, () => content);
+export const search_contents: Content[] = range(40, () => content);
 
 export const episodes: Content[] = range(10, () => episode);
 export const episodes2: Content[] = range(10, () => episode2);
-
-export const topRank_contents: Content[] = range(8, () => content);
-export const recommend_contents: Content[] = range(8, () => content);
-
-export const search_contents: Content[] = range(50, () => content);
 
 export const recommend_feeds: RecommendFeed[] = [
   {

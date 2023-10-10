@@ -1,6 +1,6 @@
 import { NavObject } from './Navigator';
 
-export const NAV: NavObject[] = [
+export const NAVIGATION: NavObject[] = [
   {
     name: '장르검색',
     path: '/find',

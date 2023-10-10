@@ -16,6 +16,7 @@ export const getRecommendContents = (params: any): Promise<ContentResponse> => {
       500,
     ),
   );
+
   // return client.get(`/api/contents/recommend`, {params});
 };
 

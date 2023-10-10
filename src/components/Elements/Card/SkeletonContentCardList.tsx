@@ -1,6 +1,7 @@
 import { range } from '@/utils/range';
 import { FC } from 'react';
 import SkeletonContentCard from './SkeletonContentCard';
+import { useContentHeight } from '@/features/content/hooks/useContentHeight';
 
 interface SkeletonContentCardListProps {
   count?: number;
@@ -21,6 +22,8 @@ const SkeletonContentCardList: FC<SkeletonContentCardListProps> = ({
 }) => {
   columnCount = columnCount ?? count ?? 5;
 
+  const ch = useContentHeight();
+
   return (
     <div
       className="grid"
@@ -31,7 +34,11 @@ const SkeletonContentCardList: FC<SkeletonContentCardListProps> = ({
       }}
     >
       {range(count ?? 10).map(n => (
-        <SkeletonContentCard height={height} key={n} isSeperateType={isCard} />
+        <SkeletonContentCard
+          height={height ?? ch}
+          key={n}
+          isSeperateType={isCard}
+        />
       ))}
     </div>
   );

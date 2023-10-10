@@ -10,7 +10,8 @@ interface AboutProps {
 const AboutPage: FC<AboutProps> = () => {
   return (
     <PageLayout>
-      <ToScroll />
+      <ToScroll to={0} />
+
       <PageIntroTitle text="모락 소개" description="" />
       <div>
         <div>모락은 크리에이터의 권리를 가장 중요시합니다. </div>

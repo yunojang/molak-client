@@ -1,22 +1,31 @@
 import { FC } from 'react';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
+import { useNavigate } from 'react-router-dom';
 
 import SearchPageLayout from '../components/layout/SearchPageLayout';
 import ContentShowLayout from '../components/layout/ContentShowLayout';
 import TopRankingCardCarousel from '../components/TopRankingCardCarousel';
 import RecommendCardCarousel from '../components/RecommendCardCarousel';
 import SearchInput from '../components/SearchInput';
+import ToScroll from '@/utils/scroll/ToScroll';
 
 const SearchPage: FC = () => {
-  const navigate = useNavigateWithBg();
+  const navigate = useNavigate();
+  const navigateBg = useNavigateWithBg();
 
   const handleCardSelect = (contentId: string) =>
-    navigate(`/content/${contentId}`);
+    navigateBg(`/content/${contentId}`);
 
-  const handleSearch = (query: string) => navigate(`/search?q=${query}`);
+  const handleSearch = (query: string) => {
+    if (!query) return;
+
+    navigate(`/query?q=${query}`);
+  };
 
   return (
     <SearchPageLayout>
+      <ToScroll to={0} />
+
       {/* search input */}
       <SearchInput onSearch={handleSearch} />
 

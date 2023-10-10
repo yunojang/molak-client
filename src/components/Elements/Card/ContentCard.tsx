@@ -10,6 +10,7 @@ interface ContentCardProps {
   content: Content;
   onClick?(): void;
   isSeperateType?: boolean;
+  width?: string | number;
   height?: string | number;
 }
 
@@ -17,11 +18,12 @@ const ContentCard: FC<ContentCardProps> = ({
   content,
   onClick,
   isSeperateType,
+  width = '100%',
   height = '100%',
 }) => {
   return (
     <a
-      style={{ height }}
+      style={{ height, width }}
       className={cx(
         hovering,
         !isSeperateType ? 'hover:scale-[1.025]' : '',

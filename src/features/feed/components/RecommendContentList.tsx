@@ -11,7 +11,7 @@ interface RecommendContentListProps {
   recommends: RecommendContent[];
 }
 
-const recommend_content_width = '364px';
+const recommend_content_width = '380px';
 
 const RecommendContentList: FC<RecommendContentListProps> = ({
   recommends,

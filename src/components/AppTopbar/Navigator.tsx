@@ -1,4 +1,5 @@
 import { env } from '@/config';
+import { clickableButtonStyle } from '@/utils/style/button';
 import { adjust } from '@/utils/style/color';
 import { cx } from '@emotion/css';
 import { FC } from 'react';
@@ -29,7 +30,8 @@ const Navigator: FC<NavigatorProps> = ({ nav }) => {
               color: isCurrent ? highlighColor : 'inherit',
             }}
             className={cx(
-              `py-2 transition-all text-lg cursor-pointer px-7 hover:text-primary-500 active:scale-90`,
+              clickableButtonStyle,
+              `py-2 transition-all text-lg cursor-pointer px-7 hover:text-primary-500`,
             )}
             onClick={() => navigate(path)}
           >
