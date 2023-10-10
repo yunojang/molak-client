@@ -12,7 +12,7 @@ import { BsDashLg } from 'react-icons/bs';
 
 import { circularRange } from '@/utils/range';
 import OrderStep from './OrderStep';
-import { GoDot, GoDotFill } from 'react-icons/go';
+import { GoDotFill } from 'react-icons/go';
 
 interface CarouselProps extends Partial<CarouselViewerProps> {
   autoPlay?: boolean;
@@ -67,19 +67,19 @@ const Carousel: FC<CarouselProps> = ({
   }, [autoPlay, delay, increase, intervalId]);
 
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      style={{
+        height,
+      }}
+    >
       {!hideMove && (
         <MoveButton style={{ left: 0 }} onClick={decrease}>
           <HiOutlineChevronLeft />
         </MoveButton>
       )}
 
-      <CarouselViewer
-        items={items}
-        order={order}
-        width={width}
-        height={height}
-      />
+      <CarouselViewer items={items} order={order} width={width} height="100%" />
 
       {/* <div className="absolute z-20 bottom-[2.2em] right-1/2 translate-x-1/2"> */}
       <div className="absolute z-20 bottom-[2em] right-[2em]">

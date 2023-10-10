@@ -26,14 +26,21 @@ const IntroCarousel: FC<IntroCarouselProps> = ({ height = '42em' }) => {
   };
 
   return (
-    <Carousel
-      autoPlay
-      hideMove // move button hide
-      height={height}
-      items={intro?.map((v, i) => (
-        <IntroCard key={i} intro={v} onClick={() => handleSelectIntro(v)} />
-      ))}
-    />
+    <div
+      style={{
+        height,
+        minHeight: '30vh',
+      }}
+    >
+      <Carousel
+        autoPlay
+        hideMove // move button hide
+        height="100%"
+        items={intro?.map((v, i) => (
+          <IntroCard key={i} intro={v} onClick={() => handleSelectIntro(v)} />
+        ))}
+      />
+    </div>
   );
 };
 

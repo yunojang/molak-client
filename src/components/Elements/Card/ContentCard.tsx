@@ -40,7 +40,7 @@ const ContentCard: FC<ContentCardProps> = ({
 
       {!isSeperateType && (
         <div
-          className="mt-auto absolute inset-0 h-full description px-4 pb-5 flex flex-col gap-1 justify-end rounded-md
+          className="mt-auto absolute inset-0 h-full description px-4 pb-5 flex flex-col  justify-end rounded-md
           "
           style={{
             transition: 'opacity 0.2s',
