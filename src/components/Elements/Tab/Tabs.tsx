@@ -35,7 +35,8 @@ const Tabs: FC<TabsProps> = ({ children, width = '112px', ...rest }) => {
                   'font-bold text-[1.2rem] z-10 transition-all relative easy-in-out',
                 style: {
                   width,
-                  transition: '500ms cubic-bezier(.77,.15,.39,1.43) 200ms',
+                  // transition: '400ms cubic-bezier(.77,.15,.39,1.43) 200ms',
+                  transition: '200ms cubic-bezier(0,0,.5,1)',
                 },
               })}
               <div
@@ -45,8 +46,8 @@ const Tabs: FC<TabsProps> = ({ children, width = '112px', ...rest }) => {
                   width: `calc(${width} - ${subPx(width) * 0.1}px)`,
                   transform: `translate(5%, -50%) scale(${isSelected ? 1 : 0})`,
                   transition: isSelected
-                    ? '500ms cubic-bezier(.77,.15,.39,1.43)'
-                    : '500ms ease-in-out',
+                    ? '400ms cubic-bezier(0,0,.5,1.5)'
+                    : '400ms cubic-bezier(0,0,.5,1)',
                   transformOrigin: isSelected
                     ? 'center'
                     : tabIndex > idx
