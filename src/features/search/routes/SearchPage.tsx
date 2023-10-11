@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,6 +12,7 @@ import ToScroll from '@/utils/scroll/ToScroll';
 const SearchPage: FC = () => {
   const navigate = useNavigate();
   const navigateBg = useNavigateWithBg();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleCardSelect = (contentId: string) =>
     navigateBg(`/content/${contentId}`);
@@ -22,12 +23,14 @@ const SearchPage: FC = () => {
     navigate(`/query?q=${query}`);
   };
 
+  useEffect(() => inputRef.current?.focus(), []);
+
   return (
     <SearchPageLayout>
       <ToScroll to={0} />
 
       {/* search input */}
-      <SearchInput onSearch={handleSearch} />
+      <SearchInput ref={inputRef} onSearch={handleSearch} />
 
       {/* search page recommend */}
       <div className="flex flex-col gap-10 w-full">
