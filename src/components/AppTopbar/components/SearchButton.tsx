@@ -15,7 +15,7 @@ const SearchButton: FC<SearchButtonProps> = ({ path }) => {
       <button
         className={cx(
           clickableButtonStyle,
-          'cursor-pointer select-none w-11 h-11 flex items-center justify-center rounded-full',
+          'cursor-pointer select-none w-11 h-11 flex items-center justify-center rounded-full hover:bg-gray-100',
         )}
       >
         <BiSearch size={24} color="black" />

@@ -44,7 +44,7 @@ const Relations: FC<RelationsProps> = ({ id, videoHeight }) => {
         <Tabs defaultIndex={0} width="100px">
           <Tab>시리즈</Tab>
           <Tab>추천</Tab>
-          <Tab>댓글</Tab>
+          {/* <Tab>댓글</Tab> */}
         </Tabs>
       </div>
 

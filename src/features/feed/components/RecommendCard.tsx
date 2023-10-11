@@ -27,14 +27,14 @@ const RecommendCard: FC<RecommendCardProps> = ({
     >
       <div
         {...rest}
-        className="px-7 pt-7 rounded-xl h-[480px] cursor-pointer select-none border shadow-md overflow-hidden
-         hover:shadow-lg hover:scale-[1.02]
+        className="px-7 pt-7 rounded-xl overflow-hidden h-[480px] cursor-pointer select-none border shadow-md overflow-hidde
+         hover:shadow-lg hover:scale-[1.02] hover:border-[#f7b21b] hover:border-2 hover:z-10 
       "
         style={{
           background,
           minWidth: isFocus ? '700px' : defaultWidth,
-          transition: 'all .3s cubic-bezier(0,0,.5,1)',
-          borderColor: isFocus ? '#f7b21b' : '#f5f5f5',
+          transition: 'all .3s cubic-bezier(0,0,.5,1), border 0s',
+          // borderColor: isFocus ? '#f7b21b' : '#f5f5f5',
         }}
       >
         <div className="flex flex-col justify-between gap-7 h-full overflow-hidden items-start">
