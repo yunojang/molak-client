@@ -22,11 +22,16 @@ const QueriedContentList: FC<QueriedContentListProps> = ({ filter }) => {
         filter,
         fallback: (
           <div className="mt-20">
-            <SkeletonContentCardList count={4} gap={5} isCard />
+            <SkeletonContentCardList
+              count={4}
+              gap={5}
+              columnCount={count}
+              isCard
+            />
           </div>
         ),
       }),
-    [filter],
+    [filter, count],
   );
 
   return (

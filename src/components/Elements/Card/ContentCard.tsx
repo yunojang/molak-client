@@ -26,8 +26,10 @@ const ContentCard: FC<ContentCardProps> = ({
       style={{ height, width }}
       className={cx(
         hovering,
-        !isSeperateType ? 'hover:scale-[1.025] hover:border-secondary' : '',
-        'inline-flex flex-col w-full cursor-pointer transition-transform select-none border-4 border-transparent rounded-xl p-[1.5px]',
+        !isSeperateType
+          ? 'hover:scale-[1.025] hover:border-secondary border-4'
+          : '',
+        'inline-flex flex-col w-full cursor-pointer transition-transform select-none border-transparent rounded-xl p-[1.5px]',
       )}
       onClick={onClick}
     >
