@@ -1,23 +1,24 @@
-import { FC, Suspense, useState } from 'react';
+import { FC, useState } from 'react';
 import { cx } from '@emotion/css';
-import { useScrolled } from '../hooks/useScrolled';
+
+import { useDisclosure } from '@/hooks/useClosure';
 
 import FilterButton from './FilterButton';
 import Filters from './filters/Filters';
-import { useDisclosure } from '@/hooks/useClosure';
 import QuerPageTitle from './QueryPageTitle';
 import HeaderLayout from './layout/headerLayout';
 
 interface QueryHeaderProps {
   query: string;
-  setFilter?(filter: any): void;
+  onChangeFilter?(filter: any): void;
 }
 
-const QueryHeader: FC<QueryHeaderProps> = ({ query, setFilter }) => {
+const QueryHeader: FC<QueryHeaderProps> = ({ query, onChangeFilter }) => {
   const { isOpen: isOpenFilter, toggle: toggleFilter } = useDisclosure(false);
   const [isSet, setIsSetFilter] = useState(false);
 
   const handleChangeFilters = (filters: any, isInit?: boolean) => {
+    onChangeFilter?.(filters);
     setIsSetFilter(!isInit);
   };
 
@@ -33,8 +34,8 @@ const QueryHeader: FC<QueryHeaderProps> = ({ query, setFilter }) => {
         />
       </div>
 
+      {/* animation */}
       <div className="mt-1 overflow-hidden">
-        {/* animation */}
         <div
           style={{
             marginTop: isOpenFilter ? '0px' : '-60px',

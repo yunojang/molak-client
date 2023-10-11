@@ -8,23 +8,23 @@ import { adjust } from '@/utils/style/color';
 import { env } from '@/config';
 
 interface TypeFilterProps extends FilterProps {
-  _?: any;
+  defaultValue: string;
+  onChange?(type: string | undefined): void;
 }
 
 const TYPES = ['모든 작품', '시리즈', '단편'];
 
-const TypeFilter: FC<TypeFilterProps> = ({
-  onChange,
-  defaultValue = TYPES[0],
-}) => {
+const TypeFilter: FC<TypeFilterProps> = ({ onChange, defaultValue }) => {
   const [type, setType] = useState(defaultValue);
+
+  const isSelected = type !== defaultValue;
 
   const handleSelect = (type: string) => {
     setType(type);
-    onChange?.(type);
-  };
 
-  const isSelected = type !== '모든 작품';
+    if (type === defaultValue) onChange?.(undefined);
+    else onChange?.(type);
+  };
 
   return (
     <PopOver

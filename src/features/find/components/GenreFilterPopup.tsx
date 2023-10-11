@@ -10,29 +10,27 @@ import { PopOver } from '@/components/Elements/Selector';
 import SelectOpenBox from '@/components/Elements/SelectOpenBox/SelectOpenBox';
 
 interface Props extends FilterProps {
+  defaultValue: string;
+  onChange?(genre: string | undefined): void;
   disabled?: boolean;
 }
 
-const GenreFilter: FC<Props> = ({
-  defaultValue = '모든 장르',
-  onChange,
-  disabled,
-}) => {
+const GenreFilter: FC<Props> = ({ defaultValue, onChange }) => {
   const { genres } = useDiscover();
   const [selectedGenre, setSelectedGenre] = useState<string>(defaultValue);
 
+  const isSelected = selectedGenre !== defaultValue;
+
   const handleClick = (genre: string) => {
     if (selectedGenre === genre) {
-      setSelectedGenre('모든 장르');
-      onChange?.('all');
+      setSelectedGenre(defaultValue);
+      onChange?.(undefined);
       return;
     }
 
     setSelectedGenre(genre);
     onChange?.(genre);
   };
-
-  const isSelected = selectedGenre !== '모든 장르';
 
   return (
     <PopOver

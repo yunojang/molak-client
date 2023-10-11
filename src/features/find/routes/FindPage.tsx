@@ -29,7 +29,7 @@ const FindPage: FC = () => {
 
   return (
     <PageLayout className="box-border flex flex-col overflow-hidden h-ch ">
-      <PageIntroTitle {...FIND_TITLE} />
+      <PageIntroTitle {...FIND_TITLE} marginBottom={3} />
 
       <div className="flex flex-col flex-1 gap-7 overflow-hidden">
         {/* <div className="flex items-end justify-between">
@@ -38,7 +38,7 @@ const FindPage: FC = () => {
           <OrderSelector onChange={id => overwriteFilter({ order: id })} />
         </div> */}
 
-        <div className="px-0.5 py-1">
+        <div className="px-0.5 py-3">
           <Filters onChange={filters => overwriteFilter(filters)} />
         </div>
 

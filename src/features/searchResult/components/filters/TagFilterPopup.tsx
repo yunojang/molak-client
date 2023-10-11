@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { css, cx } from '@emotion/css';
 
 import { FilterProps } from '@/components/Wrapper/withFilter';
@@ -12,31 +12,37 @@ import { env } from '@/config';
 import Bubble from '@/components/Elements/bubble';
 
 interface Props extends FilterProps {
+  defaultValue: string[];
+  onChange?(tags: string[] | undefined): void;
   disabled?: boolean;
 }
 
-const TagFilter: FC<Props> = ({
-  defaultValue = ['모든 태그'],
-  onChange,
-  disabled,
-}) => {
-  const { discover } = useDiscover();
-  const { tags } = discover;
+// const wrapArray = (value: string | string[]) =>
+//   Array.isArray(value) ? value : [value];
+
+const TagFilter: FC<Props> = ({ defaultValue, onChange }) => {
+  const {
+    discover: { tags },
+  } = useDiscover();
   const [selectedTags, setSelectedTags] = useState<string[]>(defaultValue);
 
-  const display =
-    selectedTags.length === 1 ? selectedTags[0] : `${selectedTags[0]} 외`;
+  const display = useMemo(
+    () =>
+      selectedTags.length === 1 ? selectedTags[0] : `${selectedTags[0]} 외`,
+    [selectedTags],
+  );
+
+  const isSelected = useMemo(
+    () => selectedTags[0] != defaultValue[0] || selectedTags.length >= 2,
+    [selectedTags, defaultValue],
+  );
 
   const handleChange = (tags: string[]) => {
-    let newTags = tags;
-    if (!tags.length) newTags = ['모든 태그'];
-
-    setSelectedTags(newTags);
-    onChange?.(newTags);
+    setSelectedTags(tags.length ? tags : defaultValue);
+    onChange?.(tags);
   };
 
   const toneDownPrimary = adjust(env.colors.primary, -30);
-  const isSelected = selectedTags.length >= 2 || selectedTags[0] != '모든 태그';
 
   return (
     <PopOver

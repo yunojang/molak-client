@@ -133,7 +133,6 @@ export const discover: Discover = {
   tags: [
     '학원',
     '대학',
-    '드라마',
     '연애',
     '수위',
     '찐따',
@@ -142,8 +141,9 @@ export const discover: Discover = {
     '복수',
     '친구',
     '직업',
-    '시대극',
     '감동',
+    '시대극',
+    '드라마',
   ],
   types: ['시리즈', '단편'],
 };

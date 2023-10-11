@@ -16,7 +16,7 @@ const SelectOpenBox = forwardRef<HTMLDivElement, SelectOpenBoxProps>(
         className={cx(
           className,
           `flex justify-between items-center select-none  w-36 py-3 px-4 cursor-pointer bg-gray-100 rounded-full 
-          hover:bg-gray-200 hover:scale-105 transition-all`,
+          hover:bg-gray-200 hover:scale-105 transition-transform`,
         )}
       >
         {display}
