@@ -36,12 +36,16 @@ const TagFilter: FC<Props> = ({
   };
 
   const toneDownPrimary = adjust(env.colors.primary, -30);
+  const isSelected = selectedTags.length >= 2 || selectedTags[0] != '모든 태그';
 
   return (
     <PopOver
       trigger={
         <div className="relative">
-          <SelectOpenBox display={display} />
+          <SelectOpenBox
+            display={display}
+            className={isSelected ? 'font-bold' : ''}
+          />
           {selectedTags.length > 1 && (
             <Bubble size="1.5rem" color={toneDownPrimary}>
               {selectedTags.length}

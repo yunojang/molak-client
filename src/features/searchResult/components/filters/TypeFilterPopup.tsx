@@ -25,7 +25,10 @@ const TypeFilter: FC<TypeFilterProps> = ({
   };
 
   return (
-    <PopOver trigger={<SelectOpenBox display={type} />} placement="bottom">
+    <PopOver
+      trigger={<SelectOpenBox className="font-bold" display={type} />}
+      placement="bottom"
+    >
       {close => (
         <div className="flex items-center px-7 py-5 gap-1 shadow-xl rounded-lg">
           {TYPES.map((item, i) => (

@@ -1,4 +1,4 @@
-import GenreFilter from '@/features/find/components/GenreFilter';
+import GenreFilter from '@/features/find/components/GenreFilterPopup';
 import { FC } from 'react';
 import TypeFilter from './TypeFilterPopup';
 import TagFilter from './TagFilterPopup';

@@ -32,9 +32,16 @@ const GenreFilter: FC<Props> = ({
     onChange?.(genre);
   };
 
+  const isSelected = selectedGenre !== '모든 장르';
+
   return (
     <PopOver
-      trigger={<SelectOpenBox display={selectedGenre} />}
+      trigger={
+        <SelectOpenBox
+          className={isSelected ? 'font-bold' : ''}
+          display={selectedGenre}
+        />
+      }
       placement="bottom"
     >
       {close => (
