@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import FindPage from '../components/FindPage';
+import FindPage from './FindPage';
 
 export const FindRoute = () => (
   <Routes>

@@ -17,34 +17,15 @@ import { FIND_TITLE } from '../constant/title';
 // import { scrollYStyle } from '@/utils/style/scroll';
 import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentCardList';
 import Filters from '@/features/searchResult/components/filters/Filters';
+import FindContentList from '../components/FindedContentList';
 
 // find 페이지 footer 없앰 - 태그, 리스트 각각 스크롤
 const FindPage: FC = () => {
-  const naviage = useNavigateWithBg();
-  const count = Math.floor(useCardCount().count / 2) * 2;
-
   const [filter, setFilter] = useState({});
 
   const overwriteFilter = (filter: object) => {
     setFilter(prev => ({ ...prev, ...filter }));
   };
-
-  // warpper를 생성하는 컴포넌트가 다시 렌더링 될 때 아예 새로운 컴포넌트를 생성한다. -> useMemo
-  const ContentList = useMemo(
-    () =>
-      withScrollLoad({
-        ListComp: AccumulateContentList,
-        filter,
-        className: 'h-full flex-1 pb-10',
-        hasTitle: true,
-        fallback: (
-          <div className="mt-20">
-            <SkeletonContentCardList count={4} gap={5} isCard />
-          </div>
-        ),
-      }),
-    [filter],
-  );
 
   return (
     <PageLayout className="box-border flex flex-col overflow-hidden h-ch ">
@@ -70,10 +51,7 @@ const FindPage: FC = () => {
             <TypeFilter onChange={type => overwriteFilter({ type })} />
           </div> */}
 
-          <ContentList
-            columnCount={count}
-            onSelect={id => naviage(`/content/${id}`)}
-          />
+          <FindContentList filter={filter} />
         </div>
       </div>
     </PageLayout>
