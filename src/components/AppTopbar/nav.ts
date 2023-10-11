@@ -2,7 +2,7 @@ import { NavObject } from './Navigator';
 
 export const NAVIGATION: NavObject[] = [
   {
-    name: '장르검색',
+    name: '작품찾기',
     path: '/find',
   },
   {

@@ -1,6 +1,8 @@
 import {
   Popover,
   PopoverContent,
+  PopoverContentProps,
+  PopoverProps,
   PopoverTrigger,
   useDisclosure,
 } from '@chakra-ui/react';
@@ -8,16 +10,24 @@ import React, { FC } from 'react';
 
 interface SelectorProps {
   trigger: React.ReactNode;
+  rounded?: PopoverContentProps['rounded'];
+  placement?: PopoverProps['placement'];
   children?: (close: () => void) => React.ReactNode | React.ReactNode;
   contentWidth?: string;
 }
 
-const PopOver: FC<SelectorProps> = ({ trigger, children, contentWidth }) => {
+const PopOver: FC<SelectorProps> = ({
+  trigger,
+  children,
+  rounded = 'lg',
+  placement = 'bottom-start',
+  contentWidth,
+}) => {
   const { onOpen, onClose, isOpen } = useDisclosure();
 
   return (
     <Popover
-      placement="bottom-start"
+      placement={placement}
       onOpen={onOpen}
       isOpen={isOpen}
       onClose={onClose}
@@ -25,16 +35,15 @@ const PopOver: FC<SelectorProps> = ({ trigger, children, contentWidth }) => {
       <PopoverTrigger>{trigger}</PopoverTrigger>
       <PopoverContent
         width="fit-content"
-        rounded="none"
+        rounded={rounded}
+        className="focus:border-none"
         _focus={{
-          outline: 'none',
           boxShadow: 'none',
+          outline: 'none',
           border: 'none',
         }}
       >
-        <div style={{ width: contentWidth }}>
-          {typeof children === 'function' ? children(onClose) : children}
-        </div>
+        {typeof children === 'function' ? children(onClose) : children}
       </PopoverContent>
     </Popover>
   );

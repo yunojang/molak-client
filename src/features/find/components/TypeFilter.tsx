@@ -10,7 +10,11 @@ interface Props extends FilterProps {
   disabled?: boolean;
 }
 
-const TypeFilter: FC<Props> = ({ defaultValue, onSubmit, disabled }) => {
+const TypeFilter: FC<Props> = ({
+  defaultValue,
+  onChange: onSubmit,
+  disabled,
+}) => {
   const { discover } = useDiscover();
   const { types } = discover;
   // const [selectedTags, setSelectedTags] = useState<string[]>(defaultValue);

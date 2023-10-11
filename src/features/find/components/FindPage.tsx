@@ -1,21 +1,22 @@
 import { FC, useState, useMemo } from 'react';
-import { cx } from '@emotion/css';
+// import { cx } from '@emotion/css';
 import { withScrollLoad } from '@/components/List/withScrollLoad';
 
 import PageLayout from '@/components/Elements/Layout/PageLayout';
 import AccumulateContentList from '@/features/content/components/AccumulateContentList';
 import { PageIntroTitle } from '@/components/Elements/Title';
-import GenreFilter from './GenreFilter';
-import TagFilter from './TagFilter';
-import TypeFilter from './TypeFilter';
+// import GenreFilter from './GenreFilter';
+// import TagFilter from './TagFilter';
+// import TypeFilter from './TypeFilter';
 
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 import { useCardCount } from '@/features/content/hooks/useCardCount';
 import { FIND_TITLE } from '../constant/title';
-import OrderSelector from './Elements/OrderSelector';
-import FitlerTitle from './Elements/FilterTitle';
-import { scrollYStyle } from '@/utils/style/scroll';
+// import OrderSelector from './Elements/OrderSelector';
+// import FitlerTitle from './Elements/FilterTitle';
+// import { scrollYStyle } from '@/utils/style/scroll';
 import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentCardList';
+import Filters from '@/features/searchResult/components/filters/Filters';
 
 // find 페이지 footer 없앰 - 태그, 리스트 각각 스크롤
 const FindPage: FC = () => {
@@ -49,21 +50,25 @@ const FindPage: FC = () => {
     <PageLayout className="box-border flex flex-col overflow-hidden h-ch ">
       <PageIntroTitle {...FIND_TITLE} />
 
-      <div className="flex flex-col flex-1 gap-5 overflow-hidden">
-        <div className="flex items-end justify-between">
-          <GenreFilter onSubmit={genre => overwriteFilter({ genre })} />
+      <div className="flex flex-col flex-1 gap-7 overflow-hidden">
+        {/* <div className="flex items-end justify-between">
+          <GenreFilter onChange={genre => overwriteFilter({ genre })} />
 
           <OrderSelector onChange={id => overwriteFilter({ order: id })} />
+        </div> */}
+
+        <div className="px-0.5 py-1">
+          <Filters onChange={filters => overwriteFilter(filters)} />
         </div>
 
         <div className="flex flex-1 gap-10 overflow-hidden">
-          <div className={cx(scrollYStyle, 'w-48 h-full pb-10')}>
+          {/* <div className={cx(scrollYStyle, 'w-48 h-full pb-10')}>
             <FitlerTitle title="태그" />
-            <TagFilter onSubmit={tags => overwriteFilter({ tags })} />
+            <TagFilter onChange={tags => overwriteFilter({ tags })} />
 
             <FitlerTitle title="타입" />
-            <TypeFilter onSubmit={type => overwriteFilter({ type })} />
-          </div>
+            <TypeFilter onChange={type => overwriteFilter({ type })} />
+          </div> */}
 
           <ContentList
             columnCount={count}

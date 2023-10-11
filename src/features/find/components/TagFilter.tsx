@@ -10,7 +10,11 @@ interface Props extends FilterProps {
   disabled?: boolean;
 }
 
-const TagFilter: FC<Props> = ({ defaultValue, onSubmit, disabled }) => {
+const TagFilter: FC<Props> = ({
+  defaultValue,
+  onChange: onSubmit,
+  disabled,
+}) => {
   const { discover } = useDiscover();
   const { tags } = discover;
   // const [selectedTags, setSelectedTags] = useState<string[]>(defaultValue);

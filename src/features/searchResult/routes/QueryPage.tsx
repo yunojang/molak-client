@@ -16,6 +16,7 @@ const QueryPage: FC<QueryPageProps> = () => {
 
   return (
     <div>
+      {/* setfilter */}
       <QueryHeader query={query} />
       <QueriedContentList filter={allFilter} />
     </div>

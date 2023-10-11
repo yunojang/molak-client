@@ -7,6 +7,7 @@ import { Discover } from '../types';
 
 export const getDiscover = (): Promise<Discover> => {
   return Promise.resolve(discover);
+  // return new Promise(resolve => setTimeout(() => resolve(discover), 500));
   // return client.get(`/api/discover`);
 };
 
