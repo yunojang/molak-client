@@ -1,4 +1,5 @@
 import {
+  Button,
   Popover,
   PopoverContent,
   PopoverContentProps,
@@ -28,12 +29,16 @@ const PopOver: FC<SelectorProps> = ({
   return (
     <Popover
       placement={placement}
-      onOpen={onOpen}
       isOpen={isOpen}
+      onOpen={onOpen}
       onClose={onClose}
+      closeOnBlur
     >
-      <PopoverTrigger>{trigger}</PopoverTrigger>
+      <PopoverTrigger>
+        <Button className="p-0 border-0 m-0 bg-transparent">{trigger}</Button>
+      </PopoverTrigger>
       <PopoverContent
+        // variants={{ exit: {}, enter: {} }}
         width="fit-content"
         rounded={rounded}
         className="focus:border-none"
