@@ -24,9 +24,16 @@ const TypeFilter: FC<TypeFilterProps> = ({
     onChange?.(type);
   };
 
+  const isSelected = type !== '모든 작품';
+
   return (
     <PopOver
-      trigger={<SelectOpenBox className="font-bold" display={type} />}
+      trigger={
+        <SelectOpenBox
+          className={isSelected ? 'font-bold' : ''}
+          display={type}
+        />
+      }
       placement="bottom"
     >
       {close => (
