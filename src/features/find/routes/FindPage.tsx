@@ -18,6 +18,7 @@ import { FIND_TITLE } from '../constant/title';
 import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentCardList';
 import Filters from '@/features/searchResult/components/filters/Filters';
 import FindContentList from '../components/FindedContentList';
+import OrderSelector from '../components/Elements/OrderSelector';
 
 // find 페이지 footer 없앰 - 태그, 리스트 각각 스크롤
 const FindPage: FC = () => {
@@ -35,11 +36,11 @@ const FindPage: FC = () => {
         {/* <div className="flex items-end justify-between">
           <GenreFilter onChange={genre => overwriteFilter({ genre })} />
 
-          <OrderSelector onChange={id => overwriteFilter({ order: id })} />
         </div> */}
 
-        <div className="px-0.5 py-3">
+        <div className="px-0.5 py-3 flex justify-between">
           <Filters onChange={filters => overwriteFilter(filters)} />
+          <OrderSelector onChange={id => overwriteFilter({ order: id })} />
         </div>
 
         <div className="flex flex-1 gap-10 overflow-hidden">

@@ -21,7 +21,7 @@ const RecommendCard: FC<RecommendCardProps> = ({
 
   return (
     <Hovering
-      delay={600}
+      delay={500}
       onHover={() => setIsFocus(true)}
       onLeave={() => setIsFocus(false)}
     >
