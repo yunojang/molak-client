@@ -13,6 +13,7 @@ export interface PlayerProps {
   width?: number | string;
   height?: number | string;
   onProgress?: BaseReactPlayerProps['onProgress'];
+  onDuration?: BaseReactPlayerProps['onDuration'];
   onPlay?: () => void;
   onPause?: () => void;
 }
@@ -21,13 +22,13 @@ const Player: FC<PlayerProps> = ({
   content,
   width,
   height,
-  onProgress,
-  onPause,
-  onPlay,
+  onDuration,
+  ...props
 }) => {
   return (
     <div className="relative">
       <ReactPlayer
+        {...props}
         url={content?.url}
         width={width}
         height={height}
@@ -35,11 +36,8 @@ const Player: FC<PlayerProps> = ({
         playing
         loop={false}
         fallback={<PlayerFallback width={width} height={height} />}
-        onProgress={onProgress}
-        onPlay={onPlay}
-        onPause={onPause}
-        onEnded={onPause}
-        // onDuration={sec => setDuration(sec)}
+        onEnded={props.onPause}
+        onDuration={onDuration}
       />
     </div>
     // <Iframe

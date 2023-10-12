@@ -11,7 +11,7 @@ interface CloseButtonProps {
 const CloseButton: FC<CloseButtonProps> = ({ onClick }) => {
   return (
     <button className={clickableButtonStyle} onClick={onClick}>
-      <IconButton background="#000000aa" color="white" size={13}>
+      <IconButton background="#00000088" color="white" size={13}>
         <IoClose size={34} />
       </IconButton>
     </button>

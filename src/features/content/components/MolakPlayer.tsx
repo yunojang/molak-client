@@ -18,18 +18,21 @@ interface MolakPlayerProps {
 
 const MolakPlayer: FC<MolakPlayerProps> = ({ episodeId, ...playerProps }) => {
   const { content } = useContent(episodeId);
+  const [duration, setDuration] = useState<number>(Infinity);
   const [progress, setProgress] = useState<number>(0);
   const { content: nextContent } = useContent(episodeId + 1);
 
-  const showNextmove = progress > 0.9;
+  const restTime = duration - progress;
+  const showNextmove = restTime < 8;
   const hasNextEpisode = !!nextContent;
 
   return (
     <div className="relative">
       <Player
         {...playerProps}
+        onDuration={setDuration}
         content={content as Content}
-        onProgress={({ played }) => setProgress(played)}
+        onProgress={({ playedSeconds }) => setProgress(playedSeconds)}
       />
 
       {showNextmove && hasNextEpisode && (
