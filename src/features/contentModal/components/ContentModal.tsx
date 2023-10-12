@@ -11,6 +11,7 @@ import VideoFrame from './Elements/VideoFrame';
 import { useCoverNavigate } from '../hooks/useCoverNavigate';
 import CloseButton from './CloseButtont';
 import MolakPlayer from '@/features/content/components/MolakPlayer';
+import { PlayerFallback } from '@/features/content/components/Player';
 // import ContentToolBar from './ContentToolBar';
 
 const ContentModal: FC = () => {
@@ -19,6 +20,7 @@ const ContentModal: FC = () => {
 
   const videoWidth = useBreakPoint(p => (p.eqBigger('xl') ? 1120 : '100vw'));
   const videoHeight = 630;
+  const videoSize = { width: videoWidth, height: videoHeight };
 
   const isIntroPage = !episodeId;
   const [isPlay, setIsPlay] = useState<boolean>(true);
@@ -40,19 +42,18 @@ const ContentModal: FC = () => {
             </div>
           )}
 
-          <Suspense>
-            {isIntroPage ? (
-              <ContentIntroDetail id={id} />
-            ) : (
+          {isIntroPage ? (
+            <ContentIntroDetail id={id} />
+          ) : (
+            <Suspense fallback={<PlayerFallback {...videoSize} />}>
               <MolakPlayer
+                {...videoSize}
                 episodeId={episodeId}
-                width={videoWidth}
-                height={videoHeight}
                 onPlay={() => setIsPlay(true)}
                 onPause={() => setIsPlay(false)}
               />
-            )}
-          </Suspense>
+            </Suspense>
+          )}
         </VideoFrame>
 
         <RelationArea id={id} videoHeight={videoHeight} />

@@ -35,7 +35,9 @@ const Player: FC<PlayerProps> = ({
         controls
         playing
         loop={false}
-        fallback={<PlayerFallback width={width} height={height} />}
+        fallback={
+          <PlayerFallback width={width} height={height} color="#ff0000" />
+        }
         onEnded={props.onPause}
         onDuration={onDuration}
       />
@@ -55,14 +57,16 @@ export default Player;
 export const PlayerFallback = ({
   width,
   height,
+  color,
 }: {
   width?: number | string;
   height?: number | string;
+  color?: string;
 }) => (
   <div
     style={{ width, height }}
     className="bg-dark flex justify-center items-center"
   >
-    <Spinner size={60} />
+    <Spinner size={60} color={color} />
   </div>
 );
