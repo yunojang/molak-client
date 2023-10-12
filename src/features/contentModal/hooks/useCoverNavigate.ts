@@ -3,10 +3,10 @@ import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 
 export const useCoverNavigate = () => {
-  const bg = useBackgroundLocation();
   const navigate = useNavigate(); // has background location
   const bgLocation = useBackgroundLocation();
-  const keepNavigate = useNavigateWithBg(bg);
+
+  const keepNavigate = useNavigateWithBg(bgLocation);
   const { id: contentId } = useParams();
 
   const coverClose = () => navigate(bgLocation ?? '/');

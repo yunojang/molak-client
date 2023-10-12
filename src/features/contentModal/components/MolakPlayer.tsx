@@ -7,6 +7,7 @@ import Player from './Player';
 import { useNextEpisode } from '../../content/api/getNextEpisode';
 import NextEpisodeButton from './NextEpisodeButtont';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
+import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
 
 interface MolakPlayerProps {
   contentId: string;
@@ -22,7 +23,9 @@ const MolakPlayer: FC<MolakPlayerProps> = ({
   episodeId,
   ...playerProps
 }) => {
-  const navigate = useNavigateWithBg();
+  const bg = useBackgroundLocation();
+  const navigate = useNavigateWithBg(bg);
+
   const { content } = useContent(episodeId);
   const { episode: nextEpisode } = useNextEpisode(episodeId);
 

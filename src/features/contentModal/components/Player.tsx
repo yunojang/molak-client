@@ -35,7 +35,7 @@ const Player: FC<PlayerProps> = ({
   return (
     <div className="relative">
       <ReactPlayer
-        {...settings}
+        {...settings} // url
         width={width}
         height={height}
         controls
