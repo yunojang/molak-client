@@ -18,7 +18,7 @@ interface RelationsProps {
   videoHeight: number;
 }
 
-const Relations: FC<RelationsProps> = ({ id, videoHeight }) => {
+const RelationArea: FC<RelationsProps> = ({ id, videoHeight }) => {
   const bg = useBackgroundLocation();
   const keepNavigate = useNavigateWithBg(bg);
 
@@ -56,4 +56,4 @@ const Relations: FC<RelationsProps> = ({ id, videoHeight }) => {
   );
 };
 
-export default Relations;
+export default RelationArea;

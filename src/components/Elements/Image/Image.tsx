@@ -1,3 +1,4 @@
+import { cx } from '@emotion/css';
 import {
   FC,
   ImgHTMLAttributes,
@@ -12,7 +13,13 @@ interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   fallback?: ReactNode;
 }
 
-const Image: FC<ImageProps> = ({ useSuspense, src, fallback, ...rest }) => {
+const Image: FC<ImageProps> = ({
+  useSuspense,
+  src,
+  fallback,
+  className,
+  ...rest
+}) => {
   const imgRef = useRef<HTMLImageElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -25,7 +32,13 @@ const Image: FC<ImageProps> = ({ useSuspense, src, fallback, ...rest }) => {
 
   return (
     <>
-      <img {...rest} ref={imgRef} src={src} hidden={!isLoaded} />
+      <img
+        {...rest}
+        ref={imgRef}
+        src={src}
+        hidden={!isLoaded}
+        className={cx(className, 'object-cover')}
+      />
       {!isLoaded && fallback}
     </>
   );

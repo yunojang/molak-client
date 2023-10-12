@@ -14,7 +14,7 @@ interface ContentVideoDetailProps {
   id: string;
 }
 
-const ContentVideoDetail: FC<ContentVideoDetailProps> = ({ id }) => {
+const ContentIntroDetail: FC<ContentVideoDetailProps> = ({ id }) => {
   const bg = useBackgroundLocation();
   const keepNavigate = useNavigateWithBg(bg);
   const { content, isLoading: _isLoading } = useContent(id, {
@@ -26,8 +26,8 @@ const ContentVideoDetail: FC<ContentVideoDetailProps> = ({ id }) => {
   return (
     <div className="w-full h-full flex flex-col relative text-gray-100">
       {!isLoading && (
-        <div className="absolute top-0 left-0 w-full">
-          <Image src={content?.thumbnail} width="100%" className="" />
+        <div className="absolute top-0 left-0 w-full h-full">
+          <Image src={content?.thumbnail} width="100%" className="h-full" />
           <div
             className="absolute top-0 left-0 h-full w-full z-10"
             style={{
@@ -87,4 +87,4 @@ const ContentVideoDetail: FC<ContentVideoDetailProps> = ({ id }) => {
   );
 };
 
-export default ContentVideoDetail;
+export default ContentIntroDetail;
