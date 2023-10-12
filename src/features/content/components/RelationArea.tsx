@@ -20,7 +20,7 @@ interface RelationsProps {
 
 const RelationArea: FC<RelationsProps> = ({ id, videoHeight }) => {
   const bg = useBackgroundLocation();
-  const keepNavigate = useNavigateWithBg(bg);
+  const navigate = useNavigateWithBg(bg);
 
   const width = useBreakPoint(p => (p.eqBigger('2xl') ? 480 : '100%'));
   const height = useBreakPoint(p => (p.eqBigger('2xl') ? videoHeight : ''));
@@ -35,6 +35,10 @@ const RelationArea: FC<RelationsProps> = ({ id, videoHeight }) => {
     [],
   );
 
+  const handleSelectEpisode = (episodeId: string) => {
+    navigate(`/content/${id}/${episodeId}`);
+  };
+
   return (
     <div
       className={cx(`px-3 pb-5 rounded-md bg-white flex-1`, scrollYStyle)}
@@ -48,10 +52,7 @@ const RelationArea: FC<RelationsProps> = ({ id, videoHeight }) => {
         </Tabs>
       </div>
 
-      <EpisodeList
-        id={id}
-        onSelect={selected => keepNavigate(`/content/${id}/${selected}`)}
-      />
+      <EpisodeList id={id} onSelect={handleSelectEpisode} />
     </div>
   );
 };

@@ -36,7 +36,7 @@ export const content: Content = {
   description: '부산 취향 맞춤 여행, 고객만족 100% 전여친과 여행사를??',
   provider: '부산시', // 혹은 ProviderObject
   thumbnail: '/asset/images/thumb_temp2.png',
-  url: 'https://www.youtube.com/embed/_rEde994IqY',
+  url: 'https://www.youtube.com/watch?v=_rEde994IqY',
   tags: ['여행', '로맨스'],
   type: '시리즈',
   episode_id: 1,
@@ -49,7 +49,7 @@ export const content2: Content = {
     '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다고? 그런데..',
   provider: '하이틴 에이저 Hi-teenager', // 혹은 ProviderObject
   thumbnail: '/asset/images/thumb_temp.png',
-  url: 'https://www.youtube.com/embed/ILDjioKRJw4',
+  url: 'https://www.youtube.com/watch?v=ILDjioKRJw4',
   tags: ['일진', '찐따'],
   type: '시리즈',
   episode_id: 1,
@@ -62,7 +62,7 @@ export const content3: Content = {
   episode_id: 1,
   provider: '디즈니, 루카스필름',
   thumbnail: '/asset/images/thumb.jpeg',
-  url: 'https://www.youtube.com/embed/2Rm-cpUNAJU',
+  url: 'https://www.youtube.com/watch?v=2Rm-cpUNAJU',
   tags: ['스타워즈', 'SF'],
   type: '단편',
 };
@@ -74,7 +74,7 @@ export const content4: Content = {
   episode_id: 1,
   provider: '박찬욱, CJ 엔터테인먼트',
   thumbnail: '/asset/images/thumb.jpeg',
-  url: 'https://www.youtube.com/embed/2Rm-cpUNAJU',
+  url: 'https://www.youtube.com/watch?v=2Rm-cpUNAJU',
   tags: ['로맨스'],
   type: '단편',
 };

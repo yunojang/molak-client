@@ -1,0 +1,40 @@
+import { FC } from 'react';
+import { cx } from '@emotion/css';
+
+import { clickableButtonStyle } from '@/utils/style/button';
+import { BsCaretRightFill } from 'react-icons/bs';
+import { useCountDown } from '../hooks/useCountDown';
+
+interface NextEpisodeButtonProps {
+  onClick?(): void;
+  autoClickDelaySec?: number;
+}
+
+const NextEpisodeButton: FC<NextEpisodeButtonProps> = ({
+  autoClickDelaySec = 0,
+  onClick,
+}) => {
+  const { count } = useCountDown({
+    initCount: autoClickDelaySec,
+    immediateStart: true,
+    onZero() {
+      onClick?.();
+    },
+  });
+
+  return (
+    <button
+      onClick={onClick}
+      className={cx(
+        clickableButtonStyle,
+        'absolute right-7 bottom-20 z-20 p-3 pr-5 flex items-center gap-2 bg-white rounded-lg font-bold',
+      )}
+    >
+      <BsCaretRightFill size={20} />
+      <span>다음화 재생</span>
+      <span>{count}초</span>
+    </button>
+  );
+};
+
+export default NextEpisodeButton;

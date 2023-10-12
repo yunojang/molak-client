@@ -1,15 +1,15 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 
 // import { useContent } from '../api/getContent';
 
 import { Iframe } from '@/components/Elements/Iframe';
 import { Spinner } from '@/components/Elements/Spinner';
-import { Content } from '../types/dto';
+import { Content } from '../../content/types/dto';
 import { BaseReactPlayerProps } from 'react-player/base';
 
 export interface PlayerProps {
-  content: Content;
+  url: string;
   width?: number | string;
   height?: number | string;
   onProgress?: BaseReactPlayerProps['onProgress'];
@@ -19,26 +19,37 @@ export interface PlayerProps {
 }
 
 const Player: FC<PlayerProps> = ({
-  content,
+  url: inputUrl,
   width,
   height,
   onDuration,
-  ...props
+  onPause,
+  onPlay,
+  onProgress,
 }) => {
+  const [settings, setSettings] = useState<BaseReactPlayerProps>({
+    url: undefined,
+  });
+  useEffect(() => setSettings({ url: inputUrl }), [inputUrl]);
+
   return (
     <div className="relative">
       <ReactPlayer
-        {...props}
-        url={content?.url}
+        {...settings}
         width={width}
         height={height}
         controls
-        playing
+        playing={true}
         loop={false}
-        fallback={
-          <PlayerFallback width={width} height={height} color="#ff0000" />
-        }
-        onEnded={props.onPause}
+        // fallback={
+        //   <div className="flex justify-center items-center font-bold text-white">
+        //     유튜브 로딩중
+        //   </div>
+        // }
+        onProgress={onProgress}
+        onPlay={onPlay}
+        onPause={onPause}
+        onEnded={onPause}
         onDuration={onDuration}
       />
     </div>

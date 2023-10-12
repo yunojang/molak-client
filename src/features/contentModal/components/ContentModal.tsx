@@ -10,8 +10,8 @@ import { useBreakPoint } from '@/utils/breakpoint';
 import VideoFrame from './Elements/VideoFrame';
 import { useCoverNavigate } from '../hooks/useCoverNavigate';
 import CloseButton from './CloseButtont';
-import MolakPlayer from '@/features/content/components/MolakPlayer';
-import { PlayerFallback } from '@/features/content/components/Player';
+import MolakPlayer from '@/features/contentModal/components/MolakPlayer';
+import { PlayerFallback } from '@/features/contentModal/components/Player';
 // import ContentToolBar from './ContentToolBar';
 
 const ContentModal: FC = () => {
@@ -20,7 +20,6 @@ const ContentModal: FC = () => {
 
   const videoWidth = useBreakPoint(p => (p.eqBigger('xl') ? 1120 : '100vw'));
   const videoHeight = 630;
-  const videoSize = { width: videoWidth, height: videoHeight };
 
   const isIntroPage = !episodeId;
   const [isPlay, setIsPlay] = useState<boolean>(true);
@@ -45,9 +44,15 @@ const ContentModal: FC = () => {
           {isIntroPage ? (
             <ContentIntroDetail id={id} />
           ) : (
-            <Suspense fallback={<PlayerFallback {...videoSize} />}>
+            <Suspense
+              fallback={
+                <PlayerFallback width={videoWidth} height={videoHeight} />
+              }
+            >
               <MolakPlayer
-                {...videoSize}
+                contentId={id}
+                width={videoWidth}
+                height={videoHeight}
                 episodeId={episodeId}
                 onPlay={() => setIsPlay(true)}
                 onPause={() => setIsPlay(false)}

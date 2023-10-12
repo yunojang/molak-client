@@ -34,9 +34,10 @@ const AccumulateEpisodeList: FC<EpisodeListProps> = ({
     params,
     {
       suspense: false,
-      onSuccess: cached
-        ? undefined
-        : ({ content }) => setAccContents(prev => prev.concat(content)),
+      // onSuccess: cached
+      //   ? undefined
+      //   : ({ content }) => setAccContents(prev => prev.concat(content)),
+      onSuccess: ({ content }) => setAccContents(prev => prev.concat(content)),
     },
   );
 
