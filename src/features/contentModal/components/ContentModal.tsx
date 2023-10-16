@@ -10,8 +10,8 @@ import { useBreakPoint } from '@/utils/breakpoint';
 import VideoFrame from './Elements/VideoFrame';
 import { useCoverNavigate } from '../hooks/useCoverNavigate';
 import CloseButton from './CloseButtont';
-import MolakPlayer from '@/features/contentModal/components/MolakPlayer';
-import { PlayerFallback } from '@/features/contentModal/components/Player';
+import MolakPlayer from '@/features/contentModal/components/Player/MolakPlayer';
+import { PlayerFallback } from '@/features/contentModal/components/Player/Player';
 // import ContentToolBar from './ContentToolBar';
 
 const ContentModal: FC = () => {

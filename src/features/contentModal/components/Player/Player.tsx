@@ -5,7 +5,6 @@ import ReactPlayer from 'react-player';
 
 import { Iframe } from '@/components/Elements/Iframe';
 import { Spinner } from '@/components/Elements/Spinner';
-import { Content } from '../../content/types/dto';
 import { BaseReactPlayerProps } from 'react-player/base';
 
 export interface PlayerProps {
@@ -33,26 +32,24 @@ const Player: FC<PlayerProps> = ({
   useEffect(() => setSettings({ url: inputUrl }), [inputUrl]);
 
   return (
-    <div className="relative">
-      <ReactPlayer
-        {...settings} // url
-        width={width}
-        height={height}
-        controls
-        playing={true}
-        loop={false}
-        // fallback={
-        //   <div className="flex justify-center items-center font-bold text-white">
-        //     유튜브 로딩중
-        //   </div>
-        // }
-        onProgress={onProgress}
-        onPlay={onPlay}
-        onPause={onPause}
-        onEnded={onPause}
-        onDuration={onDuration}
-      />
-    </div>
+    <ReactPlayer
+      {...settings} // url
+      width={width}
+      height={height}
+      controls
+      playing={true}
+      loop={false}
+      // fallback={
+      //   <div className="flex justify-center items-center font-bold text-white">
+      //     유튜브 로딩중
+      //   </div>
+      // }
+      onProgress={onProgress}
+      onPlay={onPlay}
+      onPause={onPause}
+      onEnded={onPause}
+      onDuration={onDuration}
+    />
     // <Iframe
     //   style={{ width, height }}
     //   fallback={<PlayerFallback width={width} height={height} />}
