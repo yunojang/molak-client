@@ -6,29 +6,37 @@ import { Intro } from './types/dto';
 import { range } from '@/utils/range';
 
 // temp mock data
-export const intro1: Intro = {
+export const molak_intro: Intro = {
   image: '/asset/images/molak_intro.png',
-  text: '다양한 장르의\n웹드라마를 감상하세요',
-  description: '모락에서 직접 선정한 장르별로 원하는 웹드라마를 시청하세요',
-  button_text: 'MOLAK소개',
+  text: '웹드라마 추천 서비스',
+  // description: '모락에서 선별한 웹드라마를 시청하세요',
+  button_text: 'MOLAK 소개',
   link: '/about',
 };
 
-export const intro2: Intro = {
-  image: '/asset/images/thumb_temp.png',
-  text: '5억년버튼 \n 버튼만 누르면 1000만원을 준다!',
-  item_id: '1',
-  button_text: '보러가기',
+export const search_intro: Intro = {
+  image: '/asset/images/molak_intro.png',
+  text: '모락에서 추천하는 웹드라마',
+  description: '모락에서 선별한 웹드라마를 시청하세요',
+  button_text: '한번에 찾기',
+  link: '/find',
 };
 
-export const intro3: Intro = {
-  image: '/asset/images/intro_2.png',
-  text: '좌충우돌 직장생활',
-  item_id: '1',
-  button_text: '보러가기',
-};
+// export const intro2: Intro = {
+//   image: '/asset/images/thumb_temp.png',
+//   text: '5억년버튼 \n 버튼만 누르면 1000만원을 준다!',
+//   item_id: '1',
+//   button_text: '보러가기',
+// };
 
-export const introes: Intro[] = [intro1, intro2, intro3];
+// export const intro3: Intro = {
+//   image: '/asset/images/intro_2.png',
+//   text: '좌충우돌 직장생활',
+//   item_id: '1',
+//   button_text: '보러가기',
+// };
+
+export const introes: Intro[] = [molak_intro, search_intro];
 
 export const content: Content = {
   id: '1',

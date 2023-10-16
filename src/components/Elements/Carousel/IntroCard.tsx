@@ -31,7 +31,8 @@ const IntroCard: FC<IntroCardProps> = ({ intro, ...props }) => {
 
       {/* intro description */}
       <div className="absolute flex flex-col gap-3 left-10 bottom-12">
-        <div className="text-3xl font-bold text-white whitespace-pre-line">
+        <div className="text-gray-50 text-sm">{intro.description}</div>
+        <div className="text-2xl font-bold text-white whitespace-pre-line">
           {intro.text}
         </div>
         <Button
