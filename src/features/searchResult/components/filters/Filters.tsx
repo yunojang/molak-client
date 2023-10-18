@@ -12,35 +12,43 @@ const DEFAULT_FILTERS = {
 };
 
 interface FiltersProps {
-  defaultFilters?: { [k in keyof typeof DEFAULT_FILTERS]?: any };
+  filter?: { [k in keyof typeof DEFAULT_FILTERS]?: any };
+  // defaultFilters?: { [k in keyof typeof DEFAULT_FILTERS]?: any };
   onChange?(filter: any, isInit?: boolean): void;
 }
 
-const Filters: FC<FiltersProps> = ({ defaultFilters, onChange }) => {
-  const [filters, setFilters] = useState({});
+const Filters: FC<FiltersProps> = ({ filter, onChange }) => {
+  // const [filters, setFilters] = useState({});
 
   const handleChange = (changedFilter: {
     [k in keyof typeof DEFAULT_FILTERS]?: any;
   }) => {
-    const newFilter = { ...filters, ...changedFilter };
+    const newFilter = { ...filter, ...changedFilter };
     const isInit = isAllEmptyValues(newFilter);
 
     onChange?.(newFilter, isInit);
-    setFilters(newFilter);
+    // setFilters(newFilter);
   };
 
   return (
     <div className="flex items-center gap-3">
       <TypeFilter
+        value={filter?.type}
         defaultValue={DEFAULT_FILTERS.type}
         onChange={type => handleChange({ type })}
       />
       <GenreFilter
+        // defaultValue={defaultFilters?.genre ?? DEFAULT_FILTERS.genre}
+        value={filter?.genre}
         defaultValue={DEFAULT_FILTERS.genre}
+        // defaultValue={DEFAULT_FILTERS.genre}
         onChange={genre => handleChange({ genre })}
       />
       <TagFilter
+        // defaultValue={defaultFilters?.tags ?? DEFAULT_FILTERS.tags}
+        value={filter?.tags}
         defaultValue={DEFAULT_FILTERS.tags}
+        // defaultValue={DEFAULT_FILTERS.tags}
         onChange={tags => handleChange({ tags })}
       />
     </div>

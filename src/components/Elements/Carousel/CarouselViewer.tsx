@@ -24,7 +24,7 @@ const CarouselViewer: FC<CarouselViewerProps> = ({
   });
 
   return (
-    <div className="relative" style={{ width, height }}>
+    <div className="relative overflow-hidden" style={{ width, height }}>
       <div className={cx('absolute inset-0 z-10', next ? fadeOutCss : '')}>
         {current}
       </div>

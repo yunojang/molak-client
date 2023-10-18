@@ -1,6 +1,7 @@
 import { Content, RecommendContent } from '../content/types/dto';
 import { Feed, RecommendFeed } from '../feed/types/dto';
 import { Discover } from '../find/types';
+import { HotTag } from '../tags/types/dto';
 import { Intro } from './types/dto';
 
 import { range } from '@/utils/range';
@@ -18,7 +19,7 @@ export const search_intro: Intro = {
   image: '/asset/images/molak_intro.png',
   text: '모락에서 추천하는 웹드라마',
   description: '모락에서 선별한 웹드라마를 시청하세요',
-  button_text: '한번에 찾기',
+  button_text: '바로찾기',
   link: '/find',
 };
 
@@ -137,21 +138,58 @@ export const feeds: Feed[] = [
 ];
 
 export const discover: Discover = {
-  genres: ['코미디', '로맨스', '액션', '일상', '판타지', '스릴러'],
+  genres: ['코미디', '로맨스', '액션', '판타지/SF', '스릴러'],
   tags: [
     '학원',
     '대학',
     '연애',
     '수위',
     '찐따',
-    '공감',
     '일진',
     '복수',
     '친구',
+    '공감',
     '직업',
     '감동',
+    '일상',
+    '교훈',
+    '여행',
     '시대극',
     '드라마',
+    '좋은소재',
   ],
   types: ['시리즈', '단편'],
 };
+
+export const hot_tagas: HotTag[] = [
+  {
+    title: '❤️ 두근두근 연애 로맨스',
+    items: [
+      { name: '로맨스', type: 'genre' },
+      { name: '연애', type: 'tags' },
+    ],
+  },
+  {
+    title: '📔 요즘대세 스케치 코미디',
+    items: [{ name: '코미디', type: 'genre' }],
+  },
+  {
+    title: '👊 일진과 찐따',
+    items: [
+      { name: '일진', type: 'tags' },
+      { name: '찐따', type: 'tags' },
+    ],
+  },
+  {
+    title: '🖊️ 즐거운 학원물',
+    items: [{ name: '학원', type: 'tags' }],
+  },
+  {
+    title: '👻 등골저격 스릴러',
+    items: [{ name: '스릴러', type: 'genre' }],
+  },
+  {
+    title: '☕️ 빠르게 단편 하나',
+    items: [{ name: '단편', type: 'type' }],
+  },
+];
