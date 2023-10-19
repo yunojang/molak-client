@@ -29,10 +29,7 @@ const TagFilter: FC<Props> = ({ value, onChange }) => {
   } = useDiscover();
   const [selectedTags, setSelectedTags] = useState<string[]>(value ?? []);
 
-  const current = useMemo(
-    () => (value?.length ? value : selectedTags),
-    [value, selectedTags],
-  );
+  const current = useMemo(() => value ?? selectedTags, [value, selectedTags]);
 
   const display = useMemo(() => {
     switch (current.length) {
@@ -56,6 +53,8 @@ const TagFilter: FC<Props> = ({ value, onChange }) => {
   };
 
   const toneDownPrimary = adjust(env.colors.primary, -25);
+
+  console.log(value);
 
   return (
     <PopOver

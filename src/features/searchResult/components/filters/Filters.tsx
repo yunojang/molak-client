@@ -46,7 +46,7 @@ const Filters: FC<FiltersProps> = ({ filter, onChange }) => {
       />
       <TagFilter
         // defaultValue={defaultFilters?.tags ?? DEFAULT_FILTERS.tags}
-        value={filter?.tags}
+        value={filter?.tags ?? []}
         defaultValue={DEFAULT_FILTERS.tags}
         // defaultValue={DEFAULT_FILTERS.tags}
         onChange={tags => handleChange({ tags })}
