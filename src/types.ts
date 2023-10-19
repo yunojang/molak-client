@@ -31,3 +31,8 @@ export interface ContentResponse {
   totalElements: number;
   totalPages: number;
 }
+
+export interface SelectableProps<T = any> {
+  defaultvalue?: string;
+  onSelect?(v: T, idx: number): void;
+}

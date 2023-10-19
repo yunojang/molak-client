@@ -10,19 +10,22 @@ import { PopOver } from '@/components/Elements/Selector';
 import SelectOpenBox from '@/components/Elements/SelectOpenBox/SelectOpenBox';
 
 interface Props extends FilterProps {
+  value?: string;
   defaultValue: string;
   onChange?(genre: string | undefined): void;
   disabled?: boolean;
 }
 
-const GenreFilter: FC<Props> = ({ defaultValue, onChange }) => {
+const GenreFilter: FC<Props> = ({ value, defaultValue, onChange }) => {
   const { genres } = useDiscover();
-  const [selectedGenre, setSelectedGenre] = useState<string>(defaultValue);
-
-  const isSelected = selectedGenre !== defaultValue;
+  const [selectedGenre, setSelectedGenre] = useState<string>(
+    value ?? defaultValue,
+  );
+  const display = value ?? selectedGenre;
+  const isSelected = display !== defaultValue;
 
   const handleClick = (genre: string) => {
-    if (selectedGenre === genre) {
+    if (display === genre) {
       setSelectedGenre(defaultValue);
       onChange?.(undefined);
       return;
@@ -37,31 +40,33 @@ const GenreFilter: FC<Props> = ({ defaultValue, onChange }) => {
       trigger={
         <SelectOpenBox
           className={isSelected ? 'font-bold' : ''}
-          display={selectedGenre}
+          display={display}
         />
       }
       placement="bottom"
     >
       {close => (
         <div className="flex gap-1 p-5 shadow-xl">
-          {genres.map((genre, i) => (
-            <div
-              key={i}
-              style={{
-                backgroundColor:
-                  selectedGenre === genre
-                    ? adjust(env.colors.primary, -30)
+          {genres.map((genre, i) => {
+            const isSelected = display === genre;
+            return (
+              <div
+                key={i}
+                style={{
+                  backgroundColor: isSelected
+                    ? adjust(env.colors.primary, -25)
                     : 'white',
-              }}
-              className={cx(
-                selectedGenre === genre ? `text-white` : '',
-                'py-2 w-[5.2em] text-center border rounded-xl cursor-pointer text-lg font-bold select-none transition-all',
-              )}
-              onClick={() => handleClick(genre)}
-            >
-              {genre}
-            </div>
-          ))}
+                }}
+                className={cx(
+                  isSelected ? `text-white` : '',
+                  'py-2 w-[5.2em] text-center border rounded-xl cursor-pointer text-lg font-bold select-none transition-all',
+                )}
+                onClick={() => handleClick(genre)}
+              >
+                {genre}
+              </div>
+            );
+          })}
         </div>
       )}
     </PopOver>

@@ -1,34 +1,43 @@
 import { Content, RecommendContent } from '../content/types/dto';
 import { Feed, RecommendFeed } from '../feed/types/dto';
 import { Discover } from '../find/types';
+import { HotTag } from '../tags/types/dto';
 import { Intro } from './types/dto';
 
 import { range } from '@/utils/range';
 
 // temp mock data
-export const intro1: Intro = {
+export const molak_intro: Intro = {
   image: '/asset/images/molak_intro.png',
-  text: '다양한 장르의\n웹드라마를 감상하세요',
-  description: '모락에서 직접 선정한 장르별로 원하는 웹드라마를 시청하세요',
-  button_text: 'MOLAK소개',
+  text: '웹드라마 추천 서비스',
+  // description: '모락에서 선별한 웹드라마를 시청하세요',
+  button_text: 'MOLAK 소개',
   link: '/about',
 };
 
-export const intro2: Intro = {
-  image: '/asset/images/thumb_temp.png',
-  text: '5억년버튼 \n 버튼만 누르면 1000만원을 준다!',
-  item_id: '1',
-  button_text: '보러가기',
+export const search_intro: Intro = {
+  image: '/asset/images/molak_intro.png',
+  text: '모락에서 추천하는 웹드라마',
+  description: '모락에서 선별한 웹드라마를 시청하세요',
+  button_text: '바로찾기',
+  link: '/find',
 };
 
-export const intro3: Intro = {
-  image: '/asset/images/intro_2.png',
-  text: '좌충우돌 직장생활',
-  item_id: '1',
-  button_text: '보러가기',
-};
+// export const intro2: Intro = {
+//   image: '/asset/images/thumb_temp.png',
+//   text: '5억년버튼 \n 버튼만 누르면 1000만원을 준다!',
+//   item_id: '1',
+//   button_text: '보러가기',
+// };
 
-export const introes: Intro[] = [intro1, intro2, intro3];
+// export const intro3: Intro = {
+//   image: '/asset/images/intro_2.png',
+//   text: '좌충우돌 직장생활',
+//   item_id: '1',
+//   button_text: '보러가기',
+// };
+
+export const introes: Intro[] = [molak_intro, search_intro];
 
 export const content: Content = {
   id: '1',
@@ -129,21 +138,58 @@ export const feeds: Feed[] = [
 ];
 
 export const discover: Discover = {
-  genres: ['코미디', '로맨스', '액션', '일상', '판타지', '스릴러'],
+  genres: ['코미디', '로맨스', '액션', '판타지/SF', '스릴러'],
   tags: [
     '학원',
     '대학',
     '연애',
     '수위',
     '찐따',
-    '공감',
     '일진',
     '복수',
     '친구',
+    '공감',
     '직업',
     '감동',
+    '일상',
+    '교훈',
+    '여행',
     '시대극',
     '드라마',
+    '좋은소재',
   ],
   types: ['시리즈', '단편'],
 };
+
+export const hot_tagas: HotTag[] = [
+  {
+    title: '❤️ 두근두근 연애 로맨스',
+    items: [
+      { name: '로맨스', type: 'genre' },
+      { name: '연애', type: 'tags' },
+    ],
+  },
+  {
+    title: '📔 요즘대세 스케치 코미디',
+    items: [{ name: '코미디', type: 'genre' }],
+  },
+  {
+    title: '👊 일진과 찐따',
+    items: [
+      { name: '일진', type: 'tags' },
+      { name: '찐따', type: 'tags' },
+    ],
+  },
+  {
+    title: '🖊️ 즐거운 학원물',
+    items: [{ name: '학원', type: 'tags' }],
+  },
+  {
+    title: '👻 등골저격 스릴러',
+    items: [{ name: '스릴러', type: 'genre' }],
+  },
+  {
+    title: '☕️ 빠르게 단편 하나',
+    items: [{ name: '단편', type: 'type' }],
+  },
+];

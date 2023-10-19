@@ -1,0 +1,38 @@
+import { Circle } from '@/components/Elements/Circle';
+import { FC } from 'react';
+
+export interface IntroductionCardProps {
+  type: '꼭 봐야하는' | '한번 해보세요' | '모락 새기능';
+  title: string;
+  background: string;
+  img?: string;
+  description?: string;
+}
+
+const IntroductionCard: FC<IntroductionCardProps> = ({
+  background,
+  title,
+  type,
+  img,
+  description,
+}) => {
+  return (
+    <div
+      className="flex justify-between gap-10 rounded-md p-7 pr-3 h-[16em] flex-1 cursor-pointer"
+      style={{ background }}
+    >
+      <div className="flex flex-col gap-3">
+        <span className="text-sm text-gray-600 font-bold">{type}</span>
+        <span className="text-2xl font-bold">{title}</span>
+        <span className="">{description}</span>
+      </div>
+      <div className="self-center">
+        <Circle size={200} background="#eee">
+          {img && <img src={img} alt="img" />}
+        </Circle>
+      </div>
+    </div>
+  );
+};
+
+export default IntroductionCard;

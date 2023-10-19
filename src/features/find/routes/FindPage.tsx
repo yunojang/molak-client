@@ -1,24 +1,19 @@
-import { FC, useState, useMemo } from 'react';
-// import { cx } from '@emotion/css';
-import { withScrollLoad } from '@/components/List/withScrollLoad';
+import { FC, useState } from 'react';
+import { cx } from '@emotion/css';
 
-import PageLayout from '@/components/Elements/Layout/PageLayout';
-import AccumulateContentList from '@/features/content/components/AccumulateContentList';
 import { PageIntroTitle } from '@/components/Elements/Title';
-// import GenreFilter from './GenreFilter';
-// import TagFilter from './TagFilter';
-// import TypeFilter from './TypeFilter';
-
-import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
-import { useCardCount } from '@/features/content/hooks/useCardCount';
-import { FIND_TITLE } from '../constant/title';
-// import OrderSelector from './Elements/OrderSelector';
-// import FitlerTitle from './Elements/FilterTitle';
-// import { scrollYStyle } from '@/utils/style/scroll';
-import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentCardList';
 import Filters from '@/features/searchResult/components/filters/Filters';
 import FindContentList from '../components/FindedContentList';
 import OrderSelector from '../components/Elements/OrderSelector';
+
+import { FIND_TITLE } from '../constant/title';
+import FindContentLayout from '../components/Layout/FindContentLayout';
+import { introCards } from '../constant/introcard';
+import FindMainCard from '../components/FindMainCard/FindMainCard';
+import IntroductionCard from '../components/FindMainCard/IntroductionCard';
+import HotTags from '@/features/tags/components/HotTags';
+import { HotTag } from '@/features/tags/types/dto';
+import { scrollXStyle } from '@/utils/style/scroll';
 
 // find 페이지 footer 없앰 - 태그, 리스트 각각 스크롤
 const FindPage: FC = () => {
@@ -28,35 +23,75 @@ const FindPage: FC = () => {
     setFilter(prev => ({ ...prev, ...filter }));
   };
 
+  const handleSelectHotTag = (tag: HotTag) => {
+    const filters = tag.items.reduce(
+      (obj: any, cur) => ({
+        ...obj,
+        // 태그라면, 기존 obj에 (없으면 []로 초기화) 추가
+        [cur.type]:
+          cur.type === 'tags' ? [...(obj[cur.type] ?? []), cur.name] : cur.name,
+      }),
+      {},
+    );
+
+    setFilter(filters);
+  };
+
   return (
-    <PageLayout className="box-border flex flex-col overflow-hidden h-ch ">
-      <PageIntroTitle {...FIND_TITLE} marginBottom={3} />
+    <div className="flex flex-col py-3">
+      {/* <ToScroll to={0} /> */}
 
-      <div className="flex flex-col flex-1 gap-7 overflow-hidden">
-        {/* <div className="flex items-end justify-between">
-          <GenreFilter onChange={genre => overwriteFilter({ genre })} />
+      <FindContentLayout>
+        <PageIntroTitle {...FIND_TITLE} marginBottom={3} />
+      </FindContentLayout>
 
-        </div> */}
+      <div className="flex flex-col flex-1 gap-7 ">
+        <FindContentLayout>
+          <FindMainCard />
+        </FindContentLayout>
 
-        <div className="px-0.5 py-3 flex justify-between">
-          <Filters onChange={filters => overwriteFilter(filters)} />
-          <OrderSelector onChange={id => overwriteFilter({ order: id })} />
+        <FindContentLayout>
+          <div className="flex gap-7">
+            {introCards.map((card, idx) => (
+              <IntroductionCard key={idx} {...card} />
+            ))}
+          </div>
+        </FindContentLayout>
+
+        <FindContentLayout>
+          <div className="text-lg font-bold mb-3">핫한 키워드</div>
+          <div className={cx(scrollXStyle, 'w-full py-1')}>
+            <HotTags onSelect={handleSelectHotTag} />
+          </div>
+        </FindContentLayout>
+
+        <div className="px-space py-3 top-header sticky left-0 z-10 bg-white">
+          <div className="text-lg font-bold mb-3">필터로 찾기</div>
+          <div className="flex justify-between">
+            <Filters
+              filter={filter}
+              onChange={filters => overwriteFilter(filters)}
+            />
+            <OrderSelector onChange={id => overwriteFilter({ order: id })} />
+          </div>
         </div>
 
-        <div className="flex flex-1 gap-10 overflow-hidden">
-          {/* <div className={cx(scrollYStyle, 'w-48 h-full pb-10')}>
+        <FindContentLayout>
+          <FindContentList filter={filter} />
+        </FindContentLayout>
+      </div>
+    </div>
+  );
+};
+
+export default FindPage;
+
+{
+  /* <div className={cx(scrollYStyle, 'w-48 h-full pb-10')}>
             <FitlerTitle title="태그" />
             <TagFilter onChange={tags => overwriteFilter({ tags })} />
 
             <FitlerTitle title="타입" />
             <TypeFilter onChange={type => overwriteFilter({ type })} />
-          </div> */}
-
-          <FindContentList filter={filter} />
-        </div>
-      </div>
-    </PageLayout>
-  );
-};
-
-export default FindPage;
+          </div> */
+}

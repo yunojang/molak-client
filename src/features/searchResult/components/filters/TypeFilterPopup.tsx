@@ -1,23 +1,26 @@
 import { FC, useState } from 'react';
+import { cx } from '@emotion/css';
 
 import { FilterProps } from '@/components/Wrapper/withFilter';
 import { PopOver } from '@/components/Elements/Selector';
 import SelectOpenBox from '@/components/Elements/SelectOpenBox/SelectOpenBox';
-import { cx } from '@emotion/css';
+
 import { adjust } from '@/utils/style/color';
 import { env } from '@/config';
+import { clickableButtonStyle } from '@/utils/style/button';
 
 interface TypeFilterProps extends FilterProps {
+  value?: string;
   defaultValue: string;
   onChange?(type: string | undefined): void;
 }
 
 const TYPES = ['모든 작품', '시리즈', '단편'];
 
-const TypeFilter: FC<TypeFilterProps> = ({ onChange, defaultValue }) => {
-  const [type, setType] = useState(defaultValue);
-
-  const isSelected = type !== defaultValue;
+const TypeFilter: FC<TypeFilterProps> = ({ onChange, defaultValue, value }) => {
+  const [type, setType] = useState(value ?? defaultValue);
+  const display = value ?? type;
+  const alreadySelect = display !== defaultValue;
 
   const handleSelect = (type: string) => {
     setType(type);
@@ -30,19 +33,19 @@ const TypeFilter: FC<TypeFilterProps> = ({ onChange, defaultValue }) => {
     <PopOver
       trigger={
         <SelectOpenBox
-          className={isSelected ? 'font-bold' : ''}
-          display={type}
+          className={alreadySelect ? 'font-bold' : ''}
+          display={display}
         />
       }
       placement="bottom"
     >
       {close => (
-        <div className="flex items-center px-7 py-5 gap-1 shadow-xl rounded-lg">
+        <div className="flex flex-col items-center px-5 py-5 gap-1 shadow-xl rounded-lg">
           {TYPES.map((item, i) => (
             <TypeItem
               key={i}
               type={item}
-              selected={item == type}
+              selected={item == display}
               onClick={() => handleSelect(item)}
             />
           ))}
@@ -55,17 +58,24 @@ const TypeFilter: FC<TypeFilterProps> = ({ onChange, defaultValue }) => {
 export default TypeFilter;
 
 const TypeItem = ({ type, selected, onClick }: any) => {
-  const borderColor = selected ? adjust(env.colors.primary, -40) : '#f0f0f0';
+  const borderColor = selected
+    ? adjust(env.colors.primary, -15)
+    : 'transparent';
 
   return (
     <div
-      style={{ borderColor }}
-      className={cx(
-        'w-32 p-3 cursor-pointer select-none border-2 rounded-xl text-center font-bold transition-all',
-      )}
-      onClick={onClick}
+      className={cx('p-1  border-2 rounded-xl')}
+      style={{ width: '20em', borderColor }}
     >
-      {type}
+      <div
+        // style={{ borderColor }}
+        className={cx(
+          'p-3 cursor-pointer select-none rounded-xl text-center font-bold transition-all bg-gray-50',
+        )}
+        onClick={onClick}
+      >
+        {type}
+      </div>
     </div>
   );
 };

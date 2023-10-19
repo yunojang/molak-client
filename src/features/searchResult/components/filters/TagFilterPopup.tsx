@@ -12,7 +12,8 @@ import { env } from '@/config';
 import Bubble from '@/components/Elements/bubble';
 
 interface Props extends FilterProps {
-  defaultValue: string[];
+  value?: string[];
+  // defaultValue: string[];
   onChange?(tags: string[] | undefined): void;
   disabled?: boolean;
 }
@@ -20,29 +21,41 @@ interface Props extends FilterProps {
 // const wrapArray = (value: string | string[]) =>
 //   Array.isArray(value) ? value : [value];
 
-const TagFilter: FC<Props> = ({ defaultValue, onChange }) => {
+const emptyValue = '전체태그';
+
+const TagFilter: FC<Props> = ({ value, onChange }) => {
   const {
     discover: { tags },
   } = useDiscover();
-  const [selectedTags, setSelectedTags] = useState<string[]>(defaultValue);
+  const [selectedTags, setSelectedTags] = useState<string[]>(value ?? []);
 
-  const display = useMemo(
-    () =>
-      selectedTags.length === 1 ? selectedTags[0] : `${selectedTags[0]} 외`,
-    [selectedTags],
+  const current = useMemo(
+    () => (value?.length ? value : selectedTags),
+    [value, selectedTags],
   );
 
+  const display = useMemo(() => {
+    switch (current.length) {
+      case 0:
+        return emptyValue;
+      case 1:
+        return current[0];
+      default:
+        return `${current[0]} 외 `;
+    }
+  }, [current]);
+
   const isSelected = useMemo(
-    () => selectedTags[0] != defaultValue[0] || selectedTags.length >= 2,
-    [selectedTags, defaultValue],
+    () => current[0] !== emptyValue || current.length >= 2,
+    [current],
   );
 
   const handleChange = (tags: string[]) => {
-    setSelectedTags(tags.length ? tags : defaultValue);
+    setSelectedTags(tags);
     onChange?.(tags);
   };
 
-  const toneDownPrimary = adjust(env.colors.primary, -30);
+  const toneDownPrimary = adjust(env.colors.primary, -25);
 
   return (
     <PopOver
@@ -52,9 +65,9 @@ const TagFilter: FC<Props> = ({ defaultValue, onChange }) => {
             display={display}
             className={isSelected ? 'font-bold' : ''}
           />
-          {selectedTags.length > 1 && (
+          {current.length > 1 && (
             <Bubble size="1.5rem" color={toneDownPrimary}>
-              {selectedTags.length}
+              {current.length}
             </Bubble>
           )}
         </div>
@@ -63,17 +76,23 @@ const TagFilter: FC<Props> = ({ defaultValue, onChange }) => {
     >
       {close => (
         <div className="flex flex-wrap gap-1 p-5 shadow-xl rounded-xl w-[30vw]">
-          <CheckboxGroup colorScheme="molak" onChange={handleChange}>
-            {tags.map((tag, i) => (
-              <Checkbox
-                value={tag}
-                size="lg"
-                key={i}
-                className={cx(checkBg, 'py-2 px-5  rounded-full')}
-              >
-                {tag}
-              </Checkbox>
-            ))}
+          <CheckboxGroup
+            colorScheme="molak"
+            onChange={handleChange}
+            value={current}
+          >
+            {tags.map((tag, i) => {
+              return (
+                <Checkbox
+                  value={tag}
+                  size="lg"
+                  key={i}
+                  className={cx(checkBg, 'py-2 px-5  rounded-full')}
+                >
+                  {tag}
+                </Checkbox>
+              );
+            })}
           </CheckboxGroup>
         </div>
       )}

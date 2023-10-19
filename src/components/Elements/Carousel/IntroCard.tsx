@@ -1,16 +1,34 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 
 import { Intro } from '@/features/common/types/dto';
 import { Button } from '@chakra-ui/react';
 import { Image } from '../Image';
+import { cx } from '@emotion/css';
 
 interface IntroCardProps extends React.HTMLAttributes<HTMLDivElement> {
   intro: Intro;
+  align?: 'left' | 'center' | 'right';
+  verticalAlign?: 'top' | 'center' | 'bottom';
 }
 
-const IntroCard: FC<IntroCardProps> = ({ intro, ...props }) => {
+const alignMap = {
+  left: 'left-10',
+  center: 'left-1/2',
+  right: 'right-10',
+};
+
+const verticalAlignMap = {
+  top: 'top-5',
+  center: 'top-1/2',
+  bottom: 'bottom-10',
+};
+
+const IntroCard: FC<IntroCardProps> = ({
+  intro,
+  align = 'left',
+  verticalAlign = 'bottom',
+  ...props
+}) => {
   return (
     <div {...props} className="w-full h-full overflow-hidden cursor-pointer ">
       {/* image wrap */}
@@ -30,17 +48,26 @@ const IntroCard: FC<IntroCardProps> = ({ intro, ...props }) => {
       </div>
 
       {/* intro description */}
-      <div className="absolute flex flex-col gap-3 left-10 bottom-12">
-        <div className="text-3xl font-bold text-white whitespace-pre-line">
+      <div
+        className={cx(
+          verticalAlignMap[verticalAlign],
+          alignMap[align],
+          'absolute flex flex-col gap-3 ',
+        )}
+      >
+        <div className="text-gray-50 text-sm">{intro.description}</div>
+        <div className="text-2xl font-bold text-white whitespace-pre-line">
           {intro.text}
         </div>
-        <Button
-          className="self-start font-bold  transition-all  duration-300  bg-white py-6  hover:bg-gray-100 active:bg-gray-200 hover:shadow-md"
-          size="md"
-          width={140}
-        >
-          {intro.button_text}
-        </Button>
+        {intro.button_text && (
+          <Button
+            className="self-start font-bold  transition-all  duration-300  bg-white py-6  hover:bg-gray-100 active:bg-gray-200 hover:shadow-md"
+            size="md"
+            width={140}
+          >
+            {intro.button_text}
+          </Button>
+        )}
       </div>
     </div>
   );
