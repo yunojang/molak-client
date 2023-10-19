@@ -12,6 +12,7 @@ import { useCoverNavigate } from '../hooks/useCoverNavigate';
 import CloseButton from './CloseButtont';
 import MolakPlayer from '@/features/contentModal/components/Player/MolakPlayer';
 import { PlayerFallback } from '@/features/contentModal/components/Player/Player';
+import { ContentIdContext } from '../store/ContentIdContext';
 // import ContentToolBar from './ContentToolBar';
 
 const ContentModal: FC = () => {
@@ -26,6 +27,7 @@ const ContentModal: FC = () => {
   const showCloseButton = isIntroPage || !isPlay;
 
   if (!id) throw new Error('[dev] route error, id is required');
+
   return (
     <Modal
       isOpen
@@ -34,34 +36,34 @@ const ContentModal: FC = () => {
       // fixedChildren={<ContentToolBar isEpisodePage={!!episodeId} />}
     >
       <ContentModalLayout>
-        <VideoFrame width={videoWidth} height={videoHeight}>
-          {showCloseButton && (
-            <div className="absolute top-3 right-3 z-30">
-              <CloseButton onClick={coverClose} />
-            </div>
-          )}
+        <ContentIdContext.Provider value={{ contentId: id, episodeId }}>
+          <VideoFrame width={videoWidth} height={videoHeight}>
+            {showCloseButton && (
+              <div className="absolute top-3 right-3 z-30">
+                <CloseButton onClick={coverClose} />
+              </div>
+            )}
 
-          {isIntroPage ? (
-            <ContentIntroDetail id={id} />
-          ) : (
-            <Suspense
-              fallback={
-                <PlayerFallback width={videoWidth} height={videoHeight} />
-              }
-            >
-              <MolakPlayer
-                contentId={id}
-                width={videoWidth}
-                height={videoHeight}
-                episodeId={episodeId}
-                onPlay={() => setIsPlay(true)}
-                onPause={() => setIsPlay(false)}
-              />
-            </Suspense>
-          )}
-        </VideoFrame>
+            {isIntroPage ? (
+              <ContentIntroDetail />
+            ) : (
+              <Suspense
+                fallback={
+                  <PlayerFallback width={videoWidth} height={videoHeight} />
+                }
+              >
+                <MolakPlayer
+                  width={videoWidth}
+                  height={videoHeight}
+                  onPlay={() => setIsPlay(true)}
+                  onPause={() => setIsPlay(false)}
+                />
+              </Suspense>
+            )}
+          </VideoFrame>
 
-        <RelationArea id={id} videoHeight={videoHeight} />
+          <RelationArea id={id} videoHeight={videoHeight} />
+        </ContentIdContext.Provider>
       </ContentModalLayout>
     </Modal>
   );

@@ -13,5 +13,5 @@ export const useCoverNavigate = () => {
   const toContentIntro = () => keepNavigate(`/content/${contentId}`);
   const toBack = () => keepNavigate(-1);
 
-  return { coverClose, toContentIntro, toBack };
+  return { keepNavigate, coverClose, toContentIntro, toBack };
 };

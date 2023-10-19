@@ -1,14 +1,15 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 
 // import { useContent } from '../api/getContent';
+// import { Iframe } from '@/components/Elements/Iframe';
 
-import { Iframe } from '@/components/Elements/Iframe';
 import { Spinner } from '@/components/Elements/Spinner';
 import { BaseReactPlayerProps } from 'react-player/base';
+import { useContent } from '@/features/content/api/getContent';
 
 export interface PlayerProps {
-  url: string;
+  url?: string;
   width?: number | string;
   height?: number | string;
   onProgress?: BaseReactPlayerProps['onProgress'];
@@ -18,7 +19,7 @@ export interface PlayerProps {
 }
 
 const Player: FC<PlayerProps> = ({
-  url: inputUrl,
+  url,
   width,
   height,
   onDuration,
@@ -26,17 +27,18 @@ const Player: FC<PlayerProps> = ({
   onPlay,
   onProgress,
 }) => {
-  const [settings, setSettings] = useState<BaseReactPlayerProps>({
-    url: undefined,
-  });
-  useEffect(() => setSettings({ url: inputUrl }), [inputUrl]);
+  // const [url, setur];
+  // const { content } = useContent(episodeId);
+
+  // useEffect(() => {}, [content?.url]);
 
   return (
     <ReactPlayer
-      {...settings} // url
+      url={url}
+      // {...settings} // url
       width={width}
       height={height}
-      controls
+      // controls
       playing={true}
       loop={false}
       // fallback={

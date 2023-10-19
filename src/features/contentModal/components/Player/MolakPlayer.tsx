@@ -1,11 +1,12 @@
-import { FC, useRef, useState } from 'react';
+import { FC, useContext, useMemo, useRef, useState } from 'react';
 import { cx } from '@emotion/css';
 
 import { useContent } from '../../../content/api/getContent';
-import { useDisclosure } from '@/hooks/useClosure';
 import { useNextEpisode } from '../../../content/api/getNextEpisode';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
+
+import { ContentIdContext } from '../../store/ContentIdContext';
 
 import Player from './Player';
 import NextEpisodeButton from '../NextEpisodeButtont';
@@ -15,8 +16,8 @@ import { IconButton } from '@/components/Elements/IconButton';
 import { BiExitFullscreen } from 'react-icons/bi';
 
 interface MolakPlayerProps {
-  contentId: string;
-  episodeId: string;
+  // contentId: string;
+  // episodeId: string;
   width?: number | string;
   height?: number | string;
   onPlay?: () => void;
@@ -24,12 +25,13 @@ interface MolakPlayerProps {
 }
 
 const MolakPlayer: FC<MolakPlayerProps> = ({
-  contentId,
-  episodeId,
   width,
   height,
   ...playerProps
 }) => {
+  const { contentId, episodeId } = useContext(ContentIdContext);
+  if (!episodeId) throw new Error('[dev-route] episodeId is required');
+
   const bg = useBackgroundLocation();
   const navigate = useNavigateWithBg(bg);
 
@@ -47,11 +49,6 @@ const MolakPlayer: FC<MolakPlayerProps> = ({
   };
 
   const container = useRef<HTMLDivElement>(null);
-  // const {
-  //   isOpen: isFullScreen,
-  //   onOpen: setFullScreen,
-  //   onClose: setExitFullScreen,
-  // } = useDisclosure(false);
   const isFullScreen = !!document.fullscreenElement;
 
   const handleFullscreen = () => {
@@ -62,16 +59,27 @@ const MolakPlayer: FC<MolakPlayerProps> = ({
     document.exitFullscreen();
   };
 
-  if (!content) return <div>찾을 수 없는 컨텐츠 입니다.</div>;
+  const contentWidth = useMemo(
+    () => (isFullScreen ? '100%' : width),
+    [isFullScreen, width],
+  );
+
+  const contentHeight = useMemo(
+    () => (isFullScreen ? '100%' : height),
+    [isFullScreen, height],
+  );
+
+  if (!content) return <div>찾을 수 없는 컨텐츠 입니다.</div>; // 컴포넌트 개발
   return (
     <div className="relative" ref={container}>
       <Player
-        {...playerProps}
-        url={content?.url}
-        width={isFullScreen ? '100%' : width}
-        height={isFullScreen ? '100%' : height}
+        key={content.url}
+        url={content.url}
+        width={contentWidth}
+        height={contentHeight}
         onDuration={setDuration}
         onProgress={({ playedSeconds }) => setProgress(playedSeconds)}
+        {...playerProps}
       />
 
       {showNextmove && hasNextEpisode && (

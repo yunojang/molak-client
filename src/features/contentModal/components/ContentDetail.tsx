@@ -1,23 +1,25 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 
 import { useContent } from '../../content/api/getContent';
-import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
+import { useCoverNavigate } from '../hooks/useCoverNavigate';
 
 import { IconButton } from '@/components/Elements/IconButton';
 import { BsFillPlayFill } from 'react-icons/bs';
 import ContentTag from './Elements/ContentTag';
 import SkeletonContentDetail from './Elements/SkeletonContentDetail';
-import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
 import { Image } from '@/components/Elements/Image';
+import { ContentIdContext } from '../store/ContentIdContext';
 
 interface ContentVideoDetailProps {
-  id: string;
+  _?: any;
+  // id: string;
 }
 
-const ContentIntroDetail: FC<ContentVideoDetailProps> = ({ id }) => {
-  const bg = useBackgroundLocation();
-  const keepNavigate = useNavigateWithBg(bg);
-  const { content, isLoading: _isLoading } = useContent(id, {
+const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
+  const { contentId } = useContext(ContentIdContext);
+  const { keepNavigate } = useCoverNavigate();
+
+  const { content, isLoading: _isLoading } = useContent(contentId, {
     suspense: false,
   });
 
@@ -68,7 +70,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = ({ id }) => {
           <div
             className="flex gap-5 items-center cursor-pointer"
             onClick={() =>
-              keepNavigate(`/content/${id}/${content?.episode_id}`)
+              keepNavigate(`/content/${contentId}/${content?.episode_id}`)
             }
           >
             <IconButton size={24} background="#89898957">
