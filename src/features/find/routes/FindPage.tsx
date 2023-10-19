@@ -69,7 +69,7 @@ const FindPage: FC = () => {
           <div className="text-lg font-bold mb-3">필터로 찾기</div>
           <div className="flex justify-between">
             <Filters
-              filter={filter}
+              value={filter}
               onChange={filters => overwriteFilter(filters)}
             />
             <OrderSelector onChange={id => overwriteFilter({ order: id })} />

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 
 import GenreFilter from '@/features/find/components/GenreFilterPopup';
 import TypeFilter from './TypeFilterPopup';
@@ -12,41 +12,42 @@ const DEFAULT_FILTERS = {
 };
 
 interface FiltersProps {
-  filter?: { [k in keyof typeof DEFAULT_FILTERS]?: any };
-  // defaultFilters?: { [k in keyof typeof DEFAULT_FILTERS]?: any };
+  value?: { [k in keyof typeof DEFAULT_FILTERS]?: any };
+  defaultValues?: { [k in keyof typeof DEFAULT_FILTERS]?: any };
   onChange?(filter: any, isInit?: boolean): void;
 }
 
-const Filters: FC<FiltersProps> = ({ filter, onChange }) => {
-  // const [filters, setFilters] = useState({});
+const Filters: FC<FiltersProps> = ({ value, defaultValues, onChange }) => {
+  const [filters, setFilters] = useState(defaultValues);
+  const current = useMemo(() => value ?? filters, [value, filters]);
 
   const handleChange = (changedFilter: {
     [k in keyof typeof DEFAULT_FILTERS]?: any;
   }) => {
-    const newFilter = { ...filter, ...changedFilter };
+    const newFilter = { ...current, ...changedFilter };
     const isInit = isAllEmptyValues(newFilter);
 
     onChange?.(newFilter, isInit);
-    // setFilters(newFilter);
+    setFilters(newFilter);
   };
 
   return (
     <div className="flex items-center gap-3">
       <TypeFilter
-        value={filter?.type}
+        value={current?.type}
         defaultValue={DEFAULT_FILTERS.type}
         onChange={type => handleChange({ type })}
       />
       <GenreFilter
         // defaultValue={defaultFilters?.genre ?? DEFAULT_FILTERS.genre}
-        value={filter?.genre}
+        value={current?.genre}
         defaultValue={DEFAULT_FILTERS.genre}
         // defaultValue={DEFAULT_FILTERS.genre}
         onChange={genre => handleChange({ genre })}
       />
       <TagFilter
         // defaultValue={defaultFilters?.tags ?? DEFAULT_FILTERS.tags}
-        value={filter?.tags ?? []}
+        value={current?.tags}
         defaultValue={DEFAULT_FILTERS.tags}
         // defaultValue={DEFAULT_FILTERS.tags}
         onChange={tags => handleChange({ tags })}

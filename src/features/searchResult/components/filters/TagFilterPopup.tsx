@@ -54,8 +54,6 @@ const TagFilter: FC<Props> = ({ value, onChange }) => {
 
   const toneDownPrimary = adjust(env.colors.primary, -25);
 
-  console.log(value);
-
   return (
     <PopOver
       trigger={
