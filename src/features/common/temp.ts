@@ -185,11 +185,11 @@ export const hot_tagas: HotTag[] = [
     items: [{ name: '학원', type: 'tags' }],
   },
   {
-    title: '👻 등골저격 스릴러',
+    title: '👻 등골오싹 스릴러',
     items: [{ name: '스릴러', type: 'genre' }],
   },
   {
-    title: '☕️ 빠르게 단편 하나',
+    title: '☕️ 빠른 단편 하나',
     items: [{ name: '단편', type: 'type' }],
   },
 ];

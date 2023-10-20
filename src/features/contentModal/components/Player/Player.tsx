@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player';
 
 // import { useContent } from '../api/getContent';
@@ -6,52 +6,50 @@ import ReactPlayer from 'react-player';
 
 import { Spinner } from '@/components/Elements/Spinner';
 import { BaseReactPlayerProps } from 'react-player/base';
-import { useContent } from '@/features/content/api/getContent';
 
-export interface PlayerProps {
+export interface PlayerProps extends BaseReactPlayerProps {
   url?: string;
   width?: number | string;
   height?: number | string;
-  onProgress?: BaseReactPlayerProps['onProgress'];
-  onDuration?: BaseReactPlayerProps['onDuration'];
-  onPlay?: () => void;
-  onPause?: () => void;
+  played?: number;
 }
 
 const Player: FC<PlayerProps> = ({
   url,
   width,
   height,
-  onDuration,
-  onPause,
-  onPlay,
-  onProgress,
+  playIcon = <Spinner size={60} />,
+  played = 0,
+  ...playerProps
 }) => {
   // const [url, setur];
   // const { content } = useContent(episodeId);
 
   // useEffect(() => {}, [content?.url]);
 
+  const ref = useRef<ReactPlayer>(null);
+
+  useEffect(() => {
+    ref.current?.seekTo(played);
+  }, [played]);
+
   return (
     <ReactPlayer
+      ref={ref}
+      key={url}
       url={url}
-      // {...settings} // url
       width={width}
       height={height}
-      // controls
-      playing={true}
+      {...playerProps}
+      controls={false}
       loop={false}
       // fallback={
       //   <div className="flex justify-center items-center font-bold text-white">
       //     유튜브 로딩중
       //   </div>
       // }
-      onProgress={onProgress}
-      onPlay={onPlay}
-      onPause={onPause}
-      onEnded={onPause}
-      onDuration={onDuration}
     />
+
     // <Iframe
     //   style={{ width, height }}
     //   fallback={<PlayerFallback width={width} height={height} />}

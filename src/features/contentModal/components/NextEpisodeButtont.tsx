@@ -14,12 +14,11 @@ const NextEpisodeButton: FC<NextEpisodeButtonProps> = ({
   autoClickDelaySec = 0,
   onClick,
 }) => {
+  //  0초까지 줄어들면 onClick 실행
   const { count } = useCountDown({
     initCount: autoClickDelaySec,
     immediateStart: true,
-    onZero() {
-      onClick?.();
-    },
+    onZero: onClick,
   });
 
   return (

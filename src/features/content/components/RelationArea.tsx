@@ -1,24 +1,27 @@
-import { FC, useMemo } from 'react';
+import { FC, useContext, useMemo } from 'react';
 import { cx } from '@emotion/css';
 
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
-import { withScrollLoad } from '@/components/List/withScrollLoad';
 
 import AccumulateEpisodeList from '../../contentModal/components/Episode/AccumulateEpisodeList';
 import SkeletonEpisodeList from '@/components/Elements/Card/SkeletonEpisodeList';
 import { Tabs } from '@/components/Elements/Tab';
 import { Tab } from '@chakra-ui/react';
+import { withScrollLoad } from '@/components/List/withScrollLoad';
 
 import { useBreakPoint } from '@/utils/breakpoint';
 import { scrollYStyle } from '@/utils/style/scroll';
+import { ContentIdContext } from '@/features/contentModal/store/ContentIdContext';
 
 interface RelationsProps {
-  id: string;
+  // id: string;
   videoHeight: number;
 }
 
-const RelationArea: FC<RelationsProps> = ({ id, videoHeight }) => {
+const RelationArea: FC<RelationsProps> = ({ videoHeight }) => {
+  const { contentId: id } = useContext(ContentIdContext);
+
   const bg = useBackgroundLocation();
   const navigate = useNavigateWithBg(bg);
 

@@ -1,103 +1,94 @@
-import { FC, useContext, useMemo, useRef, useState } from 'react';
+import { FC, useContext, useRef, useState } from 'react';
 import { cx } from '@emotion/css';
 
 import { useContent } from '../../../content/api/getContent';
 import { useNextEpisode } from '../../../content/api/getNextEpisode';
-import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
-import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
-
-import { ContentIdContext } from '../../store/ContentIdContext';
+import { useCoverNavigate } from '../../hooks/useCoverNavigate';
 
 import Player from './Player';
 import NextEpisodeButton from '../NextEpisodeButtont';
-import { BsFullscreen } from 'react-icons/bs';
-import { clickableButtonStyle } from '@/utils/style/button';
-import { IconButton } from '@/components/Elements/IconButton';
-import { BiExitFullscreen } from 'react-icons/bi';
+
+import { ContentIdContext } from '../../store/ContentIdContext';
+import MolakPlayerControls from './PlayerControls';
+import { usePlayer } from '../../hooks/usePlayer';
+import { formatSecond } from '../../utils/second';
 
 interface MolakPlayerProps {
-  // contentId: string;
-  // episodeId: string;
-  width?: number | string;
-  height?: number | string;
-  onPlay?: () => void;
-  onPause?: () => void;
+  _?: never;
+  // width?: number | string;
+  // height?: number | string;
+  // onPlay?: () => void;
+  // onPause?: () => void;
 }
 
-const MolakPlayer: FC<MolakPlayerProps> = ({
-  width,
-  height,
-  ...playerProps
-}) => {
+const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
   const { contentId, episodeId } = useContext(ContentIdContext);
   if (!episodeId) throw new Error('[dev-route] episodeId is required');
 
-  const bg = useBackgroundLocation();
-  const navigate = useNavigateWithBg(bg);
-
+  // content 정보
   const { content } = useContent(episodeId);
   const { episode: nextEpisode } = useNextEpisode(episodeId);
 
-  const [duration, setDuration] = useState<number>(Infinity);
-  const [progress, setProgress] = useState<number>(0);
-
-  const showNextmove = duration - progress < 8; // seconds
-  const hasNextEpisode = !!nextEpisode;
-
-  const handleNextEpisode = () => {
-    if (hasNextEpisode) navigate(`/content/${contentId}/${nextEpisode?.id}`);
-  };
-
+  // 풀스크린
   const container = useRef<HTMLDivElement>(null);
-  const isFullScreen = !!document.fullscreenElement;
 
-  const handleFullscreen = () => {
-    container.current?.requestFullscreen();
+  // player 기능
+  const state = usePlayer(container.current);
+  const { playing, volume, progress, setProgress, slidedProgress } = state;
+
+  const [duration, setDuration] = useState<number>(Infinity);
+  const showNextmove = duration - progress.progress < 8; // seconds
+
+  // 다음화 재생
+  const { keepNavigate } = useCoverNavigate();
+  const handleClickNextEpisode = () => {
+    if (nextEpisode) {
+      keepNavigate(`/content/${contentId}/${nextEpisode?.id}`);
+      progress.setSlided(0);
+    }
   };
 
-  const handleExitFullscreen = () => {
-    document.exitFullscreen();
-  };
-
-  const contentWidth = useMemo(
-    () => (isFullScreen ? '100%' : width),
-    [isFullScreen, width],
+  // times
+  const runningTime = formatSecond(
+    duration == Infinity ? 0 : Math.floor(duration),
   );
-
-  const contentHeight = useMemo(
-    () => (isFullScreen ? '100%' : height),
-    [isFullScreen, height],
-  );
+  const progressTime = formatSecond(Math.floor(progress.progress));
 
   if (!content) return <div>찾을 수 없는 컨텐츠 입니다.</div>; // 컴포넌트 개발
   return (
-    <div className="relative" ref={container}>
+    <div className="relative w-full h-full" ref={container}>
       <Player
         key={content.url}
         url={content.url}
-        width={contentWidth}
-        height={contentHeight}
+        width="100%"
+        height="100%"
         onDuration={setDuration}
-        onProgress={({ playedSeconds }) => setProgress(playedSeconds)}
+        played={slidedProgress}
+        progressInterval={40}
+        onProgress={({ playedSeconds }) => setProgress?.(playedSeconds)}
+        onPlay={playing.play}
+        onPause={playing.pause}
+        playing={playing.playing}
+        muted={volume.muted}
+        volume={volume.volume}
         {...playerProps}
       />
 
-      {showNextmove && hasNextEpisode && (
-        <NextEpisodeButton autoClickDelaySec={5} onClick={handleNextEpisode} />
+      {showNextmove && nextEpisode && (
+        <NextEpisodeButton
+          autoClickDelaySec={5}
+          onClick={handleClickNextEpisode}
+        />
       )}
 
-      <button
-        className={cx(clickableButtonStyle, ' absolute left-2 bottom-2')}
-        onClick={!isFullScreen ? handleFullscreen : handleExitFullscreen}
-      >
-        <IconButton background="#00000088" color="white" size={13}>
-          {!isFullScreen ? (
-            <BsFullscreen size={20} />
-          ) : (
-            <BiExitFullscreen size={24} />
-          )}
-        </IconButton>
-      </button>
+      <div className={cx('absolute left-0 bottom-0 w-full z-30')}>
+        <MolakPlayerControls
+          runningTime={runningTime}
+          progressTime={progressTime}
+          duration={duration}
+          {...state}
+        />
+      </div>
     </div>
   );
 };

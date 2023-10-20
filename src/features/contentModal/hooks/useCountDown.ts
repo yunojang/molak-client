@@ -27,6 +27,7 @@ export const useCountDown = ({
   useEffect(() => {
     if (immediateStart) startCD();
 
+    // clean up
     if (!timer.current) return;
     return () => clearInterval(timer.current);
   }, [immediateStart, startCD]);
