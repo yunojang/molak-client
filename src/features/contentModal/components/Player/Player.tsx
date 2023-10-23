@@ -22,11 +22,6 @@ const Player: FC<PlayerProps> = ({
   played = 0,
   ...playerProps
 }) => {
-  // const [url, setur];
-  // const { content } = useContent(episodeId);
-
-  // useEffect(() => {}, [content?.url]);
-
   const ref = useRef<ReactPlayer>(null);
 
   useEffect(() => {
@@ -45,7 +40,7 @@ const Player: FC<PlayerProps> = ({
       loop={false}
       config={{
         youtube: {
-          playerVars: { fs: 0 },
+          playerVars: { fs: 0, modestbranding: 1 },
         },
       }}
       // fallback={
