@@ -19,8 +19,8 @@ const Slider: FC<SliderProps> = ({ value, onChange, width, max }) => {
   const [changing, setChanging] = useState(false);
 
   const handleChangeEnd = (value: number) => {
-    setChanging(false);
     onChange?.(value);
+    setTimeout(() => setChanging(false), 41);
   };
 
   const ref = useRef<HTMLDivElement>(null);
@@ -31,7 +31,7 @@ const Slider: FC<SliderProps> = ({ value, onChange, width, max }) => {
       max={max}
       focusThumbOnChange={false}
       aria-label="slider-ex-1"
-      className="p-0.5 bg-black bg-opacity-20"
+      className="p-0.5 pt-1 bg-black bg-opacity-20"
       colorScheme="molak"
       value={changing ? sliderValue : value}
       onChangeStart={() => setChanging(true)}
