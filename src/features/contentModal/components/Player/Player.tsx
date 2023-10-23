@@ -43,6 +43,11 @@ const Player: FC<PlayerProps> = ({
       {...playerProps}
       controls={false}
       loop={false}
+      config={{
+        youtube: {
+          playerVars: { fs: 0 },
+        },
+      }}
       // fallback={
       //   <div className="flex justify-center items-center font-bold text-white">
       //     유튜브 로딩중

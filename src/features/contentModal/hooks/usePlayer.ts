@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { openFullScreen as ofsUtil } from '../utils/fullScreen';
 import { PlayerState } from '../types/player';
@@ -16,6 +16,15 @@ export const usePlayer = (container: HTMLElement | null): Player => {
   const closeFullScreen = () => {
     document.exitFullscreen().then(() => setFullScreen(false));
   };
+
+  useEffect(() => {
+    const handleFullScreenChange = () => {
+      if (!document.fullscreenElement) setFullScreen(false);
+    };
+    document.addEventListener('fullscreenchange', handleFullScreenChange);
+    return () =>
+      document.removeEventListener('fullscreenchange', handleFullScreenChange);
+  }, []);
 
   const [playing, setPlaying] = useState(true);
   const play = () => setPlaying(true);
