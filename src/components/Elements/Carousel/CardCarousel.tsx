@@ -39,7 +39,7 @@ const CardCarousel: FC<SliderCarouselProps> = ({
 
   return (
     <div
-      className="relative w-full py-3 overflow-hidden pl-space "
+      className="relative w-full py-3 overflow-hidden pl-space"
       style={{ paddingRight: `calc(2rem + ${gap}px)` }}
       onMouseOver={() => setShowControl(true)}
       onMouseLeave={() => setShowControl(false)}

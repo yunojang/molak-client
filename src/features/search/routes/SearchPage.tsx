@@ -35,11 +35,15 @@ const SearchPage: FC = () => {
       {/* search page recommend */}
       <div className="flex flex-col gap-10 w-full">
         <ContentShowLayout title="지금 인기있는 웹드라마">
-          <TopRankingCardCarousel onSelect={id => handleCardSelect(id)} />
+          <div className="w-[96%] m-auto">
+            <TopRankingCardCarousel onSelect={id => handleCardSelect(id)} />
+          </div>
         </ContentShowLayout>
 
         <ContentShowLayout title="모락 추천 웹드라마">
-          <RecommendCardCarousel onSelect={id => handleCardSelect(id)} />
+          <div className="w-[96%] m-auto">
+            <RecommendCardCarousel onSelect={id => handleCardSelect(id)} />
+          </div>
         </ContentShowLayout>
       </div>
     </SearchPageLayout>

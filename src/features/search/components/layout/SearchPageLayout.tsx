@@ -9,7 +9,9 @@ interface SearchPageLayoutProps extends LayoutProps {
 }
 
 const SearchPageLayout: FC<SearchPageLayoutProps> = ({ children }) => {
-  const { cls: contentWidthCls } = useContentWidth();
+  const { cls: contentWidthCls } = useContentWidth({
+    widths: ['1640px', '88%'],
+  });
 
   return (
     <div

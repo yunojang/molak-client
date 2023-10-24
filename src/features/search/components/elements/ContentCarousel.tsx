@@ -17,21 +17,18 @@ const ContentCarousel: FC<ContentCarouselProps> = ({
   onSelect,
 }) => {
   return (
-    <div className="">
-      <Suspense fallback={<Spinner />}>
-        <CardCarousel
-          gap={18}
-          height={200}
-          count={count}
-          items={contents.map((content, i) => (
-            <ContentCard
-              key={i}
-              content={content}
-              onClick={() => onSelect?.(content.id, content)}
-            />
-          ))}
-        />
-      </Suspense>
+    <div className="relative -ml-space">
+      <CardCarousel
+        gap={4}
+        count={count}
+        items={contents.map((content, i) => (
+          <ContentCard
+            key={i}
+            content={content}
+            onClick={() => onSelect?.(content.id, content)}
+          />
+        ))}
+      />
     </div>
   );
 };
