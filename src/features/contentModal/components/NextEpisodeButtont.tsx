@@ -26,7 +26,7 @@ const NextEpisodeButton: FC<NextEpisodeButtonProps> = ({
       onClick={onClick}
       className={cx(
         clickableButtonStyle,
-        'absolute right-7 bottom-20 z-20 p-3 pr-5 flex items-center gap-2 bg-white rounded-lg font-bold',
+        'absolute right-7 bottom-20 z-20 py-3 px-4 pr-7 flex items-center gap-2 bg-dark text-primary-500 shadow-lg rounded-lg font-bold',
       )}
     >
       <BsCaretRightFill size={20} />

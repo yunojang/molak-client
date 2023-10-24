@@ -22,11 +22,11 @@ const AccumulateEpisodeList: FC<EpisodeListProps> = ({
   pager = () => null,
   onSelect,
 }) => {
-  const cached = queryClient.getQueryData([
-    'episodes',
-    id,
-    JSON.stringify(params),
-  ]) as { content: Content[] } | undefined;
+  // const cached = queryClient.getQueryData([
+  //   'episodes',
+  //   id,
+  //   JSON.stringify(params),
+  // ]) as { content: Content[] } | undefined;
 
   const [accContents, setAccContents] = useState<Content[]>([]);
   const { totalElements, totalPages, isEnd, isLoading } = useEpisodes(
@@ -41,9 +41,9 @@ const AccumulateEpisodeList: FC<EpisodeListProps> = ({
     },
   );
 
-  useEffect(() => {
-    if (cached) setAccContents(prev => prev.concat(cached.content));
-  }, [cached]);
+  // useEffect(() => {
+  //   if (cached) setAccContents(prev => prev.concat(cached.content));
+  // }, [cached]);
 
   return (
     <div>
@@ -62,6 +62,7 @@ const AccumulateEpisodeList: FC<EpisodeListProps> = ({
           ))}
         </div>
       )}
+
       {pager(totalPages, isEnd, isLoading)}
     </div>
   );

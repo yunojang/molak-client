@@ -2,15 +2,20 @@ import { FC } from 'react';
 
 import { useEpisodes } from '../../api/getEpisodes';
 import EpisodeCard from '@/components/Elements/Card/EpisodeCard';
-import { PagableListProps } from '@/components/List/types';
+import { ListProps } from '@/components/List/types';
 
-interface EpisodesProps extends PagableListProps {
+interface EpisodesProps extends ListProps {
   id: string;
   onSelect?(id: number): void;
 }
 
-const EpisodeList: FC<EpisodesProps> = ({ id, onSelect }) => {
-  const { episodes } = useEpisodes(id, {});
+const EpisodeList: FC<EpisodesProps> = ({
+  id,
+  onSelect,
+  params,
+  isLoading,
+}) => {
+  const { episodes } = useEpisodes(id, params);
 
   return (
     <div className="flex flex-col gap-3">

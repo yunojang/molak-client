@@ -12,15 +12,17 @@ export const getContents = (params: any): Promise<ContentResponse> => {
           content: search_contents,
           totalElements: 250,
           totalPages: 5,
+          isEnd: false,
         }),
       500,
     ),
   );
+
   // return client.get(`/api/contents`, {params});
 };
 
 export const useContents = (
-  params: any = {},
+  params: any = { size: 10 },
   { onSuccess, suspense = true }: QueryOptions<ContentResponse> = {},
 ) => {
   const { data, ...rest } = useQuery({
@@ -32,13 +34,14 @@ export const useContents = (
 
   if (!data && suspense) throw () => getContents(params);
 
+  const isEnd =
+    data?.isEnd ?? (data?.totalElements ?? 0) <= params.offset + params.size;
+
   return {
     contents: data?.content ?? [],
     totalElements: data?.totalElements ?? 0,
     totalPages: data?.totalPages ?? 0,
-    isEnd: data
-      ? data.totalElements <= params.offset + params.size // 다음 요청에 크거나 같아지면, isEnd // ? data.totalElements <= params.page + 1
-      : false,
+    isEnd,
     ...rest,
   };
 };

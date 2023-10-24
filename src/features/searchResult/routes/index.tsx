@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 
-import QueryPage from './QueryPage';
+import QueryResultPage from './QueryResultPage';
 
 export const QueryRoute = () => {
   return (
     <Routes>
-      <Route path="/" element={<QueryPage />} />
+      <Route path="/" element={<QueryResultPage />} />
     </Routes>
   );
 };

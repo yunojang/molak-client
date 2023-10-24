@@ -3,7 +3,7 @@ import { cx } from '@emotion/css';
 
 import { PageIntroTitle } from '@/components/Elements/Title';
 import Filters from '@/features/searchResult/components/filters/Filters';
-import FindContentList from '../components/FindedContentList';
+import FindedContentList from '../components/FindedContentList';
 import OrderSelector from '../components/Elements/OrderSelector';
 
 import { FIND_TITLE } from '../constant/title';
@@ -77,7 +77,7 @@ const FindPage: FC = () => {
         </div>
 
         <FindContentLayout>
-          <FindContentList filter={filter} />
+          <FindedContentList filter={filter} />
         </FindContentLayout>
       </div>
     </div>

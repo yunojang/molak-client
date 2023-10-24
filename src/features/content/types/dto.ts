@@ -8,7 +8,7 @@ export interface Content extends Domain {
   url: string;
   type: string;
   tags: string[];
-  episode_id: number;
+  episode_id: string;
 }
 
 export interface RecommendContent extends Domain {

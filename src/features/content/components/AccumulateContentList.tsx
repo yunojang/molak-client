@@ -60,6 +60,7 @@ const AccumulateContentList: FC<ContentListProps> = ({
           ))}
         </div>
       )}
+
       {pager(totalPages, isEnd, isLoading)}
     </div>
   );

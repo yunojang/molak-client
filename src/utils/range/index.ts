@@ -6,5 +6,5 @@ export function circularRange(value: number, length: number) {
 }
 
 export function range(length: number, fn?: (item: any, index: number) => any) {
-  return Array.from({ length }, fn || ((_, index) => index));
+  return Array.from({ length }, fn ?? ((_, index) => index));
 }

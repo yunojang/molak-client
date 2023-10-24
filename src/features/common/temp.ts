@@ -48,7 +48,7 @@ export const content: Content = {
   url: 'https://www.youtube.com/watch?v=_rEde994IqY',
   tags: ['여행', '로맨스'],
   type: '시리즈',
-  episode_id: 1,
+  episode_id: '1',
 };
 
 export const content2: Content = {
@@ -61,31 +61,31 @@ export const content2: Content = {
   url: 'https://www.youtube.com/watch?v=ILDjioKRJw4',
   tags: ['일진', '찐따'],
   type: '시리즈',
-  episode_id: 1,
+  episode_id: '1',
 };
 
 export const content3: Content = {
   id: '3',
   title: '로그원: 스타워즈 스토리',
   description: '마지막 희망을 건 전쟁이 시작된다!',
-  episode_id: 1,
   provider: '디즈니, 루카스필름',
   thumbnail: '/asset/images/thumb.jpeg',
   url: 'https://www.youtube.com/watch?v=2Rm-cpUNAJU',
   tags: ['스타워즈', 'SF'],
   type: '단편',
+  episode_id: '1',
 };
 
 export const content4: Content = {
   id: '4',
   title: '헤어질 결심',
   description: '짙어지는 의심 깊어지는 관심',
-  episode_id: 1,
   provider: '박찬욱, CJ 엔터테인먼트',
   thumbnail: '/asset/images/thumb.jpeg',
   url: 'https://www.youtube.com/watch?v=2Rm-cpUNAJU',
   tags: ['로맨스'],
   type: '단편',
+  episode_id: '1',
 };
 
 const episode: Content = { ...content, title: '브브여행사 n화' };
@@ -156,6 +156,7 @@ export const discover: Discover = {
     '여행',
     '시대극',
     '드라마',
+    '스케치',
     '좋은소재',
   ],
   types: ['시리즈', '단편'],
@@ -171,7 +172,10 @@ export const hot_tagas: HotTag[] = [
   },
   {
     title: '📔 요즘대세 스케치 코미디',
-    items: [{ name: '코미디', type: 'genre' }],
+    items: [
+      { name: '코미디', type: 'genre' },
+      { name: '스케치', type: 'tags' },
+    ],
   },
   {
     title: '👊 일진과 찐따',

@@ -30,6 +30,7 @@ export interface ContentResponse {
   content: Content[];
   totalElements: number;
   totalPages: number;
+  isEnd?: boolean;
 }
 
 export interface SelectableProps<T = any> {

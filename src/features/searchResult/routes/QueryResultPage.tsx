@@ -8,7 +8,7 @@ interface QueryPageProps {
   _?: any;
 }
 
-const QueryPage: FC<QueryPageProps> = () => {
+const QueryResultPage: FC<QueryPageProps> = () => {
   const [query] = useQueryString('q');
   const [filter, setFilter] = useState<any>({});
 
@@ -23,4 +23,4 @@ const QueryPage: FC<QueryPageProps> = () => {
   );
 };
 
-export default QueryPage;
+export default QueryResultPage;

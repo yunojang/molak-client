@@ -13,15 +13,25 @@ interface TabsProps extends ChakraTabsProps {
   width?: string;
 }
 
-const Tabs: FC<TabsProps> = ({ children, width = '112px', ...rest }) => {
+const Tabs: FC<TabsProps> = ({
+  children,
+  width = '112px',
+  onChange,
+  ...rest
+}) => {
   const [tabIndex, setTabIndex] = React.useState(0);
+
+  const handleTabChange = (idx: number) => {
+    setTabIndex(idx);
+    onChange?.(idx);
+  };
 
   return (
     <ChakraTabs
       {...rest}
       className="relative inline-block"
       variant="unstyled"
-      onChange={setTabIndex}
+      onChange={handleTabChange}
     >
       <TabList>
         {React.Children.map(children, (child, idx) => {

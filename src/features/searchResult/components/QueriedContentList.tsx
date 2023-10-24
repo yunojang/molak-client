@@ -4,8 +4,9 @@ import { useCardCount } from '@/features/content/hooks/useCardCount';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 
 import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentCardList';
-import AccumulateContentList from '@/features/content/components/AccumulateContentList';
-import { withScrollLoad } from '@/components/List/withScrollLoad';
+import { withListLoadToScroll } from '@/components/List/withListLoadToScroll';
+import ContentList from '@/features/content/components/ContentList';
+import { ListResultTitle } from '@/components/List/ListTitle';
 
 interface QueriedContentListProps {
   filter?: any;
@@ -15,20 +16,20 @@ const QueriedContentList: FC<QueriedContentListProps> = ({ filter }) => {
   const naviage = useNavigateWithBg();
   const count = Math.floor(useCardCount().count / 2) * 2;
 
-  const ContentList = useMemo(
+  const QueriedContentsLoadToScroll = useMemo(
     () =>
-      withScrollLoad({
-        ListComp: AccumulateContentList,
+      withListLoadToScroll({
+        ListComp: ContentList,
         filter,
+        gap: 20,
         fallback: (
-          <div className="mt-20">
-            <SkeletonContentCardList
-              count={4}
-              gap={5}
-              columnCount={count}
-              isCard
-            />
-          </div>
+          <SkeletonContentCardList
+            count={4}
+            gap={5}
+            rowGap={20}
+            columnCount={count}
+            isCard
+          />
         ),
       }),
     [filter, count],
@@ -36,7 +37,10 @@ const QueriedContentList: FC<QueriedContentListProps> = ({ filter }) => {
 
   return (
     <div className="px-space py-5">
-      <ContentList
+      <QueriedContentsLoadToScroll
+        title={(cnt, page) =>
+          page == 1 ? <ListResultTitle cnt={cnt} mb={5} /> : null
+        }
         columnCount={count}
         onSelect={id => naviage(`/content/${id}`)}
       />
