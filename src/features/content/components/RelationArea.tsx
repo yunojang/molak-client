@@ -6,14 +6,11 @@ import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
 import { useBreakPoint } from '@/utils/breakpoint';
 import { ContentIdContext } from '@/features/contentModal/store/ContentIdContext';
 
-import SkeletonEpisodeList from '@/components/Elements/Card/SkeletonEpisodeList';
-import { withListLoadToScroll } from '@/components/List/withListLoadToScroll';
-import ListCallToDomain from '@/components/List/ListCallToDomain';
-
 import { Tabs } from '@/components/Elements/Tab';
 import { Tab } from '@chakra-ui/react';
 import { scrollYStyle } from '@/utils/style/scroll';
 import { relationTabs } from '../constant/tabs';
+import RelaltionContentList from './RelationContentList';
 
 interface RelationsProps {
   videoHeight: number;
@@ -25,25 +22,11 @@ const RelationArea: FC<RelationsProps> = ({ videoHeight }) => {
   const bg = useBackgroundLocation();
   const navigate = useNavigateWithBg(bg);
 
-  const EpisodeList = useMemo(
-    () =>
-      withListLoadToScroll({
-        ListComp: ListCallToDomain,
-        fallback: <SkeletonEpisodeList count={5} gap={4} />,
-        filter: { size: 5 },
-        gap: 4,
-      }),
-    [],
-  );
-
   const handleSelectEpisode = (_: any, episodeId: string) => {
-    console.log('episodeId', episodeId);
-
     navigate(`/content/${id}/${episodeId}`);
   };
 
   const [tab, setTab] = useState(0);
-  const currentTab = relationTabs[tab];
 
   const width = useBreakPoint(p => (p.eqBigger('2xl') ? 480 : '100%'));
   const height = useBreakPoint(p => (p.eqBigger('2xl') ? videoHeight : ''));
@@ -61,11 +44,7 @@ const RelationArea: FC<RelationsProps> = ({ videoHeight }) => {
         </Tabs>
       </div>
 
-      <EpisodeList
-        ViewComp={currentTab.ListView}
-        domain={currentTab.domain}
-        onSelect={handleSelectEpisode}
-      />
+      <RelaltionContentList tab={tab} onSelect={handleSelectEpisode} />
     </div>
   );
 };

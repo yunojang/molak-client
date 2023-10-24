@@ -47,7 +47,7 @@ const FindedContentList: FC<FindedContentListProps> = ({ filter }) => {
         fallback: (
           <SkeletonContentCardList
             columnCount={count}
-            count={4}
+            count={8}
             gap={4}
             rowGap={20}
             isCard
