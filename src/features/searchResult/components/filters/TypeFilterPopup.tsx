@@ -7,7 +7,6 @@ import SelectOpenBox from '@/components/Elements/SelectOpenBox/SelectOpenBox';
 
 import { adjust } from '@/utils/style/color';
 import { env } from '@/config';
-import { clickableButtonStyle } from '@/utils/style/button';
 
 interface TypeFilterProps extends FilterProps {
   value?: string;

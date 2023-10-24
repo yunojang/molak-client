@@ -9,7 +9,7 @@ const isSameItem = (item1: any, item2: any) => {
   return v1 === v2;
 };
 
-const isEmptyItme = (item: any) => {
+export const isEmptyItem = (item: any) => {
   const v = extractItem(item);
   return v === undefined || v === null || v === '';
 };
@@ -19,6 +19,6 @@ export const isAllEmptyValues = <T = any>(filter: {
 }) =>
   Object.entries(filter).reduce(
     // (prev, [k, v]) => prev && isSameItem(defaultValues[k as keyof T], v),
-    (prev, [k, v]) => prev && isEmptyItme(v),
+    (prev, [k, v]) => prev && isEmptyItem(v),
     true,
   );

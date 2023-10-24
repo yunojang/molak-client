@@ -27,7 +27,7 @@ const FindPage: FC = () => {
     const filters = tag.items.reduce(
       (obj: any, cur) => ({
         ...obj,
-        // 태그라면, 기존 obj에 (없으면 []로 초기화) 추가
+        // 태그일때, 기존 obj에 (없으면 []로 초기화하고) 추가
         [cur.type]:
           cur.type === 'tags' ? [...(obj[cur.type] ?? []), cur.name] : cur.name,
       }),
@@ -85,13 +85,3 @@ const FindPage: FC = () => {
 };
 
 export default FindPage;
-
-{
-  /* <div className={cx(scrollYStyle, 'w-48 h-full pb-10')}>
-            <FitlerTitle title="태그" />
-            <TagFilter onChange={tags => overwriteFilter({ tags })} />
-
-            <FitlerTitle title="타입" />
-            <TypeFilter onChange={type => overwriteFilter({ type })} />
-          </div> */
-}

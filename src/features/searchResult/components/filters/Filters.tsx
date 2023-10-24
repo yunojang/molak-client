@@ -3,18 +3,13 @@ import { FC, useMemo, useState } from 'react';
 import GenreFilter from '@/features/find/components/GenreFilterPopup';
 import TypeFilter from './TypeFilterPopup';
 import TagFilter from './TagFilterPopup';
-import { isAllEmptyValues } from './utils/filterValues';
 
-const DEFAULT_FILTERS = {
-  type: '모든 작품',
-  genre: '모든 장르',
-  tags: ['모든 태그'],
-};
+import { DEFAULT_FILTERS } from './constant/filters';
 
 interface FiltersProps {
   value?: { [k in keyof typeof DEFAULT_FILTERS]?: any };
   defaultValues?: { [k in keyof typeof DEFAULT_FILTERS]?: any };
-  onChange?(filter: any, isInit?: boolean): void;
+  onChange?(filter: any): void;
 }
 
 const Filters: FC<FiltersProps> = ({ value, defaultValues, onChange }) => {
@@ -25,29 +20,28 @@ const Filters: FC<FiltersProps> = ({ value, defaultValues, onChange }) => {
     [k in keyof typeof DEFAULT_FILTERS]?: any;
   }) => {
     const newFilter = { ...current, ...changedFilter };
-    const isInit = isAllEmptyValues(newFilter);
 
-    onChange?.(newFilter, isInit);
+    onChange?.(newFilter);
     setFilters(newFilter);
   };
 
   return (
     <div className="flex items-center gap-3">
       <TypeFilter
-        value={current?.type}
+        value={current?.type ?? DEFAULT_FILTERS.type}
         defaultValue={DEFAULT_FILTERS.type}
         onChange={type => handleChange({ type })}
       />
       <GenreFilter
         // defaultValue={defaultFilters?.genre ?? DEFAULT_FILTERS.genre}
-        value={current?.genre}
+        value={current?.genre ?? DEFAULT_FILTERS.genre}
         defaultValue={DEFAULT_FILTERS.genre}
         // defaultValue={DEFAULT_FILTERS.genre}
         onChange={genre => handleChange({ genre })}
       />
       <TagFilter
         // defaultValue={defaultFilters?.tags ?? DEFAULT_FILTERS.tags}
-        value={current?.tags}
+        value={current?.tags ?? []}
         defaultValue={DEFAULT_FILTERS.tags}
         // defaultValue={DEFAULT_FILTERS.tags}
         onChange={tags => handleChange({ tags })}

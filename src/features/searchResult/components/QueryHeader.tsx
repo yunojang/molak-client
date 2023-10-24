@@ -8,6 +8,8 @@ import Filters from './filters/Filters';
 import QuerPageTitle from './QueryPageTitle';
 import HeaderLayout from './layout/headerLayout';
 
+import { isEmptyItem } from './filters/utils/filterValues';
+
 interface QueryHeaderProps {
   query: string;
   onChangeFilter?(filter: any): void;
@@ -15,11 +17,12 @@ interface QueryHeaderProps {
 
 const QueryHeader: FC<QueryHeaderProps> = ({ query, onChangeFilter }) => {
   const { isOpen: isOpenFilter, toggle: toggleFilter } = useDisclosure(false);
-  const [isSet, setIsSetFilter] = useState(false);
+  const [isFilterSet, setIsFilterSet] = useState(false);
 
-  const handleChangeFilters = (filters: any, isInit?: boolean) => {
+  const handleChangeFilters = (filters: any) => {
     onChangeFilter?.(filters);
-    setIsSetFilter(!isInit);
+    // 모두 비어있으면 false
+    setIsFilterSet(!Object.values(filters).every(isEmptyItem));
   };
 
   return (
@@ -30,7 +33,7 @@ const QueryHeader: FC<QueryHeaderProps> = ({ query, onChangeFilter }) => {
         <FilterButton
           isOpen={isOpenFilter}
           onClick={toggleFilter}
-          isActive={isSet}
+          isActive={isFilterSet}
         />
       </div>
 
