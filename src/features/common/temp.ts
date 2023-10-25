@@ -128,14 +128,14 @@ export const recommend_feeds: RecommendFeed[] = [
 ];
 
 export const feeds: Feed[] = [
-  { channelName: 'NEW! 신작 소식', id: '1', items_list: contents },
+  { name: 'NEW! 신작 소식', id: '1', items_list: contents },
   {
-    channelName: '핫한 로맨스 웹 드라마 모음.zip',
+    name: '핫한 로맨스 웹 드라마 모음.zip',
     id: '2',
     items_list: contents,
   },
   {
-    channelName: '배꼽조심! 시간 가는줄 모르는 코미디',
+    name: '배꼽조심! 시간 가는줄 모르는 코미디',
     id: '3',
     items_list: contents,
   },
@@ -161,7 +161,6 @@ export const discover: Discover = {
     '시대극',
     '드라마',
     '스케치',
-    '좋은소재',
   ],
   types: ['시리즈', '단편'],
 };

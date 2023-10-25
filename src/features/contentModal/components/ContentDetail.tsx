@@ -54,7 +54,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
               </ContentTag>
             </div>
 
-            <div className="text-gray-100">{content?.channel}</div>
+            <div className="text-gray-100">{content?.channel.channelName}</div>
             <div className="text-4xl font-bold mb-2">{content?.title}</div>
             <div className="flex gap-1 items-center">
               {content?.tags.map((tag, i) => (
