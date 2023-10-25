@@ -11,6 +11,7 @@ import VideoFrame from './Elements/VideoFrame';
 import CloseButton from './Elements/CloseButtont';
 import MolakPlayer from '@/features/contentModal/components/Player/MolakPlayer';
 import { PlayerFallback } from '@/features/contentModal/components/Player/Player';
+import { useModalElement } from '../hooks/useModalElement';
 
 const ContentModal: FC = () => {
   const { episodeId } = useParams();

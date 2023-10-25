@@ -1,10 +1,11 @@
-import { createContext } from 'react';
+import { RefObject, createContext } from 'react';
 
-interface ContentIds {
+interface ContentInfo {
   contentId: string;
   episodeId?: string;
+  contentRef?: RefObject<HTMLDivElement>;
 }
 
-export const ContentIdContext = createContext<ContentIds>({
+export const ContentInfoContext = createContext<ContentInfo>({
   contentId: '',
 });

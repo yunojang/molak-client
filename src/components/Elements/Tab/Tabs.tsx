@@ -1,7 +1,6 @@
 import React, { FC, cloneElement, ReactElement } from 'react';
 import {
   Tabs as ChakraTabs,
-  TabIndicator,
   TabList,
   TabProps,
   TabsProps as ChakraTabsProps,
@@ -15,7 +14,7 @@ interface TabsProps extends ChakraTabsProps {
 
 const Tabs: FC<TabsProps> = ({
   children,
-  width = '112px',
+  width = '140px',
   onChange,
   ...rest
 }) => {
@@ -42,7 +41,7 @@ const Tabs: FC<TabsProps> = ({
               {cloneElement<TabProps>(child as ReactElement, {
                 _selected: { color: 'white' },
                 className:
-                  'font-bold text-[1.2rem] z-10 transition-all relative easy-in-out',
+                  'font-bold text-[1.3rem] z-10 transition-all relative easy-in-out',
                 style: {
                   width,
                   // transition: '400ms cubic-bezier(.77,.15,.39,1.43) 200ms',
@@ -50,14 +49,14 @@ const Tabs: FC<TabsProps> = ({
                 },
               })}
               <div
-                className="absolute h-[84%] rounded-full top-1/2"
+                className="absolute h-[84%] rounded-xl top-1/2"
                 style={{
                   background: adjust(env.colors.primary, -20),
                   width: `calc(${width} - ${subPx(width) * 0.1}px)`,
                   transform: `translate(5%, -50%) scale(${isSelected ? 1 : 0})`,
                   transition: isSelected
-                    ? '400ms cubic-bezier(0,0,.5,1.5)'
-                    : '400ms cubic-bezier(0,0,.5,1)',
+                    ? '400ms cubic-bezier(0,0,.25,1.45)'
+                    : '250ms cubic-bezier(0,0,.5,1)',
                   transformOrigin: isSelected
                     ? 'center'
                     : tabIndex > idx

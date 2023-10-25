@@ -6,6 +6,7 @@ interface ToScrollProps {
   to?: number;
 }
 
+// component
 const ToScroll: FC<ToScrollProps> = ({ to = 0 }) => {
   const { scrollTo } = useScroll();
 

@@ -26,7 +26,9 @@ export const withListLoadToScroll = <T extends InfiniteListProps>({
     const [initRender, setInitRender] = useState(false);
     useEffect(() => setInitRender(true), []);
 
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(0);
+    const pageCount = page + 1;
+
     const params = { ...filter, page };
 
     const handleIntersection = useMemo(
@@ -39,14 +41,14 @@ export const withListLoadToScroll = <T extends InfiniteListProps>({
         className={cx(scrollYStyle, 'flex flex-col')}
         style={{ gap: gap * 4 }}
       >
-        {range(page).map(current => {
-          const isLastIndex = page === current + 1;
+        {range(pageCount).map(currentPage => {
+          const isLastIndex = page === currentPage;
 
           return (
-            <Suspense key={current} fallback={fallback}>
+            <Suspense key={currentPage} fallback={fallback}>
               <ListComp
                 {...props}
-                params={{ ...params, page: current + 1 }}
+                params={{ ...params, page: currentPage }}
                 gap={gap}
                 pager={(_, isEnd) => (
                   <Intersection

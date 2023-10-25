@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect } from 'react';
+import React, { FC, forwardRef, useContext, useEffect, useRef } from 'react';
 import { Portal } from '../Portal';
 import { ModalContext } from '@/lib/modal/ModalContext';
 
@@ -31,62 +31,69 @@ interface ModalProps {
   escapeKeyClose?: boolean;
 }
 
-const Modal: FC<ModalProps> = ({
-  children,
-  fixedChildren,
-  close,
-  isOpen,
-  open,
-  escapeKeyClose = true,
-  extraPosition = 'tr',
-  extra,
-  overflow,
-  overflowY,
-  overflowX = 'hidden',
-}) => {
-  const targetId = useContext(ModalContext);
-  const { lockScroll, releaseScroll } = useBodyScrollLock();
+const Modal = forwardRef<HTMLDivElement, ModalProps>(
+  (
+    {
+      children,
+      fixedChildren,
+      close,
+      isOpen,
+      open,
+      escapeKeyClose = true,
+      extraPosition = 'tr',
+      extra,
+      overflow,
+      overflowY,
+      overflowX = 'hidden',
+    },
+    ref,
+  ) => {
+    const targetId = useContext(ModalContext);
+    const { lockScroll, releaseScroll } = useBodyScrollLock();
 
-  useEffect(() => {
-    if (isOpen) lockScroll();
-    return releaseScroll;
-  }, [isOpen, lockScroll, releaseScroll]);
+    useEffect(() => {
+      if (isOpen) lockScroll();
+      return releaseScroll;
+    }, [isOpen, lockScroll, releaseScroll]);
 
-  useOnKeyDown('Escape', () => escapeKeyClose && close?.());
+    useOnKeyDown('Escape', () => escapeKeyClose && close?.());
 
-  return (
-    <Portal targetId={targetId}>
-      {isOpen && (
-        <div
-          className="w-screen h-screen bg-black bg-opacity-[0.35] relative flex justify-center items-center transition-all"
-          style={{ overflow, overflowY, overflowX }}
-          onClick={e => {
-            if (e.target === e.currentTarget) close?.();
-          }}
-        >
-          <div className="modal-fixed-contents z-20 fixed left-0">
-            {fixedChildren}
-          </div>
-
+    return (
+      <Portal targetId={targetId}>
+        {isOpen && (
           <div
-            className={cx(
-              animate,
-              'transition-all max-h-full max-w-full z-10',
-              'modal-contents',
-            )}
+            ref={ref}
+            style={{ overflow, overflowY, overflowX }}
+            className="w-screen h-screen bg-black bg-opacity-[0.35] relative flex justify-center items-center transition-all"
+            onClick={e => {
+              if (e.target === e.currentTarget) close?.();
+            }}
           >
-            {children}
-          </div>
+            <div className="modal-fixed-contents z-20 fixed left-0">
+              {fixedChildren}
+            </div>
 
-          <div className={cx(position_class[extraPosition], 'absolute')}>
-            {extra}
-          </div>
-        </div>
-      )}
-    </Portal>
-  );
-};
+            <div
+              className={cx(
+                animate,
+                'transition-all max-h-full max-w-full z-10',
+                'modal-contents',
+              )}
+            >
+              {children}
+            </div>
 
+            <div className={cx(position_class[extraPosition], 'absolute')}>
+              {extra}
+            </div>
+          </div>
+        )}
+      </Portal>
+    );
+  },
+);
+
+Modal.displayName = 'Modal';
 export default Modal;
 
 const popup = keyframes`

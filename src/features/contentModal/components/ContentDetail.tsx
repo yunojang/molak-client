@@ -8,7 +8,7 @@ import { BsFillPlayFill } from 'react-icons/bs';
 import ContentTag from './Elements/ContentTag';
 import SkeletonContentDetail from './Elements/SkeletonContentDetail';
 import { Image } from '@/components/Elements/Image';
-import { ContentIdContext } from '../store/ContentIdContext';
+import { ContentInfoContext } from '../store/ContentIdContext';
 
 interface ContentVideoDetailProps {
   _?: any;
@@ -16,7 +16,7 @@ interface ContentVideoDetailProps {
 }
 
 const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
-  const { contentId } = useContext(ContentIdContext);
+  const { contentId } = useContext(ContentInfoContext);
   const { keepNavigate } = useCoverNavigate();
 
   const { content, isLoading: _isLoading } = useContent(contentId, {
@@ -54,7 +54,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
               </ContentTag>
             </div>
 
-            <div className="text-gray-100">{content?.provider}</div>
+            <div className="text-gray-100">{content?.channel}</div>
             <div className="text-4xl font-bold mb-2">{content?.title}</div>
             <div className="flex gap-1 items-center">
               {content?.tags.map((tag, i) => (

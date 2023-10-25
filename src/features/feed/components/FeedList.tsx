@@ -25,7 +25,7 @@ const FeedList: FC<FeedListProps> = ({ contentHeight, gap = 26 }) => {
       {feeds?.map((feed, i) => (
         <div key={i}>
           <div className="mb-5 pl-space">
-            <FeedTitle title={feed.name} />
+            <FeedTitle title={feed.channelName} />
           </div>
 
           <CardCarousel

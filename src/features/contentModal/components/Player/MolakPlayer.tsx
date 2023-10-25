@@ -9,7 +9,7 @@ import { useCoverNavigate } from '../../hooks/useCoverNavigate';
 import Player from './Player';
 import NextEpisodeButton from '../NextEpisodeButtont';
 
-import { ContentIdContext } from '../../store/ContentIdContext';
+import { ContentInfoContext } from '../../store/ContentIdContext';
 import MolakPlayerControls from './PlayerControls';
 import { usePlayer } from '../../hooks/usePlayer';
 import { formatSecond } from '../../utils/second';
@@ -23,7 +23,7 @@ interface MolakPlayerProps {
 }
 
 const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
-  const { contentId, episodeId } = useContext(ContentIdContext);
+  const { contentId, episodeId } = useContext(ContentInfoContext);
   if (!episodeId) throw new Error('[dev-route] episodeId is required');
 
   // content 정보
