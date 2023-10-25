@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { BiSearch } from 'react-icons/bi';
-import NavigatePath from '@/components/common/NavigatePath';
+import NavigateAnchor from '@/components/common/NavigateAnchor';
 import { cx } from '@emotion/css';
 import { clickableButtonStyle } from '@/utils/style/button';
 
@@ -11,7 +11,7 @@ interface SearchButtonProps {
 
 const SearchButton: FC<SearchButtonProps> = ({ path }) => {
   return (
-    <NavigatePath path={path}>
+    <NavigateAnchor path={path}>
       <button
         className={cx(
           clickableButtonStyle,
@@ -20,7 +20,7 @@ const SearchButton: FC<SearchButtonProps> = ({ path }) => {
       >
         <BiSearch size={24} color="black" />
       </button>
-    </NavigatePath>
+    </NavigateAnchor>
   );
 };
 

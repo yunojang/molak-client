@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { Button } from '@chakra-ui/react';
-import NavigatePath from '@/components/common/NavigatePath';
+import NavigateAnchor from '@/components/common/NavigateAnchor';
 import { cx } from '@emotion/css';
 import { clickableButtonStyle } from '@/utils/style/button';
 
@@ -11,7 +11,7 @@ interface LoginButtonProps {
 
 const LoginButton: FC<LoginButtonProps> = ({ path }) => {
   return (
-    <NavigatePath path={path}>
+    <NavigateAnchor path={path}>
       <Button
         width={100}
         className={cx(
@@ -21,7 +21,7 @@ const LoginButton: FC<LoginButtonProps> = ({ path }) => {
       >
         로그인
       </Button>
-    </NavigatePath>
+    </NavigateAnchor>
   );
 };
 

@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { Button } from '@chakra-ui/react';
 import MolakIcon from '../Icon/MolakIcon';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@/hooks/common/useNavigate';
 
 export interface Error {
   key?: string;

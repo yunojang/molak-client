@@ -12,7 +12,7 @@ interface RelationTabsProps {
 
 const RelationTabs: FC<RelationTabsProps> = ({ defaultIndex, onChange }) => {
   return (
-    <Tabs defaultIndex={defaultIndex} width="120px" onChange={onChange}>
+    <Tabs defaultIndex={defaultIndex} width="128px" onChange={onChange}>
       {relationTabs.map((tab, index) => (
         <Tab key={index}>{tab.name}</Tab>
       ))}

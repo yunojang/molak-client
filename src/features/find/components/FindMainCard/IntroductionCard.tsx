@@ -1,7 +1,8 @@
+import { FC } from 'react';
+import { useNavigate } from '@/hooks/common/useNavigate';
+
 import { Circle } from '@/components/Elements/Circle';
 import { useCoverNavigate } from '@/features/contentModal/hooks/useCoverNavigate';
-import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 export interface IntroductionCardProps {
   type: '꼭 봐야하는' | '한번 해보세요' | '모락 새기능';
@@ -26,7 +27,6 @@ const IntroductionCard: FC<IntroductionCardProps> = ({
   const { keepNavigate } = useCoverNavigate();
   const handleClick = () => {
     if (prepare || !link) return;
-
     if (type === '꼭 봐야하는') keepNavigate(link);
     else navigate(link);
   };

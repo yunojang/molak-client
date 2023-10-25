@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@/hooks/common/useNavigate';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
 import { useIntro } from '@/features/common/api/getIntroes';
 import { Intro } from '@/features/common/types/dto';

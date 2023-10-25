@@ -56,7 +56,7 @@ const Tabs: FC<TabsProps> = ({
                   transform: `translate(5%, -50%) scale(${isSelected ? 1 : 0})`,
                   transition: isSelected
                     ? '400ms cubic-bezier(0,0,.25,1.45)'
-                    : '250ms cubic-bezier(0,0,.5,1)',
+                    : '400ms cubic-bezier(0,0,.5,1)',
                   transformOrigin: isSelected
                     ? 'center'
                     : tabIndex > idx

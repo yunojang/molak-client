@@ -1,13 +1,12 @@
 import { FC, useEffect, useRef } from 'react';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@/hooks/common/useNavigate';
 
 import SearchPageLayout from '../components/layout/SearchPageLayout';
 import ContentShowLayout from '../components/layout/ContentShowLayout';
 import TopRankingCardCarousel from '../components/TopRankingCardCarousel';
 import RecommendCardCarousel from '../components/RecommendCardCarousel';
 import SearchInput from '../components/SearchInput';
-import ToScroll from '@/utils/scroll/ToScroll';
 
 const SearchPage: FC = () => {
   const navigate = useNavigate();
@@ -19,7 +18,6 @@ const SearchPage: FC = () => {
 
   const handleSearch = (query: string) => {
     if (!query) return;
-
     navigate(`/query?q=${query}`);
   };
 
@@ -27,7 +25,7 @@ const SearchPage: FC = () => {
 
   return (
     <SearchPageLayout>
-      <ToScroll to={0} />
+      {/* <ToScroll to={0} /> */}
 
       {/* search input */}
       <SearchInput ref={inputRef} onSearch={handleSearch} />
