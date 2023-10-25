@@ -1,4 +1,4 @@
-import { useDisclosure } from '@/hooks/useClosure';
+import { useDisclosure } from '@/hooks/common/useClosure';
 import { LayoutProps } from '@/types';
 import { css, keyframes } from '@emotion/css';
 import { FC, useRef } from 'react';

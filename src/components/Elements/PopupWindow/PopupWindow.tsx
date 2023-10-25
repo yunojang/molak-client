@@ -1,6 +1,6 @@
 import React, { FC, ReactElement, ReactNode } from 'react';
 
-import { useDisclosure } from '@/hooks/useClosure';
+import { useDisclosure } from '@/hooks/common/useClosure';
 import { Button, Popup } from '@wizrnd/nx-ui';
 
 export interface PopupWindowProps {

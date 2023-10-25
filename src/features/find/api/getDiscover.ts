@@ -6,9 +6,8 @@ import { discover } from '@/features/common/temp';
 import { Discover } from '../types';
 
 export const getDiscover = (): Promise<Discover> => {
-  return Promise.resolve(discover);
-  // return new Promise(resolve => setTimeout(() => resolve(discover), 500));
-  // return client.get(`/api/discover`);
+  // return Promise.resolve(discover);
+  return client.get(`/api/v1/serach/option`);
 };
 
 export const useDiscover = () => {

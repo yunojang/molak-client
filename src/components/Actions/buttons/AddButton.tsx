@@ -11,13 +11,7 @@ const AddButton: FC<CreateButtonProps> = ({ onAdd: _onAdd }) => {
   const onAdd = _onAdd ?? (() => navigate('create'));
 
   return (
-    <Button
-      size="md"
-      variant="contained"
-      width={100}
-      iconName="PlusIcon"
-      onClick={onAdd}
-    >
+    <Button size="md" variant="contained" width={100} onClick={onAdd}>
       추가
     </Button>
   );

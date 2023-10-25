@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useLocation } from './useLocation';
+import { useLocation } from './common/useLocation';
 
 export const useFilter = <T extends object>(
   defaultValue: Partial<T> = {} as T,

@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { cx } from '@emotion/css';
 
-import { useDisclosure } from '@/hooks/useClosure';
+import { useDisclosure } from '@/hooks/common/useClosure';
 
 import FilterButton from './FilterButton';
 import Filters from './filters/Filters';

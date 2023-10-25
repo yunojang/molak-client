@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { useLocation } from '@/hooks/useLocation';
+import { useLocation } from '@/hooks/common/useLocation';
 import MolakIcon from '@/components/Icon/MolakIcon';
 import SocialButton from '../../components/SocialButton';
 import { env } from '@/config';

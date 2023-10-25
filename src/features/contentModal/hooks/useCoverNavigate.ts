@@ -7,11 +7,11 @@ export const useCoverNavigate = () => {
   const bgLocation = useBackgroundLocation();
 
   const keepNavigate = useNavigateWithBg(bgLocation);
-  const { id: contentId } = useParams();
-
   const coverClose = () => navigate(bgLocation ?? '/');
-  const toContentIntro = () => keepNavigate(`/content/${contentId}`);
-  const toBack = () => keepNavigate(-1);
 
-  return { keepNavigate, coverClose, toContentIntro, toBack };
+  // const { id: contentId } = useParams();
+  // const toContentIntro = () => keepNavigate(`/content/${contentId}`);
+  // const toBack = () => keepNavigate(-1);
+
+  return { keepNavigate, coverClose };
 };
