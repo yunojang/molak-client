@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { useEpisodes } from '../../api/getEpisodes';
+import { useEpisodes } from '../../../episode/api/getEpisodes';
 import EpisodeCard from '@/components/Elements/Card/EpisodeCard';
 import { ListProps } from '@/components/List/types';
 
@@ -23,7 +23,7 @@ const EpisodeList: FC<EpisodesProps> = ({
         <EpisodeCard
           key={i}
           content={episode}
-          onClick={() => onSelect?.(episode.episode_id)}
+          onClick={() => onSelect?.(episode.episodeId)}
         />
       ))}
     </div>

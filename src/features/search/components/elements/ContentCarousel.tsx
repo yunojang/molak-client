@@ -1,9 +1,8 @@
-import { FC, Suspense } from 'react';
+import { FC } from 'react';
 
 import { Content } from '@/features/content/types/dto';
 import CardCarousel from '@/components/Elements/Carousel/CardCarousel';
 import ContentCard from '@/components/Elements/Card/ContentCard';
-import { Spinner } from '@/components/Elements/Spinner';
 
 interface ContentCarouselProps {
   count?: number;

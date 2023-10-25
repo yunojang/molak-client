@@ -2,6 +2,7 @@ import { FC, useContext, useRef, useState } from 'react';
 import { cx } from '@emotion/css';
 
 import { useContent } from '../../../content/api/getContent';
+import { useEpisode } from '@/features/episode/api/getEpisode';
 import { useNextEpisode } from '../../../content/api/getNextEpisode';
 import { useCoverNavigate } from '../../hooks/useCoverNavigate';
 
@@ -26,7 +27,7 @@ const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
   if (!episodeId) throw new Error('[dev-route] episodeId is required');
 
   // content 정보
-  const { content } = useContent(episodeId);
+  const { content } = useEpisode(episodeId);
   const { episode: nextEpisode } = useNextEpisode(episodeId);
 
   // 풀스크린
@@ -58,8 +59,8 @@ const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
   return (
     <div className="relative w-full h-full" ref={container}>
       <Player
-        key={content.url}
-        url={content.url}
+        key={content.videoUrl}
+        url={content.videoUrl}
         width="100%"
         height="100%"
         onDuration={setDuration}

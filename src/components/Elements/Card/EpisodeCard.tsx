@@ -21,7 +21,7 @@ const EpisodeCard: FC<EpisodeCardProps> = ({ content, onClick }) => {
       <div className="overflow-hidden rounded-lg">
         <Image
           useSuspense
-          src={content.thumbnail}
+          src={content.thumbnailUrl}
           className="object-cover"
           style={{ height: '110px', width: '180px' }}
           fallback={<Skeleton width="180px" height="110px" />}

@@ -29,7 +29,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
     <div className="w-full h-full flex flex-col relative text-gray-100">
       {!isLoading && (
         <div className="absolute top-0 left-0 w-full h-full">
-          <Image src={content?.thumbnail} width="100%" className="h-full" />
+          <Image src={content?.thumbnailUrl} width="100%" className="h-full" />
           <div
             className="absolute top-0 left-0 h-full w-full z-10"
             style={{
@@ -70,7 +70,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
           <div
             className="flex gap-5 items-center cursor-pointer"
             onClick={() =>
-              keepNavigate(`/content/${contentId}/${content?.episode_id}`)
+              keepNavigate(`/content/${contentId}/${content?.episodeId}`)
             }
           >
             <IconButton size={24} background="#89898957">

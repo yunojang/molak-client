@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 
 import { Content } from '../../../content/types/dto';
-import { useEpisodes } from '../../api/getEpisodes';
+import { useEpisodes } from '../../../episode/api/getEpisodes';
 
 import { PagableListProps } from '@/components/List/types';
 import SkeletonEpisodeList from '@/components/Elements/Card/SkeletonEpisodeList';

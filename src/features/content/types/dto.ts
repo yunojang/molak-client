@@ -4,11 +4,11 @@ export interface Content extends Domain {
   title: string;
   description: string;
   provider: string; // 혹은 Provider 매핑
-  thumbnail: string;
-  url: string;
+  thumbnailUrl: string;
+  videoUrl: string;
   type: string;
   tags: string[];
-  episode_id: string;
+  episodeId: string;
 }
 
 export interface RecommendContent extends Domain {

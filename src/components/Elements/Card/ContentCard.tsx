@@ -39,7 +39,7 @@ const ContentCard: FC<ContentCardProps> = ({
       >
         <Image
           useSuspense
-          src={content.thumbnail}
+          src={content.thumbnailUrl}
           className="object-cover w-full h-full"
           fallback={<Skeleton width="100%" height="100%" />}
         />

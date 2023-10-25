@@ -2,7 +2,6 @@ import Axios, { AxiosRequestConfig } from 'axios';
 
 import { env } from '@/config';
 import { clearToken, getToken } from '@/utils/storage';
-import { toast } from '@wizrnd/nx-ui';
 
 const client = Axios.create({});
 
@@ -48,7 +47,7 @@ client.interceptors.response.use(
     const token = getToken();
 
     if (token && code === 401) {
-      toast.error({
+      console.error({
         message: '만료된 로그인 세션입니다.',
         description: '다시 로그인해 주세요',
       });
