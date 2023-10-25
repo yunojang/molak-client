@@ -47,7 +47,7 @@ export const content: Content = {
   thumbnailUrl: '/asset/images/thumb_temp2.png',
   videoUrl: 'https://www.youtube.com/watch?v=_rEde994IqY',
   tags: ['여행', '로맨스'],
-  type: '시리즈',
+  videoType: '시리즈',
   episodeId: '1',
 };
 
@@ -60,7 +60,7 @@ export const content2: Content = {
   thumbnailUrl: '/asset/images/thumb_temp.png',
   videoUrl: 'https://www.youtube.com/watch?v=ILDjioKRJw4',
   tags: ['일진', '찐따'],
-  type: '시리즈',
+  videoType: '시리즈',
   episodeId: '1',
 };
 
@@ -72,7 +72,7 @@ export const content3: Content = {
   thumbnailUrl: '/asset/images/thumb.jpeg',
   videoUrl: 'https://www.youtube.com/watch?v=2Rm-cpUNAJU',
   tags: ['스타워즈', 'SF'],
-  type: '단편',
+  videoType: '단편',
   episodeId: '1',
 };
 
@@ -84,7 +84,7 @@ export const content4: Content = {
   thumbnailUrl: '/asset/images/thumb.jpeg',
   videoUrl: 'https://www.youtube.com/watch?v=2Rm-cpUNAJU',
   tags: ['로맨스'],
-  type: '단편',
+  videoType: '단편',
   episodeId: '1',
 };
 

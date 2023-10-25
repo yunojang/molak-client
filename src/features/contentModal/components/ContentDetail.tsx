@@ -50,7 +50,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
                 background="#f5f5f5"
                 className="text-dark font-black text-lg"
               >
-                {content?.type}
+                {content?.videoType}
               </ContentTag>
             </div>
 

@@ -6,7 +6,7 @@ export interface Content extends Domain {
   provider: string; // 혹은 Provider 매핑
   thumbnailUrl: string;
   videoUrl: string;
-  type: string;
+  videoType: string;
   tags: string[];
   episodeId: string;
 }
