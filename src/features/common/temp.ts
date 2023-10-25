@@ -43,12 +43,12 @@ export const content: Content = {
   id: '1',
   title: '브브여행사',
   description: '부산 취향 맞춤 여행, 고객만족 100% 전여친과 여행사를??',
-  provider: '비짓 부산', // 혹은 ProviderObject
+  channel: { id: '1', channelName: '비짓 부산' },
   thumbnailUrl: '/asset/images/thumb_temp2.png',
   videoUrl: 'https://www.youtube.com/watch?v=_rEde994IqY',
   tags: ['여행', '로맨스'],
   videoType: '시리즈',
-  episodeId: '1',
+  episodeId: '8',
 };
 
 export const content2: Content = {
@@ -56,36 +56,36 @@ export const content2: Content = {
   title: '[일찐과 찐따 외전] 5억년 버튼',
   description:
     '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다고? 그런데..',
-  provider: '하이틴 에이저 Hi-teenager', // 혹은 ProviderObject
+  channel: { id: '1', channelName: '하이틴 에이저 Hi-teenager' },
   thumbnailUrl: '/asset/images/thumb_temp.png',
   videoUrl: 'https://www.youtube.com/watch?v=ILDjioKRJw4',
   tags: ['일진', '찐따'],
   videoType: '시리즈',
-  episodeId: '1',
+  episodeId: '8',
 };
 
 export const content3: Content = {
   id: '3',
   title: '로그원: 스타워즈 스토리',
   description: '마지막 희망을 건 전쟁이 시작된다!',
-  provider: '디즈니, 루카스필름',
+  channel: { id: '1', channelName: '디즈니, 루카스필름' },
   thumbnailUrl: '/asset/images/thumb.jpeg',
   videoUrl: 'https://www.youtube.com/watch?v=2Rm-cpUNAJU',
   tags: ['스타워즈', 'SF'],
   videoType: '단편',
-  episodeId: '1',
+  episodeId: '8',
 };
 
 export const content4: Content = {
   id: '4',
   title: '헤어질 결심',
   description: '짙어지는 의심 깊어지는 관심',
-  provider: '박찬욱, CJ 엔터테인먼트',
+  channel: { id: '1', channelName: '박찬욱, CJ 엔터테인먼트' },
   thumbnailUrl: '/asset/images/thumb.jpeg',
   videoUrl: 'https://www.youtube.com/watch?v=2Rm-cpUNAJU',
   tags: ['로맨스'],
   videoType: '단편',
-  episodeId: '1',
+  episodeId: '8',
 };
 
 const episode: Content = { ...content, title: '브브여행사 n화' };
@@ -128,10 +128,14 @@ export const recommend_feeds: RecommendFeed[] = [
 ];
 
 export const feeds: Feed[] = [
-  { name: 'NEW! 신작 소식', id: '1', items_list: contents },
-  { name: '핫한 로맨스 웹 드라마 모음.zip', id: '2', items_list: contents },
+  { channelName: 'NEW! 신작 소식', id: '1', items_list: contents },
   {
-    name: '배꼽조심! 시간 가는줄 모르는 코미디',
+    channelName: '핫한 로맨스 웹 드라마 모음.zip',
+    id: '2',
+    items_list: contents,
+  },
+  {
+    channelName: '배꼽조심! 시간 가는줄 모르는 코미디',
     id: '3',
     items_list: contents,
   },

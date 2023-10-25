@@ -1,9 +1,14 @@
 import { Domain } from '@/types';
 
+interface Channel extends Domain {
+  channelName: string;
+  url?: string;
+}
+
 export interface Content extends Domain {
   title: string;
   description: string;
-  provider: string; // 혹은 Provider 매핑
+  channel: Channel; // 혹은 Provider 매핑
   thumbnailUrl: string;
   videoUrl: string;
   videoType: string;

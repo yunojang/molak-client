@@ -57,7 +57,9 @@ const ContentCard: FC<ContentCardProps> = ({
             <div className={cx('text-white text-lg font-bold', lineBreak(1))}>
               {content.title}
             </div>
-            <div className="text-gray-200 text-sm">{content.provider}</div>
+            <div className="text-gray-200 text-sm">
+              {content.channel.channelName}
+            </div>
           </div>
         )}
       </div>
@@ -67,7 +69,7 @@ const ContentCard: FC<ContentCardProps> = ({
           <div className="mt-2">
             <div className={cx('text-lg', lineBreak(2))}>{content.title}</div>
           </div>
-          <div className=" text-gray-500">{content.provider}</div>
+          <div className=" text-gray-500">{content.channel.channelName}</div>
         </>
       )}
     </a>
