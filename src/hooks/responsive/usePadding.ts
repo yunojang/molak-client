@@ -29,13 +29,27 @@ export const usePadding = () => {
 export const useSpace = () => {
   const { index } = useCurrentSize();
 
-  const sm = [1, 1, 1, 1, 3, 3];
-  const md = [3, 3, 3, 3, 5, 5];
-  const lg = [5, 5, 5, 5, 7, 7];
+  const sm = [3, 3, 3, 3, 5, 5];
+  const md = [5, 5, 5, 5, 7, 7];
+  const lg = [7, 7, 7, 15, 15, 15];
 
   return {
     lg: { degree: lg[index], className: `space-${lg[index]}` },
     md: { degree: md[index], className: `space-${md[index]}` },
     sm: { degree: sm[index], className: `space-${sm[index]}` },
+  };
+};
+
+export const useFont = () => {
+  const { index } = useCurrentSize();
+
+  const sm = ['xs', 'xs', 'xs', 'xs', 'sm', 'sm'];
+  const md = ['sm', 'sm', 'sm', 'sm', 'md', 'md'];
+  const lg = ['md', 'md', 'md', 'md', 'lg', 'lg'];
+
+  return {
+    lg: { degree: lg[index], className: `text-${lg[index]}` },
+    md: { degree: md[index], className: `text-${md[index]}` },
+    sm: { degree: sm[index], className: `text-${sm[index]}` },
   };
 };

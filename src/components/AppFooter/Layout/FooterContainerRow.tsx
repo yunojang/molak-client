@@ -13,7 +13,7 @@ const FooterContainerRow: FC<FooterContainerRowProps> = ({
   align = 'center',
 }) => {
   const relativeStyle = useBreakPoint(p =>
-    p.bigger('md') ? 'flex mb-16' : 'flex flex-col gap-8 mb-8',
+    p.bigger('md') ? 'flex mb-16' : 'flex flex-col gap-8 mb-12',
   );
 
   return (
