@@ -4,24 +4,23 @@ import { Intro } from '@/features/common/types/dto';
 import { Button } from '@chakra-ui/react';
 import { Image } from '../Image';
 import { cx } from '@emotion/css';
+import { useSizeRate, useText } from '@/hooks/responsive/usePadding';
 
 interface IntroCardProps extends React.HTMLAttributes<HTMLDivElement> {
   intro: Intro;
-  align?: 'left' | 'center' | 'right';
-  verticalAlign?: 'top' | 'center' | 'bottom';
+  align?: 'left' | 'right';
+  verticalAlign?: 'top' | 'bottom';
 }
 
-const alignMap = {
-  left: 'left-10',
-  center: 'left-1/2',
-  right: 'right-10',
-};
+// const alignMap = {
+//   left: 'left-10',
+//   right: 'right-10',
+// };
 
-const verticalAlignMap = {
-  top: 'top-5',
-  center: 'top-1/2',
-  bottom: 'bottom-10',
-};
+// const verticalAlignMap = {
+//   top: 'top-5',
+//   bottom: 'bottom-10',
+// };
 
 const IntroCard: FC<IntroCardProps> = ({
   intro,
@@ -29,6 +28,10 @@ const IntroCard: FC<IntroCardProps> = ({
   verticalAlign = 'bottom',
   ...props
 }) => {
+  const { md, xxl } = useText();
+  const buttonWidth = useSizeRate(152);
+  const textPadSize = useSizeRate(40);
+
   return (
     <div {...props} className="w-full h-full overflow-hidden cursor-pointer ">
       {/* image wrap */}
@@ -49,21 +52,25 @@ const IntroCard: FC<IntroCardProps> = ({
 
       {/* intro description */}
       <div
-        className={cx(
-          verticalAlignMap[verticalAlign],
-          alignMap[align],
-          'absolute flex flex-col gap-3 ',
-        )}
+        style={{ padding: textPadSize.md.size }}
+        className={cx('absolute flex flex-col gap-3 inset-0 justify-end ')}
       >
-        <div className="text-gray-50 text-sm">{intro.description}</div>
-        <div className="text-2xl font-bold text-white whitespace-pre-line">
+        <div className={cx(md.className, 'text-gray-50')}>
+          {intro.description}
+        </div>
+        <div
+          className={cx(
+            xxl.className,
+            'font-bold text-white whitespace-pre-line',
+          )}
+        >
           {intro.text}
         </div>
         {intro.button_text && (
           <Button
             className="self-start font-bold  transition-all  duration-300  bg-white py-6  hover:bg-gray-100 active:bg-gray-200 hover:shadow-md"
             size="md"
-            width={140}
+            width={buttonWidth.md.size}
           >
             {intro.button_text}
           </Button>

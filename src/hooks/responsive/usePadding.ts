@@ -7,49 +7,76 @@ const useCurrentSize = () => {
     for (const size of SIZE) if (p.same(size)) return size;
   });
 
-  const index = SIZE.indexOf(size);
+  const idx = SIZE.indexOf(size);
 
-  return { size, index };
+  return { size, idx };
 };
 
 export const usePadding = () => {
-  const { index } = useCurrentSize();
+  const { idx: idx } = useCurrentSize();
 
   const sm = [0.5, 0.5, 0.5, 0.5, 1, 1];
   const md = [1, 1, 1, 3, 3, 3];
   const lg = [3, 3, 3, 5, 5, 5];
 
   return {
-    lg: { degree: lg[index], className: `p-${lg[index]}` },
-    md: { degree: md[index], className: `p-${md[index]}` },
-    sm: { degree: sm[index], className: `p-${sm[index]}` },
+    lg: { degree: lg[idx], className: `p-${lg[idx]}` },
+    md: { degree: md[idx], className: `p-${md[idx]}` },
+    sm: { degree: sm[idx], className: `p-${sm[idx]}` },
   };
 };
 
 export const useSpace = () => {
-  const { index } = useCurrentSize();
+  const { idx: idx } = useCurrentSize();
 
   const sm = [3, 3, 3, 3, 5, 5];
   const md = [5, 5, 5, 5, 7, 7];
   const lg = [7, 7, 7, 15, 15, 15];
 
   return {
-    lg: { degree: lg[index], className: `space-${lg[index]}` },
-    md: { degree: md[index], className: `space-${md[index]}` },
-    sm: { degree: sm[index], className: `space-${sm[index]}` },
+    lg: { degree: lg[idx], className: `space-${lg[idx]}` },
+    md: { degree: md[idx], className: `space-${md[idx]}` },
+    sm: { degree: sm[idx], className: `space-${sm[idx]}` },
   };
 };
 
-export const useFont = () => {
-  const { index } = useCurrentSize();
+export const useText = () => {
+  const { idx: idx } = useCurrentSize();
 
   const sm = ['xs', 'xs', 'xs', 'xs', 'sm', 'sm'];
   const md = ['sm', 'sm', 'sm', 'sm', 'md', 'md'];
   const lg = ['md', 'md', 'md', 'md', 'lg', 'lg'];
+  const xl = ['lg', 'lg', 'lg', 'xl', 'xl', 'xl'];
+  const xxl = ['xl', 'xl', 'xl', '2xl', '2xl', '3xl'];
 
   return {
-    lg: { degree: lg[index], className: `text-${lg[index]}` },
-    md: { degree: md[index], className: `text-${md[index]}` },
-    sm: { degree: sm[index], className: `text-${sm[index]}` },
+    xxl: { degree: xxl[idx], className: `text-${xxl[idx]}` },
+    xl: { degree: xl[idx], className: `text-${xl[idx]}` },
+    lg: { degree: lg[idx], className: `text-${lg[idx]}` },
+    md: { degree: md[idx], className: `text-${md[idx]}` },
+    sm: { degree: sm[idx], className: `text-${sm[idx]}` },
+  };
+};
+
+export const useSizeRate = (standard = 1) => {
+  const { idx: idx } = useCurrentSize();
+
+  const sm = [0.5, 0.5, 0.5, 0.5, 0.8, 0.8];
+  const md = [0.6, 0.6, 0.9, 0.9, 1, 1];
+  const lg = [1.1, 1.1, 1.1, 1.1, 1.5, 1.5];
+
+  return {
+    lg: {
+      degree: lg[idx],
+      size: standard * lg[idx],
+    },
+    md: {
+      degree: md[idx],
+      size: standard * md[idx],
+    },
+    sm: {
+      degree: sm[idx],
+      size: standard * sm[idx],
+    },
   };
 };

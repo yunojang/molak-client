@@ -4,7 +4,7 @@ import Feeds from '@/features/feed/components/Feeds';
 function Landing() {
   return (
     <main>
-      <IntroCarousel height="35vw" />
+      <IntroCarousel height="36vw" />
 
       <div className="pt-16">
         <Feeds />
