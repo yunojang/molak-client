@@ -10,7 +10,7 @@ import { range } from '@/utils/range';
 export const molak_intro: Intro = {
   image: '/asset/images/molak_intro.png',
   text: '모락을 소개합니다',
-  description: '웹드라마 추천 서비스 ',
+  description: '웹드라마 OTT 플랫폼',
   button_text: '소개 보러가기',
   link: '/about',
 };
