@@ -8,6 +8,7 @@ import AppLogo from './components/AppLogo';
 import NavLayuout from './components/NavLayout';
 import LoginButton from './components/LoginButton';
 import SearchButton from './components/SearchButton';
+import TopbarLayout from './components/TopbarLayout';
 
 interface AppTopbarProps {
   _?: any;
@@ -15,15 +16,15 @@ interface AppTopbarProps {
 
 const AppTopbar: FC<AppTopbarProps> = () => {
   return (
-    <div className="sticky top-0 z-30 py-3 overflow-hidden bg-white border-b px-5 h-header">
-      <div className={cx('content-box flex items-center justify-between pl-3')}>
+    <TopbarLayout>
+      <div className={cx(' flex items-center w-full justify-between pl-3')}>
         {/* left */}
-        <BreakPoint size="md" better="eqBigger">
-          <NavLayuout>
-            <AppLogo />
+        <NavLayuout>
+          <AppLogo />
+          <BreakPoint size="md" better="eqBigger">
             <Navigator nav={NAVIGATION} />
-          </NavLayuout>
-        </BreakPoint>
+          </BreakPoint>
+        </NavLayuout>
 
         {/* right */}
         <NavLayuout>
@@ -31,7 +32,7 @@ const AppTopbar: FC<AppTopbarProps> = () => {
           <LoginButton path="/auth/login" />
         </NavLayuout>
       </div>
-    </div>
+    </TopbarLayout>
   );
 };
 

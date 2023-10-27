@@ -13,7 +13,7 @@ interface RelationTabsProps {
 const RelationTabs: FC<RelationTabsProps> = ({ defaultIndex, onChange }) => {
   return (
     <div className="w-full bg-opacity rounded-xl">
-      <Tabs defaultIndex={defaultIndex} width="144px" onChange={onChange}>
+      <Tabs defaultIndex={defaultIndex} width="120px" onChange={onChange}>
         {relationTabs.map((tab, index) => (
           <Tab key={index}>{tab.name}</Tab>
         ))}
