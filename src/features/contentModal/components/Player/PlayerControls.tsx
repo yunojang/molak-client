@@ -27,7 +27,7 @@ const PlayerControls: FC<Props> = ({
       <ProgressSlider {...progress} max={duration} />
 
       <div className="flex items-center bg-black bg-opacity-20 justify-between px-3">
-        <div className="flex gap-1 items-center">
+        <div className="flex gap-1 items-center justify-start">
           <PlayControl {...playing} />
           <VolumeControl {...volume} />
           <TimeDisplay progressTime={progressTime} runningTime={runningTime} />

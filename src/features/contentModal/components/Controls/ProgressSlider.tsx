@@ -1,5 +1,5 @@
 import { Slider } from '@/components/Elements/Slider';
-import React from 'react';
+import React, { useState } from 'react';
 
 export interface ProgressSliderProps {
   progress: number; // video progress
@@ -12,12 +12,23 @@ const ProgressSlider: React.FC<ProgressSliderProps> = ({
   setSlided,
   max,
 }) => {
+  const [sliderValue, setSliderValue] = useState(progress ?? 0);
+  const [changing, setChanging] = useState(false);
+
+  const handleChangeEnd = (value: number) => {
+    setSlided?.(value);
+    setTimeout(() => setChanging(false), 81);
+  };
+
   return (
     <Slider
       max={max}
-      value={progress}
-      onChange={setSlided}
+      value={changing ? sliderValue : progress}
+      onChangeStart={() => setChanging(true)}
+      onChange={setSliderValue}
+      onChangeEnd={handleChangeEnd}
       aria-labelledby="continuous-slider"
+      className="bg-black bg-opacity-20 py-1"
     />
   );
 };

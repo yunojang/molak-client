@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { openFullScreen as ofsUtil } from '../utils/fullScreen';
 import { PlayerState } from '../types/player';
@@ -30,10 +30,21 @@ export const usePlayer = (container: HTMLElement | null): Player => {
   const play = () => setPlaying(true);
   const pause = () => setPlaying(false);
 
-  const [volume, setVolume] = useState(0.8);
+  const [volume, setVolume] = useState(80);
   const [muted, setMuted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [slidedProgress, setSlided] = useState(0);
+
+  // const setVolume: (volume: number) => void = useMemo(
+  //   () => throttle((volume: number) => setVolume(volume), 80),
+  //   [],
+  // );
+
+  const volumnState = useMemo(
+    () => ({ volume, setVolume, muted, setMuted }),
+    [volume, muted],
+  );
+  const progressState = useMemo(() => ({ progress, setSlided }), [progress]);
 
   return {
     fullScreen: {
@@ -46,16 +57,8 @@ export const usePlayer = (container: HTMLElement | null): Player => {
       play,
       pause,
     },
-    volume: {
-      volume,
-      setVolume,
-      muted,
-      toggleMuted: () => setMuted(m => !m),
-    },
-    progress: {
-      progress,
-      setSlided,
-    },
+    volume: volumnState,
+    progress: progressState,
     setProgress,
     slidedProgress,
   };

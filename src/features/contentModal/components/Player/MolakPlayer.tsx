@@ -65,7 +65,7 @@ const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
         height="100%"
         onDuration={setDuration}
         played={slidedProgress}
-        progressInterval={40}
+        progressInterval={80}
         onProgress={({ playedSeconds }) => setProgress?.(playedSeconds)}
         onPlay={playing.play}
         onPause={playing.pause}

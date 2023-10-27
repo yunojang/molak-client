@@ -20,7 +20,7 @@ const PlayControl: FC<PlayControlProps> = ({ pause, play, playing }) => {
       onChange={v => (v ? play?.() : pause?.())}
     >
       {v => (
-        <div className={cx(clickableButtonStyle, 'p-2')}>
+        <div className={cx(clickableButtonStyle, 'p-2 px-3')}>
           {v ? (
             <BsPauseFill size={32} color="white" />
           ) : (

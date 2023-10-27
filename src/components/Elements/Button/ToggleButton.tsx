@@ -1,6 +1,7 @@
-import { FC, ReactNode } from 'react';
+import { FC, HtmlHTMLAttributes, ReactNode } from 'react';
 
-interface ToggleButtonProps {
+interface ToggleButtonProps
+  extends Omit<HtmlHTMLAttributes<HTMLButtonElement>, 'children' | 'onChange'> {
   value: boolean;
   onChange?(v: boolean): void;
   className?: string;
@@ -13,9 +14,10 @@ const ToggleButton: FC<ToggleButtonProps> = ({
   className,
   onChange,
   children,
+  ...rest
 }) => {
   return (
-    <button className={className} onClick={() => onChange?.(!value)}>
+    <button {...rest} className={className} onClick={() => onChange?.(!value)}>
       {children?.(value)}
     </button>
   );

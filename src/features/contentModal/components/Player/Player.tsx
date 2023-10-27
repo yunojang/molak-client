@@ -12,6 +12,7 @@ export interface PlayerProps extends BaseReactPlayerProps {
   width?: number | string;
   height?: number | string;
   played?: number;
+  onChangeVolumn?(volume: number): void;
 }
 
 const Player: FC<PlayerProps> = ({
@@ -20,6 +21,8 @@ const Player: FC<PlayerProps> = ({
   height,
   playIcon = <Spinner size={60} />,
   played = 0,
+  volume = 0,
+  onChangeVolumn,
   ...playerProps
 }) => {
   const ref = useRef<ReactPlayer>(null);
@@ -35,6 +38,7 @@ const Player: FC<PlayerProps> = ({
       url={url}
       width={width}
       height={height}
+      volume={volume / 100}
       {...playerProps}
       controls={false}
       loop={false}

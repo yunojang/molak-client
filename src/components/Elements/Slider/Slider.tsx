@@ -2,6 +2,7 @@ import { FC, useRef, useState } from 'react';
 
 import {
   Slider as ChakraSlider,
+  SlideProps as CProps,
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
@@ -9,34 +10,42 @@ import {
 
 interface SliderProps {
   value?: number;
+  onChangeStart?(): void;
   onChange?(value: number): void;
+  onChangeEnd?(value: number): void;
   width?: number | string;
+  min?: number;
   max?: number;
+  className?: string;
+  step?: number;
 }
 
-const Slider: FC<SliderProps> = ({ value, onChange, width, max }) => {
-  const [sliderValue, setSliderValue] = useState(value ?? 0);
-  const [changing, setChanging] = useState(false);
-
-  const handleChangeEnd = (value: number) => {
-    onChange?.(value);
-    setTimeout(() => setChanging(false), 41);
-  };
-
+const Slider: FC<SliderProps> = ({
+  value,
+  onChange,
+  onChangeStart,
+  onChangeEnd,
+  width,
+  min,
+  max,
+  className,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
 
   return (
     <ChakraSlider
       ref={ref}
+      min={min}
       max={max}
+      padding={0}
       focusThumbOnChange={false}
       aria-label="slider-ex-1"
-      className="p-0.5 pt-1 bg-black bg-opacity-20"
       colorScheme="molak"
-      value={changing ? sliderValue : value}
-      onChangeStart={() => setChanging(true)}
-      onChange={setSliderValue}
-      onChangeEnd={handleChangeEnd}
+      className={className}
+      value={value}
+      onChangeStart={onChangeStart}
+      onChange={onChange}
+      onChangeEnd={onChangeEnd}
       width={width}
     >
       <SliderTrack>
