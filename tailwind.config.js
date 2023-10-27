@@ -31,9 +31,10 @@ module.exports = {
           900: adjust(primary, -150),
         },
         dark: '#272E38',
-        secondary: '#f7b21b',
-        delete: '#ff5555',
+        secondary: '#1A8C76',
+        strong: '#f7b21b',
         pencel: '#333333',
+        opacity: '#E0FFEB',
       },
       screens: {
         sm: { max: '767px' },

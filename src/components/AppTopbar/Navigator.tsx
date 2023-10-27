@@ -15,8 +15,6 @@ interface NavigatorProps {
   nav: NavObject[];
 }
 
-const highlighColor = adjust(env.colors.primary, -20);
-
 const Navigator: FC<NavigatorProps> = ({ nav }) => {
   const navigate = useNavigate();
 
@@ -28,12 +26,10 @@ const Navigator: FC<NavigatorProps> = ({ nav }) => {
         return (
           <div
             key={i}
-            style={{
-              color: isCurrent ? highlighColor : 'inherit',
-            }}
             className={cx(
               clickableButtonStyle,
-              `py-2 transition-all text-lg cursor-pointer px-7 hover:text-primary-500`,
+              isCurrent ? 'text-secondary font-semibold' : 'text-black',
+              `py-2 transition-all text-lg  cursor-pointer px-7 hover:text-secondary`,
             )}
             onClick={() => navigate(path)}
           >

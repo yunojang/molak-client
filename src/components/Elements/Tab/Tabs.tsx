@@ -7,6 +7,7 @@ import {
 } from '@chakra-ui/react';
 import { adjust } from '@/utils/style/color';
 import { env } from '@/config';
+import { cx } from '@emotion/css';
 
 interface TabsProps extends ChakraTabsProps {
   width?: string;
@@ -39,9 +40,10 @@ const Tabs: FC<TabsProps> = ({
           return (
             <div>
               {cloneElement<TabProps>(child as ReactElement, {
-                _selected: { color: 'white' },
-                className:
-                  'font-bold text-[1.3rem] z-10 transition-all relative easy-in-out',
+                className: cx(
+                  isSelected ? 'text-white' : 'text-secondary',
+                  'font-bold text-[1.3rem] z-10 transition-all relative easy-in-out ',
+                ),
                 style: {
                   width,
                   // transition: '400ms cubic-bezier(.77,.15,.39,1.43) 200ms',
@@ -49,9 +51,9 @@ const Tabs: FC<TabsProps> = ({
                 },
               })}
               <div
-                className="absolute h-[84%] rounded-xl top-1/2"
+                className="absolute h-[84%] rounded-xl top-1/2 bg-secondary"
                 style={{
-                  background: adjust(env.colors.primary, -20),
+                  // background: adjust(env.colors.primary, -20),
                   width: `calc(${width} - ${subPx(width) * 0.1}px)`,
                   transform: `translate(5%, -50%) scale(${isSelected ? 1 : 0})`,
                   transition: isSelected

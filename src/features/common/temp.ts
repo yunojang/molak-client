@@ -9,9 +9,9 @@ import { range } from '@/utils/range';
 // temp mock data
 export const molak_intro: Intro = {
   image: '/asset/images/molak_intro.png',
-  text: '웹드라마 추천 서비스',
-  // description: '모락에서 선별한 웹드라마를 시청하세요',
-  button_text: 'MOLAK 소개',
+  text: '모락을 소개합니다',
+  description: '웹드라마 추천 서비스 ',
+  button_text: '소개 보러가기',
   link: '/about',
 };
 

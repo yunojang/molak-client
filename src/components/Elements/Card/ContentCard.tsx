@@ -27,7 +27,7 @@ const ContentCard: FC<ContentCardProps> = ({
       className={cx(
         hovering,
         !isSeperateType
-          ? 'hover:scale-[1.025] hover:border-secondary border-4'
+          ? 'hover:scale-[1.025] hover:border-strong border-4'
           : '',
         'inline-flex flex-col w-full cursor-pointer transition-transform select-none border-transparent rounded-xl p-[1.5px]',
       )}
