@@ -52,7 +52,7 @@ const IntroCard: FC<IntroCardProps> = ({
 
       {/* intro description */}
       <div
-        style={{ padding: textPadSize.md.size }}
+        style={{ padding: textPadSize.sm.size }}
         className={cx('absolute flex flex-col gap-3 inset-0 justify-end ')}
       >
         <div className={cx(md.className, 'text-gray-50')}>

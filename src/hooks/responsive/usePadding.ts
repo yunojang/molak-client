@@ -31,12 +31,12 @@ export const useSpace = () => {
 
   const sm = [3, 3, 3, 3, 5, 5];
   const md = [5, 5, 5, 5, 7, 7];
-  const lg = [7, 7, 7, 15, 15, 15];
+  const lg = [7, 7, 7, 14, 14, 14];
 
   return {
-    lg: { degree: lg[idx], className: `space-${lg[idx]}` },
-    md: { degree: md[idx], className: `space-${md[idx]}` },
-    sm: { degree: sm[idx], className: `space-${sm[idx]}` },
+    lg: { degree: lg[idx], className: `gap-${lg[idx]}` },
+    md: { degree: md[idx], className: `gap-${md[idx]}` },
+    sm: { degree: sm[idx], className: `gap-${sm[idx]}` },
   };
 };
 
@@ -62,7 +62,7 @@ export const useSizeRate = (standard = 1) => {
   const { idx: idx } = useCurrentSize();
 
   const sm = [0.5, 0.5, 0.5, 0.5, 0.8, 0.8];
-  const md = [0.6, 0.6, 0.9, 0.9, 1, 1];
+  const md = [0.8, 0.8, 0.9, 0.9, 1, 1];
   const lg = [1.1, 1.1, 1.1, 1.1, 1.5, 1.5];
 
   return {

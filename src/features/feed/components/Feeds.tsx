@@ -3,6 +3,8 @@ import SkeletonFeedList from './SkeletonFeedList';
 import FeedList from './FeedList';
 import RecommendFeedList from './RecommendFeedList';
 import { useContentHeight } from '@/features/content/hooks/useContentHeight';
+import { useSpace } from '@/hooks/responsive/usePadding';
+import { cx } from '@emotion/css';
 
 interface FeedsProps {
   _?: any;
@@ -10,9 +12,10 @@ interface FeedsProps {
 
 const Feeds: FC<FeedsProps> = () => {
   const height = useContentHeight();
+  const gap = useSpace();
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className={cx(`flex flex-col gap-7`)}>
       <div className="mb-12">
         <Suspense>
           <RecommendFeedList />

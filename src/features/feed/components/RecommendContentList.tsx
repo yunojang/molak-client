@@ -6,30 +6,30 @@ import RecommendCard from './RecommendCard';
 
 import { scrollXStyle } from '@/utils/style/scroll';
 import { useNavigateWithBg } from '@/hooks/useNavigateWithBg';
+import { useSizeRate } from '@/hooks/responsive/usePadding';
 
 interface RecommendContentListProps {
   recommends: RecommendContent[];
 }
 
-const recommend_content_width = '380px';
-
 const RecommendContentList: FC<RecommendContentListProps> = ({
   recommends,
 }) => {
   const navigate = useNavigateWithBg();
+  const cardWidth = useSizeRate(360);
 
   const handleClick = (contentId: string) => navigate(`/content/${contentId}`);
 
   return (
     <div
       className={cx(scrollXStyle, 'flex flex-nowrap gap-5 pt-2 pb-5')}
-      style={{ paddingRight: recommend_content_width }}
+      style={{ paddingRight: cardWidth.md.size }}
     >
       {recommends.map((recommend, i) => (
         <RecommendCard
           key={i}
           recommend={recommend}
-          defaultWidth={recommend_content_width}
+          defaultWidth={cardWidth.md.size}
           onClick={() => handleClick(recommend.content.id)}
         />
       ))}

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 
 import { RecommendContent } from '@/features/content/types/dto';
 
@@ -8,7 +8,7 @@ import { css, cx, keyframes } from '@emotion/css';
 
 interface RecommendCardProps extends React.HTMLAttributes<HTMLDivElement> {
   recommend: RecommendContent;
-  defaultWidth: string;
+  defaultWidth: number;
 }
 
 const RecommendCard: FC<RecommendCardProps> = ({
@@ -19,6 +19,9 @@ const RecommendCard: FC<RecommendCardProps> = ({
   const { background } = recommend;
   const [isFocus, setIsFocus] = useState(false);
 
+  const height = useMemo(() => (defaultWidth / 3) * 4, [defaultWidth]);
+  const expendWidth = useMemo(() => defaultWidth * 2, [defaultWidth]);
+
   return (
     <Hovering
       delay={500}
@@ -27,12 +30,13 @@ const RecommendCard: FC<RecommendCardProps> = ({
     >
       <div
         {...rest}
-        className="px-7 pt-7 rounded-xl overflow-hidden h-[480px] cursor-pointer select-none border shadow-md overflow-hidde
+        className="px-7 pt-7 rounded-xl overflow-hidden  cursor-pointer select-none border shadow-md overflow-hidde
          hover:shadow-lg hover:scale-[1.02] hover:border-[#f7b21b] hover:border-2 hover:z-10 
       "
         style={{
           background,
-          minWidth: isFocus ? '700px' : defaultWidth,
+          height,
+          minWidth: isFocus ? expendWidth : defaultWidth,
           transition: 'all .3s cubic-bezier(0,0,.5,1), border 0s',
           // borderColor: isFocus ? '#f7b21b' : '#f5f5f5',
         }}
