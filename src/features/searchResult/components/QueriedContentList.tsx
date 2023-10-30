@@ -7,6 +7,7 @@ import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentC
 import { withListLoadToScroll } from '@/components/List/withListLoadToScroll';
 import ContentList from '@/features/content/components/ContentList';
 import { ListResultTitle } from '@/components/List/ListTitle';
+import { useSizeRate } from '@/hooks/responsive/usePadding';
 
 interface QueriedContentListProps {
   filter?: any;
@@ -15,24 +16,27 @@ interface QueriedContentListProps {
 const QueriedContentList: FC<QueriedContentListProps> = ({ filter }) => {
   const naviage = useNavigateWithBg();
   const count = Math.floor(useCardCount().count / 2) * 2;
+  const {
+    standard: { size: rowGap },
+  } = useSizeRate(20, 0.3);
 
   const QueriedContentsLoadToScroll = useMemo(
     () =>
       withListLoadToScroll({
         ListComp: ContentList,
         filter,
-        gap: 20,
+        gap: rowGap,
         fallback: (
           <SkeletonContentCardList
             count={4}
             gap={5}
-            rowGap={20}
+            rowGap={rowGap}
             columnCount={count}
             isCard
           />
         ),
       }),
-    [filter, count],
+    [filter, count, rowGap],
   );
 
   return (
