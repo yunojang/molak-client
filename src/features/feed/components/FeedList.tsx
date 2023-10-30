@@ -36,7 +36,7 @@ const FeedList: FC<FeedListProps> = ({ contentHeight, gap = 26 }) => {
             loop
             count={count}
             gap={cardGap}
-            items={feed.items_list.map((content, i) => (
+            items={feed.item_list.map((content, i) => (
               <ContentCard
                 key={i}
                 content={content}

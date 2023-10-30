@@ -26,6 +26,13 @@ export interface LayoutProps {
   children?: React.ReactNode | React.ReactNode[];
 }
 
+export interface PagerableContent<T> {
+  content: T[];
+  totalElements: number;
+  totalPages: number;
+  last?: boolean;
+}
+
 export interface ContentResponse {
   content: Content[];
   totalElements: number;

@@ -1,11 +1,14 @@
 // query template
 import { QueryOptions, useQuery } from '@/lib/react-query';
 
-import { ContentResponse } from '@/types';
+import { ContentResponse, PagerableContent } from '@/types';
 import client from '@/lib/client';
 import { formatParams } from '@/utils/format/params';
+import { Content } from '../types/dto';
 
-export const getContents = (params: any): Promise<ContentResponse> => {
+export const getContents = (
+  params: any,
+): Promise<PagerableContent<Content>> => {
   // return new Promise(resolve =>
   //   setTimeout(
   //     () =>

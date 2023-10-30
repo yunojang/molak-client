@@ -123,21 +123,21 @@ export const recommend_feeds: RecommendFeed[] = [
   {
     name: '모락 추천작',
     id: '1',
-    items_list: range(7, (_, i) => (i % 2 == 0 ? 추천작 : 추천작2)),
+    item_list: range(7, (_, i) => (i % 2 == 0 ? 추천작 : 추천작2)),
   },
 ];
 
 export const feeds: Feed[] = [
-  { name: 'NEW! 신작 소식', id: '1', items_list: contents },
+  { name: 'NEW! 신작 소식', id: '1', item_list: contents },
   {
     name: '핫한 로맨스 웹 드라마 모음.zip',
     id: '2',
-    items_list: contents,
+    item_list: contents,
   },
   {
     name: '배꼽조심! 시간 가는줄 모르는 코미디',
     id: '3',
-    items_list: contents,
+    item_list: contents,
   },
 ];
 
