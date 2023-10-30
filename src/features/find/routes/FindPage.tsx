@@ -37,7 +37,7 @@ const FindPage: FC = () => {
   };
 
   return (
-    <div className="flex flex-col py-3">
+    <div className="flex flex-col py-3 overflow-hidden">
       {/* <ToScroll to={0} /> */}
 
       <FindContentLayout>

@@ -45,10 +45,10 @@ export const content: Content = {
   description: '부산 취향 맞춤 여행, 고객만족 100% 전여친과 여행사를??',
   channel: { id: '1', name: '비짓 부산' },
   thumbnailUrl: '/asset/images/thumb_temp2.png',
-  videoUrl: 'https://www.youtube.com/watch?v=_rEde994IqY',
+  url: 'https://www.youtube.com/watch?v=_rEde994IqY',
   tags: ['여행', '로맨스'],
-  videoType: '시리즈',
-  episodeId: '8',
+  type: '시리즈',
+  episode_id: '8',
 };
 
 export const content2: Content = {
@@ -58,10 +58,10 @@ export const content2: Content = {
     '일찐과 찐따 외전 - 정말 버튼만 누르면 1000만원을 준다고? 그런데..',
   channel: { id: '1', name: '하이틴 에이저 Hi-teenager' },
   thumbnailUrl: '/asset/images/thumb_temp.png',
-  videoUrl: 'https://www.youtube.com/watch?v=ILDjioKRJw4',
+  url: 'https://www.youtube.com/watch?v=ILDjioKRJw4',
   tags: ['일진', '찐따'],
-  videoType: '시리즈',
-  episodeId: '8',
+  type: '시리즈',
+  episode_id: '8',
 };
 
 export const content3: Content = {
@@ -70,10 +70,10 @@ export const content3: Content = {
   description: '마지막 희망을 건 전쟁이 시작된다!',
   channel: { id: '1', name: '디즈니, 루카스필름' },
   thumbnailUrl: '/asset/images/thumb.jpeg',
-  videoUrl: 'https://www.youtube.com/watch?v=2Rm-cpUNAJU',
+  url: 'https://www.youtube.com/watch?v=2Rm-cpUNAJU',
   tags: ['스타워즈', 'SF'],
-  videoType: '단편',
-  episodeId: '8',
+  type: '단편',
+  episode_id: '8',
 };
 
 export const content4: Content = {
@@ -82,10 +82,10 @@ export const content4: Content = {
   description: '짙어지는 의심 깊어지는 관심',
   channel: { id: '1', name: '박찬욱, CJ 엔터테인먼트' },
   thumbnailUrl: '/asset/images/thumb.jpeg',
-  videoUrl: 'https://www.youtube.com/watch?v=2Rm-cpUNAJU',
+  url: 'https://www.youtube.com/watch?v=2Rm-cpUNAJU',
   tags: ['로맨스'],
-  videoType: '단편',
-  episodeId: '8',
+  type: '단편',
+  episode_id: '8',
 };
 
 const episode: Content = { ...content, title: '브브여행사 n화' };

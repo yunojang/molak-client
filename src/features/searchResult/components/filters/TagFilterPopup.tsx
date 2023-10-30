@@ -7,9 +7,10 @@ import { useDiscover } from '@/features/find/api/getDiscover';
 import { Checkbox, CheckboxGroup } from '@chakra-ui/react';
 import { PopOver } from '@/components/Elements/Selector';
 import SelectOpenBox from '@/components/Elements/SelectOpenBox/SelectOpenBox';
-import { adjust } from '@/utils/style/color';
-import { env } from '@/config';
 import Bubble from '@/components/Elements/bubble';
+
+import { env } from '@/config';
+import { adjust } from '@/utils/style/color';
 
 interface Props extends FilterProps {
   value?: string[];
@@ -57,7 +58,7 @@ const TagFilter: FC<Props> = ({ value, onChange }) => {
   return (
     <PopOver
       trigger={
-        <div className="relative">
+        <div className="relative z-50">
           <SelectOpenBox
             display={display}
             className={isSelected ? 'font-bold' : ''}
@@ -72,7 +73,7 @@ const TagFilter: FC<Props> = ({ value, onChange }) => {
       placement="bottom"
     >
       {close => (
-        <div className="flex flex-wrap gap-1 p-5 shadow-xl rounded-xl w-[30vw]">
+        <div className="flex flex-wrap gap-1 p-5 shadow-xl rounded-xl w-[35vw] min-w-[15em]">
           <CheckboxGroup
             colorScheme="molak"
             onChange={handleChange}

@@ -25,7 +25,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
   const isLoading = _isLoading || !content;
 
   const handleClickStartButton = () => {
-    keepNavigate(`/content/${contentId}/${content?.episodeId}`);
+    keepNavigate(`/content/${contentId}/${content?.episode_id}`);
   };
   const pad = usePadding();
 
@@ -57,7 +57,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
                 background="#f5f5f5"
                 className="text-dark font-black text-lg"
               >
-                {content?.videoType}
+                {content?.type}
               </ContentTag>
             </div>
 

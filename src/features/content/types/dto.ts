@@ -10,10 +10,10 @@ export interface Content extends Domain {
   description: string;
   channel: Channel; // 혹은 Provider 매핑
   thumbnailUrl: string;
-  videoUrl: string;
-  videoType: string;
+  url: string;
+  type: string;
   tags: string[];
-  episodeId: string;
+  episode_id: string;
 }
 
 export interface RecommendContent extends Domain {

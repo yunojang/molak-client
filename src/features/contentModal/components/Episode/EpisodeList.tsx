@@ -6,7 +6,7 @@ import { ListProps } from '@/components/List/types';
 
 interface EpisodesProps extends ListProps {
   id: string;
-  onSelect?(id: number): void;
+  onSelect?(id: string): void;
 }
 
 const EpisodeList: FC<EpisodesProps> = ({
@@ -23,7 +23,7 @@ const EpisodeList: FC<EpisodesProps> = ({
         <EpisodeCard
           key={i}
           content={episode}
-          onClick={() => onSelect?.(episode.episodeId)}
+          onClick={() => onSelect?.(episode.episode_id)}
         />
       ))}
     </div>

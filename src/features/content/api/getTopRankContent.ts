@@ -6,7 +6,11 @@ export const useTopRankContent = ({
   onSuccess,
   suspense = true,
 }: QueryOptions<ContentResponse> = {}) => {
-  const params = { order: 'popular', size: 8, offset: 0 };
+  const params = {
+    // order: 'popular',
+    size: 8,
+    page: 0,
+  };
 
   const { data, ...rest } = useQuery({
     queryKey: ['contents', JSON.stringify(params)],
@@ -21,9 +25,7 @@ export const useTopRankContent = ({
     contents: data?.content ?? [],
     totalElements: data?.totalElements ?? 0,
     totalPages: data?.totalPages ?? 0,
-    isEnd: data
-      ? data.totalElements <= params.offset + params.size // 다음 요청에 크거나 같아지면, isEnd // ? data.totalElements <= params.page + 1
-      : false,
+    isEnd: data?.last,
     ...rest,
   };
 };

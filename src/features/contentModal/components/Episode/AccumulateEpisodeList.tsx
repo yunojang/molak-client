@@ -6,7 +6,6 @@ import { useEpisodes } from '../../../episode/api/getEpisodes';
 import { PagableListProps } from '@/components/List/types';
 import SkeletonEpisodeList from '@/components/Elements/Card/SkeletonEpisodeList';
 import EpisodeCard from '@/components/Elements/Card/EpisodeCard';
-import { queryClient } from '@/lib/react-query';
 
 interface EpisodeListProps extends PagableListProps {
   id: string;

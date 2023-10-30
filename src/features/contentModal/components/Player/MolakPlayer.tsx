@@ -59,8 +59,8 @@ const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
   return (
     <div className="relative w-full h-full" ref={container}>
       <Player
-        key={content.videoUrl}
-        url={content.videoUrl}
+        key={content.url}
+        url={content.url}
         width="100%"
         height="100%"
         onDuration={setDuration}

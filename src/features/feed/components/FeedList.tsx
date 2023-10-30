@@ -21,7 +21,7 @@ const FeedList: FC<FeedListProps> = ({ contentHeight, gap = 26 }) => {
 
   const { count } = useCardCount();
   const {
-    md: { size: cardGap },
+    standard: { size: cardGap },
   } = useSizeRate(20);
 
   return (

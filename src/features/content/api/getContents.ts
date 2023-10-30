@@ -17,6 +17,7 @@ export const getContents = (params: any): Promise<ContentResponse> => {
   //       }),
   //     500,
   //   ),
+
   // );
 
   return client.get(`/api/v1/search`, { params: formatParams(params) });
