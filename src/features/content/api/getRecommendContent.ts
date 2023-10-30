@@ -2,27 +2,31 @@
 import { QueryOptions, useQuery } from '@/lib/react-query';
 
 import { recommend_contents } from '@/features/common/temp';
-import { ContentResponse } from '@/types';
+import { ContentResponse, PagerableContent } from '@/types';
+import client from '@/lib/client';
+import { Feed } from '@/features/feed/types/dto';
 
-export const getRecommendContents = (params: any): Promise<ContentResponse> => {
-  return new Promise(resolve =>
-    setTimeout(
-      () =>
-        resolve({
-          content: recommend_contents,
-          totalElements: 8,
-          totalPages: 1,
-        }),
-      500,
-    ),
-  );
+export const getRecommendContents = (
+  params: any,
+): Promise<PagerableContent<Feed>> => {
+  // return new Promise(resolve =>
+  //   setTimeout(
+  //     () =>
+  //       resolve({
+  //         content: recommend_contents,
+  //         totalElements: 8,
+  //         totalPages: 1,
+  //       }),
+  //     500,
+  //   ),
+  // );
 
-  // return client.get(`/api/contents/recommend`, {params});
+  return client.get(`/api/v1/feed`);
 };
 
 export const useRecommendContents = (
   params: any = { size: 8, offset: 0 },
-  { onSuccess, suspense = true }: QueryOptions<ContentResponse> = {},
+  { onSuccess, suspense = true }: QueryOptions<PagerableContent<Feed>> = {},
 ) => {
   const { data, ...rest } = useQuery({
     queryKey: ['recommend_cotents', JSON.stringify(params)],
@@ -34,7 +38,7 @@ export const useRecommendContents = (
   if (!data && suspense) throw () => getRecommendContents(params);
 
   return {
-    contents: data?.content ?? [],
+    contents: data?.content?.[0].item_list ?? [],
     totalElements: data?.totalElements ?? 0,
     totalPages: data?.totalPages ?? 0,
     isEnd: data
