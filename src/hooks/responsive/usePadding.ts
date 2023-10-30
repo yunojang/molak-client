@@ -62,7 +62,7 @@ export const useSizeRate = (standard = 1) => {
   const { idx: idx } = useCurrentSize();
 
   const sm = [0.5, 0.5, 0.5, 0.5, 0.8, 0.8];
-  const md = [0.8, 0.8, 0.9, 0.9, 1, 1];
+  const md = [0.7, 0.7, 0.85, 0.85, 1, 1];
   const lg = [1.1, 1.1, 1.1, 1.1, 1.5, 1.5];
 
   return {

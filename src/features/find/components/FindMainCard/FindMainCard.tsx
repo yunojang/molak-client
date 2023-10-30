@@ -15,6 +15,7 @@ const intro = {
 
 const FindMainCard: FC<FindMainCardProps> = () => {
   const { keepNavigate } = useCoverNavigate();
+
   return (
     <Carousel
       height="30vw"

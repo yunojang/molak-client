@@ -27,7 +27,6 @@ const FindPage: FC = () => {
     const filters = tag.items.reduce(
       (obj: any, cur) => ({
         ...obj,
-        // 태그일때, 기존 obj에 (없으면 []로 초기화하고) 추가
         [cur.type]:
           cur.type === 'tags' ? [...(obj[cur.type] ?? []), cur.name] : cur.name,
       }),

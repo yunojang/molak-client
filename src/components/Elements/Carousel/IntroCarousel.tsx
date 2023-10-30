@@ -8,11 +8,10 @@ import Carousel from './Carousel';
 import IntroCard from './IntroCard';
 
 interface IntroCarouselProps {
-  height?: number | string;
   onSelect?(): void;
 }
 
-const IntroCarousel: FC<IntroCarouselProps> = ({ height = '42em' }) => {
+const IntroCarousel: FC<IntroCarouselProps> = () => {
   const { intro } = useIntro();
 
   const navigate = useNavigate();
@@ -28,7 +27,7 @@ const IntroCarousel: FC<IntroCarouselProps> = ({ height = '42em' }) => {
   return (
     <div
       style={{
-        height,
+        height: '36vw',
         minHeight: '30vh',
       }}
     >

@@ -1,10 +1,11 @@
 import { FC, Suspense } from 'react';
+import { cx } from '@emotion/css';
+
 import SkeletonFeedList from './SkeletonFeedList';
 import FeedList from './FeedList';
 import RecommendFeedList from './RecommendFeedList';
 import { useContentHeight } from '@/features/content/hooks/useContentHeight';
-import { useSpace } from '@/hooks/responsive/usePadding';
-import { cx } from '@emotion/css';
+import { useSizeRate } from '@/hooks/responsive/usePadding';
 
 interface FeedsProps {
   _?: any;
@@ -12,18 +13,22 @@ interface FeedsProps {
 
 const Feeds: FC<FeedsProps> = () => {
   const height = useContentHeight();
-  const gap = useSpace();
+  const {
+    md: { size: gap },
+  } = useSizeRate(26);
 
   return (
     <div className={cx(`flex flex-col gap-7`)}>
       <div className="mb-12">
         <Suspense>
-          <RecommendFeedList />
+          <RecommendFeedList gap={gap} />
         </Suspense>
       </div>
 
-      <Suspense fallback={<SkeletonFeedList contentHeight={height} />}>
-        <FeedList />
+      <Suspense
+        fallback={<SkeletonFeedList contentHeight={height} gap={gap} />}
+      >
+        <FeedList gap={gap} />
       </Suspense>
     </div>
   );
