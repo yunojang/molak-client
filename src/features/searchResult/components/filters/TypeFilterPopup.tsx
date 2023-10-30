@@ -63,7 +63,10 @@ const TypeItem = ({ type, selected, onClick }: any) => {
 
   return (
     <div
-      className={cx('p-1  border-2 rounded-xl')}
+      className={cx(
+        selected ? 'border-strong shadow-lg' : 'border-transparent',
+        'p-1  border-2 rounded-xl',
+      )}
       style={{ width: '20em', borderColor }}
     >
       <div
