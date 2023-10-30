@@ -11,10 +11,9 @@ export const introCards: IntroductionCardProps[] = [
   {
     background: '#ffe8d1',
     type: '꼭 봐야하는',
-    title: '브브여행사',
-    description:
-      '무작정 차린 부산여행사 가진건 부산토박이의 자존심, 심지어 전여친과 함께?',
-    link: '/content/1',
+    title: '밤샘 과제',
+    description: '미루고 미뤄 하룻밤 밖에 남지 않은 과제!',
+    link: '/content/2',
   },
   {
     background: '#ebe9e4',
