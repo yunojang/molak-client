@@ -66,7 +66,7 @@ const FindPage: FC = () => {
 
         <div className="px-space py-3 top-header sticky left-0 z-10 bg-white">
           <div className="text-lg font-bold mb-3">필터로 찾기</div>
-          <div className={cx(scrollXStyle, 'flex justify-between')}>
+          <div className={cx(scrollXStyle, 'flex justify-between pt-2')}>
             <Filters
               value={filter}
               onChange={filters => overwriteFilter(filters)}
