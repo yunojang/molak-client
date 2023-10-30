@@ -29,7 +29,7 @@ const AppTopbar: FC<AppTopbarProps> = () => {
         {/* right */}
         <NavLayuout>
           <SearchButton path="/search" />
-          <LoginButton path="/auth/login" />
+          {/* <LoginButton path="/auth/login" /> */}
         </NavLayuout>
       </div>
     </TopbarLayout>
