@@ -29,6 +29,7 @@ const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
   // content 정보
   const { content } = useEpisode(episodeId);
   const { episode: nextEpisode } = useNextEpisode(episodeId);
+  console.log(nextEpisode);
 
   // 풀스크린
   const container = useRef<HTMLDivElement>(null);
