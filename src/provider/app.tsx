@@ -10,6 +10,7 @@ import { theme } from '@/lib/chakra';
 import { ModalContext, globalModalRootId } from '@/lib/modal/ModalContext';
 
 import SpinnerPage from '@/components/Elements/Spinner/SpinnerPage';
+import ErrorPage from '@/components/ErrorBoundary/ErrorPage';
 
 interface AppProviderProps {
   children?: React.ReactNode;
@@ -18,9 +19,7 @@ interface AppProviderProps {
 const AppProvider = ({ children }: AppProviderProps) => {
   return (
     <Router>
-      <ErrorBoundary
-        fallback={({ code, key, message }) => <div>{message}</div>}
-      >
+      <ErrorBoundary fallback={error => <ErrorPage error={error} />}>
         <ChakraProvider theme={theme}>
           <QueryClientProvider client={queryClient}>
             <ModalContext.Provider value={globalModalRootId}>

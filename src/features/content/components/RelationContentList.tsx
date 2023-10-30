@@ -1,9 +1,10 @@
-import { FC, useMemo } from 'react';
+import { FC, useContext, useMemo } from 'react';
 import { withListLoadToScroll } from '@/components/List/withListLoadToScroll';
 
 import SkeletonEpisodeList from '@/components/Elements/Card/SkeletonEpisodeList';
 import ListCallToDomain from '@/components/List/ListCallToDomain';
 import { relationTabs } from '../constant/tabs';
+import { ContentInfoContext } from '@/features/contentModal/store/ContentIdContext';
 
 interface RelaltionContentListProps {
   tab: number;
@@ -15,16 +16,17 @@ const RelaltionContentList: FC<RelaltionContentListProps> = ({
   onSelect,
 }) => {
   const gap = 6;
+  const { contentId } = useContext(ContentInfoContext);
 
   const RelationContentsRoadToScroll = useMemo(
     () =>
       withListLoadToScroll({
         ListComp: ListCallToDomain,
-        fallback: <SkeletonEpisodeList count={8} gap={gap} />,
-        filter: { size: 8 },
+        fallback: <SkeletonEpisodeList count={6} gap={gap} />,
+        filter: { size: 6, contentId },
         gap,
       }),
-    [],
+    [contentId],
   );
 
   const relation = relationTabs[tab];
