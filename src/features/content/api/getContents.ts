@@ -1,9 +1,9 @@
 // query template
 import { QueryOptions, useQuery } from '@/lib/react-query';
 
-import { search_contents } from '@/features/common/temp';
 import { ContentResponse } from '@/types';
 import client from '@/lib/client';
+import { formatParams } from '@/utils/format/params';
 
 export const getContents = (params: any): Promise<ContentResponse> => {
   // return new Promise(resolve =>
@@ -19,9 +19,7 @@ export const getContents = (params: any): Promise<ContentResponse> => {
   //   ),
   // );
 
-  console.log(params);
-
-  return client.get(`/api/v1/search`, { params });
+  return client.get(`/api/v1/search`, { params: formatParams(params) });
 };
 
 export const useContents = (
