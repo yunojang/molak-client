@@ -3,12 +3,12 @@ import { FC, useContext } from 'react';
 import { useContent } from '../../content/api/getContent';
 import { useCoverNavigate } from '../hooks/useCoverNavigate';
 
-import { IconButton } from '@/components/Elements/IconButton';
-import { BsFillPlayFill } from 'react-icons/bs';
 import ContentTag from './Elements/ContentTag';
 import SkeletonContentDetail from './Elements/SkeletonContentDetail';
 import { Image } from '@/components/Elements/Image';
 import { ContentInfoContext } from '../store/ContentIdContext';
+import { usePadding } from '@/hooks/responsive/usePadding';
+import ContentStartButton from './Elements/ContentStartButton';
 
 interface ContentVideoDetailProps {
   _?: any;
@@ -22,8 +22,12 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
   const { content, isLoading: _isLoading } = useContent(contentId, {
     suspense: false,
   });
-
   const isLoading = _isLoading || !content;
+
+  const handleClickStartButton = () => {
+    keepNavigate(`/content/${contentId}/${content?.episodeId}`);
+  };
+  const pad = usePadding();
 
   return (
     <div className="w-full h-full flex flex-col relative text-gray-100">
@@ -40,7 +44,10 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
         </div>
       )}
 
-      <div className="flex-1 z-20 flex flex-col gap-8 justify-end p-10">
+      <div
+        className={'flex-1 z-20 flex flex-col gap-8 justify-end'}
+        style={{ padding: pad.xl.degree * 4 }}
+      >
         {isLoading ? (
           <SkeletonContentDetail />
         ) : (
@@ -54,7 +61,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
               </ContentTag>
             </div>
 
-            <div className="text-gray-100">{content?.channel.channelName}</div>
+            <div className="text-gray-100">{content?.channel.name}</div>
             <div className="text-4xl font-bold mb-2">{content?.title}</div>
             <div className="flex gap-1 items-center">
               {content?.tags.map((tag, i) => (
@@ -66,24 +73,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
           </div>
         )}
 
-        <div className="flex justify-between">
-          <div
-            className="flex gap-5 items-center cursor-pointer"
-            onClick={() =>
-              keepNavigate(`/content/${contentId}/${content?.episodeId}`)
-            }
-          >
-            <IconButton size={24} background="#89898957">
-              <BsFillPlayFill size={60} className="relative left-[2px]" />
-            </IconButton>
-
-            <div className="font-bold text-2xl select-none">
-              1화부터 감상하기
-            </div>
-          </div>
-
-          <div className="flex gap-3"></div>
-        </div>
+        <ContentStartButton onClick={handleClickStartButton} />
       </div>
     </div>
   );

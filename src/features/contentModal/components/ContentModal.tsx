@@ -11,7 +11,6 @@ import VideoFrame from './Elements/VideoFrame';
 import CloseButton from './Elements/CloseButtont';
 import MolakPlayer from '@/features/contentModal/components/Player/MolakPlayer';
 import { PlayerFallback } from '@/features/contentModal/components/Player/Player';
-import { useModalElement } from '../hooks/useModalElement';
 
 const ContentModal: FC = () => {
   const { episodeId } = useParams();
@@ -19,8 +18,9 @@ const ContentModal: FC = () => {
 
   const isIntroPage = !episodeId;
 
-  const videoWidth = useBreakPoint(p => (p.eqBigger('xl') ? 1120 : '100vw'));
-  const videoHeight = 630;
+  const isXXL = useBreakPoint(p => p.eqBigger('2xl'));
+  const videoWidth = useBreakPoint(p => (p.eqBigger('2xl') ? 1120 : '100vw'));
+  const videoHeight = useBreakPoint(p => (p.eqBigger('sm') ? 630 : '40vh'));
 
   return (
     <ContentModalProvider>
@@ -42,7 +42,7 @@ const ContentModal: FC = () => {
         )}
       </VideoFrame>
 
-      <RelationArea videoHeight={videoHeight} />
+      <RelationArea height={isXXL ? videoHeight : 'fit'} />
     </ContentModalProvider>
   );
 };

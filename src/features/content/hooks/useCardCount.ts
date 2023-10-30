@@ -1,6 +1,10 @@
 import { useBreakPoint } from '@/utils/breakpoint';
 
-export const useCardCount = () => {
+interface Options {
+  bi?: boolean;
+}
+
+export const useCardCount = (options: Options = { bi: false }) => {
   const count = useBreakPoint(p => {
     if (p.eqBigger('2xl')) return 4;
     if (p.eqBigger('xl')) return 4;
@@ -11,5 +15,6 @@ export const useCardCount = () => {
     return 1;
   });
 
+  if (options.bi) return { count: Math.floor(Math.max(2, count) / 2) * 2 };
   return { count };
 };

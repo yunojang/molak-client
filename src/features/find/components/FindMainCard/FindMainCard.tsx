@@ -17,17 +17,19 @@ const FindMainCard: FC<FindMainCardProps> = () => {
   const { keepNavigate } = useCoverNavigate();
 
   return (
-    <Carousel
-      height="30vw"
-      hideMove
-      items={[
-        <IntroCard
-          key="1"
-          onClick={() => keepNavigate(intro.link)}
-          intro={intro}
-        />,
-      ]}
-    />
+    <div style={{ height: '30vw', minHeight: '25vh' }}>
+      <Carousel
+        height="100%"
+        hideMove
+        items={[
+          <IntroCard
+            key="1"
+            onClick={() => keepNavigate(intro.link)}
+            intro={intro}
+          />,
+        ]}
+      />
+    </div>
   );
 };
 

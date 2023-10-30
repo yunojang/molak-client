@@ -12,10 +12,10 @@ import { moveScroll } from '@/utils/scroll/scroll';
 import RelationTabs from '@/features/contentModal/components/Relation/RelationTabs';
 
 interface RelationsProps {
-  videoHeight: number;
+  height: number;
 }
 
-const RelationArea: FC<RelationsProps> = ({ videoHeight }) => {
+const RelationArea: FC<RelationsProps> = ({ height }) => {
   const { contentId: id, contentRef } = useContext(ContentInfoContext);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -25,7 +25,6 @@ const RelationArea: FC<RelationsProps> = ({ videoHeight }) => {
   const [tab, setTab] = useState(0);
 
   const width = useBreakPoint(p => (p.eqBigger('2xl') ? 480 : '100%'));
-  const height = useBreakPoint(p => (p.eqBigger('2xl') ? videoHeight : ''));
 
   const handleSelectEpisode = (_: any, episodeId: string) => {
     navigate(`/content/${id}/${episodeId}`);

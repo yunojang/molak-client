@@ -13,7 +13,7 @@ const RecommendCardCarousel: FC<RecommendCardCarouselProps> = ({
   onSelect,
 }) => {
   const { contents } = useRecommendContents();
-  const { count } = useCardCount();
+  const { count } = useCardCount({ bi: true });
 
   return (
     <ContentCarousel count={count} contents={contents} onSelect={onSelect} />

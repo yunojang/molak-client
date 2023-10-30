@@ -50,7 +50,7 @@ const FindPage: FC = () => {
         </FindContentLayout>
 
         <FindContentLayout>
-          <div className="flex gap-7">
+          <div className={cx(scrollXStyle, 'flex gap-7')}>
             {introCards.map((card, idx) => (
               <IntroductionCard key={idx} {...card} />
             ))}

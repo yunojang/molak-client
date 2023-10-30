@@ -16,6 +16,7 @@ const ContentModalLayout: FC<ContentModalLayoutProps> = ({
 }) => {
   const layout = useBreakPoint(p => {
     if (p.eqBigger('2xl')) return 'flex';
+    // if (p.eqBigger('xl')) return 'flex';
     // if (p.eqBigger('xl')) return 'flex-col';
     else return 'flex-col';
   });

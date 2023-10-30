@@ -5,6 +5,7 @@ import { Content } from '@/features/content/types/dto';
 import { lineBreak } from '@/utils/style/content';
 import { Image } from '../Image';
 import { Skeleton } from '@chakra-ui/react';
+import { useText } from '@/hooks/responsive/usePadding';
 
 interface ContentCardProps {
   content: Content;
@@ -21,6 +22,8 @@ const ContentCard: FC<ContentCardProps> = ({
   width = '100%',
   height = '100%',
 }) => {
+  const text = useText();
+
   return (
     <a
       style={{ height, width }}
@@ -54,11 +57,17 @@ const ContentCard: FC<ContentCardProps> = ({
                 'linear-gradient(0deg,  rgba(0,0,0,1) 25%, rgba(0,0,0,0.3)',
             }}
           >
-            <div className={cx('text-white text-lg font-bold', lineBreak(1))}>
+            <div
+              className={cx(
+                text.xl.className,
+                'text-white font-bold',
+                lineBreak(1),
+              )}
+            >
               {content.title}
             </div>
-            <div className="text-gray-200 text-sm">
-              {content.channel.channelName}
+            <div className={cx(text.sm.className, 'text-gray-200 text-sm')}>
+              {content.channel.name}
             </div>
           </div>
         )}
@@ -69,7 +78,7 @@ const ContentCard: FC<ContentCardProps> = ({
           <div className="mt-2">
             <div className={cx('text-lg', lineBreak(2))}>{content.title}</div>
           </div>
-          <div className=" text-gray-500">{content.channel.channelName}</div>
+          <div className=" text-gray-500">{content.channel.name}</div>
         </>
       )}
     </a>

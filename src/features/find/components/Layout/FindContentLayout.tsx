@@ -7,7 +7,7 @@ interface FindContentLayoutProps extends LayoutProps {
 }
 
 const FindContentLayout: FC<FindContentLayoutProps> = ({ children }) => {
-  const { cls } = useContentWidth({ widths: ['97%', '95%'] });
+  const { cls } = useContentWidth({ widths: ['96%', '97%'] });
 
   return <div className={cls}>{children}</div>;
 };

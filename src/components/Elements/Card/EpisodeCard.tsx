@@ -6,6 +6,7 @@ import { Image } from '../Image';
 import { Skeleton } from '@chakra-ui/react';
 import { cx } from '@emotion/css';
 import { lineBreak } from '@/utils/style/content';
+import { useSizeRate, useText } from '@/hooks/responsive/usePadding';
 
 interface EpisodeCardProps {
   content: Content;
@@ -13,6 +14,11 @@ interface EpisodeCardProps {
 }
 
 const EpisodeCard: FC<EpisodeCardProps> = ({ content, onClick }) => {
+  const {
+    md: { size: width },
+  } = useSizeRate(200);
+  const height = width * 0.5625;
+
   return (
     <div
       className="flex gap-3 cursor-pointer w-full overflow-hidden"
@@ -23,8 +29,8 @@ const EpisodeCard: FC<EpisodeCardProps> = ({ content, onClick }) => {
           useSuspense
           src={content.thumbnailUrl}
           className="object-cover"
-          style={{ height: '110px', width: '180px' }}
-          fallback={<Skeleton width="180px" height="110px" />}
+          style={{ height, width }}
+          fallback={<Skeleton width={width} height={height} />}
         />
       </div>
 

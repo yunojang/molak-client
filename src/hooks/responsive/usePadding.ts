@@ -18,11 +18,13 @@ export const usePadding = () => {
   const sm = [0.5, 0.5, 0.5, 0.5, 1, 1];
   const md = [1, 1, 1, 3, 3, 3];
   const lg = [3, 3, 3, 5, 5, 5];
+  const xl = [5, 5, 7, 7, 9, 9];
 
   return {
-    lg: { degree: lg[idx], className: `p-${lg[idx]}` },
-    md: { degree: md[idx], className: `p-${md[idx]}` },
-    sm: { degree: sm[idx], className: `p-${sm[idx]}` },
+    lg: { degree: lg[idx] },
+    md: { degree: md[idx] },
+    sm: { degree: sm[idx] },
+    xl: { degree: xl[idx] },
   };
 };
 
@@ -34,9 +36,9 @@ export const useSpace = () => {
   const lg = [7, 7, 7, 14, 14, 14];
 
   return {
-    lg: { degree: lg[idx], className: `gap-${lg[idx]}` },
-    md: { degree: md[idx], className: `gap-${md[idx]}` },
-    sm: { degree: sm[idx], className: `gap-${sm[idx]}` },
+    lg: { degree: lg[idx] },
+    md: { degree: md[idx] },
+    sm: { degree: sm[idx] },
   };
 };
 
@@ -58,8 +60,17 @@ export const useText = () => {
   };
 };
 
-export const useSizeRate = (standard = 1) => {
+export const useSizeRate = (size = 1, weight = 0.15) => {
   const { idx: idx } = useCurrentSize();
+
+  const standard = [
+    1 - weight * 1.5,
+    1 - weight * 1.5,
+    1 - weight * 0.8,
+    1 - weight * 0.8,
+    1,
+    1,
+  ];
 
   const sm = [0.5, 0.5, 0.5, 0.5, 0.8, 0.8];
   const md = [0.7, 0.7, 0.85, 0.85, 1, 1];
@@ -68,15 +79,19 @@ export const useSizeRate = (standard = 1) => {
   return {
     lg: {
       degree: lg[idx],
-      size: standard * lg[idx],
+      size: size * lg[idx],
     },
     md: {
       degree: md[idx],
-      size: standard * md[idx],
+      size: size * md[idx],
     },
     sm: {
       degree: sm[idx],
-      size: standard * sm[idx],
+      size: size * sm[idx],
+    },
+    standard: {
+      degree: standard[idx],
+      size: size * standard[idx],
     },
   };
 };

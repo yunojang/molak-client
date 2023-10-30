@@ -7,13 +7,12 @@ interface TobarLayoutProps extends LayoutProps {
 }
 
 const TopbarLayout: FC<TobarLayoutProps> = ({ children }) => {
-  const { md, lg } = usePadding();
-
-  console.log(lg.degree);
+  const { lg } = usePadding();
 
   return (
     <div
-      className={`sticky top-0 z-30 overflow-hidden bg-white shadow-sm h-header px-${lg.degree} py-3 flex items-center`}
+      style={{ paddingLeft: lg.degree * 4, paddingRight: lg.degree * 4 }}
+      className={`sticky top-0 z-30 overflow-hidden bg-white shadow-sm h-header  py-3 flex items-center`}
     >
       {children}
     </div>

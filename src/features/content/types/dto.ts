@@ -1,7 +1,7 @@
 import { Domain } from '@/types';
 
 interface Channel extends Domain {
-  channelName: string;
+  name: string;
   url?: string;
 }
 

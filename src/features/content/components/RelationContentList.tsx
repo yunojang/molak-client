@@ -14,13 +14,15 @@ const RelaltionContentList: FC<RelaltionContentListProps> = ({
   tab,
   onSelect,
 }) => {
+  const gap = 6;
+
   const RelationContentsRoadToScroll = useMemo(
     () =>
       withListLoadToScroll({
         ListComp: ListCallToDomain,
-        fallback: <SkeletonEpisodeList count={5} gap={4} />,
-        filter: { size: 5 },
-        gap: 4,
+        fallback: <SkeletonEpisodeList count={8} gap={gap} />,
+        filter: { size: 8 },
+        gap,
       }),
     [],
   );

@@ -3,6 +3,7 @@ import { useNavigate } from '@/hooks/common/useNavigate';
 
 import { Circle } from '@/components/Elements/Circle';
 import { useCoverNavigate } from '@/features/contentModal/hooks/useCoverNavigate';
+import { useSizeRate } from '@/hooks/responsive/usePadding';
 
 export interface IntroductionCardProps {
   type: '꼭 봐야하는' | '한번 해보세요' | '모락 새기능';
@@ -25,16 +26,22 @@ const IntroductionCard: FC<IntroductionCardProps> = ({
 }) => {
   const navigate = useNavigate();
   const { keepNavigate } = useCoverNavigate();
+  const {
+    md: { size: width },
+  } = useSizeRate(480);
+
   const handleClick = () => {
     if (prepare || !link) return;
     if (type === '꼭 봐야하는') keepNavigate(link);
     else navigate(link);
   };
 
+  const { standard: circle } = useSizeRate(200, 0.2);
+
   return (
     <div
       className="flex justify-between gap-10 rounded-md p-7 pr-3 h-[16em] flex-1 cursor-pointer relative"
-      style={{ background }}
+      style={{ background, minWidth: width }}
       onClick={handleClick}
     >
       {prepare && (
@@ -48,8 +55,9 @@ const IntroductionCard: FC<IntroductionCardProps> = ({
         <span className="text-2xl font-bold">{title}</span>
         <span className="">{description}</span>
       </div>
+
       <div className="self-center">
-        <Circle size={200} background="#eee">
+        <Circle size={circle.size} background="#f5f5f5">
           {img && <img src={img} alt="img" />}
         </Circle>
       </div>
