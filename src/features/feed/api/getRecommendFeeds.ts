@@ -3,7 +3,6 @@ import client from '@/lib/client';
 import { useQuery } from '@/lib/react-query';
 
 import { RecommendFeed } from '../types/dto';
-import { PagerableContent } from '@/types';
 
 export const getMolakRecommendFeeds = (): Promise<RecommendFeed> => {
   // return new Promise(resolve =>

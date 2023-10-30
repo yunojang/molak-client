@@ -50,8 +50,10 @@ export const useText = () => {
   const lg = ['md', 'md', 'md', 'md', 'lg', 'lg'];
   const xl = ['lg', 'lg', 'lg', 'xl', 'xl', 'xl'];
   const xxl = ['xl', 'xl', 'xl', '2xl', '2xl', '3xl'];
+  const xxxl = ['xl', 'xl', '3xl', '3xl', '4xl', '4xl'];
 
   return {
+    xxxl: { degree: xxxl[idx], className: `text-${xxxl[idx]}` },
     xxl: { degree: xxl[idx], className: `text-${xxl[idx]}` },
     xl: { degree: xl[idx], className: `text-${xl[idx]}` },
     lg: { degree: lg[idx], className: `text-${lg[idx]}` },
