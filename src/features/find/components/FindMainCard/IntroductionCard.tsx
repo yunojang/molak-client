@@ -27,8 +27,8 @@ const IntroductionCard: FC<IntroductionCardProps> = ({
   const navigate = useNavigate();
   const { keepNavigate } = useCoverNavigate();
   const {
-    md: { size: width },
-  } = useSizeRate(480);
+    standard: { size: width },
+  } = useSizeRate(480, 0.185);
 
   const handleClick = () => {
     if (prepare || !link) return;

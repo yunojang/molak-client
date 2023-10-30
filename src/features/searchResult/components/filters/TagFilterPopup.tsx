@@ -29,7 +29,6 @@ const TagFilter: FC<Props> = ({ value, onChange }) => {
     discover: { tags },
   } = useDiscover();
   const [selectedTags, setSelectedTags] = useState<string[]>(value ?? []);
-
   const current = useMemo(() => value ?? selectedTags, [value, selectedTags]);
 
   const display = useMemo(() => {
