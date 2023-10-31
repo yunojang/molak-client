@@ -11,6 +11,7 @@ import Bubble from '@/components/Elements/bubble';
 
 import { env } from '@/config';
 import { adjust } from '@/utils/style/color';
+import { useBreakPoint } from '@/utils/breakpoint';
 
 interface Props extends FilterProps {
   value?: string[];
@@ -30,6 +31,7 @@ const TagFilter: FC<Props> = ({ value, onChange }) => {
   } = useDiscover();
   const [selectedTags, setSelectedTags] = useState<string[]>(value ?? []);
   const current = useMemo(() => value ?? selectedTags, [value, selectedTags]);
+  const width = useBreakPoint(p => (p.eqBigger('md') ? '40vw' : '70vw'));
 
   const display = useMemo(() => {
     switch (current.length) {
@@ -72,7 +74,10 @@ const TagFilter: FC<Props> = ({ value, onChange }) => {
       placement="bottom"
     >
       {close => (
-        <div className="flex flex-wrap gap-1 p-5 shadow-xl rounded-xl w-[35vw] min-w-[15em]">
+        <div
+          style={{ width }}
+          className="flex flex-wrap gap-1 p-5 shadow-xl rounded-xl min-w-[15em]"
+        >
           <CheckboxGroup
             colorScheme="molak"
             onChange={handleChange}

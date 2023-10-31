@@ -8,6 +8,7 @@ import { env } from '@/config';
 import { adjust } from '@/utils/style/color';
 import { PopOver } from '@/components/Elements/Selector';
 import SelectOpenBox from '@/components/Elements/SelectOpenBox/SelectOpenBox';
+import { useBreakPoint } from '@/utils/breakpoint';
 
 interface Props extends FilterProps {
   value?: string;
@@ -35,6 +36,10 @@ const GenreFilter: FC<Props> = ({ value, defaultValue, onChange }) => {
     onChange?.(genre);
   };
 
+  const contentLayout = useBreakPoint(p =>
+    p.eqBigger('md') ? 'flex gap-1 p-5' : 'grid gap-1 p-5',
+  );
+
   return (
     <PopOver
       trigger={
@@ -46,7 +51,12 @@ const GenreFilter: FC<Props> = ({ value, defaultValue, onChange }) => {
       placement="bottom"
     >
       {close => (
-        <div className="flex gap-1 p-5 shadow-xl">
+        <div
+          className={cx(contentLayout, 'shadow-xl')}
+          style={{
+            gridTemplateColumns: `repeat(2, minmax(0px, 1fr))`,
+          }}
+        >
           {genres.map((genre, i) => {
             const isSelected = display === genre;
             return (

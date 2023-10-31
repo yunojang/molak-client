@@ -27,10 +27,10 @@ export const scrollXStyle = css`
   overflow-y: hidden;
 
   &::-webkit-scrollbar {
-    height: 8px;
+    height: 6px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #ccc;
+    background-color: #ddd;
   }
 `;

@@ -37,7 +37,7 @@ const FindPage: FC = () => {
   };
 
   return (
-    <div className="flex flex-col py-3 overflow-hidden">
+    <div className="flex flex-col py-3">
       {/* <ToScroll to={0} /> */}
 
       <FindContentLayout>
@@ -50,7 +50,7 @@ const FindPage: FC = () => {
         </FindContentLayout>
 
         <FindContentLayout>
-          <div className={cx(scrollXStyle, 'flex gap-7')}>
+          <div className={cx(scrollXStyle, 'w-full flex gap-7 pb-2')}>
             {introCards.map((card, idx) => (
               <IntroductionCard key={idx} {...card} />
             ))}
@@ -66,7 +66,12 @@ const FindPage: FC = () => {
 
         <div className="px-space py-3 top-header sticky left-0 z-10 bg-white">
           <div className="text-lg font-bold mb-3">필터로 찾기</div>
-          <div className={cx(scrollXStyle, 'flex justify-between pt-2')}>
+          <div
+            className={cx(
+              scrollXStyle,
+              'w-full flex gap-10 justify-between py-2',
+            )}
+          >
             <Filters
               value={filter}
               onChange={filters => overwriteFilter(filters)}

@@ -19,7 +19,6 @@ const RecommendContentList: FC<RecommendContentListProps> = ({
   const cardWidth = useSizeRate(360);
 
   const handleClick = (contentId: string) => navigate(`/content/${contentId}`);
-  console.log(recommends);
 
   return (
     <div
