@@ -8,6 +8,9 @@ export const env = {
   auth: {
     prefix: getOsEnv('APP_API_AUTH_PREFIX'),
   },
+  client: {
+    delay: process.env.APP_DELAY ?? 0,
+  },
   colors: {
     primary: `#${process.env.APP_PRIMARY_CODE}`,
   },

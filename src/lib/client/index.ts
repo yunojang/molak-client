@@ -33,7 +33,13 @@ client.interceptors.response.use(
   res => {
     const { data } = res;
 
-    return data;
+    if (!env.client.delay) return data;
+
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(data);
+      }, +env.client.delay);
+    });
   },
   err => {
     const errdata = err.response?.data;
