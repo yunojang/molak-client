@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Popover,
   PopoverBody,
@@ -42,7 +43,7 @@ const PopOver: FC<SelectorProps> = ({
         // variants={{ exit: {}, enter: {} }}
         width="fit-content"
         rounded={rounded}
-        className="focus:border-none z-[99]"
+        className="focus:border-none z-50"
         _focus={{
           boxShadow: 'none',
           outline: 'none',

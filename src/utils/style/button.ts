@@ -4,7 +4,6 @@ export const clickableButtonStyle = css`
   cursor: pointer;
   transition: 200ms;
   user-select: none;
-  z-index: 11;
 
   &:hover {
     transform: scale(1.05);

@@ -63,7 +63,7 @@ const Selector: FC<SelectorProps> = ({
       }
     >
       {close => (
-        <div className="flex flex-col text-gray-500">
+        <div className="flex flex-col text-gray-500 shadow-md">
           {options.map(opt => (
             <div
               onClick={() => {
