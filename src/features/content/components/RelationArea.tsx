@@ -43,7 +43,7 @@ const RelationArea: FC<RelationsProps> = ({ height }) => {
       className={cx(`pb-5 rounded-md bg-white flex-1`, scrollYStyle)}
       style={{ width, height }}
     >
-      <div className="sticky top-0 left-0 z-10 py-2.5 mb-3 w-full bg-white  px-4">
+      <div className="sticky top-0 left-0 z-10 py-1.5 mb-3 w-full bg-white px-4">
         <RelationTabs defaultIndex={tab} onChange={handleChangeTab} />
       </div>
 

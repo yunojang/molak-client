@@ -7,8 +7,9 @@ import ContentTag from './Elements/ContentTag';
 import SkeletonContentDetail from './Elements/SkeletonContentDetail';
 import { Image } from '@/components/Elements/Image';
 import { ContentInfoContext } from '../store/ContentIdContext';
-import { usePadding } from '@/hooks/responsive/usePadding';
+import { usePadding, useText } from '@/hooks/responsive/usePadding';
 import ContentStartButton from './Elements/ContentStartButton';
+import { cx } from '@emotion/css';
 
 interface ContentVideoDetailProps {
   _?: any;
@@ -28,6 +29,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
     keepNavigate(`/content/${contentId}/${content?.episode_id}`);
   };
   const pad = usePadding();
+  const font = useText();
 
   return (
     <div className="w-full h-full flex flex-col relative text-gray-100">
@@ -48,6 +50,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
         className={'flex-1 z-20 flex flex-col gap-8 justify-end'}
         style={{ padding: pad.xl.degree * 4 }}
       >
+        {/* fallback */}
         {isLoading ? (
           <SkeletonContentDetail />
         ) : (
@@ -55,17 +58,23 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
             <div className="self-start">
               <ContentTag
                 background="#f5f5f5"
-                className="text-dark font-black text-lg"
+                className={cx(font.lg.className, 'text-dark font-black')}
               >
                 {content?.type}
               </ContentTag>
             </div>
 
             <div className="text-gray-100">{content?.channel.name}</div>
-            <div className="text-4xl font-bold mb-2">{content?.title}</div>
+            <div className={cx(font.xxxl.className, 'font-bold mb-2')}>
+              {content?.title}
+            </div>
             <div className="flex gap-1 items-center">
               {content?.tags.map((tag, i) => (
-                <ContentTag background="#89898957" key={i} className="text-lg">
+                <ContentTag
+                  background="#89898957"
+                  key={i}
+                  className={cx(font.lg.className)}
+                >
                   #{tag}
                 </ContentTag>
               ))}

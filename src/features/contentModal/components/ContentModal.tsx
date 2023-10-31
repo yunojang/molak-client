@@ -19,8 +19,8 @@ const ContentModal: FC = () => {
   const isIntroPage = !episodeId;
 
   const isXXL = useBreakPoint(p => p.eqBigger('2xl'));
-  const videoWidth = useBreakPoint(p => (p.eqBigger('2xl') ? 1120 : '100vw'));
-  const videoHeight = useBreakPoint(p => (p.eqBigger('sm') ? 630 : '40vh'));
+  const videoWidth = useBreakPoint(p => (p.eqBigger('xl') ? 1120 : '100vw'));
+  const videoHeight = useBreakPoint(p => (p.eqBigger('md') ? 630 : '40vh'));
 
   return (
     <ContentModalProvider>
@@ -42,7 +42,7 @@ const ContentModal: FC = () => {
         )}
       </VideoFrame>
 
-      <RelationArea height={isXXL ? videoHeight : 'fit'} />
+      <RelationArea height={isXXL ? videoHeight : 'fit-content'} />
     </ContentModalProvider>
   );
 };
