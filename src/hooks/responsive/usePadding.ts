@@ -1,3 +1,4 @@
+import { useCardCount } from '@/features/content/hooks/useCardCount';
 import { SizeDegree, useBreakPoint } from '@/utils/breakpoint';
 
 const SIZE: SizeDegree[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
@@ -96,4 +97,15 @@ export const useSizeRate = (size = 1, weight = 0.15) => {
       size: size * standard[idx],
     },
   };
+};
+
+export const useCardHeight = () => {
+  const STANDARD_CNT = 4;
+
+  const { count } = useCardCount();
+  const ratio = STANDARD_CNT / count;
+
+  const { standard } = useSizeRate(220);
+
+  return standard.size * ratio;
 };

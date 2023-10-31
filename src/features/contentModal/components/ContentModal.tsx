@@ -20,7 +20,7 @@ const ContentModal: FC = () => {
 
   const isXXL = useBreakPoint(p => p.eqBigger('2xl'));
   const videoWidth = useBreakPoint(p => (p.eqBigger('xl') ? 1120 : '100vw'));
-  const videoHeight = useBreakPoint(p => (p.eqBigger('md') ? 630 : '40vh'));
+  const videoHeight = 630;
 
   return (
     <ContentModalProvider>

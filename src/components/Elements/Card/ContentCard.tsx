@@ -23,6 +23,7 @@ const ContentCard: FC<ContentCardProps> = ({
   height = '100%',
 }) => {
   const text = useText();
+  // const height = useCardHeight();
 
   return (
     <a

@@ -12,7 +12,7 @@ import { moveScroll } from '@/utils/scroll/scroll';
 import RelationTabs from '@/features/contentModal/components/Relation/RelationTabs';
 
 interface RelationsProps {
-  height: number;
+  height: number | string;
 }
 
 const RelationArea: FC<RelationsProps> = ({ height }) => {
