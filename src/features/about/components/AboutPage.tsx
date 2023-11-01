@@ -1,19 +1,21 @@
-import PageLayout from '@/components/Elements/Layout/PageLayout';
-import { PageIntroTitle } from '@/components/Elements/Title';
-import ToScroll from '@/utils/scroll/ToScroll';
 import { FC } from 'react';
+
+import { useText } from '@/hooks/responsive/usePadding';
+
+import PageLayout from '@/components/Elements/Layout/ProseLayout';
+import { PageIntroTitle } from '@/components/Elements/Title';
 
 interface AboutProps {
   _?: any;
 }
 
 const AboutPage: FC<AboutProps> = () => {
+  const { lg } = useText();
   return (
     <PageLayout>
-      <ToScroll to={0} />
+      <PageIntroTitle text="모락 소개" description="K-웹드라마 OTT" />
 
-      <PageIntroTitle text="모락 소개" description="" />
-      <div>
+      <div className={lg.className}>
         <div>모락은 크리에이터의 권리를 가장 중요시합니다. </div>
         <div>
           저희 컨텐츠로 인해 어려움을 겪는 크리에이터가 있다면 언제든지
