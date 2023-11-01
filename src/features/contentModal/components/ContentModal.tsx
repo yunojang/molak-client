@@ -3,18 +3,16 @@ import { useParams } from 'react-router-dom';
 
 import ContentModalProvider from '../provider/ContentsModalProvider';
 import { useBreakPoint } from '@/utils/breakpoint';
-import { useCoverNavigate } from '../hooks/useCoverNavigate';
 
 import RelationArea from '../../content/components/RelationArea';
 import ContentIntroDetail from './ContentDetail';
 import VideoFrame from './Elements/VideoFrame';
-import CloseButton from './Elements/CloseButtont';
 import MolakPlayer from '@/features/contentModal/components/Player/MolakPlayer';
 import { PlayerFallback } from '@/features/contentModal/components/Player/Player';
+import PlayerCloseButton from './Player/PlayerClosebutton';
 
 const ContentModal: FC = () => {
   const { episodeId } = useParams();
-  const { coverClose } = useCoverNavigate();
 
   const isIntroPage = !episodeId;
 
@@ -25,11 +23,7 @@ const ContentModal: FC = () => {
   return (
     <ContentModalProvider>
       <VideoFrame width={videoWidth} height={videoHeight}>
-        {isIntroPage && (
-          <div className="absolute top-3 right-3 z-30">
-            <CloseButton onClick={coverClose} />
-          </div>
-        )}
+        {isIntroPage && <PlayerCloseButton />}
 
         {isIntroPage ? (
           <ContentIntroDetail />

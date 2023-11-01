@@ -1,7 +1,6 @@
 import { FC, useContext, useRef, useState } from 'react';
 import { cx } from '@emotion/css';
 
-import { useContent } from '../../../content/api/getContent';
 import { useEpisode } from '@/features/episode/api/getEpisode';
 import { useNextEpisode } from '../../../content/api/getNextEpisode';
 import { useCoverNavigate } from '../../hooks/useCoverNavigate';
@@ -13,6 +12,7 @@ import { ContentInfoContext } from '../../store/ContentIdContext';
 import MolakPlayerControls from './PlayerControls';
 import { usePlayer } from '../../hooks/usePlayer';
 import { formatSecond } from '../../utils/second';
+import PlayerCloseButton from './PlayerClosebutton';
 
 interface MolakPlayerProps {
   _?: never;
@@ -29,7 +29,6 @@ const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
   // content 정보
   const { content } = useEpisode(episodeId);
   const { episode: nextEpisode } = useNextEpisode(episodeId);
-  console.log(nextEpisode);
 
   // 풀스크린
   const container = useRef<HTMLDivElement>(null);
@@ -59,6 +58,8 @@ const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
   if (!content) return <div>찾을 수 없는 컨텐츠 입니다.</div>; // 컴포넌트 개발
   return (
     <div className="relative w-full h-full" ref={container}>
+      {!playing.playing && <PlayerCloseButton />}
+
       <Player
         key={content.url}
         url={content.url}
