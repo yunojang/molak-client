@@ -11,10 +11,16 @@ interface Player extends PlayerState {
 export const usePlayer = (container: HTMLElement | null): Player => {
   const [fullScreen, setFullScreen] = useState(false);
   const openFullScreen = () => {
-    ofsUtil(container)?.then(() => setFullScreen(true));
+    ofsUtil(container)?.then(
+      () => setFullScreen(true),
+      () => {},
+    );
   };
   const closeFullScreen = () => {
-    document.exitFullscreen().then(() => setFullScreen(false));
+    document.exitFullscreen().then(
+      () => setFullScreen(false),
+      () => {},
+    );
   };
 
   useEffect(() => {

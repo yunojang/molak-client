@@ -13,6 +13,7 @@ import MolakPlayerControls from './PlayerControls';
 import { usePlayer } from '../../hooks/usePlayer';
 import { formatSecond } from '../../utils/second';
 import PlayerCloseButton from './PlayerClosebutton';
+import { useOriental } from '@/hooks/common/useOriental';
 
 interface MolakPlayerProps {
   _?: never;
@@ -36,6 +37,11 @@ const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
   // player 기능
   const state = usePlayer(container.current);
   const { playing, volume, progress, setProgress, slidedProgress } = state;
+
+  useOriental(({ isVertical }) => {
+    if (!isVertical) state.fullScreen.onFullScreen?.();
+    else state.fullScreen.onExitFullScreen?.();
+  });
 
   const [duration, setDuration] = useState<number>(Infinity);
   const showNextmove = duration - progress.progress < 8; // seconds
