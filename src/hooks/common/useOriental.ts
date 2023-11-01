@@ -7,15 +7,18 @@ interface OrientEvent {
 export const useOriental = (onOrientation?: (event: OrientEvent) => void) => {
   useEffect(() => {
     const handleChangeOrientation = (e: Event) => {
-      const type = e.target?.type; // portrait-primary, portrait-secondary, landscape-primary, landscape-secondary
-      const angle = e.target?.angle; // 0, 90, 180, -90
+      const type = window.screen.orientation.type; // portrait-primary, portrait-secondary, landscape-primary, landscape-secondary
+      const angle = window.screen.orientation.angle; // 0, 90, 180, -90
 
       const isVertical = type?.includes('portrait') && angle === 0;
       onOrientation?.({ isVertical });
+      // document.documentElement.requestFullscreen();
     };
 
+    // window.addEventListener('orientationchange', handleChangeOrientation);
     screen.orientation.addEventListener('change', handleChangeOrientation);
     return () =>
+      // window.removeEventListener('orientationchange', handleChangeOrientation);
       screen.orientation.removeEventListener('change', handleChangeOrientation);
   }, [onOrientation]);
 };
