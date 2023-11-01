@@ -7,6 +7,7 @@ import { withListLoadToScroll } from '@/components/List/withListLoadToScroll';
 import { ListResultTitle } from '@/components/List/ListTitle';
 import SkeletonContentCardList from '@/components/Elements/Card/SkeletonContentCardList';
 import ContentList from '@/features/content/components/ContentList';
+import ContentEmptyPage from '@/components/Elements/EmptyPage/ContentEmptyPage';
 
 interface FindedContentListProps {
   filter: any;
@@ -46,6 +47,7 @@ const FindedContentList: FC<FindedContentListProps> = ({ filter }) => {
         page == 1 ? <ListResultTitle cnt={cnt} mb={5} /> : null
       }
       onSelect={id => keepNavigate(`/content/${id}`)}
+      emptyFallback={<ContentEmptyPage />}
     />
   );
 };
