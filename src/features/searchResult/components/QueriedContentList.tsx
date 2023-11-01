@@ -8,6 +8,7 @@ import { withListLoadToScroll } from '@/components/List/withListLoadToScroll';
 import ContentList from '@/features/content/components/ContentList';
 import { ListResultTitle } from '@/components/List/ListTitle';
 import { useSizeRate } from '@/hooks/responsive/usePadding';
+import ContentEmptyPage from '@/components/Elements/EmptyPage/ContentEmptyPage';
 
 interface QueriedContentListProps {
   filter?: any;
@@ -47,6 +48,7 @@ const QueriedContentList: FC<QueriedContentListProps> = ({ filter }) => {
         }
         columnCount={count}
         onSelect={id => naviage(`/content/${id}`)}
+        emptyFallback={<ContentEmptyPage />}
       />
     </div>
   );

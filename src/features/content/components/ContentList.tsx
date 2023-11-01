@@ -9,6 +9,7 @@ interface ContentListProps extends InfiniteListProps {
   columnCount?: number;
   onSelect?(id: string): void;
   title(totalElements: number, currentPage: number): ReactNode;
+  emptyFallback?: ReactNode;
   colGap?: number;
 }
 
@@ -20,6 +21,7 @@ const ContentList: FC<ContentListProps> = ({
   title,
   pager,
   onSelect,
+  emptyFallback,
 }) => {
   const { contents, totalElements, totalPages, isEnd } = useContents(params);
 
@@ -44,6 +46,7 @@ const ContentList: FC<ContentListProps> = ({
           />
         ))}
       </div>
+      {contents.length === 0 && <>{emptyFallback}</>}
 
       {pager?.(totalPages, isEnd)}
     </div>

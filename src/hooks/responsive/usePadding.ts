@@ -50,7 +50,7 @@ export const useText = () => {
   const md = ['sm', 'sm', 'sm', 'sm', 'md', 'md'];
   const lg = ['md', 'md', 'md', 'md', 'lg', 'lg'];
   const xl = ['lg', 'lg', 'lg', 'xl', 'xl', 'xl'];
-  const xxl = ['xl', 'xl', 'xl', '2xl', '2xl', '3xl'];
+  const xxl = ['xl', 'xl', '2xl', '2xl', '2xl', '3xl'];
   const xxxl = ['xl', 'xl', '3xl', '3xl', '4xl', '4xl'];
 
   return {
