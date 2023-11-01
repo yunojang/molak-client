@@ -21,7 +21,7 @@ export const footer_menu: FooterInfoObject[] = [
     name: '모락',
     children: [
       { name: '모락 소개', path: '/about' },
-      { name: '모락 서비스 방침', path: '/rule' },
+      // { name: '모락 서비스 방침', path: '/rule' },
     ],
   },
   {
