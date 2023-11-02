@@ -1,3 +1,6 @@
+import React, { FC } from 'react';
+
+import { OpenableProps } from '@/types/open';
 import {
   Box,
   Button,
@@ -9,13 +12,10 @@ import {
   PopoverTrigger,
   useDisclosure,
 } from '@chakra-ui/react';
-import React, { FC } from 'react';
 
-interface SelectorProps {
-  trigger: React.ReactNode;
+interface SelectorProps extends OpenableProps {
   rounded?: PopoverContentProps['rounded'];
   placement?: PopoverProps['placement'];
-  children?: (close: () => void) => React.ReactNode | React.ReactNode;
   contentWidth?: string;
 }
 

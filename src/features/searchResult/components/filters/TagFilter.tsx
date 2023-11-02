@@ -6,6 +6,8 @@ import { useDiscover } from '@/features/find/api/getDiscover';
 
 import { Checkbox, CheckboxGroup } from '@chakra-ui/react';
 import { useBreakPoint } from '@/utils/breakpoint';
+import FilterTitleLayout from './layout/FilterTitleLayout';
+import { useSizeRate } from '@/hooks/responsive/usePadding';
 
 export interface TagFilterProps extends FilterProps {
   value?: string[];
@@ -19,7 +21,12 @@ const TagFilter: FC<TagFilterProps> = ({ value, onChange }) => {
   } = useDiscover();
   const [selectedTags, setSelectedTags] = useState<string[]>(value ?? []);
   const current = useMemo(() => value ?? selectedTags, [value, selectedTags]);
-  const width = useBreakPoint(p => (p.eqBigger('md') ? '40vw' : '70vw'));
+
+  const {
+    standard: { size },
+  } = useSizeRate(540, 0.05);
+
+  const width = useBreakPoint(p => (p.bigger('md') ? size : ''));
 
   const handleChange = (tags: string[]) => {
     setSelectedTags(tags);
@@ -27,29 +34,34 @@ const TagFilter: FC<TagFilterProps> = ({ value, onChange }) => {
   };
 
   return (
-    <div
-      style={{ width }}
-      className="flex flex-wrap gap-1 p-5 shadow-xl rounded-xl min-w-[15em]"
-    >
-      <CheckboxGroup
-        colorScheme="molak"
-        onChange={handleChange}
-        value={current}
+    <FilterTitleLayout title="태그선택">
+      <div
+        style={{
+          width,
+          gridTemplateColumns: 'repeat(5, minmax(5em, 1fr))',
+        }}
+        className="grid gap-1"
       >
-        {tags.map((tag, i) => {
-          return (
-            <Checkbox
-              value={tag}
-              size="lg"
-              key={i}
-              className={cx(checkBg, 'py-2 px-5  rounded-full')}
-            >
-              {tag}
-            </Checkbox>
-          );
-        })}
-      </CheckboxGroup>
-    </div>
+        <CheckboxGroup
+          colorScheme="molak"
+          onChange={handleChange}
+          value={current}
+        >
+          {tags.map((tag, i) => {
+            return (
+              <Checkbox
+                value={tag}
+                size="lg"
+                key={i}
+                className={cx(checkBg, 'py-2 px-5  rounded-full')}
+              >
+                {tag}
+              </Checkbox>
+            );
+          })}
+        </CheckboxGroup>
+      </div>
+    </FilterTitleLayout>
   );
 };
 

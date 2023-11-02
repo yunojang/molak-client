@@ -7,6 +7,7 @@ import { FilterProps } from '@/components/Wrapper/withFilter';
 import { env } from '@/config';
 import { adjust } from '@/utils/style/color';
 import { useBreakPoint } from '@/utils/breakpoint';
+import FilterTitleLayout from './layout/FilterTitleLayout';
 
 export interface GenreFilterProps extends FilterProps {
   value?: string;
@@ -27,7 +28,7 @@ const GenreFilter: FC<GenreFilterProps> = ({
   const display = value ?? selectedGenre;
 
   const handleClick = (genre: string) => {
-    // 같은 거 다시 선택
+    // 같은 거 다시 선택시 초기화
     if (display === genre) {
       setSelectedGenre(defaultValue);
       onChange?.(undefined);
@@ -39,37 +40,39 @@ const GenreFilter: FC<GenreFilterProps> = ({
   };
 
   const contentLayout = useBreakPoint(p =>
-    p.eqBigger('md') ? 'flex gap-1 p-5' : 'grid gap-1 p-5',
+    p.bigger('md') ? 'flex gap-1 ' : 'grid gap-1 ',
   );
 
   return (
-    <div
-      className={cx(contentLayout, 'shadow-xl')}
-      style={{
-        gridTemplateColumns: `repeat(2, minmax(0px, 1fr))`,
-      }}
-    >
-      {genres.map((genre, i) => {
-        const isSelected = display === genre;
-        return (
-          <div
-            key={i}
-            style={{
-              backgroundColor: isSelected
-                ? adjust(env.colors.primary, -25)
-                : 'white',
-            }}
-            className={cx(
-              isSelected ? `text-white` : '',
-              'py-2 w-[5.2em] text-center border rounded-xl cursor-pointer text-lg font-bold select-none transition-all',
-            )}
-            onClick={() => handleClick(genre)}
-          >
-            {genre}
-          </div>
-        );
-      })}
-    </div>
+    <FilterTitleLayout title="장르선택">
+      <div
+        className={cx(contentLayout)}
+        style={{
+          gridTemplateColumns: `repeat(2, minmax(0px, 1fr))`,
+        }}
+      >
+        {genres.map((genre, i) => {
+          const isSelected = display === genre;
+          return (
+            <div
+              key={i}
+              style={{
+                backgroundColor: isSelected
+                  ? adjust(env.colors.primary, -25)
+                  : 'white',
+              }}
+              className={cx(
+                isSelected ? `text-white` : '',
+                'py-2 min-w-[5.4em] flex-1 text-center border rounded-xl cursor-pointer text-lg font-bold select-none transition-all',
+              )}
+              onClick={() => handleClick(genre)}
+            >
+              {genre}
+            </div>
+          );
+        })}
+      </div>
+    </FilterTitleLayout>
   );
 };
 

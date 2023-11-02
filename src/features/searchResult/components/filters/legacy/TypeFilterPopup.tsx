@@ -3,7 +3,7 @@ import { FC, useState } from 'react';
 import { PopOver } from '@/components/Elements/Selector';
 import SelectOpenBox from '@/components/Elements/SelectOpenBox/SelectOpenBox';
 
-import TypeFilter, { TypeFilterProps } from './TypeFilter';
+import TypeFilter, { TypeFilterProps } from '../TypeFilter';
 
 interface Props extends TypeFilterProps {
   _?: never;

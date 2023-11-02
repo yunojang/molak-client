@@ -1,17 +1,14 @@
-import { FC, useMemo, useState } from 'react';
-import { css, cx } from '@emotion/css';
+import { FC, useMemo } from 'react';
 
 import { FilterProps } from '@/components/Wrapper/withFilter';
-import { useDiscover } from '@/features/find/api/getDiscover';
 
-import { Checkbox, CheckboxGroup } from '@chakra-ui/react';
 import { PopOver } from '@/components/Elements/Selector';
 import SelectOpenBox from '@/components/Elements/SelectOpenBox/SelectOpenBox';
 import Bubble from '@/components/Elements/bubble';
 
 import { env } from '@/config';
 import { adjust } from '@/utils/style/color';
-import { useBreakPoint } from '@/utils/breakpoint';
+import TagFilter from './TagFilter';
 
 interface Props extends FilterProps {
   value?: string[];
@@ -25,10 +22,7 @@ interface Props extends FilterProps {
 
 const emptyValue = '전체태그';
 
-const TagFilter: FC<Props> = ({ value, onChange }) => {
-  const {
-    discover: { tags },
-  } = useDiscover();
+const TagFilterPopup: FC<Props> = ({ value, onChange }) => {
   const current = useMemo(() => value ?? [], [value]);
   const display = useMemo(() => {
     switch (current.length) {
@@ -41,13 +35,9 @@ const TagFilter: FC<Props> = ({ value, onChange }) => {
     }
   }, [current]);
 
-  const isSelected = useMemo(
-    () => current[0] !== emptyValue || current.length >= 2,
-    [current],
-  );
+  const isSelected = useMemo(() => current.length >= 1, [current]);
 
   const toneDownPrimary = adjust(env.colors.primary, -25);
-
   return (
     <PopOver
       trigger={
@@ -65,9 +55,9 @@ const TagFilter: FC<Props> = ({ value, onChange }) => {
       }
       placement="bottom"
     >
-      {close => <TagFilter />}
+      {close => <TagFilter value={value} onChange={onChange} />}
     </PopOver>
   );
 };
 
-export default TagFilter;
+export default TagFilterPopup;
