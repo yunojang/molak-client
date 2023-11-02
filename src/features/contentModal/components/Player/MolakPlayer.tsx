@@ -36,7 +36,7 @@ const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
 
   // player 기능
   const state = usePlayer(container.current);
-  const { playing, volume, progress, setProgress, slidedProgress } = state;
+  const { playing, volume, progress, setProgress, slided } = state;
 
   useOriental(({ isVertical }) => {
     if (!isVertical) state.fullScreen.onFullScreen?.();
@@ -44,14 +44,15 @@ const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
   });
 
   const [duration, setDuration] = useState<number>(Infinity);
-  const showNextmove = duration - progress.progress < 8; // seconds
+  const showNextmove = duration - progress.progress <= 10; // seconds
 
   // 다음화 재생
   const { keepNavigate } = useCoverNavigate();
   const handleClickNextEpisode = () => {
     if (nextEpisode) {
-      keepNavigate(`/content/${contentId}/${nextEpisode?.id}`);
+      keepNavigate(`/content/${contentId}/${nextEpisode.id}`);
       progress.setSlided(0);
+      playing.play?.();
     }
   };
 
@@ -72,7 +73,7 @@ const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
         width="100%"
         height="100%"
         onDuration={setDuration}
-        played={slidedProgress}
+        played={slided}
         progressInterval={80}
         onProgress={({ playedSeconds }) => setProgress?.(playedSeconds)}
         onPlay={playing.play}

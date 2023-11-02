@@ -5,7 +5,7 @@ import { PlayerState } from '../types/player';
 
 interface Player extends PlayerState {
   setProgress(v: number): void;
-  slidedProgress: number;
+  slided: number;
 }
 
 export const usePlayer = (container: HTMLElement | null): Player => {
@@ -33,7 +33,7 @@ export const usePlayer = (container: HTMLElement | null): Player => {
   const [volume, setVolume] = useState(80);
   const [muted, setMuted] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [slidedProgress, setSlided] = useState(0);
+  const [slided, setSlided] = useState(0);
 
   // const setVolume: (volume: number) => void = useMemo(
   //   () => throttle((volume: number) => setVolume(volume), 80),
@@ -60,6 +60,6 @@ export const usePlayer = (container: HTMLElement | null): Player => {
     volume: volumnState,
     progress: progressState,
     setProgress,
-    slidedProgress,
+    slided,
   };
 };
