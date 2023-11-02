@@ -1,7 +1,7 @@
 import { FC, useMemo, useState } from 'react';
 
-import GenreFilter from '@/features/find/components/GenreFilterPopup';
-import TypeFilter from './TypeFilterPopup';
+import GenreFilterPopup from '@/features/searchResult/components/filters/GenreFilterPopup';
+import TypeFilterPopup from './TypeFilterPopup';
 import TagFilter from './TagFilterPopup';
 
 import { DEFAULT_FILTERS } from './constant/filters';
@@ -27,16 +27,14 @@ const Filters: FC<FiltersProps> = ({ value, defaultValues, onChange }) => {
 
   return (
     <div className="flex items-center gap-3">
-      <TypeFilter
+      <TypeFilterPopup
         value={current?.type ?? DEFAULT_FILTERS.type}
         defaultValue={DEFAULT_FILTERS.type}
         onChange={type => handleChange({ type })}
       />
-      <GenreFilter
-        // defaultValue={defaultFilters?.genre ?? DEFAULT_FILTERS.genre}
+      <GenreFilterPopup
         value={current?.genre ?? DEFAULT_FILTERS.genre}
         defaultValue={DEFAULT_FILTERS.genre}
-        // defaultValue={DEFAULT_FILTERS.genre}
         onChange={genre => handleChange({ genre })}
       />
       <TagFilter

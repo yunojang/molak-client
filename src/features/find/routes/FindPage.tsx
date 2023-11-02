@@ -59,7 +59,7 @@ const FindPage: FC = () => {
 
         <FindContentLayout>
           <div className="text-lg font-bold mb-3">핫한 키워드</div>
-          <div className={cx(scrollXStyle, 'w-full py-1')}>
+          <div className={cx(scrollXStyle, 'w-full py-1 pl-1')}>
             <HotTags onSelect={handleSelectHotTag} />
           </div>
         </FindContentLayout>
@@ -69,7 +69,7 @@ const FindPage: FC = () => {
           <div
             className={cx(
               scrollXStyle,
-              'w-full flex gap-10 justify-between py-2',
+              'w-full flex gap-10 justify-between py-2 pl-1',
             )}
           >
             <Filters

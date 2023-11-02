@@ -29,10 +29,7 @@ const TagFilter: FC<Props> = ({ value, onChange }) => {
   const {
     discover: { tags },
   } = useDiscover();
-  const [selectedTags, setSelectedTags] = useState<string[]>(value ?? []);
-  const current = useMemo(() => value ?? selectedTags, [value, selectedTags]);
-  const width = useBreakPoint(p => (p.eqBigger('md') ? '40vw' : '70vw'));
-
+  const current = useMemo(() => value ?? [], [value]);
   const display = useMemo(() => {
     switch (current.length) {
       case 0:
@@ -48,11 +45,6 @@ const TagFilter: FC<Props> = ({ value, onChange }) => {
     () => current[0] !== emptyValue || current.length >= 2,
     [current],
   );
-
-  const handleChange = (tags: string[]) => {
-    setSelectedTags(tags);
-    onChange?.(tags);
-  };
 
   const toneDownPrimary = adjust(env.colors.primary, -25);
 
@@ -73,39 +65,9 @@ const TagFilter: FC<Props> = ({ value, onChange }) => {
       }
       placement="bottom"
     >
-      {close => (
-        <div
-          style={{ width }}
-          className="flex flex-wrap gap-1 p-5 shadow-xl rounded-xl min-w-[15em]"
-        >
-          <CheckboxGroup
-            colorScheme="molak"
-            onChange={handleChange}
-            value={current}
-          >
-            {tags.map((tag, i) => {
-              return (
-                <Checkbox
-                  value={tag}
-                  size="lg"
-                  key={i}
-                  className={cx(checkBg, 'py-2 px-5  rounded-full')}
-                >
-                  {tag}
-                </Checkbox>
-              );
-            })}
-          </CheckboxGroup>
-        </div>
-      )}
+      {close => <TagFilter />}
     </PopOver>
   );
 };
 
 export default TagFilter;
-
-const checkBg = css`
-  .chakra-checkbox__control {
-    background: #f5f5f5;
-  }
-`;
