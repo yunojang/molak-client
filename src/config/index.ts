@@ -7,6 +7,7 @@ export const env = {
   },
   auth: {
     prefix: getOsEnv('APP_API_AUTH_PREFIX'),
+    youtube_key: getOsEnv('APP_YOUTUBE_API_KEY'),
   },
   client: {
     delay: process.env.APP_DELAY ?? 0,

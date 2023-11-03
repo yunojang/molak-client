@@ -75,7 +75,7 @@ const Display: FC<DisplayProps> = ({ v, defaultValue, isSelected }) => {
   const toneDownPrimary = adjust(env.colors.primary, -25);
 
   return (
-    <div className="relative z-50">
+    <div className="relative z-30">
       <SelectOpenBox
         display={display}
         className={v.length ? 'font-bold' : ''}

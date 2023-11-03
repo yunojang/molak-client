@@ -49,7 +49,7 @@ const ObjectForm = <T extends object>({
       result[key] = React.cloneElement(el, {
         name: key,
         onChange,
-        defaultValue: defaultValues[key],
+        defaultValue: el.props.defaultValue ?? defaultValues[key],
         width: '100%',
         style: { width: '100%' },
       });
@@ -57,7 +57,7 @@ const ObjectForm = <T extends object>({
     return result;
   }, [items, defaultValues]);
 
-  const [values, setValues] = React.useState<Partial<T>>({});
+  const [values, setValues] = React.useState<Partial<T>>(defaultValues);
 
   const handleChange = (valueObject: T) => {
     // makeKeyMap - { key: FormItem }
@@ -72,7 +72,7 @@ const ObjectForm = <T extends object>({
     });
 
     setValues(changedResultValues);
-    onChange(changedResultValues);
+    onChange({ ...defaultValues, ...changedResultValues });
   };
 
   return (

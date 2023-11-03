@@ -4,11 +4,11 @@ import { RouteObject } from 'react-router-dom';
 import Appframe from './Appframe';
 import { makeRoute } from '@/lib/route/makeRoute';
 
-// const AdminRoute = lazy(() => import('@/features/admin'));
+import AdminRoutes from '@/Admin/routes';
 const AccountRoutes = lazy(() => import('@/features/account'));
 
 const paths = {
-  // admin: '/admin/*',
+  admin: '/admin/*',
   my: '/my/*',
 };
 
@@ -17,12 +17,12 @@ const routes = (role: string) => {
     { path: paths.my, element: <AccountRoutes /> },
   ];
 
-  // if (role === 'ADMIN') {
-  //   children.push({
-  //     path: paths.admin,
-  //     element: <AdminRoute />,
-  //   });
-  // }
+  if (role === 'ADMIN') {
+    children.push({
+      path: paths.admin,
+      element: <AdminRoutes />,
+    });
+  }
 
   return children;
 };

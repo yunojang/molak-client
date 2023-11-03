@@ -25,6 +25,27 @@ export interface RecommendContent extends Domain {
   teaser_url: string;
 }
 
+export interface ContentCreateDto {
+  channelId: string;
+  title: string;
+  description: string;
+  uploadType: string;
+  thumbnailUrl: string;
+  tags: string[];
+  genres: string[];
+  episodes: EpisoceCreateDto[];
+  type: 'SHORT | SERIES';
+}
+
+export interface EpisoceCreateDto {
+  title: string;
+  description: string;
+  videoUrl: string;
+  thumbnailUrl: string;
+  uploadType: string;
+  order: number;
+}
+
 // yt iframe
 // <iframe
 // width="560"

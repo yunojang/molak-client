@@ -46,7 +46,7 @@ export const ObjectTable = <T extends object>({
             >
               {column.render('Header')}
             </div>
-            <div className="flex-1 p-3">{row.values[column.id]}</div>
+            <div className="flex-1 px-2 py-1">{row.values[column.id]}</div>
           </div>
         );
       })}
