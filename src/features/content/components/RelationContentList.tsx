@@ -23,17 +23,18 @@ const RelaltionContentList: FC<RelaltionContentListProps> = ({
       withListLoadToScroll({
         ListComp: ListCallToDomain,
         fallback: <SkeletonEpisodeList count={6} gap={gap} />,
-        filter: { size: 6, contentId },
+        filter: { size: 6 },
         gap,
       }),
-    [contentId],
+    [],
   );
 
   const relation = relationTabs[tab];
+  const domain = relation.domain.replace('{id}', contentId);
 
   return (
     <RelationContentsRoadToScroll
-      domain={relation.domain}
+      domain={domain}
       ViewComp={relation.ListView}
       onSelect={onSelect}
     />
