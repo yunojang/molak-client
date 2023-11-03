@@ -13,8 +13,8 @@ const RecommendFeedList: FC<RecommendFeedListProps> = ({ gap = 26 }) => {
   return (
     <div className="flex flex-col" style={{ gap: gap * 4 }}>
       {[feed]?.map((feed, i) => (
-        <div className="pl-space" key={i}>
-          <div className="mb-5 ">
+        <div className="" key={i}>
+          <div className="mb-5  pl-space">
             <FeedTitle title={feed.name} />
           </div>
 

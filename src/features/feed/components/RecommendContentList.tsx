@@ -22,7 +22,7 @@ const RecommendContentList: FC<RecommendContentListProps> = ({
 
   return (
     <div
-      className={cx(scrollXStyle, 'flex flex-nowrap gap-5 pt-2 pb-5')}
+      className={cx(scrollXStyle, 'flex flex-nowrap gap-5 pt-2 pb-5 pl-space')}
       style={{ paddingRight: cardWidth.md.size }}
     >
       {recommends.map((recommend, i) => (
