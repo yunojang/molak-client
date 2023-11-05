@@ -16,7 +16,8 @@ interface QueriedContentListProps {
 
 const QueriedContentList: FC<QueriedContentListProps> = ({ filter }) => {
   const naviage = useNavigateWithBg();
-  const count = Math.floor(useCardCount().count / 2) * 2;
+  const { count } = useCardCount({ bi: true });
+
   const {
     standard: { size: rowGap },
   } = useSizeRate(20, 0.3);
@@ -25,7 +26,7 @@ const QueriedContentList: FC<QueriedContentListProps> = ({ filter }) => {
     () =>
       withListLoadToScroll({
         ListComp: ContentList,
-        filter,
+        filter: { ...filter, size: 8 },
         gap: rowGap,
         fallback: (
           <SkeletonContentCardList
@@ -44,7 +45,7 @@ const QueriedContentList: FC<QueriedContentListProps> = ({ filter }) => {
     <div className="px-space py-5">
       <QueriedContentsLoadToScroll
         title={(cnt, page) =>
-          page == 1 ? <ListResultTitle cnt={cnt} mb={5} /> : null
+          page == 0 ? <ListResultTitle cnt={cnt} mb={5} /> : null
         }
         columnCount={count}
         onSelect={id => naviage(`/content/${id}`)}

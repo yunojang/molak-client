@@ -24,7 +24,7 @@ const FindedContentList: FC<FindedContentListProps> = ({ filter }) => {
     () =>
       withListLoadToScroll({
         ListComp: ContentList,
-        filter,
+        filter: { ...filter, size: 8 },
         gap: rowGap,
         fallback: (
           <SkeletonContentCardList
@@ -44,7 +44,7 @@ const FindedContentList: FC<FindedContentListProps> = ({ filter }) => {
       colGap={colgap}
       columnCount={count}
       title={(cnt, page) =>
-        page == 1 ? <ListResultTitle cnt={cnt} mb={5} /> : null
+        page === 0 ? <ListResultTitle cnt={cnt} mb={5} /> : null
       }
       onSelect={id => keepNavigate(`/content/${id}`)}
       emptyFallback={<ContentEmptyPage />}
