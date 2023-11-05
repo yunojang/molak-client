@@ -23,10 +23,11 @@ const RelaltionContentList: FC<RelaltionContentListProps> = ({
       withListLoadToScroll({
         ListComp: ListCallToDomain,
         fallback: <SkeletonEpisodeList count={6} gap={gap} />,
-        filter: { size: 6 },
+        filter: { size: 6, contentId },
         gap,
       }),
-    [],
+    [contentId],
+    // [],
   );
 
   const relation = relationTabs[tab];

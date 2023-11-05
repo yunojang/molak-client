@@ -16,7 +16,11 @@ const ContentForm: FC<ContentFormProps> = ({
   defaultValues,
 }) => {
   const dv = useMemo<Partial<ContentCreateDto>>(
-    () => ({ ...defaultValues, episodes: defaultValues?.episodes ?? [] }),
+    () => ({
+      ...defaultValues,
+      episodes: defaultValues?.episodes ?? [],
+      uploadType: 'YOUTUBE',
+    }),
     [defaultValues],
   );
 
@@ -36,6 +40,16 @@ const ContentForm: FC<ContentFormProps> = ({
         key: 'thumbnailUrl',
         Header: '썸네일 URL',
         el: <Input />,
+      },
+      {
+        key: 'uploadType',
+        Header: '업로드 타입',
+        el: <Input />,
+      },
+      {
+        key: 'channelId',
+        Header: '채널아이디',
+        el: <Input type="number" />,
       },
     ],
     [],

@@ -161,6 +161,7 @@ export const discover: Discover = {
     '시대극',
     '드라마',
     '스케치',
+    '페이크다큐',
   ],
   types: ['시리즈', '단편'],
 };

@@ -27,8 +27,8 @@ const EpisodeForm: FC<EpisodeFormProps> = ({
   const { mutateAsync, isLoading } = useLoadYoutubeVideo();
 
   const dv = useMemo<Partial<EpisoceCreateDto>>(
-    () => ({ ...values, uploadType: 'YOUTUBE' }),
-    [values],
+    () => ({ ...values, videoUrl: url, uploadType: 'YOUTUBE' }),
+    [values, url],
   );
 
   const handleChangeForm = (v: Partial<EpisoceCreateDto>) => {
