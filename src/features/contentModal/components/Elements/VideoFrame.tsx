@@ -16,7 +16,7 @@ const VideoFrame: FC<VideoFrameProps> = ({
 }) => {
   return (
     <div
-      className="rounded-md overflow-hidden bg-dark relative"
+      className="rounded-xl overflow-hidden bg-dark relative"
       style={{ width, height }}
     >
       {children}

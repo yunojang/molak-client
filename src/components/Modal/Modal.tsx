@@ -82,7 +82,10 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
             onMouseDown={e => setOuterClicking(true)}
             onMouseUp={handleMouseupDim}
           >
-            <div onMouseDown={e => e.stopPropagation()}>
+            <div
+              onMouseDown={e => e.stopPropagation()}
+              className="max-h-full max-w-full"
+            >
               <div className="modal-fixed-contents z-20 fixed left-0">
                 {fixedChildren}
               </div>

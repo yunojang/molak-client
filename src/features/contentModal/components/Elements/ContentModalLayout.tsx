@@ -4,6 +4,7 @@ import { useBreakPoint } from '@/utils/breakpoint';
 
 import { LayoutProps } from '@/types';
 import { useParams } from 'react-router-dom';
+import { scrollYStyle } from '@/utils/style/scroll';
 
 interface ContentModalLayoutProps extends LayoutProps {
   _?: any;
@@ -18,7 +19,7 @@ const ContentModalLayout: FC<ContentModalLayoutProps> = ({
     if (p.eqBigger('2xl')) return 'flex';
     // if (p.eqBigger('xl')) return 'flex';
     // if (p.eqBigger('xl')) return 'flex-col';
-    else return 'flex-col h-screen';
+    else return 'flex-col';
   });
 
   const gap = useBreakPoint(p => {

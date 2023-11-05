@@ -23,7 +23,7 @@ const ContentModalProvider: FC<LayoutProps> = ({ children }) => {
         contentRef,
       }}
     >
-      <Modal isOpen close={coverClose} overflowY="scroll" ref={contentRef}>
+      <Modal isOpen close={coverClose} overflowY={'scroll'} ref={contentRef}>
         <ContentModalLayout>{children}</ContentModalLayout>
       </Modal>
     </ContentInfoContext.Provider>

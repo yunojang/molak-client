@@ -28,15 +28,13 @@ const ContentModal: FC = () => {
         {isIntroPage ? (
           <ContentIntroDetail />
         ) : (
-          <div style={{ width: videoWidth, height: videoHeight }}>
-            <Suspense fallback={<PlayerFallback width="100%" height="100%" />}>
-              <MolakPlayer />
-            </Suspense>
-          </div>
+          <Suspense fallback={<PlayerFallback width="100%" height="100%" />}>
+            <MolakPlayer />
+          </Suspense>
         )}
       </VideoFrame>
 
-      <RelationArea height={isXXL ? videoHeight : 'auto'} />
+      <RelationArea height={isXXL ? videoHeight : 'auto '} />
     </ContentModalProvider>
   );
 };

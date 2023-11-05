@@ -40,7 +40,7 @@ const RelationArea: FC<RelationsProps> = ({ height }) => {
   return (
     <div
       ref={ref}
-      className={cx(`pb-5 rounded-md bg-white flex-1`, scrollYStyle)}
+      className={cx(`pb-5 rounded-xl bg-white flex-1`, scrollYStyle)}
       style={{ width, height }}
     >
       <div className="sticky top-0 left-0 z-10 py-1.5 mb-3 w-full bg-white px-4">
