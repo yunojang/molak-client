@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { openFullScreen as ofsUtil } from '../utils/fullScreen';
 import { PlayerState } from '../types/player';
+import { useLocation } from 'react-router-dom';
 
 interface Player extends PlayerState {
   setProgress(v: number): void;
@@ -34,6 +35,12 @@ export const usePlayer = (container: HTMLElement | null): Player => {
   const [muted, setMuted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [slided, setSlided] = useState(0);
+
+  const location = useLocation();
+  useEffect(() => {
+    setSlided(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
 
   // const setVolume: (volume: number) => void = useMemo(
   //   () => throttle((volume: number) => setVolume(volume), 80),

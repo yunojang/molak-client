@@ -1,4 +1,11 @@
-import { FC, useContext, useRef, useState } from 'react';
+import {
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { cx } from '@emotion/css';
 
 import { useEpisode } from '@/features/episode/api/getEpisode';
@@ -14,6 +21,8 @@ import { usePlayer } from '../../hooks/usePlayer';
 import { formatSecond } from '../../utils/second';
 import PlayerCloseButton from './PlayerClosebutton';
 import { useOriental } from '@/hooks/common/useOriental';
+import { useLocation } from 'react-router-dom';
+import { StepSeparator } from '@chakra-ui/react';
 
 interface MolakPlayerProps {
   _?: never;

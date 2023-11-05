@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 
 // import { useContent } from '../api/getContent';
@@ -26,10 +26,15 @@ const Player: FC<PlayerProps> = ({
   ...playerProps
 }) => {
   const ref = useRef<ReactPlayer>(null);
+  const [rended, setRended] = useState(false);
 
   useEffect(() => {
-    ref.current?.seekTo(played);
-  }, [played]);
+    setRended(true);
+  }, []);
+
+  useEffect(() => {
+    if (ref.current && rended) ref.current.seekTo(played);
+  }, [played, rended]);
 
   return (
     <ReactPlayer
