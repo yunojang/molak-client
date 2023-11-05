@@ -24,7 +24,7 @@ const TagFilter: FC<TagFilterProps> = ({ value, onChange }) => {
 
   const {
     standard: { size },
-  } = useSizeRate(540, 0.05);
+  } = useSizeRate(600, -0.15);
 
   const width = useBreakPoint(p => (p.bigger('md') ? size : ''));
 
@@ -38,7 +38,7 @@ const TagFilter: FC<TagFilterProps> = ({ value, onChange }) => {
       <div
         style={{
           width,
-          gridTemplateColumns: 'repeat(5, minmax(5em, 1fr))',
+          gridTemplateColumns: 'repeat(4, minmax(5em, 1fr))',
         }}
         className="grid gap-1"
       >
