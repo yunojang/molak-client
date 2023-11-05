@@ -1,4 +1,11 @@
-import React, { FC, forwardRef, useContext, useEffect, useRef } from 'react';
+import React, {
+  FC,
+  MouseEvent,
+  forwardRef,
+  useContext,
+  useEffect,
+  useRef,
+} from 'react';
 import { Portal } from '../Portal';
 import { ModalContext } from '@/lib/modal/ModalContext';
 
@@ -58,6 +65,13 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
 
     useOnKeyDown('Escape', () => escapeKeyClose && close?.());
 
+    const [outerClicking, setOuterClicking] = React.useState(false);
+
+    const handleMouseupDim = () => {
+      if (outerClicking) close?.();
+      setOuterClicking(false);
+    };
+
     return (
       <Portal targetId={targetId}>
         {isOpen && (
@@ -65,26 +79,27 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
             ref={ref}
             style={{ overflow, overflowY, overflowX }}
             className="w-screen h-screen bg-black bg-opacity-[0.35] relative flex justify-center items-center transition-all"
-            onClick={e => {
-              if (e.target === e.currentTarget) close?.();
-            }}
+            onMouseDown={e => setOuterClicking(true)}
+            onMouseUp={handleMouseupDim}
           >
-            <div className="modal-fixed-contents z-20 fixed left-0">
-              {fixedChildren}
-            </div>
+            <div onMouseDown={e => e.stopPropagation()}>
+              <div className="modal-fixed-contents z-20 fixed left-0">
+                {fixedChildren}
+              </div>
 
-            <div
-              className={cx(
-                animate,
-                'transition-all max-h-full max-w-full z-10',
-                'modal-contents',
-              )}
-            >
-              {children}
-            </div>
+              <div
+                className={cx(
+                  animate,
+                  'transition-all max-h-full max-w-full z-10',
+                  'modal-contents',
+                )}
+              >
+                {children}
+              </div>
 
-            <div className={cx(position_class[extraPosition], 'absolute')}>
-              {extra}
+              <div className={cx(position_class[extraPosition], 'absolute')}>
+                {extra}
+              </div>
             </div>
           </div>
         )}
