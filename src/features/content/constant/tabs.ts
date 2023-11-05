@@ -7,7 +7,8 @@ export const relationTabs: TabInfo[] = [
   { name: '시리즈', domain: 'episode', ListView: EpisodeViewList },
   {
     name: '추천작',
-    domain: 'content/{id}/recommend',
+    // domain: 'content/{id}/recommend',
+    domain: 'content/recommend/{id}',
     ListView: EpisodeViewList,
   },
 ];
