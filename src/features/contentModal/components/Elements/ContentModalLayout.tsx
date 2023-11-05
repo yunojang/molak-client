@@ -12,22 +12,25 @@ interface ContentModalLayoutProps extends LayoutProps {
 
 const ContentModalLayout: FC<ContentModalLayoutProps> = ({
   children,
-  height,
+  height = '100%',
 }) => {
   const layout = useBreakPoint(p => {
     if (p.eqBigger('2xl')) return 'flex';
     // if (p.eqBigger('xl')) return 'flex';
     // if (p.eqBigger('xl')) return 'flex-col';
-    else return 'flex-col';
+    else return 'flex-col h-screen';
   });
 
   const gap = useBreakPoint(p => {
-    if (p.eqBigger('xl')) return 'gap-3';
+    if (p.eqBigger('2xl')) return 'gap-3';
     else return 'gap-0';
   });
 
   return (
-    <div style={{ height }} className={cx(layout, gap, `flex relative`)}>
+    <div
+      style={{ height }}
+      className={cx(layout, gap, `flex relative items-center`)}
+    >
       {children}
     </div>
   );

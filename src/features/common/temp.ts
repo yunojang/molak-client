@@ -181,15 +181,15 @@ export const hot_tagas: HotTag[] = [
       { name: '스케치', type: 'tags' },
     ],
   },
+  // {
+  //   title: '👊 일진과 찐따',
+  //   items: [
+  //     { name: '일진', type: 'tags' },
+  //     { name: '찐따', type: 'tags' },
+  //   ],
+  // },
   {
-    title: '👊 일진과 찐따',
-    items: [
-      { name: '일진', type: 'tags' },
-      { name: '찐따', type: 'tags' },
-    ],
-  },
-  {
-    title: '🖊️ 즐거운 학원물',
+    title: '🖊️ 가슴뛰는 학원물',
     items: [{ name: '학원', type: 'tags' }],
   },
   {
