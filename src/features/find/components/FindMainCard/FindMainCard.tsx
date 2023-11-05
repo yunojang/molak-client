@@ -10,7 +10,7 @@ interface FindMainCardProps {
 const intro = {
   image: '/asset/images/card.jpeg',
   text: '어서오세요 웰컴스토어에',
-  link: '/content/1',
+  link: '/content/15',
 };
 
 const FindMainCard: FC<FindMainCardProps> = () => {
