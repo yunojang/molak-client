@@ -40,7 +40,7 @@ const RelaltionContentList: FC<RelaltionContentListProps> = ({
       domain={domain}
       ViewComp={relation.ListView}
       onSelect={onSelect}
-      emptyFallback={<EmptyNoti pad={24} />}
+      emptyFallback={<EmptyNoti pad={24} message="추천 컨텐츠가 없어요" />}
     />
   );
 };
