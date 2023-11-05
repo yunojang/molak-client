@@ -10,6 +10,7 @@ export interface InfiniteListProps {
   pager?(pageCnt: number, isEnd?: boolean): ReactNode;
   params?: any;
   gap?: number;
+  emptyFallback?: ReactNode;
 }
 
 export interface ListProps {

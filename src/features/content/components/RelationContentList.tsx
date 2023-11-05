@@ -5,6 +5,8 @@ import SkeletonEpisodeList from '@/components/Elements/Card/SkeletonEpisodeList'
 import ListCallToDomain from '@/components/List/ListCallToDomain';
 import { relationTabs } from '../constant/tabs';
 import { ContentInfoContext } from '@/features/contentModal/store/ContentIdContext';
+import ContentEmptyPage from '@/components/Elements/EmptyPage/ContentEmptyPage';
+import EmptyNoti from '@/components/Elements/EmptyPage/EmptyNoti';
 
 interface RelaltionContentListProps {
   tab: number;
@@ -38,6 +40,7 @@ const RelaltionContentList: FC<RelaltionContentListProps> = ({
       domain={domain}
       ViewComp={relation.ListView}
       onSelect={onSelect}
+      emptyFallback={<EmptyNoti pad={24} />}
     />
   );
 };

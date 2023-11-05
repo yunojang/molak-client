@@ -16,9 +16,11 @@ const ListCallToDomain: FC<ListCallToDomainProps> = ({
   pager,
   gap = 0,
   onSelect,
+  emptyFallback,
 }) => {
   const { data, totalPages, isEnd } = useListByDomain(domain, params);
 
+  if (data.length === 0) return <>{emptyFallback}</>;
   return (
     <>
       <ViewComp data={data} gap={gap} onSelect={onSelect} />
