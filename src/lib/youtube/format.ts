@@ -15,6 +15,10 @@ export const responseToEpisode = (
   return {
     title: v?.snippet.title,
     description: v?.snippet.description,
-    thumbnailUrl: v?.snippet.thumbnails['standard'].url,
+    thumbnailUrl:
+      v?.snippet.thumbnails['standard']?.url ??
+      v?.snippet.thumbnails['high']?.url ??
+      v?.snippet.thumbnails['medium']?.url ??
+      v?.snippet.thumbnails['default']?.url,
   };
 };
