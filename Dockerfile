@@ -20,7 +20,7 @@ COPY tailwind.config.js .
 COPY .env .
 
 COPY src ./src
-RUN yarn build --max_old_space_size=512
+RUN yarn build_size
 
 # nginx
 FROM nginx:stable-alpine

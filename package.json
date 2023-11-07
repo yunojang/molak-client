@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=development node scripts/start.js",
-    "build_size": "cross-env NODE_ENV=production node --max_old_space_size=8096 scripts/build.js",
+    "build_size": "cross-env NODE_ENV=production node --max_old_space_size=512 scripts/build.js",
     "build": "cross-env NODE_ENV=production node scripts/build.js",
     "admin": "cross-env NODE_ENV=admin node scripts/admin.js",
     "pret": "yarn prettier --write src/**",
