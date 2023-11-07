@@ -6,7 +6,7 @@ import { Content } from '../types/dto';
 
 export const getNextEpisode = (episodeId: string): Promise<Content> => {
   // return new Promise(resolve => setTimeout(() => resolve(content3), 500));
-  return client.get(`/api/v1/episode/next`, { params: { episodeId } });
+  return client.get(`/api/v1/episode/${episodeId}/next/episode`);
 };
 
 export const useNextEpisode = (episodeId: string) => {

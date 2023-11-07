@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { cx } from '@emotion/css';
 
-import { useDiscover } from '../../../find/api/getDiscover';
+import { useSearchOptions } from '../../../find/api/getSearchOptions';
 import { FilterProps } from '@/components/Wrapper/withFilter';
 
 import { env } from '@/config';
@@ -21,7 +21,7 @@ const GenreFilter: FC<GenreFilterProps> = ({
   defaultValue,
   onChange,
 }) => {
-  const { genres } = useDiscover();
+  const { genres } = useSearchOptions();
   const [selectedGenre, setSelectedGenre] = useState<string>(
     value ?? defaultValue,
   );

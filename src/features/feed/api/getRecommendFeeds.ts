@@ -9,7 +9,7 @@ export const getMolakRecommendFeeds = (): Promise<RecommendFeed> => {
   // return new Promise(resolve =>
   //   setTimeout(() => resolve(recommend_feeds[0]), 100),
   // );
-  return client.get(`/api/v1/recommend`);
+  return client.get(`/api/v1/feed/recommendation`);
 };
 
 export const useRecommendFeeds = () => {

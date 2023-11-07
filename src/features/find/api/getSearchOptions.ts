@@ -2,21 +2,20 @@
 import client from '@/lib/client';
 import { useQuery } from '@/lib/react-query';
 
-import { discover } from '@/features/common/temp';
 import { Discover } from '../types';
 
-export const getDiscover = (): Promise<Discover> => {
+export const getSearchOptions = (): Promise<Discover> => {
   // return Promise.resolve(discover);
-  return client.get(`/api/v1/serach/option`);
+  return client.get(`/api/v1/search/options`);
 };
 
-export const useDiscover = () => {
+export const useSearchOptions = () => {
   const { data: discover, ...rest } = useQuery({
     queryKey: ['discover'],
-    queryFn: () => getDiscover(),
+    queryFn: () => getSearchOptions(),
   });
 
-  if (!discover) throw getDiscover;
+  if (!discover) throw getSearchOptions;
 
   return { discover, genres: discover.genres, ...rest };
 };

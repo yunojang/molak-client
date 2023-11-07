@@ -2,7 +2,7 @@ import { FC, useMemo, useState } from 'react';
 import { css, cx } from '@emotion/css';
 
 import { FilterProps } from '@/components/Wrapper/withFilter';
-import { useDiscover } from '@/features/find/api/getDiscover';
+import { useSearchOptions } from '@/features/find/api/getSearchOptions';
 
 import { Checkbox, CheckboxGroup } from '@chakra-ui/react';
 import { useBreakPoint } from '@/utils/breakpoint';
@@ -18,7 +18,7 @@ export interface TagFilterProps extends FilterProps {
 const TagFilter: FC<TagFilterProps> = ({ value, onChange }) => {
   const {
     discover: { tags },
-  } = useDiscover();
+  } = useSearchOptions();
   const [selectedTags, setSelectedTags] = useState<string[]>(value ?? []);
   const current = useMemo(() => value ?? selectedTags, [value, selectedTags]);
 
