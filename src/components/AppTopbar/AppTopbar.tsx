@@ -24,6 +24,9 @@ const AppTopbar: FC<AppTopbarProps> = () => {
           <BreakPoint size="md" better="eqBigger">
             <Navigator nav={NAVIGATION} />
           </BreakPoint>
+          <BreakPoint size="md" better="smaller">
+            <Navigator nav={NAVIGATION.filter((_, i) => i == 0)} />
+          </BreakPoint>
         </NavLayuout>
 
         {/* right */}

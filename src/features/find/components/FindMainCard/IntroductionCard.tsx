@@ -30,6 +30,10 @@ const IntroductionCard: FC<IntroductionCardProps> = ({
     standard: { size: width },
   } = useSizeRate(480, 0.185);
 
+  const {
+    standard: { size: height },
+  } = useSizeRate(300, 0.16);
+
   const handleClick = () => {
     if (prepare || !link) return;
     if (type === '꼭 봐야하는') keepNavigate(link);
@@ -40,8 +44,8 @@ const IntroductionCard: FC<IntroductionCardProps> = ({
 
   return (
     <div
-      className="flex justify-between gap-10 rounded-md p-7 pr-3 h-[16em] flex-1 cursor-pointer relative"
-      style={{ background, minWidth: width }}
+      className="flex justify-between gap-10 rounded-md p-7 pr-3 flex-1 cursor-pointer relative"
+      style={{ background, minWidth: width, height }}
       onClick={handleClick}
     >
       {prepare && (

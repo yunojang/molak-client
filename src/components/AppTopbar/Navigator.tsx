@@ -6,6 +6,7 @@ import { useNavigate } from '@/hooks/common/useNavigate';
 
 import { clickableButtonStyle } from '@/utils/style/button';
 import { adjust } from '@/utils/style/color';
+import { useSizeRate, useText } from '@/hooks/responsive/usePadding';
 
 export interface NavObject {
   name: string;
@@ -17,6 +18,10 @@ interface NavigatorProps {
 
 const Navigator: FC<NavigatorProps> = ({ nav }) => {
   const navigate = useNavigate();
+  const {
+    standard: { size },
+  } = useSizeRate(28);
+  const { lg } = useText();
 
   return (
     <div className="flex items-center select-none">
@@ -26,10 +31,12 @@ const Navigator: FC<NavigatorProps> = ({ nav }) => {
         return (
           <div
             key={i}
+            style={{ paddingLeft: size, paddingRight: size }}
             className={cx(
               clickableButtonStyle,
+              lg.className,
               isCurrent ? 'text-secondary font-semibold' : 'text-black',
-              `py-2 transition-all text-lg  cursor-pointer px-7 hover:text-secondary`,
+              `py-2 transition-all  cursor-pointer hover:text-secondary`,
             )}
             onClick={() => navigate(path)}
           >
