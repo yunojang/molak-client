@@ -9,15 +9,15 @@ interface QueryPageProps {
 }
 
 const QueryResultPage: FC<QueryPageProps> = () => {
-  const [query] = useQueryString('q');
+  const [keyword] = useQueryString('q');
   const [filter, setFilter] = useState<any>({});
 
-  const allFilter = useMemo(() => ({ ...filter, query }), [filter, query]);
+  const allFilter = useMemo(() => ({ ...filter, keyword }), [filter, keyword]);
 
   return (
     <div>
       {/* setfilter */}
-      <QueryHeader query={query} onChangeFilter={setFilter} />
+      <QueryHeader query={keyword} onChangeFilter={setFilter} />
       <QueriedContentList filter={allFilter} />
     </div>
   );

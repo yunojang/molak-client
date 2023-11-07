@@ -42,7 +42,7 @@ const Filters: FC<FiltersProps> = ({ value, defaultValues, onChange }) => {
         Selectable={GenreFilter}
         value={current?.genre ?? DEFAULT_FILTERS.genre}
         defaultValue={DEFAULT_FILTERS.genre}
-        onChange={genre => handleChange({ genre })}
+        onChange={genre => handleChange({ genres: [genre], genre })}
       />
 
       <SearchFilter
