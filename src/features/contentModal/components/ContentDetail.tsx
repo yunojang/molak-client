@@ -23,6 +23,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
   const { content, isLoading: _isLoading } = useContent(contentId, {
     suspense: false,
   });
+
   const isLoading = _isLoading || !content;
 
   const handleClickStartButton = () => {
@@ -64,7 +65,7 @@ const ContentIntroDetail: FC<ContentVideoDetailProps> = () => {
               </ContentTag>
             </div>
 
-            <div className="text-gray-100">{content?.channel.name}</div>
+            <div className="text-gray-100">{content?.channel?.name}</div>
             <div className={cx(font.xxxl.className, 'font-bold mb-2')}>
               {content?.title}
             </div>

@@ -6,10 +6,12 @@ import { useBackgroundLocation } from '@/hooks/useBackgroundLocation';
 import { useBreakPoint } from '@/utils/breakpoint';
 import { ContentInfoContext } from '@/features/contentModal/store/ContentIdContext';
 
-import { scrollYStyle } from '@/utils/style/scroll';
 import RelaltionContentList from './RelationContentList';
-import { moveScroll } from '@/utils/scroll/scroll';
 import RelationTabs from '@/features/contentModal/components/Relation/RelationTabs';
+
+import { scrollYStyle } from '@/utils/style/scroll';
+import { moveScroll } from '@/utils/scroll/scroll';
+import { relationTabs } from '../constant/tabs';
 
 interface RelationsProps {
   height: number | string;
@@ -26,8 +28,12 @@ const RelationArea: FC<RelationsProps> = ({ height }) => {
 
   const width = useBreakPoint(p => (p.eqBigger('2xl') ? 480 : '100%'));
 
-  const handleSelectEpisode = (_: any, episodeId: string) => {
-    navigate(`/content/${id}/${episodeId}`);
+  const handleSelectEpisode = (_: any, selectedId: string) => {
+    if (relationTabs[tab].name == '시리즈')
+      navigate(`/content/${id}/${selectedId}`);
+    else if (relationTabs[tab].name == '추천작')
+      navigate(`/content/${selectedId}`);
+
     if (contentRef?.current) moveScroll({ top: 0, target: contentRef.current });
   };
 
