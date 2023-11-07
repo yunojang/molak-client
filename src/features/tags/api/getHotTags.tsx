@@ -6,7 +6,8 @@ import { HotTag } from '../types/dto';
 import { hot_tagas } from '@/features/common/temp';
 
 export const getHotTags = (): Promise<HotTag[]> => {
-  return new Promise(resolve => setTimeout(() => resolve(hot_tagas), 500));
+  return Promise.resolve(hot_tagas);
+  // return new Promise(resolve => setTimeout(() => resolve(hot_tagas), 500));
   // return client.get(`/api/hot-tags`);
 };
 
