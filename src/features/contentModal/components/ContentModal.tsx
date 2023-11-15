@@ -34,10 +34,7 @@ const ContentModal: FC = () => {
         )}
       </VideoFrame>
 
-      <RelationArea
-        maxWidth={videoWidth}
-        height={isXXL ? videoHeight : 'auto '}
-      />
+      <RelationArea width={videoWidth} height={isXXL ? videoHeight : 'auto '} />
     </ContentModalProvider>
   );
 };

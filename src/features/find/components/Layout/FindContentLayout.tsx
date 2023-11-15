@@ -1,5 +1,6 @@
 import { useContentWidth } from '@/hooks/useContentWidth';
 import { LayoutProps } from '@/types';
+import { cx } from '@emotion/css';
 import { FC } from 'react';
 
 interface FindContentLayoutProps extends LayoutProps {
@@ -9,7 +10,7 @@ interface FindContentLayoutProps extends LayoutProps {
 const FindContentLayout: FC<FindContentLayoutProps> = ({ children }) => {
   const { cls } = useContentWidth({ widths: ['96%', '97%'] });
 
-  return <div className={cls}>{children}</div>;
+  return <div className={cx(cls)}>{children}</div>;
 };
 
 export default FindContentLayout;
