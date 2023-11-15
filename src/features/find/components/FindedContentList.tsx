@@ -40,15 +40,17 @@ const FindedContentList: FC<FindedContentListProps> = ({ filter }) => {
   );
 
   return (
-    <FindedContentsLoadToScroll
-      colGap={colgap}
-      columnCount={count}
-      title={(cnt, page) =>
-        page === 0 ? <ListResultTitle cnt={cnt} mb={5} /> : null
-      }
-      onSelect={id => keepNavigate(`/content/${id}`)}
-      emptyFallback={<ContentEmptyPage />}
-    />
+    <div className="min-h-[70vh]">
+      <FindedContentsLoadToScroll
+        colGap={colgap}
+        columnCount={count}
+        title={(cnt, page) =>
+          page === 0 ? <ListResultTitle cnt={cnt} mb={5} /> : null
+        }
+        onSelect={id => keepNavigate(`/content/${id}`)}
+        emptyFallback={<ContentEmptyPage />}
+      />
+    </div>
   );
 };
 

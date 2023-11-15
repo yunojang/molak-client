@@ -8,7 +8,7 @@ interface ContentEmptyPageProps {
 
 const ContentEmptyPage: FC<ContentEmptyPageProps> = () => {
   return (
-    <div className="min-h-[60vh]">
+    <div className="min-h-[40vh] h-[50%] flex justify-center items-center">
       <EmptyNoti />
     </div>
   );
