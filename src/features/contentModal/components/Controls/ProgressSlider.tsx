@@ -17,7 +17,7 @@ const ProgressSlider: React.FC<ProgressSliderProps> = ({
 
   const handleChangeEnd = (value: number) => {
     setSlided?.(value);
-    setTimeout(() => setChanging(false), 81);
+    setTimeout(() => setChanging(false), 81); // slided가 영상을 조정하고, progress도 변경된 이후에 changing을 false로 변경
   };
 
   return (

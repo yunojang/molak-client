@@ -2,11 +2,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 export const useCountDown = ({
   initCount,
-  immediateStart,
+  immediateTimer,
   onZero,
 }: {
   initCount: number;
-  immediateStart?: boolean;
+  immediateTimer?: boolean;
   onZero?: () => void;
 }) => {
   const [count, setCount] = useState(initCount);
@@ -21,16 +21,20 @@ export const useCountDown = ({
   }, [countDown]);
 
   useEffect(() => {
-    if (count == 0) onZero?.();
-  }, [count, onZero]);
+    if (count == 0) {
+      if (timer.current) clearInterval(timer.current);
+      onZero?.();
+      setCount(initCount);
+    }
+  }, [count, onZero, initCount]);
 
   useEffect(() => {
-    if (immediateStart) startCD();
+    if (immediateTimer) startCD();
 
     // clean up
     if (!timer.current) return;
     return () => clearInterval(timer.current);
-  }, [immediateStart, startCD]);
+  }, [immediateTimer, startCD]);
 
   return { count, countDown, startCD };
 };

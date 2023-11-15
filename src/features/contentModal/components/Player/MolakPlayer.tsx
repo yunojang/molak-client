@@ -57,13 +57,13 @@ const MolakPlayer: FC<MolakPlayerProps> = playerProps => {
 
   // 다음화 재생
   const { keepNavigate } = useCoverNavigate();
-  const handleClickNextEpisode = () => {
+  const handleClickNextEpisode = useCallback(() => {
     if (nextEpisode) {
       keepNavigate(`/content/${contentId}/${nextEpisode.id}`);
-      progress.setSlided(0);
+      setProgress(0);
       playing.play?.();
     }
-  };
+  }, [contentId, nextEpisode, keepNavigate, setProgress, playing]);
 
   // times
   const runningTime = formatSecond(
